@@ -333,7 +333,7 @@ export default function NobluBeautyRoomWebsite() {
           <div className="rounded-[2rem] overflow-hidden border border-[#EFE8E1] h-[500px] shadow-[0_20px_60px_rgba(0,0,0,0.08)]">
   <iframe
     title="Mapa dojazdu Noblu Beauty Room"
-    src="https://www.google.com/maps?q=Orzechowa+4,+Kraków&output=embed"
+    src="https://www.google.com/maps?q=Orzechowa+4/1,+Kraków&output=embed"
     width="100%"
     height="100%"
     style={{ border: 0 }}
