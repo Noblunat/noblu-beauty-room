@@ -1,146 +1,174 @@
-export default function Home() {
-  return (
-    <div className="min-h-screen bg-[#F8F5F2] text-[#1D1D1B] font-sans">
-      {/* HERO */}
-      <section className="relative overflow-hidden bg-[#111111] text-white">
-        <div className="absolute inset-0 opacity-20 bg-[radial-gradient(circle_at_top_right,#D4B483,transparent_35%)]"></div>
+export default function NobluBeautyRoomWebsite() {
+  const services = [
+    'Manicure Premium',
+    'Pedicure SPA',
+    'Stylizacja Paznokci',
+    'Beauty Treatments',
+  ]
 
-        <div className="relative max-w-7xl mx-auto px-6 lg:px-12 py-24 lg:py-36 grid lg:grid-cols-2 gap-16 items-center">
+  const reviews = [
+    {
+      name: 'Anna K.',
+      text: 'Najpiękniejszy salon beauty w Krakowie. Wszystko dopracowane perfekcyjnie.',
+    },
+    {
+      name: 'Julia M.',
+      text: 'Rezerwacja przez Booksy działa błyskawicznie, a efekt paznokci jest premium.',
+    },
+    {
+      name: 'Karolina W.',
+      text: 'Piękne wnętrze, profesjonalizm i atmosfera jak w luksusowym SPA.',
+    },
+  ]
+
+  return (
+    <div className="min-h-screen bg-[#F8F5F2] text-[#1D1D1B] overflow-hidden">
+      {/* NAVBAR */}
+      <header className="fixed top-0 left-0 right-0 z-50 backdrop-blur-xl bg-black/40 border-b border-white/10">
+        <div className="max-w-7xl mx-auto px-6 lg:px-12 py-5 flex items-center justify-between">
+          <div className="flex items-center gap-4">
+            <div className="w-10 h-10 rounded-full border border-[#D4B483] flex items-center justify-center text-[#D4B483] text-xs">
+              NB
+            </div>
+            <div>
+              <div className="text-white text-lg tracking-wide font-medium">
+                Noblu Beauty Room
+              </div>
+              <div className="text-white/50 text-xs uppercase tracking-[0.2em]">
+                Kraków
+              </div>
+            </div>
+          </div>
+
+          <nav className="hidden lg:flex items-center gap-10 text-white/70 text-sm tracking-wide">
+            <a href="#services" className="hover:text-white transition-colors">
+              Oferta
+            </a>
+            <a href="#booking" className="hover:text-white transition-colors">
+              Rezerwacja
+            </a>
+            <a href="#reviews" className="hover:text-white transition-colors">
+              Opinie
+            </a>
+            <a href="#contact" className="hover:text-white transition-colors">
+              Kontakt
+            </a>
+          </nav>
+
+          <a
+            href="https://booksy.com/pl-pl/105150_noblu-beauty-room_paznokcie_8820_krakow"
+            target="_blank"
+            className="px-6 py-3 rounded-full bg-[#D4B483] text-black text-sm font-medium hover:scale-105 transition-transform"
+          >
+            Booksy
+          </a>
+        </div>
+      </header>
+
+      {/* HERO */}
+      <section className="relative min-h-screen bg-[#111111] text-white flex items-center">
+        <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,#D4B483,transparent_35%)] opacity-20"></div>
+
+        <div className="relative max-w-7xl mx-auto px-6 lg:px-12 pt-40 pb-24 grid lg:grid-cols-2 gap-20 items-center">
           <div>
-            <div className="inline-flex items-center rounded-full border border-white/20 px-4 py-2 text-sm tracking-[0.2em] uppercase text-[#D4B483] mb-8">
-              Premium Beauty Experience · Poznań
+            <div className="inline-flex items-center px-4 py-2 rounded-full border border-white/10 text-[#D4B483] text-xs uppercase tracking-[0.3em] mb-8">
+              Premium Beauty Experience
             </div>
 
-            <h1 className="text-5xl lg:text-7xl leading-[1.05] font-light tracking-tight max-w-2xl">
+            <h1 className="text-5xl lg:text-8xl font-light leading-[0.95] tracking-tight">
               Noblu
-              <span className="block font-medium text-[#D4B483]">
+              <span className="block text-[#D4B483] font-medium">
                 Beauty Room
               </span>
             </h1>
 
-            <p className="mt-8 text-lg text-white/70 max-w-xl leading-relaxed">
-              Ekskluzywny salon beauty stworzony dla kobiet, które oczekują najwyższej jakości usług, wyjątkowej atmosfery i perfekcyjnych efektów.
+            <p className="mt-8 text-lg text-white/70 leading-relaxed max-w-xl">
+              Kameralny salon beauty premium w Krakowie. Stylizacja paznokci i beauty experience stworzone dla kobiet kochających elegancję, estetykę i perfekcyjne wykonanie.
             </p>
 
             <div className="mt-10 flex flex-wrap gap-4">
-              <button className="px-8 py-4 rounded-full bg-[#D4B483] text-black text-sm tracking-wide font-medium hover:scale-105 transition-transform">
-                Zarezerwuj wizytę online
-              </button>
+              <a
+                href="https://booksy.com/pl-pl/105150_noblu-beauty-room_paznokcie_8820_krakow"
+                target="_blank"
+                className="px-8 py-5 rounded-full bg-[#D4B483] text-black font-medium hover:scale-105 transition-transform"
+              >
+                Zarezerwuj online
+              </a>
 
-              <button className="px-8 py-4 rounded-full border border-white/20 text-sm tracking-wide hover:bg-white hover:text-black transition-all">
-                Zobacz ofertę
-              </button>
+              <a
+                href="https://www.instagram.com/noblu_beauty_room/"
+                target="_blank"
+                className="px-8 py-5 rounded-full border border-white/10 hover:bg-white hover:text-black transition-all"
+              >
+                Instagram
+              </a>
             </div>
 
-            <div className="mt-12 flex items-center gap-8 text-sm text-white/60">
+            <div className="mt-14 grid grid-cols-3 gap-8 max-w-lg">
               <div>
-                <div className="text-2xl text-white font-semibold">4.9/5</div>
-                <div>Opinie klientek</div>
+                <div className="text-3xl font-semibold">4.9</div>
+                <div className="text-white/50 text-sm mt-1">Ocena klientek</div>
               </div>
+
               <div>
-                <div className="text-2xl text-white font-semibold">1500+</div>
-                <div>Wykonanych zabiegów</div>
+                <div className="text-3xl font-semibold">24/7</div>
+                <div className="text-white/50 text-sm mt-1">Booksy online</div>
               </div>
+
               <div>
-                <div className="text-2xl text-white font-semibold">7 dni</div>
-                <div>Rezerwacja online</div>
+                <div className="text-3xl font-semibold">Premium</div>
+                <div className="text-white/50 text-sm mt-1">Beauty studio</div>
               </div>
             </div>
           </div>
 
           <div className="relative">
-            <div className="aspect-[4/5] rounded-[2rem] bg-gradient-to-br from-[#D4B483] via-[#C6A06E] to-[#8A6A44] p-[1px] shadow-2xl">
-              <div className="h-full w-full rounded-[2rem] bg-[#1A1A1A] flex items-center justify-center text-center p-10">
-                <div>
-                  <div className="text-sm tracking-[0.3em] uppercase text-[#D4B483] mb-4">
-                    Luxury Beauty
-                  </div>
-                  <h2 className="text-4xl lg:text-5xl font-light leading-tight">
-                    Elegancja.
-                    <br />
-                    Relaks.
-                    <br />
-                    Perfekcja.
-                  </h2>
-                </div>
+            <div className="absolute -top-10 -right-10 w-72 h-72 bg-[#D4B483] rounded-full blur-3xl opacity-20"></div>
+
+            <div className="relative rounded-[2.5rem] overflow-hidden border border-white/10 bg-[#181818] shadow-2xl">
+              <div className="aspect-[4/5] bg-gradient-to-br from-[#E8D6BE] via-[#D4B483] to-[#8A6A44] flex items-center justify-center p-16">
+                <div className="w-full h-full rounded-full border-[6px] border-[#F7E6B2] opacity-80"></div>
               </div>
             </div>
           </div>
-        </div>
-      </section>
-
-      {/* USP */}
-      <section className="max-w-7xl mx-auto px-6 lg:px-12 py-24">
-        <div className="grid md:grid-cols-3 gap-8">
-          {[
-            {
-              title: 'Rezerwacja online 24/7',
-              desc: 'Błyskawiczne umawianie wizyt przez Booksy lub formularz online — bez dzwonienia.',
-            },
-            {
-              title: 'Premium doświadczenie',
-              desc: 'Starannie zaprojektowane wnętrze, najwyższa jakość produktów i indywidualna opieka.',
-            },
-            {
-              title: 'Widoczność lokalna SEO',
-              desc: 'Strona zoptymalizowana pod wyszukiwania lokalne typu „salon beauty Poznań”.',
-            },
-          ].map((item) => (
-            <div
-              key={item.title}
-              className="bg-white rounded-[2rem] p-10 shadow-[0_10px_40px_rgba(0,0,0,0.04)] border border-[#EFE8E1]"
-            >
-              <div className="w-14 h-14 rounded-2xl bg-[#F3ECE4] mb-6"></div>
-              <h3 className="text-2xl font-medium mb-4">{item.title}</h3>
-              <p className="text-[#6D6B68] leading-relaxed">{item.desc}</p>
-            </div>
-          ))}
         </div>
       </section>
 
       {/* SERVICES */}
-      <section className="bg-white py-24">
+      <section id="services" className="py-28 bg-[#F8F5F2]">
         <div className="max-w-7xl mx-auto px-6 lg:px-12">
-          <div className="flex flex-col lg:flex-row lg:items-end justify-between gap-8 mb-16">
-            <div>
-              <div className="text-sm tracking-[0.3em] uppercase text-[#B08B57] mb-4">
-                Oferta premium
-              </div>
-              <h2 className="text-4xl lg:text-6xl font-light leading-tight max-w-3xl">
-                Najbardziej pożądane zabiegi beauty
-              </h2>
+          <div className="max-w-3xl mb-16">
+            <div className="text-sm uppercase tracking-[0.3em] text-[#B08B57] mb-4">
+              Oferta premium
             </div>
 
-            <button className="rounded-full border border-black px-6 py-3 hover:bg-black hover:text-white transition-all w-fit">
-              Pełny cennik
-            </button>
+            <h2 className="text-4xl lg:text-6xl font-light leading-tight">
+              Najbardziej pożądane zabiegi beauty w Krakowie
+            </h2>
           </div>
 
           <div className="grid md:grid-cols-2 xl:grid-cols-4 gap-6">
-            {[
-              'Stylizacja rzęs i brwi',
-              'Manicure & Pedicure',
-              'Kosmetologia twarzy',
-              'Depilacja laserowa',
-              'Endermologia',
-              'Masaże premium',
-              'Makijaż okazjonalny',
-              'Pakiety beauty VIP',
-            ].map((service) => (
+            {services.map((service) => (
               <div
                 key={service}
-                className="group rounded-[2rem] overflow-hidden bg-[#F8F5F2] border border-[#EFE8E1]"
+                className="rounded-[2rem] bg-white border border-[#EFE8E1] overflow-hidden shadow-[0_10px_40px_rgba(0,0,0,0.04)] group"
               >
-                <div className="h-56 bg-gradient-to-br from-[#E8D6BE] to-[#B08B57]"></div>
+                <div className="h-64 bg-gradient-to-br from-[#E8D6BE] to-[#B08B57]"></div>
+
                 <div className="p-8">
-                  <h3 className="text-xl mb-3">{service}</h3>
-                  <p className="text-[#6D6B68] text-sm leading-relaxed mb-6">
-                    Zabiegi wykonywane przez doświadczonych specjalistów z wykorzystaniem premium produktów.
+                  <h3 className="text-2xl mb-4">{service}</h3>
+
+                  <p className="text-[#6D6B68] leading-relaxed mb-6">
+                    Profesjonalne zabiegi wykonywane w luksusowej atmosferze z wykorzystaniem premium produktów.
                   </p>
 
-                  <button className="text-sm tracking-wide uppercase text-[#B08B57] group-hover:translate-x-1 transition-transform">
-                    Dowiedz się więcej →
-                  </button>
+                  <a
+                    href="https://booksy.com/pl-pl/105150_noblu-beauty-room_paznokcie_8820_krakow"
+                    target="_blank"
+                    className="text-sm uppercase tracking-[0.2em] text-[#B08B57] group-hover:translate-x-1 transition-transform inline-block"
+                  >
+                    Rezerwuj →
+                  </a>
                 </div>
               </div>
             ))}
@@ -148,57 +176,48 @@ export default function Home() {
         </div>
       </section>
 
-      {/* ONLINE BOOKING */}
-      <section className="py-24 bg-[#111111] text-white">
+      {/* BOOKING */}
+      <section id="booking" className="py-28 bg-[#111111] text-white">
         <div className="max-w-7xl mx-auto px-6 lg:px-12 grid lg:grid-cols-2 gap-16 items-center">
           <div>
-            <div className="text-sm tracking-[0.3em] uppercase text-[#D4B483] mb-4">
+            <div className="text-sm uppercase tracking-[0.3em] text-[#D4B483] mb-4">
               Rezerwacja online
             </div>
+
             <h2 className="text-4xl lg:text-6xl font-light leading-tight">
               Umów wizytę
-              <span className="block text-[#D4B483]">w mniej niż minutę</span>
+              <span className="block text-[#D4B483]">w kilka sekund</span>
             </h2>
 
             <p className="mt-8 text-white/70 text-lg leading-relaxed max-w-xl">
-              Integracja z Booksy jako centralny element strony. Widoczny widget rezerwacji, szybki wybór zabiegu i natychmiastowe potwierdzenie terminu.
+              Booksy jest centralnym elementem strony — klientka może od razu wybrać usługę i zarezerwować termin online.
             </p>
 
-            <div className="mt-10 flex flex-wrap gap-4">
-              <button className="px-8 py-4 rounded-full bg-[#D4B483] text-black font-medium hover:scale-105 transition-transform">
-                Rezerwuj przez Booksy
-              </button>
-
-              <button className="px-8 py-4 rounded-full border border-white/20 hover:bg-white hover:text-black transition-all">
-                Kontakt
-              </button>
-            </div>
+            <a
+              href="https://booksy.com/pl-pl/105150_noblu-beauty-room_paznokcie_8820_krakow"
+              target="_blank"
+              className="inline-flex mt-10 px-8 py-5 rounded-full bg-[#D4B483] text-black font-medium hover:scale-105 transition-transform"
+            >
+              Przejdź do Booksy
+            </a>
           </div>
 
-          <div className="bg-[#1A1A1A] border border-white/10 rounded-[2rem] p-8 shadow-2xl">
-            <div className="flex items-center justify-between mb-8">
-              <div>
-                <div className="text-xl font-medium">Widget Booksy</div>
-                <div className="text-sm text-white/50 mt-1">Integracja API / iframe</div>
-              </div>
-              <div className="w-3 h-3 rounded-full bg-green-500"></div>
-            </div>
-
-            <div className="space-y-4">
-              {[
-                'Stylizacja rzęs',
-                'Manicure premium',
-                'Kosmetologia twarzy',
-                'Depilacja laserowa',
-              ].map((item) => (
+          <div className="bg-[#1A1A1A] border border-white/10 rounded-[2rem] p-10">
+            <div className="space-y-5">
+              {services.map((item) => (
                 <div
                   key={item}
-                  className="flex items-center justify-between rounded-2xl bg-white/5 border border-white/10 p-5"
+                  className="flex items-center justify-between p-5 rounded-2xl border border-white/10 bg-white/5"
                 >
                   <span>{item}</span>
-                  <button className="text-[#D4B483] text-sm uppercase tracking-wide">
-                    Rezerwuj
-                  </button>
+
+                  <a
+                    href="https://booksy.com/pl-pl/105150_noblu-beauty-room_paznokcie_8820_krakow"
+                    target="_blank"
+                    className="text-[#D4B483] uppercase text-sm tracking-[0.2em]"
+                  >
+                    Book
+                  </a>
                 </div>
               ))}
             </div>
@@ -206,131 +225,114 @@ export default function Home() {
         </div>
       </section>
 
-      {/* SOCIAL PROOF */}
-      <section className="py-24 bg-[#F8F5F2]">
+      {/* REVIEWS */}
+      <section id="reviews" className="py-28 bg-white">
         <div className="max-w-7xl mx-auto px-6 lg:px-12">
           <div className="text-center max-w-3xl mx-auto mb-16">
-            <div className="text-sm tracking-[0.3em] uppercase text-[#B08B57] mb-4">
-              Social Proof
+            <div className="text-sm uppercase tracking-[0.3em] text-[#B08B57] mb-4">
+              Opinie klientek
             </div>
+
             <h2 className="text-4xl lg:text-6xl font-light leading-tight">
-              Klientki wracają do Noblu regularnie
+              Beauty experience,
+              <span className="block">do którego chce się wracać</span>
             </h2>
           </div>
 
           <div className="grid lg:grid-cols-3 gap-8">
-            {[
-              {
-                name: 'Anna K.',
-                text: 'Najpiękniejszy salon beauty w Poznaniu. Perfekcyjna obsługa i świetna atmosfera.',
-              },
-              {
-                name: 'Julia M.',
-                text: 'Rezerwacja online działa błyskawicznie, a efekty zabiegów są absolutnie premium.',
-              },
-              {
-                name: 'Karolina W.',
-                text: 'To miejsce wygląda jak luksusowe SPA z Mediolanu. Wrócę na pewno.',
-              },
-            ].map((review) => (
+            {reviews.map((review) => (
               <div
                 key={review.name}
-                className="bg-white rounded-[2rem] p-10 border border-[#EFE8E1] shadow-[0_10px_40px_rgba(0,0,0,0.04)]"
+                className="rounded-[2rem] border border-[#EFE8E1] bg-[#F8F5F2] p-10"
               >
                 <div className="text-[#D4B483] text-2xl mb-6">★★★★★</div>
+
                 <p className="text-lg leading-relaxed text-[#3A3937] mb-8">
                   “{review.text}”
                 </p>
+
                 <div className="font-medium">{review.name}</div>
               </div>
             ))}
           </div>
+        </div>
+      </section>
 
-          <div className="mt-16 grid md:grid-cols-4 gap-6">
-            {['Instagram Feed', 'Google Reviews', 'Booksy Opinie', 'TikTok Beauty'].map((item) => (
+      {/* INSTAGRAM */}
+      <section className="py-28 bg-[#F8F5F2]">
+        <div className="max-w-7xl mx-auto px-6 lg:px-12">
+          <div className="flex flex-col lg:flex-row items-end justify-between gap-8 mb-14">
+            <div>
+              <div className="text-sm uppercase tracking-[0.3em] text-[#B08B57] mb-4">
+                Instagram
+              </div>
+
+              <h2 className="text-4xl lg:text-6xl font-light leading-tight">
+                @noblu_beauty_room
+              </h2>
+            </div>
+
+            <a
+              href="https://www.instagram.com/noblu_beauty_room/"
+              target="_blank"
+              className="px-6 py-3 rounded-full border border-black hover:bg-black hover:text-white transition-all"
+            >
+              Obserwuj profil
+            </a>
+          </div>
+
+          <div className="grid grid-cols-2 lg:grid-cols-4 gap-6">
+            {[1, 2, 3, 4].map((item) => (
               <div
                 key={item}
-                className="h-44 rounded-[2rem] bg-white border border-[#EFE8E1] flex items-center justify-center text-[#7A756E]"
-              >
-                {item}
-              </div>
+                className="aspect-square rounded-[2rem] bg-gradient-to-br from-[#E8D6BE] to-[#B08B57]"
+              ></div>
             ))}
           </div>
         </div>
       </section>
 
-      {/* LOCAL SEO */}
-      <section className="bg-white py-24">
-        <div className="max-w-7xl mx-auto px-6 lg:px-12 grid lg:grid-cols-2 gap-16 items-center">
+      {/* CONTACT */}
+      <section id="contact" className="py-28 bg-[#111111] text-white">
+        <div className="max-w-7xl mx-auto px-6 lg:px-12 grid lg:grid-cols-2 gap-20 items-start">
           <div>
-            <div className="text-sm tracking-[0.3em] uppercase text-[#B08B57] mb-4">
-              Lokalna widoczność
+            <div className="text-sm uppercase tracking-[0.3em] text-[#D4B483] mb-4">
+              Kontakt
             </div>
+
             <h2 className="text-4xl lg:text-6xl font-light leading-tight">
-              Strona przygotowana pod lokalne SEO
+              Noblu Beauty Room
             </h2>
 
-            <div className="mt-10 space-y-6">
-              {[
-                'Frazy typu „salon beauty Poznań” i „stylizacja rzęs Poznań”',
-                'Optymalizacja Google Business Profile',
-                'Struktura usług i lokalizacji pod SEO',
-                'Szybkość działania i Core Web Vitals',
-                'Schema.org dla salonów beauty',
-              ].map((item) => (
-                <div key={item} className="flex items-start gap-4">
-                  <div className="w-6 h-6 rounded-full bg-[#D4B483] mt-1"></div>
-                  <p className="text-lg text-[#5B5956]">{item}</p>
-                </div>
-              ))}
+            <div className="mt-10 space-y-8 text-white/70 text-lg">
+              <div>
+                <div className="text-white mb-2">Adres</div>
+                <p>Orzechowa 4/lok.1</p>
+                <p>30-422 Kraków</p>
+              </div>
+
+              <div>
+                <div className="text-white mb-2">Telefon</div>
+                <a href="tel:+48662989534" className="hover:text-white transition-colors">
+                  662 989 534
+                </a>
+              </div>
+
+              <div>
+                <div className="text-white mb-2">E-mail</div>
+                <a
+                  href="mailto:noblu.beautyroom@gmail.com"
+                  className="hover:text-white transition-colors"
+                >
+                  noblu.beautyroom@gmail.com
+                </a>
+              </div>
             </div>
           </div>
 
-          <div className="rounded-[2rem] overflow-hidden border border-[#EFE8E1] bg-[#F8F5F2] p-10">
-            <div className="text-sm uppercase tracking-[0.2em] text-[#B08B57] mb-4">
-              Google Visibility
-            </div>
-
-            <div className="bg-white rounded-2xl p-8 shadow-sm border border-[#EFE8E1]">
-              <div className="text-sm text-[#7A756E] mb-3">
-                Wynik wyszukiwania Google
-              </div>
-
-              <div className="text-[#1A0DAB] text-2xl leading-snug">
-                Noblu Beauty Room — Salon Beauty Premium w Poznaniu
-              </div>
-
-              <div className="text-[#006621] text-sm mt-2">
-                noblubeautyroom.pl
-              </div>
-
-              <p className="mt-4 text-[#4D5156] leading-relaxed">
-                Stylizacja rzęs, manicure premium, depilacja laserowa i kosmetologia twarzy w luksusowym salonie beauty w Poznaniu.
-              </p>
-            </div>
+          <div className="rounded-[2rem] overflow-hidden border border-white/10 h-[500px] bg-[#1A1A1A] flex items-center justify-center text-white/40">
+            Google Maps Embed
           </div>
-        </div>
-      </section>
-
-      {/* CTA */}
-      <section className="py-28 bg-[#111111] text-white text-center">
-        <div className="max-w-4xl mx-auto px-6">
-          <div className="text-sm tracking-[0.3em] uppercase text-[#D4B483] mb-4">
-            Premium Beauty Experience
-          </div>
-
-          <h2 className="text-5xl lg:text-7xl font-light leading-tight">
-            Gotowa na wizytę
-            <span className="block text-[#D4B483]">w Noblu?</span>
-          </h2>
-
-          <p className="mt-8 text-lg text-white/70 max-w-2xl mx-auto leading-relaxed">
-            Zarezerwuj swój termin online i odkryj miejsce stworzone z myślą o nowoczesnym beauty premium.
-          </p>
-
-          <button className="mt-10 px-10 py-5 rounded-full bg-[#D4B483] text-black font-medium text-lg hover:scale-105 transition-transform">
-            Rezerwuj wizytę
-          </button>
         </div>
       </section>
     </div>
