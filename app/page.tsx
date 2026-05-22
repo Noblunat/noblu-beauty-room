@@ -24,48 +24,38 @@ export default function NobluBeautyRoomWebsite() {
   return (
     <div className="min-h-screen bg-[#F8F5F2] text-[#1D1D1B] overflow-hidden">
       {/* NAVBAR */}
-      <header className="fixed top-0 left-0 right-0 z-50 backdrop-blur-xl bg-black/40 border-b border-white/10">
-        <div className="max-w-7xl mx-auto px-6 lg:px-12 py-5 flex items-center justify-between">
-          <div className="flex items-center gap-4">
-            <img
-  src="/logo.png"
-  alt="Noblu Beauty Room"
-  className="w-16 h-16 object-contain"
-/>
-            <div>
-              <div className="text-white text-lg tracking-wide font-medium">
-                Noblu Beauty Room
-              </div>
-              <div className="text-white/50 text-xs uppercase tracking-[0.2em]">
-                Kraków
-              </div>
-            </div>
-          </div>
+<header className="fixed top-0 left-0 right-0 z-50 bg-black/40 border-b border-white/10 backdrop-blur-xl">
+  <div className="max-w-7xl mx-auto px-6 lg:px-12 py-5 flex items-center justify-between">
 
-          <nav className="hidden lg:flex items-center gap-10 text-white/70 text-sm tracking-wide">
-            <a href="#services" className="hover:text-white transition-colors">
-              Oferta
-            </a>
-            <a href="#booking" className="hover:text-white transition-colors">
-              Rezerwacja
-            </a>
-            <a href="#reviews" className="hover:text-white transition-colors">
-              Opinie
-            </a>
-            <a href="#contact" className="hover:text-white transition-colors">
-              Kontakt
-            </a>
-          </nav>
+    <div className="flex items-center gap-4">
+      <img
+        src="/logo.png"
+        alt="Noblu Beauty Room"
+        className="w-16 h-16 object-contain"
+      />
 
-          <a
-            href="https://booksy.com/pl-pl/105150_noblu-beauty-room_paznokcie_8820_krakow"
-            target="_blank"
-            className="px-6 py-3 rounded-full bg-[#D4B483] text-black text-sm font-medium hover:scale-105 transition-transform"
-          >
-            Booksy
-          </a>
+      <div>
+        <div className="text-white text-lg tracking-wide font-medium">
+          Noblu Beauty Room
         </div>
-      </header>
+
+        <div className="text-white/50 text-xs uppercase tracking-[0.2em]">
+          Kraków
+        </div>
+      </div>
+    </div>
+
+    <a
+      href="https://booksy.com/pl-pl/105150_noblu-beauty-room_paznokcie_8820_krakow"
+      target="_blank"
+      rel="noopener noreferrer"
+      className="px-6 py-3 rounded-full bg-[#D4B483] text-black text-sm font-medium hover:scale-105 transition-transform"
+    >
+      Rezerwuj
+    </a>
+
+  </div>
+</header>
 
       {/* HERO */}
       <section className="relative min-h-screen bg-[#111111] text-white flex items-center">
