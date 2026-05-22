@@ -3,7 +3,7 @@ export default function NobluBeautyRoomWebsite() {
     'Manicure Premium',
     'Pedicure SPA',
     'Stylizacja Paznokci',
-    'Beauty Treatments',
+    'Stylizacja rzęs',
   ]
 
   const reviews = [
