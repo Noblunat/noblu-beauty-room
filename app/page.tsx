@@ -27,9 +27,11 @@ export default function NobluBeautyRoomWebsite() {
       <header className="fixed top-0 left-0 right-0 z-50 backdrop-blur-xl bg-black/40 border-b border-white/10">
         <div className="max-w-7xl mx-auto px-6 lg:px-12 py-5 flex items-center justify-between">
           <div className="flex items-center gap-4">
-            <div className="w-10 h-10 rounded-full border border-[#D4B483] flex items-center justify-center text-[#D4B483] text-xs">
-              NB
-            </div>
+            <img
+  src="/logo.png"
+  alt="Noblu Beauty Room"
+  className="w-16 h-16 object-contain"
+/>
             <div>
               <div className="text-white text-lg tracking-wide font-medium">
                 Noblu Beauty Room
