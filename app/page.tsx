@@ -83,7 +83,7 @@ export default function NobluBeautyRoomWebsite() {
             </h1>
 
             <p className="mt-8 text-lg text-white/70 leading-relaxed max-w-xl">
-              Kameralny salon beauty premium w Krakowie. Stylizacja paznokci i beauty experience stworzone dla kobiet kochających elegancję, estetykę i perfekcyjne wykonanie.
+              Kameralny salon beauty premium w Krakowie. Stylizacja paznokci i rzęs. Beauty experience stworzone dla kobiet kochających elegancję, estetykę i perfekcyjne wykonanie.
             </p>
 
             <div className="mt-10 flex flex-wrap gap-4">
@@ -330,9 +330,17 @@ export default function NobluBeautyRoomWebsite() {
             </div>
           </div>
 
-          <div className="rounded-[2rem] overflow-hidden border border-white/10 h-[500px] bg-[#1A1A1A] flex items-center justify-center text-white/40">
-            Google Maps Embed
-          </div>
+          <div className="rounded-[2rem] overflow-hidden border border-[#EFE8E1] h-[500px] shadow-[0_20px_60px_rgba(0,0,0,0.08)]">
+  <iframe
+    src="https://www.google.com/maps?q=Orzechowa+4,+Kraków&output=embed"
+    width="100%"
+    height="100%"
+    style={{ border: 0 }}
+    allowFullScreen
+    loading="lazy"
+    referrerPolicy="no-referrer-when-downgrade"
+  />
+</div>
         </div>
       </section>
     </div>
