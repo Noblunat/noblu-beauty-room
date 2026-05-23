@@ -333,7 +333,6 @@ export default function NobluBeautyRoomWebsite() {
               loading="lazy"
 referrerPolicy="no-referrer-when-downgrade"
 />
-
 </div>
 </div>
 </section>
