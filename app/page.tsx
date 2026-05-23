@@ -179,54 +179,6 @@ export default function NobluBeautyRoomWebsite() {
         </div>
       </section>
 
-      {/* BOOKING */}
-      <section id="booking" className="py-28 bg-[#111111] text-white">
-        <div className="max-w-7xl mx-auto px-6 lg:px-12 grid lg:grid-cols-2 gap-16 items-center">
-          <div>
-            <div className="text-sm uppercase tracking-[0.3em] text-[#D4B483] mb-4">
-              Rezerwacja online
-            </div>
-
-            <h2 className="text-4xl lg:text-6xl font-light leading-tight">
-              Umów wizytę
-              <span className="block text-[#D4B483]">w kilka sekund</span>
-            </h2>
-
-            <p className="mt-8 text-white/70 text-lg leading-relaxed max-w-xl">
-              Booksy jest centralnym elementem strony — klientka może od razu wybrać usługę i zarezerwować termin online.
-            </p>
-
-            <a
-              href="https://booksy.com/pl-pl/105150_noblu-beauty-room_paznokcie_8820_krakow"
-              target="_blank"
-              className="inline-flex mt-10 px-8 py-5 rounded-full bg-[#D4B483] text-black font-medium hover:scale-105 transition-transform"
-            >
-              Przejdź do Booksy
-            </a>
-          </div>
-
-          <div className="bg-[#1A1A1A] border border-white/10 rounded-[2rem] p-10">
-            <div className="space-y-5">
-              {services.map((item) => (
-                <div
-                  key={item}
-                  className="flex items-center justify-between p-5 rounded-2xl border border-white/10 bg-white/5"
-                >
-                  <span>{item}</span>
-
-                  <a
-                    href="https://booksy.com/pl-pl/105150_noblu-beauty-room_paznokcie_8820_krakow"
-                    target="_blank"
-                    className="text-[#D4B483] uppercase text-sm tracking-[0.2em]"
-                  >
-                    Book
-                  </a>
-                </div>
-              ))}
-            </div>
-          </div>
-        </div>
-      </section>
 {/* GALLERY */}
 <section className="py-28 bg-[#F8F5F2]">
   <div className="max-w-7xl mx-auto px-6 lg:px-12">
@@ -262,39 +214,7 @@ export default function NobluBeautyRoomWebsite() {
     </div>
   </div>
 </section>
-      {/* REVIEWS */}
-      <section id="reviews" className="py-28 bg-white">
-        <div className="max-w-7xl mx-auto px-6 lg:px-12">
-          <div className="text-center max-w-3xl mx-auto mb-16">
-            <div className="text-sm uppercase tracking-[0.3em] text-[#B08B57] mb-4">
-              Opinie klientek
-            </div>
-
-            <h2 className="text-4xl lg:text-6xl font-light leading-tight">
-              Beauty experience,
-              <span className="block">do którego chce się wracać</span>
-            </h2>
-          </div>
-
-          <div className="grid lg:grid-cols-3 gap-8">
-            {reviews.map((review) => (
-              <div
-                key={review.name}
-                className="rounded-[2rem] border border-[#EFE8E1] bg-[#F8F5F2] p-10"
-              >
-                <div className="text-[#D4B483] text-2xl mb-6">★★★★★</div>
-
-                <p className="text-lg leading-relaxed text-[#3A3937] mb-8">
-                  “{review.text}”
-                </p>
-
-                <div className="font-medium">{review.name}</div>
-              </div>
-            ))}
-          </div>
-        </div>
-      </section>
-
+      
 {/* BOOKSY BOOKING */}
 <section className="py-28 bg-[#0A0A0A] text-white">
   <div className="max-w-7xl mx-auto px-6 lg:px-12 grid lg:grid-cols-2 gap-16 items-center">
