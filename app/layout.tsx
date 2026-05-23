@@ -13,6 +13,7 @@ const geistMono = Geist_Mono({
 });
 
 export const metadata = {
+  metadataBase: new URL("https://noblu.pl"),
   title: "Noblu Beauty Room Kraków | Manicure, paznokcie i beauty premium",
   description:
     "Noblu Beauty Room to salon beauty premium w Krakowie przy ul. Orzechowej 4/lok.1. Manicure, stylizacja paznokci, rzęsy i rezerwacja online przez Booksy.",
