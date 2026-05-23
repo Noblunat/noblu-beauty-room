@@ -342,7 +342,7 @@ referrerPolicy="no-referrer-when-downgrade"
       href="https://booksy.com/pl-pl/105150_noblu-beauty-room_paznokcie_8820_krakow"
       target="_blank"
       rel="noopener noreferrer"
-      className="fixed bottom-5 left-5 right-5 z-50 rounded-full bg-[#D4B483] py-4 text-center text-black font-medium shadow-2xl lg:hidden"
+      className="fixed bottom-5 left-5 right-5 z-[9999] rounded-full bg-[#D4B483] py-5 text-center text-lg font-semibold text-black shadow-[0_10px_40px_rgba(212,180,131,0.45)]"
     >
       Zarezerwuj wizytę
     </a>
