@@ -1,3 +1,6 @@
+'use client'
+
+import { motion } from 'framer-motion'
 export default function NobluBeautyRoomWebsite() {
   const services = [
     'Manicure Premium',
@@ -284,7 +287,13 @@ export default function NobluBeautyRoomWebsite() {
         </div>
       </section>
 {/* REVIEWS */}
-<section className="py-28 bg-[#0A0A0A] text-white">
+<motion.section
+  initial={{ opacity: 0, y: 40 }}
+  whileInView={{ opacity: 1, y: 0 }}
+  transition={{ duration: 0.8 }}
+  viewport={{ once: true }}
+  className="py-28 bg-[#0A0A0A] text-white"
+  >
   <div className="max-w-7xl mx-auto px-6 lg:px-12">
 
     <div className="mb-16">
@@ -333,7 +342,7 @@ export default function NobluBeautyRoomWebsite() {
 
     </div>
   </div>
-</section>
+</motion.section>
 
 {/* INSTAGRAM */}
 <section className="py-28 bg-[#111111] text-white">
