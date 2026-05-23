@@ -295,39 +295,7 @@ export default function NobluBeautyRoomWebsite() {
         </div>
       </section>
 
-      {/* INSTAGRAM */}
-      <section className="py-28 bg-[#F8F5F2]">
-        <div className="max-w-7xl mx-auto px-6 lg:px-12">
-          <div className="flex flex-col lg:flex-row items-end justify-between gap-8 mb-14">
-            <div>
-              <div className="text-sm uppercase tracking-[0.3em] text-[#B08B57] mb-4">
-                Instagram
-              </div>
-
-              <h2 className="text-4xl lg:text-6xl font-light leading-tight">
-                @noblu_beauty_room
-              </h2>
-            </div>
-
-            <a
-              href="https://www.instagram.com/noblu_beauty_room/"
-              target="_blank"
-              className="px-6 py-3 rounded-full border border-black hover:bg-black hover:text-white transition-all"
-            >
-              Obserwuj profil
-            </a>
-          </div>
-
-          <div className="grid grid-cols-2 lg:grid-cols-4 gap-6">
-            {[1, 2, 3, 4].map((item) => (
-              <div
-                key={item}
-                className="aspect-square rounded-[2rem] bg-gradient-to-br from-[#E8D6BE] to-[#B08B57]"
-              ></div>
-            ))}
-          </div>
-        </div>
-      </section>
+    
 {/* REVIEWS */}
 <motion.section
   initial={{ opacity: 0, y: 40 }}
