@@ -227,7 +227,41 @@ export default function NobluBeautyRoomWebsite() {
           </div>
         </div>
       </section>
+{/* GALLERY */}
+<section className="py-28 bg-[#F8F5F2]">
+  <div className="max-w-7xl mx-auto px-6 lg:px-12">
 
+    <div className="mb-16">
+      <div className="text-sm uppercase tracking-[0.3em] text-[#B08B57] mb-4">
+        Gallery
+      </div>
+
+      <h2 className="text-4xl lg:text-6xl font-light leading-tight text-[#111111]">
+        Luxury beauty
+        <span className="block text-[#B08B57]">
+          experience
+        </span>
+      </h2>
+    </div>
+
+    <div className="grid grid-cols-2 lg:grid-cols-4 gap-6">
+
+      {[1,2,3,4,5,6,7,8].map((item) => (
+        <div
+          key={item}
+          className="group relative aspect-[4/5] overflow-hidden rounded-[2rem] bg-gradient-to-br from-[#E8D6BE] via-[#D4B483] to-[#8A6A44]"
+        >
+          <div className="absolute inset-0 bg-black/10 group-hover:bg-black/0 transition-all duration-700"></div>
+
+          <div className="absolute bottom-5 left-5 text-white text-sm uppercase tracking-[0.2em] opacity-70">
+            Noblu
+          </div>
+        </div>
+      ))}
+
+    </div>
+  </div>
+</section>
       {/* REVIEWS */}
       <section id="reviews" className="py-28 bg-white">
         <div className="max-w-7xl mx-auto px-6 lg:px-12">
