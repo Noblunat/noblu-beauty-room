@@ -25,7 +25,7 @@ export default function NobluBeautyRoomWebsite() {
   ]
 
   return (
-    <div className="min-h-screen bg-[#F8F5F2] text-[#1D1D1B] overflow-hidden">
+    <div className="min-h-screen bg-[#F8F5F2] text-[#1D1D1B] overflow-hidden pb-24 lg:pb-0">
       {/* NAVBAR */}
 <header className="fixed top-0 left-0 right-0 z-50 bg-black/40 border-b border-white/10 backdrop-blur-xl">
   <div className="max-w-7xl mx-auto px-6 lg:px-12 py-5 flex items-center justify-between">
@@ -361,7 +361,7 @@ referrerPolicy="no-referrer-when-downgrade"
       href="https://booksy.com/pl-pl/105150_noblu-beauty-room_paznokcie_8820_krakow"
       target="_blank"
       rel="noopener noreferrer"
-      className="fixed bottom-5 left-5 right-5 z-[9999] rounded-full bg-[#D4B483] py-5 text-center text-lg font-semibold text-black shadow-[0_10px_40px_rgba(212,180,131,0.45)]"
+      className="fixed bottom-5 left-5 right-5 z-[9999] rounded-full bg-[#D4B483] py-5 text-center text-lg font-semibold text-black shadow-[0_10px_40px_rgba(212,180,131,0.45)] lg:hidden"
     >
       Zarezerwuj wizytę
     </a>
