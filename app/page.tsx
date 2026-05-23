@@ -331,11 +331,21 @@ export default function NobluBeautyRoomWebsite() {
               style={{ border: 0 }}
               allowFullScreen
               loading="lazy"
-              referrerPolicy="no-referrer-when-downgrade"
-            />
-          </div>
-        </div>
-      </section>
-    </div>
+referrerPolicy="no-referrer-when-downgrade"
+/>
+
+</div>
+</div>
+</section>
+
+    <a
+      href="https://booksy.com/pl-pl/105150_noblu-beauty-room_paznokcie_8820_krakow"
+      target="_blank"
+      rel="noopener noreferrer"
+      className="fixed bottom-5 left-5 right-5 z-50 rounded-full bg-[#D4B483] py-4 text-center text-black font-medium shadow-2xl lg:hidden"
+    >
+      Zarezerwuj wizytę
+    </a>
+  </div>
   )
 }
