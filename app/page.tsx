@@ -380,6 +380,51 @@ export default function NobluBeautyRoomWebsite() {
 
   </div>
 </section>
+{/* BOOKSY BOOKING */}
+<section className="py-28 bg-[#0A0A0A] text-white">
+  <div className="max-w-7xl mx-auto px-6 lg:px-12 grid lg:grid-cols-2 gap-16 items-center">
+    <div>
+      <div className="text-sm uppercase tracking-[0.3em] text-[#D4B483] mb-4">
+        Rezerwacja online
+      </div>
+
+      <h2 className="text-4xl lg:text-6xl font-light leading-tight">
+        Umów wizytę
+        <span className="block text-[#D4B483]">przez Booksy</span>
+      </h2>
+
+      <p className="mt-8 text-white/70 text-lg leading-relaxed max-w-xl">
+        Wybierz usługę, dogodny termin i zarezerwuj wizytę online w Noblu Beauty Room bez dzwonienia.
+      </p>
+
+      <a
+        href="https://booksy.com/pl-pl/105150_noblu-beauty-room_paznokcie_8820_krakow"
+        target="_blank"
+        rel="noopener noreferrer"
+        className="inline-flex mt-10 px-10 py-5 rounded-full bg-[#D4B483] text-black font-medium hover:scale-105 transition-transform"
+      >
+        Przejdź do Booksy
+      </a>
+    </div>
+
+    <div className="rounded-[2rem] border border-white/10 bg-white/[0.03] p-8 backdrop-blur-xl">
+      {["Manicure Premium", "Stylizacja paznokci", "Pedicure SPA", "Beauty Room"].map((item) => (
+        <a
+          key={item}
+          href="https://booksy.com/pl-pl/105150_noblu-beauty-room_paznokcie_8820_krakow"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="flex items-center justify-between rounded-2xl border border-white/10 bg-white/[0.04] p-5 mb-4 hover:border-[#D4B483]/50 transition-colors"
+        >
+          <span>{item}</span>
+          <span className="text-[#D4B483] text-sm uppercase tracking-[0.2em]">
+            Rezerwuj
+          </span>
+        </a>
+      ))}
+    </div>
+  </div>
+</section>
       {/* CONTACT */}
       <section id="contact" className="py-28 bg-[#111111] text-white">
         <div className="max-w-7xl mx-auto px-6 lg:px-12 grid lg:grid-cols-2 gap-20 items-start">
