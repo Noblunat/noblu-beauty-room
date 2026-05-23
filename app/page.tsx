@@ -61,7 +61,6 @@ export default function NobluBeautyRoomWebsite() {
 </header>
 
       {/* HERO */}
-      {/* HERO */}
 <section className="relative min-h-screen bg-[#0A0A0A] text-white flex items-center overflow-hidden">
   <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,#D4B483,transparent_35%)] opacity-25"></div>
   <div className="absolute bottom-0 left-0 w-full h-40 bg-gradient-to-t from-[#0A0A0A] to-transparent"></div>
@@ -301,6 +300,57 @@ export default function NobluBeautyRoomWebsite() {
           </span>
         </a>
       ))}
+    </div>
+  </div>
+</section>
+{/* FAQ */}
+<section className="py-28 bg-[#0A0A0A] text-white">
+  <div className="max-w-5xl mx-auto px-6 lg:px-12">
+
+    <div className="mb-16">
+      <div className="text-sm uppercase tracking-[0.3em] text-[#D4B483] mb-4">
+        FAQ
+      </div>
+
+      <h2 className="text-4xl lg:text-6xl font-light">
+        Najczęstsze pytania
+      </h2>
+    </div>
+
+    <div className="space-y-6">
+
+      {[
+        {
+          q: "Gdzie znajduje się Noblu Beauty Room?",
+          a: "Salon znajduje się w Krakowie przy ul. Orzechowej 4/lok.1.",
+        },
+        {
+          q: "Czy można zarezerwować wizytę online?",
+          a: "Tak, rezerwacja wizyt odbywa się online przez Booksy 24/7.",
+        },
+        {
+          q: "Jakie usługi oferuje salon?",
+          a: "Oferujemy manicure premium, stylizację paznokci, pedicure oraz usługi beauty premium.",
+        },
+        {
+          q: "Czy salon przyjmuje nowe klientki?",
+          a: "Tak, nowe klientki mogą wygodnie zarezerwować wizytę online.",
+        },
+      ].map((faq) => (
+        <div
+          key={faq.q}
+          className="rounded-[2rem] border border-white/10 bg-white/[0.03] p-8"
+        >
+          <h3 className="text-xl text-white mb-4">
+            {faq.q}
+          </h3>
+
+          <p className="text-white/70 leading-relaxed">
+            {faq.a}
+          </p>
+        </div>
+      ))}
+
     </div>
   </div>
 </section>
