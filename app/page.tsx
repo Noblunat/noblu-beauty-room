@@ -214,7 +214,51 @@ export default function NobluBeautyRoomWebsite() {
     </div>
   </div>
 </section>
-      
+      {/* INSTAGRAM */}
+<section className="py-28 bg-[#0A0A0A] text-white">
+  <div className="max-w-7xl mx-auto px-6 lg:px-12">
+
+    <div className="flex items-center justify-between mb-14">
+      <div>
+        <div className="text-sm uppercase tracking-[0.3em] text-[#D4B483] mb-4">
+          Instagram
+        </div>
+
+        <h2 className="text-4xl lg:text-6xl font-light">
+          @noblu_beauty_room
+        </h2>
+      </div>
+
+      <a
+        href="https://www.instagram.com/noblu_beauty_room/"
+        target="_blank"
+        rel="noopener noreferrer"
+        className="hidden lg:flex px-6 py-3 rounded-full border border-white/10 hover:border-[#D4B483] transition-colors"
+      >
+        Obserwuj
+      </a>
+    </div>
+
+    <div className="grid grid-cols-2 lg:grid-cols-4 gap-6">
+
+      {[1,2,3,4].map((item) => (
+        <a
+          key={item}
+          href="https://www.instagram.com/noblu_beauty_room/"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="aspect-square rounded-[2rem] overflow-hidden bg-gradient-to-br from-[#E8D6BE] to-[#B08B57] hover:scale-[1.03] transition-all duration-500"
+        >
+          <div className="w-full h-full bg-black/10 backdrop-blur-sm flex items-center justify-center text-white/70 text-lg">
+            Instagram
+          </div>
+        </a>
+      ))}
+
+    </div>
+
+  </div>
+</section>
 {/* BOOKSY BOOKING */}
 <section className="py-28 bg-[#0A0A0A] text-white">
   <div className="max-w-7xl mx-auto px-6 lg:px-12 grid lg:grid-cols-2 gap-16 items-center">
