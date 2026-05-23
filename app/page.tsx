@@ -61,73 +61,81 @@ export default function NobluBeautyRoomWebsite() {
 </header>
 
       {/* HERO */}
-      <section className="relative min-h-screen bg-[#111111] text-white flex items-center">
-        <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,#D4B483,transparent_35%)] opacity-20"></div>
+      {/* HERO */}
+<section className="relative min-h-screen bg-[#0A0A0A] text-white flex items-center overflow-hidden">
+  <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,#D4B483,transparent_35%)] opacity-25"></div>
+  <div className="absolute bottom-0 left-0 w-full h-40 bg-gradient-to-t from-[#0A0A0A] to-transparent"></div>
 
-        <div className="relative max-w-7xl mx-auto px-6 lg:px-12 pt-40 pb-24 grid lg:grid-cols-2 gap-20 items-center">
-          <div>
-            <div className="inline-flex items-center px-4 py-2 rounded-full border border-white/10 text-[#D4B483] text-xs uppercase tracking-[0.3em] mb-8">
-              Premium Beauty Experience
-            </div>
+  <div className="relative max-w-7xl mx-auto px-6 lg:px-12 pt-40 pb-24 grid lg:grid-cols-2 gap-20 items-center">
+    <div>
+      <div className="inline-flex items-center px-4 py-2 rounded-full border border-[#D4B483]/30 bg-white/5 backdrop-blur-xl text-[#D4B483] text-xs uppercase tracking-[0.3em] mb-8">
+        Premium Beauty Room · Kraków
+      </div>
 
-            <h1 className="text-5xl lg:text-8xl font-light leading-[0.95] tracking-tight">
-              Noblu
-              <span className="block text-[#D4B483] font-medium">
-                Beauty Room
-              </span>
-            </h1>
+      <h1 className="text-6xl lg:text-8xl font-light leading-[0.92] tracking-tight">
+        Noblu
+        <span className="block text-[#D4B483] font-medium">
+          Beauty Room
+        </span>
+      </h1>
 
-            <p className="mt-8 text-lg text-white/70 leading-relaxed max-w-xl">
-              Kameralny salon beauty premium w Krakowie. Stylizacja paznokci i rzęs. Beauty experience stworzone dla kobiet kochających elegancję, estetykę i perfekcyjne wykonanie.
-            </p>
+      <p className="mt-8 text-lg lg:text-xl text-white/70 leading-relaxed max-w-xl">
+        Kameralny salon beauty premium w Krakowie. Stylizacja paznokci, rzęs i doświadczenie stworzone dla kobiet kochających elegancję, estetykę oraz perfekcyjne wykonanie.
+      </p>
 
-            <div className="mt-10 flex flex-wrap gap-4">
-              <a
-                href="https://booksy.com/pl-pl/105150_noblu-beauty-room_paznokcie_8820_krakow"
-                target="_blank"
-                className="px-8 py-5 rounded-full bg-[#D4B483] text-black font-medium hover:scale-105 transition-transform"
-              >
-                Zarezerwuj online
-              </a>
+      <div className="mt-10 flex flex-wrap gap-4">
+        <a
+          href="https://booksy.com/pl-pl/105150_noblu-beauty-room_paznokcie_8820_krakow"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="px-8 py-5 rounded-full bg-[#D4B483] text-black font-medium hover:scale-105 transition-transform shadow-[0_20px_60px_rgba(212,180,131,0.35)]"
+        >
+          Zarezerwuj online
+        </a>
 
-              <a
-                href="https://www.instagram.com/noblu_beauty_room/"
-                target="_blank"
-                className="px-8 py-5 rounded-full border border-white/10 hover:bg-white hover:text-black transition-all"
-              >
-                Instagram
-              </a>
-            </div>
+        <a
+          href="https://www.instagram.com/noblu_beauty_room/"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="px-8 py-5 rounded-full border border-white/10 bg-white/5 backdrop-blur-xl hover:bg-white hover:text-black transition-all"
+        >
+          Zobacz efekty
+        </a>
+      </div>
 
-            <div className="mt-14 grid grid-cols-3 gap-8 max-w-lg">
-              <div>
-                <div className="text-3xl font-semibold">4.9</div>
-                <div className="text-white/50 text-sm mt-1">Ocena klientek</div>
-              </div>
-
-              <div>
-                <div className="text-3xl font-semibold">24/7</div>
-                <div className="text-white/50 text-sm mt-1">Booksy online</div>
-              </div>
-
-              <div>
-                <div className="text-3xl font-semibold">Premium</div>
-                <div className="text-white/50 text-sm mt-1">Beauty studio</div>
-              </div>
-            </div>
-          </div>
-
-          <div className="relative">
-            <div className="absolute -top-10 -right-10 w-72 h-72 bg-[#D4B483] rounded-full blur-3xl opacity-20"></div>
-
-            <div className="relative rounded-[2.5rem] overflow-hidden border border-white/10 bg-[#181818] shadow-2xl">
-              <div className="aspect-[4/5] bg-gradient-to-br from-[#E8D6BE] via-[#D4B483] to-[#8A6A44] flex items-center justify-center p-16">
-                <div className="w-full h-full rounded-full border-[6px] border-[#F7E6B2] opacity-80"></div>
-              </div>
-            </div>
-          </div>
+      <div className="mt-14 grid grid-cols-3 gap-6 max-w-lg">
+        <div className="rounded-2xl border border-white/10 bg-white/[0.03] p-5">
+          <div className="text-3xl font-semibold">4.9</div>
+          <div className="text-white/50 text-sm mt-1">Ocena klientek</div>
         </div>
-      </section>
+
+        <div className="rounded-2xl border border-white/10 bg-white/[0.03] p-5">
+          <div className="text-3xl font-semibold">24/7</div>
+          <div className="text-white/50 text-sm mt-1">Booksy online</div>
+        </div>
+
+        <div className="rounded-2xl border border-white/10 bg-white/[0.03] p-5">
+          <div className="text-3xl font-semibold">Premium</div>
+          <div className="text-white/50 text-sm mt-1">Beauty studio</div>
+        </div>
+      </div>
+    </div>
+
+    <div className="relative">
+      <div className="absolute -top-16 -right-10 w-80 h-80 bg-[#D4B483] rounded-full blur-3xl opacity-20"></div>
+
+      <div className="relative rounded-[3rem] overflow-hidden border border-white/10 bg-white/[0.04] p-4 shadow-2xl backdrop-blur-xl">
+        <div className="aspect-[4/5] rounded-[2.3rem] bg-gradient-to-br from-[#E8D6BE] via-[#D4B483] to-[#8A6A44] flex items-center justify-center p-16">
+          <img
+            src="/logo.png"
+            alt="Noblu Beauty Room"
+            className="w-64 h-64 object-contain opacity-90"
+          />
+        </div>
+      </div>
+    </div>
+  </div>
+</section>
 
       {/* SERVICES */}
       <section id="services" className="py-28 bg-[#F8F5F2]">
