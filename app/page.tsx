@@ -238,7 +238,21 @@ export default function NobluBeautyRoomWebsite() {
                 key={service}
                 className="rounded-[2rem] bg-white border border-[#EFE8E1] overflow-hidden shadow-[0_10px_40px_rgba(0,0,0,0.04)] group"
               >
-                <div className="h-64 bg-gradient-to-br from-[#E8D6BE] to-[#B08B57]"></div>
+                <div className="h-64 overflow-hidden">
+  <img
+    src={
+      service === "Manicure Premium"
+        ? "/gallery/paznokcie/IMG_6334.JPG"
+        : service === "Pedicure SPA"
+        ? "/gallery/paznokcie/IMG_6470.JPG"
+        : service === "Stylizacja Paznokci"
+        ? "/gallery/paznokcie/IMG_6375.JPG"
+        : "/gallery/rzesy/IMG_6498.JPG"
+    }
+    alt={service}
+    className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
+  />
+</div>
 
                 <div className="p-8">
                   <h3 className="text-2xl mb-4">{service}</h3>
