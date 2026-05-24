@@ -26,6 +26,69 @@ export default function NobluBeautyRoomWebsite() {
 
   return (
     <div className="min-h-screen bg-[#F8F5F2] text-[#1D1D1B] overflow-hidden pb-24 lg:pb-0">
+      <script
+  type="application/ld+json"
+  dangerouslySetInnerHTML={{
+    __html: JSON.stringify({
+      "@context": "https://schema.org",
+      "@type": "BeautySalon",
+      name: "Noblu Beauty Room",
+      image: "https://noblu.pl/logo.png",
+      url: "https://noblu.pl",
+      telephone: "+48662989534",
+      email: "noblu.beautyroom@gmail.com",
+      address: {
+        "@type": "PostalAddress",
+        streetAddress: "Orzechowa 4/lok.1",
+        addressLocality: "Kraków",
+        postalCode: "30-422",
+        addressCountry: "PL",
+      },
+      areaServed: "Kraków",
+      priceRange: "$$",
+      sameAs: [
+        "https://www.instagram.com/noblu_beauty_room/",
+        "https://booksy.com/pl-pl/105150_noblu-beauty-room_paznokcie_8820_krakow",
+      ],
+    }),
+  }}
+/>
+
+<script
+  type="application/ld+json"
+  dangerouslySetInnerHTML={{
+    __html: JSON.stringify({
+      "@context": "https://schema.org",
+      "@type": "FAQPage",
+      mainEntity: [
+        {
+          "@type": "Question",
+          name: "Gdzie znajduje się Noblu Beauty Room?",
+          acceptedAnswer: {
+            "@type": "Answer",
+            text: "Noblu Beauty Room znajduje się w Krakowie przy ul. Orzechowej 4/lok.1.",
+          },
+        },
+        {
+          "@type": "Question",
+          name: "Czy można zarezerwować wizytę online?",
+          acceptedAnswer: {
+            "@type": "Answer",
+            text: "Tak, wizytę można zarezerwować online przez Booksy.",
+          },
+        },
+        {
+          "@type": "Question",
+          name: "Jakie usługi oferuje Noblu Beauty Room?",
+          acceptedAnswer: {
+            "@type": "Answer",
+            text: "Salon oferuje manicure premium, stylizację paznokci, pedicure oraz stylizację rzęs.",
+          },
+        },
+      ],
+    }),
+  }}
+/>
       {/* NAVBAR */}
 <header className="fixed top-0 left-0 right-0 z-50 bg-black/40 border-b border-white/10 backdrop-blur-xl">
   <div className="max-w-7xl mx-auto px-6 lg:px-12 py-5 flex items-center justify-between">
