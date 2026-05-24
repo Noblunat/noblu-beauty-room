@@ -214,7 +214,7 @@ export default function NobluBeautyRoomWebsite() {
   </div>
 </section>
       {/* INSTAGRAM */}
-<section className="py-28 bg-[#0A0A0A] text-white">
+<section id="faq" className="py-28 bg-[#111111] text-white border-t border-white/5">
   <div className="max-w-7xl mx-auto px-6 lg:px-12">
 
     <div className="flex items-center justify-between mb-14">
@@ -317,7 +317,7 @@ export default function NobluBeautyRoomWebsite() {
       </h2>
     </div>
 
-    <div className="space-y-6">
+    <div className="space-y-8 mt-12">
 
       {[
         {
@@ -339,7 +339,7 @@ export default function NobluBeautyRoomWebsite() {
       ].map((faq) => (
         <div
           key={faq.q}
-          className="rounded-[2rem] border border-white/10 bg-white/[0.03] p-8"
+          className="rounded-[2rem] border border-white/10 bg-white/[0.04] p-8 shadow-[0_10px_40px_rgba(0,0,0,0.25)]"
         >
           <h3 className="text-xl text-white mb-4">
             {faq.q}
