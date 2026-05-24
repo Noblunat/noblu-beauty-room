@@ -1,5 +1,8 @@
 'use client'
 
+import Script from 'next/script'
+import { motion } from 'framer-motion''
+
 import { motion } from 'framer-motion'
 export default function NobluBeautyRoomWebsite() {
   const services = [
@@ -304,8 +307,7 @@ export default function NobluBeautyRoomWebsite() {
     <div className="grid grid-cols-2 lg:grid-cols-4 gap-6">
 
       <div className="rounded-[2rem] overflow-hidden">
-  <script src="https://elfsightcdn.com/platform.js" async></script>
-
+  <div className="rounded-[2rem] overflow-hidden">
   <div
     className="elfsight-app-fdbac9e5-8347-437d-a054-33662ac4b4be"
     data-elfsight-app-lazy
