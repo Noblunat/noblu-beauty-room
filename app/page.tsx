@@ -303,7 +303,7 @@ export default function NobluBeautyRoomWebsite() {
     </div>
   </div>
 </section>
-{/* FAQ {/* FAQ */}
+{/* FAQ */}
 <section id="faq" className="py-28 bg-[#0A0A0A] text-white">
   <div className="max-w-5xl mx-auto px-6 lg:px-12">
 
