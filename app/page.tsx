@@ -27,8 +27,14 @@ export default function NobluBeautyRoomWebsite() {
   ]
 
   return (
-    <div className="min-h-screen bg-[#F8F5F2] text-[#1D1D1B] overflow-hidden pb-24 lg:pb-0">
-      <script
+  <div className="min-h-screen bg-[#F8F5F2] text-[#1D1D1B] overflow-hidden pb-24 lg:pb-0">
+
+    <Script
+      src="https://elfsightcdn.com/platform.js"
+      strategy="lazyOnload"
+    />
+
+    <script
   type="application/ld+json"
   dangerouslySetInnerHTML={{
     __html: JSON.stringify({
