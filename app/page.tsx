@@ -303,19 +303,14 @@ export default function NobluBeautyRoomWebsite() {
 
     <div className="grid grid-cols-2 lg:grid-cols-4 gap-6">
 
-      {[1,2,3,4].map((item) => (
-        <a
-          key={item}
-          href="https://www.instagram.com/noblu_beauty_room/"
-          target="_blank"
-          rel="noopener noreferrer"
-          className="aspect-square rounded-[2rem] overflow-hidden bg-gradient-to-br from-[#E8D6BE] to-[#B08B57] hover:scale-[1.03] transition-all duration-500"
-        >
-          <div className="w-full h-full bg-black/10 backdrop-blur-sm flex items-center justify-center text-white/70 text-lg">
-            Instagram
-          </div>
-        </a>
-      ))}
+      <div className="rounded-[2rem] overflow-hidden">
+  <script src="https://elfsightcdn.com/platform.js" async></script>
+
+  <div
+    className="elfsight-app-fdbac9e5-8347-437d-a054-33662ac4b4be"
+    data-elfsight-app-lazy
+  ></div>
+</div>
 
     </div>
 
