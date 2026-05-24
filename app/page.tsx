@@ -266,7 +266,7 @@ export default function NobluBeautyRoomWebsite() {
       </h2>
     </div>
 
-    <div className="grid grid-cols-2 lg:grid-cols-4 gap-6">
+    <div className="mt-10">>
 
       {[1,2,3,4,5,6,7,8].map((item) => (
         <div
