@@ -24,7 +24,19 @@ export default function NobluBeautyRoomWebsite() {
       name: 'Karolina W.',
       text: 'Piękne wnętrze, profesjonalizm i atmosfera jak w luksusowym SPA.',
     },
-  ]
+  ];
+  const galleryItems = [
+  { src: "/gallery/salon/salon.mp4", type: "video", category: "Salon" },
+  { src: "/gallery/salon/salon1.JPEG", type: "image", category: "Salon" },
+  { src: "/gallery/salon/salon2.jpg", type: "image", category: "Salon" },
+
+  { src: "/gallery/paznokcie/IMG_6334.JPG", type: "image", category: "Paznokcie" },
+  { src: "/gallery/paznokcie/IMG_6375.JPG", type: "image", category: "Paznokcie" },
+  { src: "/gallery/paznokcie/IMG_6470.JPG", type: "image", category: "Paznokcie" },
+
+  { src: "/gallery/rzesy/IMG_6498.JPG", type: "image", category: "Rzęsy" },
+  { src: "/gallery/rzesy/IMG_7228.JPG", type: "image", category: "Rzęsy" },
+]
 
   return (
   <div className="min-h-screen bg-[#F8F5F2] text-[#1D1D1B] overflow-hidden pb-24 lg:pb-0">
@@ -267,42 +279,32 @@ export default function NobluBeautyRoomWebsite() {
     </div>
 
     <div className="grid grid-cols-2 lg:grid-cols-4 gap-6">
-  {[
-    "/gallery/salon/salon.mp4",
-    "/gallery/paznokcie/IMG_6334.JPG",
-    "/gallery/paznokcie/IMG_6375.JPG",
-    "/gallery/rzesy/IMG_6498.JPG",
-    "/gallery/salon/salon1.JPEG",
-    "/gallery/paznokcie/IMG_6470.JPG",
-    "/gallery/salon/salon2.jpg",
-    "/gallery/rzesy/IMG_7228.JPG",
-  ].map((src) => (
-    <div
-      key={src}
-      className="group relative aspect-[4/5] overflow-hidden rounded-[2rem] bg-[#111111]"
-    >
-      {src.endsWith(".mp4") ? (
-        <video
-          src={src}
-          autoPlay
-          muted
-          loop
-          playsInline
-          className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
-        />
-      ) : (
-        <img
-          src={src}
-          alt="Noblu Beauty Room"
-          className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
-        />
-      )}
+  {galleryItems.map((item) => (
+  <div
+    key={item.src}
+    className="group relative aspect-[4/5] overflow-hidden rounded-[2rem] bg-[#111111]"
+  >
+    {item.type === "video" ? (
+      <video
+        src={item.src}
+        autoPlay
+        muted
+        loop
+        playsInline
+        className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
+      />
+    ) : (
+      <img
+        src={item.src}
+        alt="Noblu Beauty Room"
+        className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
+      />
+    )}
 
-      <div className="absolute inset-0 bg-black/10 group-hover:bg-black/0 transition-all duration-700"></div>
-    </div>
-  ))}
+    <div className="absolute inset-0 bg-black/10 group-hover:bg-black/0 transition-all duration-700"></div>
+  </div>
+))}
 </div>
-
     </div>
 </section>
       {/* INSTAGRAM */}
