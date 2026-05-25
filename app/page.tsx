@@ -5,6 +5,8 @@ import Script from 'next/script'
 import { motion, useMotionValue, useSpring, useScroll, useTransform } from 'framer-motion'
 export default function NobluBeautyRoomWebsite() {
   const [loading, setLoading] = useState(true)
+  const [selectedMedia, setSelectedMedia] = useState<string | null>(null)
+const [selectedType, setSelectedType] = useState<'image' | 'video' | null>(null)
 
 useEffect(() => {
   const timer = setTimeout(() => {
@@ -456,12 +458,16 @@ if (loading) {
   {galleryItems.map((item, index) => (
   <motion.div
     key={item.src}
+    onClick={() => {
+  setSelectedMedia(item.src)
+  setSelectedType(item.type as 'image' | 'video')
+}}
     initial={{ opacity: 0, y: 40 }}
     whileInView={{ opacity: 1, y: 0 }}
     transition={{ duration: 0.7, delay: index * 0.06 }}
     viewport={{ once: true }}
-    className="group relative aspect-[4/5] overflow-hidden rounded-[2rem] bg-[#111111]"
-  >
+    className="group relative aspect-[4/5] cursor-pointer overflow-hidden rounded-[2rem] bg-[#111111]"
+    >
     {item.type === "video" ? (
       <video
         src={item.src}
