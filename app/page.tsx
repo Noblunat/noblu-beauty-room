@@ -129,7 +129,7 @@ useEffect(() => {
     })
 
     setVisibleGalleryItems(nextItems)
-  }, 12000)
+  }, 16000)
 
   return () => clearInterval(interval)
 }, [])
