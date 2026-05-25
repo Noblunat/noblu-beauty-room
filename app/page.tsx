@@ -1,9 +1,19 @@
 'use client'
-
+import { useEffect, useState } from 'react'
 import Script from 'next/script'
 
 import { motion, useMotionValue, useSpring, useScroll, useTransform } from 'framer-motion'
 export default function NobluBeautyRoomWebsite() {
+  const [loading, setLoading] = useState(true)
+
+useEffect(() => {
+  const timer = setTimeout(() => {
+    setLoading(false)
+  }, 1800)
+
+  return () => clearTimeout(timer)
+}, [])
+
   const services = [
     'Manicure Premium',
     'Pedicure SPA',
@@ -57,7 +67,30 @@ const heroParallaxY = useTransform(
   { src: "/gallery/rzesy/IMG_6498.JPG", type: "image", category: "Rzęsy" },
   { src: "/gallery/rzesy/IMG_7228.JPG", type: "image", category: "Rzęsy" },
 ]
+if (loading) {
+  return (
+    <div className="fixed inset-0 z-[99999] bg-[#0A0A0A] flex items-center justify-center overflow-hidden">
 
+      <motion.div
+        initial={{ opacity: 0, scale: 0.9 }}
+        animate={{ opacity: 1, scale: 1 }}
+        transition={{ duration: 1.2 }}
+        className="relative"
+      >
+
+        <div className="absolute inset-0 bg-[#D4B483]/30 blur-3xl rounded-full"></div>
+
+        <img
+          src="/logo.png"
+          alt="Noblu Beauty Room"
+          className="relative w-44 h-44 object-contain"
+        />
+
+      </motion.div>
+
+    </div>
+  )
+}
   return (
     <div
   onMouseMove={(e) => {
