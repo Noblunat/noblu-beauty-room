@@ -309,9 +309,13 @@ export default function NobluBeautyRoomWebsite() {
     </div>
 
     <div className="grid grid-cols-2 lg:grid-cols-4 gap-6">
-  {galleryItems.map((item) => (
-  <div
+  {galleryItems.map((item, index) => (
+  <motion.div
     key={item.src}
+    initial={{ opacity: 0, y: 40 }}
+    whileInView={{ opacity: 1, y: 0 }}
+    transition={{ duration: 0.7, delay: index * 0.06 }}
+    viewport={{ once: true }}
     className="group relative aspect-[4/5] overflow-hidden rounded-[2rem] bg-[#111111]"
   >
     {item.type === "video" ? (
@@ -332,7 +336,7 @@ export default function NobluBeautyRoomWebsite() {
     )}
 
     <div className="absolute inset-0 bg-black/10 group-hover:bg-black/0 transition-all duration-700"></div>
-  </div>
+  </motion.div>
 ))}
 </div>
     </div>
