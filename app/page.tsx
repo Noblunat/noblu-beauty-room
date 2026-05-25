@@ -520,7 +520,7 @@ if (loading) {
       </h2>
     </div>
 
-    <div className="grid grid-cols-2 lg:grid-cols-3 gap-4 max-w-6xl mx-auto">
+    <div className="grid grid-cols-2 lg:grid-cols-3 gap-4 max-w-5xl mx-auto">
   {visibleGalleryItems.map((item, index) => (
   <motion.div
   key={`gallery-slot-${index}`}
@@ -530,7 +530,7 @@ if (loading) {
   }}
   animate={{ opacity: 1 }}
   transition={{ duration: 0.8 }}
-  className="group relative aspect-[3/4] cursor-pointer overflow-hidden rounded-[2rem] bg-[#E8D6BE]/40"
+  className="group relative aspect-[3/4] cursor-pointer overflow-hidden rounded-[2rem] bg-[#E8D6BE]/40 max-w-[320px] mx-auto"
     >
     <AnimatePresence mode="wait">
   {item.type === "video" ? (
