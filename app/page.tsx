@@ -656,73 +656,7 @@ if (loading) {
 
   </div>
 </section>
-{/* LOCATION */}
-<section className="py-28 bg-[#F8F5F2]">
-  <div className="max-w-7xl mx-auto px-6 lg:px-12 grid lg:grid-cols-2 gap-16 items-center">
 
-    <div>
-
-      <div className="text-sm uppercase tracking-[0.3em] text-[#B08B57] mb-4">
-        Lokalizacja
-      </div>
-
-      <h2 className="text-4xl lg:text-6xl font-light leading-tight mb-8">
-        Beauty destination
-        <span className="block text-[#B08B57]">
-          w sercu Krakowa
-        </span>
-      </h2>
-
-      <p className="text-[#6D6B68] text-lg leading-relaxed mb-10 max-w-xl">
-        Noblu Beauty Room mieści się w Krakowie przy ul. Orzechowej 4/lok.1.
-        Kameralna przestrzeń premium została stworzona dla kobiet
-        poszukujących luksusowego doświadczenia beauty, perfekcyjnej
-        estetyki oraz najwyższej jakości usług.
-      </p>
-
-      <div className="space-y-6">
-
-        <div>
-          <div className="text-sm uppercase tracking-[0.2em] text-[#B08B57] mb-2">
-            Adres
-          </div>
-
-          <div className="text-xl">
-            Orzechowa 4/lok.1<br />
-            30-422 Kraków
-          </div>
-        </div>
-
-        <div>
-          <div className="text-sm uppercase tracking-[0.2em] text-[#B08B57] mb-2">
-            Rezerwacje
-          </div>
-
-          <a
-            href="tel:+48662989534"
-            className="text-xl hover:text-[#B08B57] transition-colors"
-          >
-            +48 662 989 534
-          </a>
-        </div>
-
-      </div>
-    </div>
-
-    <div className="rounded-[2rem] overflow-hidden border border-[#EFE8E1] shadow-[0_20px_60px_rgba(0,0,0,0.08)] h-[500px]">
-      <iframe
-        src="https://www.google.com/maps?q=Orzechowa+4+Kraków&output=embed"
-        width="100%"
-        height="100%"
-        loading="lazy"
-        allowFullScreen
-        referrerPolicy="no-referrer-when-downgrade"
-        className="w-full h-full border-0"
-      />
-    </div>
-
-  </div>
-</section>
 {/* BOOKSY BOOKING */}
 <section className="py-28 bg-gradient-to-b from-[#FFFDFB] via-[#F8F5F2] to-[#EFE7DD] text-[#1D1D1B]">
   <div className="max-w-7xl mx-auto px-6 lg:px-12 grid lg:grid-cols-2 gap-16 items-center">
