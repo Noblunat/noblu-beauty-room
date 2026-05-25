@@ -231,13 +231,17 @@ export default function NobluBeautyRoomWebsite() {
               Najbardziej pożądane zabiegi beauty w Krakowie
             </h2>
           </div>
+<div className="grid md:grid-cols-2 xl:grid-cols-4 gap-6">
 
-          <div className="grid md:grid-cols-2 xl:grid-cols-4 gap-6">
-            {services.map((service) => (
-              <div
-                key={service}
-                className="rounded-[2rem] bg-white border border-[#EFE8E1] overflow-hidden shadow-[0_10px_40px_rgba(0,0,0,0.04)] group"
-              >
+          {services.map((service) => (
+  <motion.div
+    key={service}
+    initial={{ opacity: 0, y: 30 }}
+    whileInView={{ opacity: 1, y: 0 }}
+    transition={{ duration: 0.6 }}
+    viewport={{ once: true }}
+    className="rounded-[2rem] bg-white border border-[#EFE8E1] overflow-hidden shadow-[0_10px_40px_rgba(0,0,0,0.04)] group"
+  >
                 <div className="h-64 overflow-hidden">
   <img
     src={
@@ -269,10 +273,10 @@ export default function NobluBeautyRoomWebsite() {
                     Rezerwuj →
                   </a>
                 </div>
-              </div>
+              </motion.div>
             ))}
           </div>
-        </div>
+          </div>
       </section>
 
 {/* GALLERY */}
