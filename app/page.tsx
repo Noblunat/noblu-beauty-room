@@ -806,6 +806,40 @@ referrerPolicy="no-referrer-when-downgrade"
     >
       Zarezerwuj wizytę
     </a>
+    {selectedMedia && (
+  <div
+    className="fixed inset-0 z-[99999] bg-black/90 backdrop-blur-xl flex items-center justify-center p-6"
+    onClick={() => {
+      setSelectedMedia(null)
+      setSelectedType(null)
+    }}
+  >
+    <button
+      className="absolute top-6 right-6 text-white text-4xl z-10"
+      onClick={() => {
+        setSelectedMedia(null)
+        setSelectedType(null)
+      }}
+    >
+      ×
+    </button>
+
+    {selectedType === "video" ? (
+      <video
+        src={selectedMedia}
+        controls
+        autoPlay
+        className="max-h-[90vh] max-w-[90vw] rounded-[2rem] object-contain"
+      />
+    ) : (
+      <img
+        src={selectedMedia}
+        alt="Noblu Beauty Room"
+        className="max-h-[90vh] max-w-[90vw] rounded-[2rem] object-contain"
+      />
+    )}
+  </div>
+)}
   </div>
   )
 }
