@@ -821,59 +821,6 @@ if (loading) {
 </div>
 </section>
 
-      {/* CONTACT */}
-      <section id="contact" className="py-28 bg-gradient-to-b from-[#FFFDFB] via-[#F8F5F2] to-[#EFE7DD] text-[#1D1D1B]">
-        <div className="max-w-7xl mx-auto px-6 lg:px-12 grid lg:grid-cols-2 gap-20 items-start">
-          <div>
-            <div className="text-sm uppercase tracking-[0.3em] text-[#D4B483] mb-4">
-              Kontakt
-            </div>
-
-            <h2 className="text-4xl lg:text-6xl font-light leading-tight">
-              Noblu Beauty Room
-            </h2>
-
-            <div className="mt-10 space-y-8 text-[#6D6B68] text-lg">
-              <div>
-                <div className="text-[#1D1D1B] mb-2">Adres</div>
-                <p>Orzechowa 4/lok.1</p>
-                <p>30-422 Kraków</p>
-              </div>
-
-              <div>
-                <div className="text-[#1D1D1B] mb-2">Telefon</div>
-                <a href="tel:+48662989534" className="hover:text-[#1D1D1B] transition-colors">
-                  662 989 534
-                </a>
-              </div>
-
-              <div>
-                <div className="text-[#1D1D1B] mb-2">E-mail</div>
-                <a
-                  href="mailto:noblu.beautyroom@gmail.com"
-                  className="hover:text-[#B08B57] transition-colors"
-                >
-                  noblu.beautyroom@gmail.com
-                </a>
-              </div>
-            </div>
-          </div>
-
-                   <div className="rounded-[2rem] overflow-hidden border border-[#EFE8E1] h-[500px] shadow-[0_20px_60px_rgba(0,0,0,0.08)]">
-            <iframe
-              title="Mapa dojazdu Noblu Beauty Room"
-              src="https://maps.google.com/maps?q=Noblu%20Beauty%20Room%20Krak%C3%B3w&t=&z=17&ie=UTF8&iwloc=&output=embed"
-              width="100%"
-              height="100%"
-              style={{ border: 0 }}
-              allowFullScreen
-              loading="lazy"
-referrerPolicy="no-referrer-when-downgrade"
-/>
-</div>
-</div>
-</section>
-
     <a
       href="https://booksy.com/pl-pl/105150_noblu-beauty-room_paznokcie_8820_krakow"
       target="_blank"
