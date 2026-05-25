@@ -149,7 +149,11 @@ export default function NobluBeautyRoomWebsite() {
   <div className="absolute bottom-0 left-0 w-full h-40 bg-gradient-to-t from-[#0A0A0A] to-transparent"></div>
 
   <div className="relative max-w-7xl mx-auto px-6 lg:px-12 pt-40 pb-24 grid lg:grid-cols-2 gap-20 items-center">
-    <div>
+    <motion.div
+  initial={{ opacity: 0, y: 40 }}
+  animate={{ opacity: 1, y: 0 }}
+  transition={{ duration: 1 }}
+>
       <div className="inline-flex items-center px-4 py-2 rounded-full border border-[#D4B483]/30 bg-white/5 backdrop-blur-xl text-[#D4B483] text-xs uppercase tracking-[0.3em] mb-8">
         Premium Beauty Room · Kraków
       </div>
@@ -201,12 +205,20 @@ export default function NobluBeautyRoomWebsite() {
           <div className="text-white/50 text-sm mt-1">Beauty studio</div>
         </div>
       </div>
-    </div>
 
+</motion.div>
     <div className="relative">
       <div className="absolute -top-16 -right-10 w-80 h-80 bg-[#D4B483] rounded-full blur-3xl opacity-20"></div>
 
-      <div className="relative rounded-[3rem] overflow-hidden border border-white/10 bg-white/[0.04] p-4 shadow-2xl backdrop-blur-xl">
+      <motion.div
+  animate={{ y: [0, -10, 0] }}
+  transition={{
+    duration: 6,
+    repeat: Infinity,
+    ease: "easeInOut",
+  }}
+  className="relative rounded-[3rem] overflow-hidden border border-white/10 bg-white/[0.04] p-4 shadow-2xl backdrop-blur-xl"
+>
         <div className="aspect-[4/5] rounded-[2.3rem] bg-gradient-to-br from-[#E8D6BE] via-[#D4B483] to-[#8A6A44] flex items-center justify-center p-16">
           <img
             src="/logo.png"
@@ -214,7 +226,7 @@ export default function NobluBeautyRoomWebsite() {
             className="w-64 h-64 object-contain opacity-90"
           />
         </div>
-      </div>
+       </motion.div>
     </div>
   </div>
 </section>
