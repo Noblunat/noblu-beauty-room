@@ -24,19 +24,56 @@ useEffect(() => {
   ]
 
   const reviews = [
-    {
-      name: 'Anna K.',
-      text: 'Najpiękniejszy salon beauty w Krakowie. Wszystko dopracowane perfekcyjnie.',
-    },
-    {
-      name: 'Julia M.',
-      text: 'Rezerwacja przez Booksy działa błyskawicznie, a efekt paznokci jest premium.',
-    },
-    {
-      name: 'Karolina W.',
-      text: 'Piękne wnętrze, profesjonalizm i atmosfera jak w luksusowym SPA.',
-    },
-  ];
+  {
+    name: "Katarzyna",
+    text: "Bardzo miła właścicielka. Piękny lokal. Pięknie zrobione paznokcie. Polecam Noblu Beauty Room ❤️",
+  },
+  {
+    name: "Justyna",
+    text: "Piękne paznokcie, polecam.",
+  },
+  {
+    name: "Katarzyna",
+    text: "Bardzo polecam Panią i samą usługę. Manicure wykonany bez zarzutu. Dziękuję!",
+  },
+  {
+    name: "Ania",
+    text: "Super, polecam!",
+  },
+  {
+    name: "Justyna",
+    text: "Polecam, przepiękne paznokcie.",
+  },
+  {
+    name: "Anna",
+    text: "Po prostu super. Wszystko ok. Czyściutko i elegancko. Tak jak chciałam. Pełny profesjonalizm. Polecam.",
+  },
+  {
+    name: "Ewa",
+    text: "Super Super Super ❤️ Pani Natalia jest prawdziwą profesjonalistką. Żaden podolog nie pomógł mi przy problemie wrastających paznokci, a tutaj w końcu znalazłam pomoc. Ogromna wiedza, precyzja i przepiękna atmosfera salonu. Polecam każdej kobiecie.",
+  },
+  {
+    name: "Anna",
+    text: "Po prostu perfekcyjnie. Wszystko dopracowane w najmniejszym detalu — od estetyki salonu po wykonanie manicure. Czyściutko, elegancko i bardzo profesjonalnie. Dokładnie taki efekt, jaki chciałam osiągnąć.",
+  },
+  {
+    name: "Izabela",
+    text: "Profesjonalna obsługa i przepiękny efekt końcowy. Stylizacja rzęs wykonana idealnie, bardzo komfortowa atmosfera i ogromna dbałość o szczegóły. Zdecydowanie jedno z najlepszych beauty places w Krakowie.",
+  },
+  {
+    name: "Katarzyna",
+    text: "Piękny, luksusowy salon i cudowna atmosfera. Paznokcie wykonane perfekcyjnie, bardzo dokładnie i estetycznie. Widać ogromne doświadczenie i pasję do pracy. Zdecydowanie wrócę.",
+  },
+  {
+    name: "Justyna",
+    text: "Jestem zachwycona efektem. Paznokcie wyglądają przepięknie, wszystko wykonane bardzo starannie i z ogromnym wyczuciem estetyki. Rezerwacja przez Booksy szybka i wygodna.",
+  },
+  {
+    name: "Iwona",
+    text: "Jak zwykle wszystko na najwyższym poziomie ❤️ Profesjonalizm, estetyka i atmosfera sprawiają, że chce się wracać regularnie.",
+  },
+  ]
+
   const cursorX = useMotionValue(0)
 const cursorY = useMotionValue(0)
 
