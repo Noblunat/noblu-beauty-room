@@ -7,7 +7,6 @@ export default function NobluBeautyRoomWebsite() {
   const [loading, setLoading] = useState(true)
   const [selectedMedia, setSelectedMedia] = useState<string | null>(null)
 const [selectedType, setSelectedType] = useState<'image' | 'video' | null>(null)
-const [galleryOffset, setGalleryOffset] = useState(0)
 
 useEffect(() => {
   const timer = setTimeout(() => {
@@ -15,13 +14,6 @@ useEffect(() => {
   }, 1800)
 
   return () => clearTimeout(timer)
-}, [])
-useEffect(() => {
-  const interval = setInterval(() => {
-    setGalleryOffset((prev) => prev + 6)
-  }, 7000)
-
-  return () => clearInterval(interval)
 }, [])
 
   const services = [
@@ -72,7 +64,6 @@ const scaleX = useSpring(scrollYProgress, {
 })
 
 const galleryItems = [
-
   // SALON
   { src: "/gallery/salon/salon.mp4", type: "video", category: "Salon" },
   { src: "/gallery/salon/salon2.mp4", type: "video", category: "Salon" },
@@ -122,12 +113,26 @@ const galleryItems = [
   { src: "/gallery/rzesy/IMG_7228.JPG", type: "image", category: "Rzęsy" },
   { src: "/gallery/rzesy/IMG_9083.JPG", type: "image", category: "Rzęsy" },
   { src: "/gallery/rzesy/IMG_9092.jpg", type: "image", category: "Rzęsy" },
-
 ]
-const visibleGalleryItems = Array.from({ length: 6 }, (_, index) => {
-  const step = galleryOffset * 6
-  return galleryItems[(step + index) % galleryItems.length]
-})
+const [visibleGalleryItems, setVisibleGalleryItems] = useState(
+  galleryItems.slice(0, 6)
+)
+
+useEffect(() => {
+  let start = 0
+
+  const interval = setInterval(() => {
+    start = (start + 6) % galleryItems.length
+
+    const nextItems = Array.from({ length: 6 }, (_, index) => {
+      return galleryItems[(start + index) % galleryItems.length]
+    })
+
+    setVisibleGalleryItems(nextItems)
+  }, 6000)
+
+  return () => clearInterval(interval)
+}, [])
 if (loading) {
   return (
     <div className="fixed inset-0 z-[99999] bg-[#0A0A0A] flex items-center justify-center overflow-hidden">
