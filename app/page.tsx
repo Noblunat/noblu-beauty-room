@@ -7,6 +7,7 @@ export default function NobluBeautyRoomWebsite() {
   const [loading, setLoading] = useState(true)
   const [selectedMedia, setSelectedMedia] = useState<string | null>(null)
 const [selectedType, setSelectedType] = useState<'image' | 'video' | null>(null)
+const [galleryOffset, setGalleryOffset] = useState(0)
 
 useEffect(() => {
   const timer = setTimeout(() => {
@@ -14,6 +15,13 @@ useEffect(() => {
   }, 1800)
 
   return () => clearTimeout(timer)
+}, [])
+useEffect(() => {
+  const interval = setInterval(() => {
+    setGalleryOffset((prev) => prev + 1)
+  }, 5000)
+
+  return () => clearInterval(interval)
 }, [])
 
   const services = [
@@ -75,6 +83,14 @@ const galleryItems = [
   { src: "/gallery/rzesy/IMG_6498.JPG", type: "image", category: "Rzęsy" },
   { src: "/gallery/rzesy/IMG_7228.JPG", type: "image", category: "Rzęsy" },
 ]
+const rotatingGalleryItems = galleryItems
+  .slice(galleryOffset % galleryItems.length)
+  .concat(
+    galleryItems.slice(
+      0,
+      galleryOffset % galleryItems.length
+    )
+  );
 if (loading) {
   return (
     <div className="fixed inset-0 z-[99999] bg-[#0A0A0A] flex items-center justify-center overflow-hidden">
@@ -453,7 +469,7 @@ if (loading) {
     </div>
 
     <div className="grid grid-cols-2 lg:grid-cols-4 gap-6">
-  {galleryItems.map((item, index) => (
+  {rotatingGalleryItems.map((item, index) => (
   <motion.div
     key={item.src}
     onClick={() => {
