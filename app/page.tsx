@@ -2,7 +2,7 @@
 
 import Script from 'next/script'
 
-import { motion, useMotionValue, useSpring } from 'framer-motion'
+import { motion, useMotionValue, useSpring, useScroll, useTransform } from 'framer-motion'
 export default function NobluBeautyRoomWebsite() {
   const services = [
     'Manicure Premium',
@@ -37,6 +37,13 @@ const smoothY = useSpring(cursorY, {
   stiffness: 120,
   damping: 25,
 })
+const { scrollY } = useScroll()
+
+const heroParallaxY = useTransform(
+  scrollY,
+  [0, 600],
+  [0, 80]
+)
   const galleryItems = [
     
   { src: "/gallery/salon/salon.mp4", type: "video", category: "Salon" },
@@ -258,13 +265,14 @@ const smoothY = useSpring(cursorY, {
   ))}
 
 </div>
-
 </motion.div>
-    <div className="relative">
-      <div className="absolute -top-16 -right-10 w-80 h-80 bg-[#D4B483] rounded-full blur-3xl opacity-20"></div>
 
-      <motion.div
-  animate={{ y: [0, -10, 0] }}
+<div className="relative">
+
+  <div className="absolute -top-16 -right-10 w-80 h-80 bg-[#D4B483] rounded-full blur-3xl opacity-20"></div>
+<motion.div
+  style={{ y: heroParallaxY }}
+  animate={{ scale: [1, 1.015, 1] }}
   transition={{
     duration: 6,
     repeat: Infinity,
