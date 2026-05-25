@@ -468,8 +468,8 @@ if (loading) {
       </h2>
     </div>
 
-    <div className="grid grid-cols-2 lg:grid-cols-4 gap-6">
-  {rotatingGalleryItems.map((item, index) => (
+    <div className="grid grid-cols-2 lg:grid-cols-3 gap-6">
+  {rotatingGalleryItems.slice(0, 6).map((item, index) => (
   <motion.div
     key={item.src}
     onClick={() => {
