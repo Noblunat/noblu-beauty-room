@@ -485,6 +485,59 @@ if (loading) {
 </div>
     </div>
 </section>
+{/* REVIEWS */}
+<section className="py-28 bg-[#111111] text-white overflow-hidden">
+  <div className="max-w-7xl mx-auto px-6 lg:px-12">
+
+    <div className="mb-16">
+      <div className="text-sm uppercase tracking-[0.3em] text-[#D4B483] mb-4">
+        Opinie klientek
+      </div>
+
+      <h2 className="text-4xl lg:text-6xl font-light leading-tight">
+        Kobiety wracają
+        <span className="block text-[#D4B483]">
+          dla jakości i atmosfery
+        </span>
+      </h2>
+    </div>
+
+    <div className="grid md:grid-cols-3 gap-6">
+
+      {reviews.map((review, index) => (
+        <motion.div
+          key={review.name}
+          initial={{ opacity: 0, y: 40 }}
+          whileInView={{ opacity: 1, y: 0 }}
+          transition={{
+            duration: 0.7,
+            delay: index * 0.15,
+          }}
+          viewport={{ once: true }}
+          whileHover={{
+            y: -8,
+          }}
+          className="rounded-[2rem] border border-white/10 bg-white/[0.03] backdrop-blur-xl p-8"
+        >
+
+          <div className="text-[#D4B483] text-4xl mb-6">
+            “
+          </div>
+
+          <p className="text-white/70 leading-relaxed mb-8">
+            {review.text}
+          </p>
+
+          <div className="text-sm uppercase tracking-[0.2em] text-[#D4B483]">
+            {review.name}
+          </div>
+
+        </motion.div>
+      ))}
+
+    </div>
+  </div>
+</section>
       {/* INSTAGRAM */}
 <section id="instagram" className="py-28 bg-[#111111] text-white border-t border-white/5">
   <div className="max-w-7xl mx-auto px-6 lg:px-12">
@@ -523,6 +576,7 @@ if (loading) {
 
   </div>
 </section>
+
 {/* BOOKSY BOOKING */}
 <section className="py-28 bg-[#0A0A0A] text-white">
   <div className="max-w-7xl mx-auto px-6 lg:px-12 grid lg:grid-cols-2 gap-16 items-center">
