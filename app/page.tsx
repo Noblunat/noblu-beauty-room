@@ -71,12 +71,9 @@ const galleryItems = [
   { src: "/gallery/salon/salon4.mp4", type: "video", category: "Salon" },
   { src: "/gallery/salon/salon5.mp4", type: "video", category: "Salon" },
   { src: "/gallery/salon/salon6.mp4", type: "video", category: "Salon" },
-  { src: "/gallery/salon/salon7.MOV", type: "video", category: "Salon" },
   { src: "/gallery/salon/salon8.mp4", type: "video", category: "Salon" },
-  { src: "/gallery/salon/salon9.MOV", type: "video", category: "Salon" },
   { src: "/gallery/salon/salon10.MOV", type: "video", category: "Salon" },
   { src: "/gallery/salon/salon11.MOV", type: "video", category: "Salon" },
-
   { src: "/gallery/salon/salon1.JPEG", type: "image", category: "Salon" },
   { src: "/gallery/salon/salon2.jpg", type: "image", category: "Salon" },
   { src: "/gallery/salon/salon3.jpg", type: "image", category: "Salon" },
@@ -520,7 +517,7 @@ if (loading) {
   }}
   animate={{ opacity: 1 }}
   transition={{ duration: 0.8 }}
-  className="group relative aspect-[4/5] cursor-pointer overflow-hidden rounded-[2rem] bg-[#111111]"
+  className="group relative aspect-[4/5] cursor-pointer overflow-hidden rounded-[2rem] bg-[#E8D6BE]/40"
     >
     <AnimatePresence mode="wait">
   {item.type === "video" ? (
