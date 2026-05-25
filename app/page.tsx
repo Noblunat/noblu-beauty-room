@@ -845,7 +845,7 @@ if (loading) {
   </div>
 </section>
       {/* CONTACT */}
-      <section id="contact" className="py-28 bg-[#111111] text-white">
+      <section id="contact" className="py-28 bg-gradient-to-b from-[#FFFDFB] via-[#F8F5F2] to-[#EFE7DD] text-[#1D1D1B]">
         <div className="max-w-7xl mx-auto px-6 lg:px-12 grid lg:grid-cols-2 gap-20 items-start">
           <div>
             <div className="text-sm uppercase tracking-[0.3em] text-[#D4B483] mb-4">
@@ -856,25 +856,25 @@ if (loading) {
               Noblu Beauty Room
             </h2>
 
-            <div className="mt-10 space-y-8 text-white/70 text-lg">
+            <div className="mt-10 space-y-8 text-[#6D6B68] text-lg">
               <div>
-                <div className="text-white mb-2">Adres</div>
+                <div className="text-[#1D1D1B] mb-2">Adres</div>
                 <p>Orzechowa 4/lok.1</p>
                 <p>30-422 Kraków</p>
               </div>
 
               <div>
-                <div className="text-white mb-2">Telefon</div>
+                <div className="text-[#1D1D1B] mb-2">Telefon</div>
                 <a href="tel:+48662989534" className="hover:text-white transition-colors">
                   662 989 534
                 </a>
               </div>
 
               <div>
-                <div className="text-white mb-2">E-mail</div>
+                <div className="text-[#1D1D1B] mb-2">E-mail</div>
                 <a
                   href="mailto:noblu.beautyroom@gmail.com"
-                  className="hover:text-white transition-colors"
+                  className="hover:text-[#B08B57] transition-colors"
                 >
                   noblu.beautyroom@gmail.com
                 </a>
