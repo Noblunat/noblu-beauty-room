@@ -319,8 +319,7 @@ if (loading) {
       {/* HERO */}
 <section className="relative min-h-screen bg-gradient-to-b from-[#FFFDFB] via-[#F8F5F2] to-[#EFE7DD] text-[#1D1D1B] flex items-center overflow-hidden">
   <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,#D4B483,transparent_35%)] opacity-25"></div>
-  <div className="absolute bottom-0 left-0 w-full h-40 bg-gradient-to-t from-[#EFE7DD] to-transparent"></div>
-
+  
   <div className="relative max-w-7xl mx-auto px-6 lg:px-12 pt-40 pb-24 grid lg:grid-cols-2 gap-20 items-center">
     <motion.div
   initial={{ opacity: 0, y: 40 }}
@@ -407,7 +406,7 @@ if (loading) {
 </div>
 </section>
       {/* SERVICES */}
-      <section id="services" className="py-28 bg-[#F8F5F2]">
+      <section id="services" className="py-28 bg-gradient-to-b from-[#EFE7DD] via-[#F8F5F2] to-[#FFFDFB]">
         <div className="max-w-7xl mx-auto px-6 lg:px-12">
           <div className="max-w-3xl mb-16">
             <div className="text-sm uppercase tracking-[0.3em] text-[#B08B57] mb-4">
