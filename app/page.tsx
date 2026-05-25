@@ -401,35 +401,11 @@ if (loading) {
       </div>
     </motion.div>
   ))}
-
 </div>
 </motion.div>
 
-<div className="relative">
-
-  <div className="absolute -top-16 -right-10 w-80 h-80 bg-[#D4B483] rounded-full blur-3xl opacity-20"></div>
-<motion.div
-  style={{ y: heroParallaxY }}
-  animate={{ scale: [1, 1.015, 1] }}
-  transition={{
-    duration: 6,
-    repeat: Infinity,
-    ease: "easeInOut",
-  }}
-  className="relative rounded-[3rem] overflow-hidden border border-[#E8DED2] bg-white/[0.04] p-4 shadow-2xl backdrop-blur-xl"
->
-        <div className="aspect-[4/5] rounded-[2.3rem] bg-gradient-to-br from-[#E8D6BE] via-[#D4B483] to-[#8A6A44] flex items-center justify-center p-16">
-          <img
-            src="/logo.png"
-            alt="Noblu Beauty Room"
-            className="w-64 h-64 object-contain opacity-90"
-          />
-        </div>
-       </motion.div>
-    </div>
-  </div>
+</div>
 </section>
-
       {/* SERVICES */}
       <section id="services" className="py-28 bg-[#F8F5F2]">
         <div className="max-w-7xl mx-auto px-6 lg:px-12">
