@@ -338,7 +338,7 @@ if (loading) {
         </span>
       </h1>
 
-      <p className="mt-8 text-lg lg:text-xl text-white/70 leading-relaxed max-w-xl">
+      <p className="mt-8 text-lg lg:text-xl text-[#6D6B68] leading-relaxed max-w-xl">
         Kameralny salon beauty premium w Krakowie. Stylizacja paznokci, rzęs i doświadczenie stworzone dla kobiet kochających elegancję, estetykę oraz perfekcyjne wykonanie.
       </p>
 
@@ -356,7 +356,7 @@ if (loading) {
           href="https://www.instagram.com/noblu_beauty_room/"
           target="_blank"
           rel="noopener noreferrer"
-          className="px-8 py-5 rounded-full border border-white/10 bg-white/5 backdrop-blur-xl hover:bg-white hover:text-black transition-all"
+          className="px-8 py-5 rounded-full border border-[#E8DED2] bg-white/70 text-[#1D1D1B] backdrop-blur-xl hover:bg-[#D4B483] hover:text-black transition-all"
         >
           Zobacz efekty
         </a>
@@ -382,7 +382,7 @@ if (loading) {
         y: -6,
         scale: 1.03,
       }}
-      className="rounded-2xl border border-white/10 bg-white/[0.03] p-5 backdrop-blur-xl"
+      className="rounded-2xl border border-[#E8DED2] bg-white/70 p-5 backdrop-blur-xl"
     >
       <motion.div
         initial={{ scale: 0.8 }}
@@ -396,7 +396,7 @@ if (loading) {
         {item.number}
       </motion.div>
 
-      <div className="text-white/50 text-sm mt-1">
+      <div className="text-[#6D6B68] text-sm mt-1">
         {item.label}
       </div>
     </motion.div>
@@ -416,7 +416,7 @@ if (loading) {
     repeat: Infinity,
     ease: "easeInOut",
   }}
-  className="relative rounded-[3rem] overflow-hidden border border-white/10 bg-white/[0.04] p-4 shadow-2xl backdrop-blur-xl"
+  className="relative rounded-[3rem] overflow-hidden border border-[#E8DED2] bg-white/[0.04] p-4 shadow-2xl backdrop-blur-xl"
 >
         <div className="aspect-[4/5] rounded-[2.3rem] bg-gradient-to-br from-[#E8D6BE] via-[#D4B483] to-[#8A6A44] flex items-center justify-center p-16">
           <img
@@ -831,11 +831,11 @@ if (loading) {
           key={faq.q}
           className="rounded-[2rem] border border-white/10 bg-white/[0.04] p-8 shadow-[0_10px_40px_rgba(0,0,0,0.25)]"
         >
-          <h3 className="text-xl text-white mb-4">
+          <h3 className="text-xl text-[#1D1D1B] mb-4">
             {faq.q}
           </h3>
 
-          <p className="text-white/70 leading-relaxed">
+          <p className="text-[#6D6B68] leading-relaxed">
             {faq.a}
           </p>
         </div>
@@ -955,7 +955,7 @@ referrerPolicy="no-referrer-when-downgrade"
           className="w-24 h-24 object-contain mb-6"
         />
 
-        <p className="text-white/60 leading-relaxed max-w-sm">
+        <p className="text-[#1D1D1B] leading-relaxed max-w-sm">
           Premium beauty studio w Krakowie stworzone dla kobiet,
           które kochają estetykę, luksus oraz perfekcyjne wykonanie.
         </p>
@@ -966,7 +966,7 @@ referrerPolicy="no-referrer-when-downgrade"
           Usługi
         </div>
 
-        <div className="space-y-4 text-white/70">
+        <div className="space-y-4 text-[#1D1D1B]">
           <div>Manicure Premium</div>
           <div>Pedicure SPA</div>
           <div>Stylizacja Paznokci</div>
@@ -979,7 +979,7 @@ referrerPolicy="no-referrer-when-downgrade"
           Kontakt
         </div>
 
-        <div className="space-y-4 text-white/70">
+        <div className="space-y-4 text-[#1D1D1B]">
           <div>Orzechowa 4/lok.1</div>
           <div>30-422 Kraków</div>
 
@@ -1010,7 +1010,7 @@ referrerPolicy="no-referrer-when-downgrade"
             href="https://www.instagram.com/noblu_beauty_room/"
             target="_blank"
             rel="noopener noreferrer"
-            className="block text-white/70 hover:text-[#D4B483] transition-colors"
+            className="block text-[#1D1D1B] hover:text-[#D4B483] transition-colors"
           >
             Instagram
           </a>
@@ -1019,7 +1019,7 @@ referrerPolicy="no-referrer-when-downgrade"
             href="https://booksy.com/pl-pl/105150_noblu-beauty-room_paznokcie_8820_krakow"
             target="_blank"
             rel="noopener noreferrer"
-            className="block text-white/70 hover:text-[#D4B483] transition-colors"
+            className="block text-[#1D1D1B] hover:text-[#D4B483] transition-colors"
           >
             Booksy
           </a>
