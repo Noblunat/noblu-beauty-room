@@ -2,7 +2,7 @@
 
 import Script from 'next/script'
 
-import { motion } from 'framer-motion'
+import { motion, useMotionValue, useSpring } from 'framer-motion'
 export default function NobluBeautyRoomWebsite() {
   const services = [
     'Manicure Premium',
@@ -25,7 +25,20 @@ export default function NobluBeautyRoomWebsite() {
       text: 'Piękne wnętrze, profesjonalizm i atmosfera jak w luksusowym SPA.',
     },
   ];
+  const cursorX = useMotionValue(0)
+const cursorY = useMotionValue(0)
+
+const smoothX = useSpring(cursorX, {
+  stiffness: 120,
+  damping: 25,
+})
+
+const smoothY = useSpring(cursorY, {
+  stiffness: 120,
+  damping: 25,
+})
   const galleryItems = [
+    
   { src: "/gallery/salon/salon.mp4", type: "video", category: "Salon" },
   { src: "/gallery/salon/salon1.JPEG", type: "image", category: "Salon" },
   { src: "/gallery/salon/salon2.jpg", type: "image", category: "Salon" },
@@ -39,8 +52,23 @@ export default function NobluBeautyRoomWebsite() {
 ]
 
   return (
-  <div className="min-h-screen bg-[#F8F5F2] text-[#1D1D1B] overflow-hidden pb-24 lg:pb-0">
+    <div
+  onMouseMove={(e) => {
+    cursorX.set(e.clientX)
+    cursorY.set(e.clientY)
+  }}
+  className="min-h-screen bg-[#F8F5F2] text-[#1D1D1B] overflow-hidden pb-24 lg:pb-0"
+>
 
+  <motion.div
+    className="pointer-events-none fixed left-0 top-0 z-[9998] hidden h-72 w-72 rounded-full bg-[#D4B483]/20 blur-3xl lg:block"
+    style={{
+      x: smoothX,
+      y: smoothY,
+      translateX: "-50%",
+      translateY: "-50%",
+    }}
+  />
     <Script
       src="https://elfsightcdn.com/platform.js"
       strategy="lazyOnload"
