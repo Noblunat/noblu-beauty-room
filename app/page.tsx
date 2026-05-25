@@ -294,11 +294,11 @@ if (loading) {
       />
 
       <div>
-        <div className="text-white text-lg tracking-wide font-medium">
+        <div className="text-[#1D1D1B] text-lg tracking-wide font-medium">
           Noblu Beauty Room
         </div>
 
-        <div className="text-white/50 text-xs uppercase tracking-[0.2em]">
+        <div className="text-[#8A8178] text-xs uppercase tracking-[0.2em]">
           Kraków
         </div>
       </div>
@@ -319,7 +319,7 @@ if (loading) {
       {/* HERO */}
 <section className="relative min-h-screen bg-gradient-to-b from-[#FFFDFB] via-[#F8F5F2] to-[#EFE7DD] text-[#1D1D1B] flex items-center overflow-hidden">
   <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,#D4B483,transparent_35%)] opacity-25"></div>
-  <div className="absolute bottom-0 left-0 w-full h-40 bg-gradient-to-t from-[#0A0A0A] to-transparent"></div>
+  <div className="absolute bottom-0 left-0 w-full h-40 bg-gradient-to-t from-[#EFE7DD] to-transparent"></div>
 
   <div className="relative max-w-7xl mx-auto px-6 lg:px-12 pt-40 pb-24 grid lg:grid-cols-2 gap-20 items-center">
     <motion.div
@@ -737,7 +737,7 @@ if (loading) {
         <span className="block text-[#D4B483]">przez Booksy</span>
       </h2>
 
-      <p className="mt-8 text-white/70 text-lg leading-relaxed max-w-xl">
+      <p className="mt-8 text-[#6D6B68] text-lg leading-relaxed max-w-xl">
         Wybierz usługę, dogodny termin i zarezerwuj wizytę online w Noblu Beauty Room bez dzwonienia.
       </p>
 
@@ -751,14 +751,14 @@ if (loading) {
       </a>
     </div>
 
-    <div className="rounded-[2rem] border border-white/10 bg-white/[0.03] p-8 backdrop-blur-xl">
+    <div className="rounded-[2rem] border border-[#E8DED2] bg-white/70 p-8 backdrop-blur-xl">
       {["Manicure Premium", "Stylizacja paznokci", "Pedicure SPA", "Beauty Room"].map((item) => (
         <a
           key={item}
           href="https://booksy.com/pl-pl/105150_noblu-beauty-room_paznokcie_8820_krakow"
           target="_blank"
           rel="noopener noreferrer"
-          className="flex items-center justify-between rounded-2xl border border-white/10 bg-white/[0.04] p-5 mb-4 hover:border-[#D4B483]/50 transition-colors"
+          className="flex items-center justify-between rounded-2xl border border-[#E8DED2] bg-white p-5 mb-4 hover:border-[#D4B483]/50 transition-colors"
         >
           <span>{item}</span>
           <span className="text-[#D4B483] text-sm uppercase tracking-[0.2em]">
@@ -766,8 +766,8 @@ if (loading) {
           </span>
         </a>
       ))}
+      </div>
     </div>
-  </div>
 </section>
 {/* FAQ */}
 <section id="faq" className="py-28 bg-gradient-to-b from-[#FFFDFB] via-[#F8F5F2] to-[#EFE7DD] text-[#1D1D1B]">
@@ -805,7 +805,7 @@ if (loading) {
       ].map((faq) => (
         <div
           key={faq.q}
-          className="rounded-[2rem] border border-white/10 bg-white/[0.04] p-8 shadow-[0_10px_40px_rgba(0,0,0,0.25)]"
+          className="rounded-[2rem] border border-[#E8DED2] bg-white/70 p-8 shadow-[0_10px_40px_rgba(0,0,0,0.25)]"
         >
           <h3 className="text-xl text-[#1D1D1B] mb-4">
             {faq.q}
@@ -815,11 +815,12 @@ if (loading) {
             {faq.a}
           </p>
         </div>
-      ))}
+        ))}
+</div>
 
-    </div>
-  </div>
+</div>
 </section>
+
       {/* CONTACT */}
       <section id="contact" className="py-28 bg-gradient-to-b from-[#FFFDFB] via-[#F8F5F2] to-[#EFE7DD] text-[#1D1D1B]">
         <div className="max-w-7xl mx-auto px-6 lg:px-12 grid lg:grid-cols-2 gap-20 items-start">
@@ -841,7 +842,7 @@ if (loading) {
 
               <div>
                 <div className="text-[#1D1D1B] mb-2">Telefon</div>
-                <a href="tel:+48662989534" className="hover:text-white transition-colors">
+                <a href="tel:+48662989534" className="hover:text-[#1D1D1B] transition-colors">
                   662 989 534
                 </a>
               </div>
@@ -1005,13 +1006,13 @@ referrerPolicy="no-referrer-when-downgrade"
 
     </div>
 
-    <div className="mt-20 pt-8 border-t border-white/10 flex flex-col lg:flex-row items-center justify-between gap-6">
+    <div className="mt-20 pt-8 border-t border-[#E8DED2] flex flex-col lg:flex-row items-center justify-between gap-6">
 
-      <div className="text-white/40 text-sm">
+      <div className="text-[#9B9187] text-sm">
         © 2025 Noblu Beauty Room · Kraków
       </div>
 
-      <div className="text-white/30 text-sm tracking-[0.2em] uppercase">
+      <div className="text-[#1D1D1B] text-sm tracking-[0.2em] uppercase">
         Premium Beauty Experience
       </div>
 
