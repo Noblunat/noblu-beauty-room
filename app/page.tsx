@@ -471,7 +471,7 @@ if (loading) {
     <div className="grid grid-cols-2 lg:grid-cols-3 gap-6">
   {rotatingGalleryItems.slice(0, 6).map((item, index) => (
   <motion.div
-    key={item.src}
+    key={`${item.src}-${galleryOffset}`}
     onClick={() => {
   setSelectedMedia(item.src)
   setSelectedType(item.type as 'image' | 'video')
