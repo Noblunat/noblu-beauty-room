@@ -218,21 +218,46 @@ const smoothY = useSpring(cursorY, {
       </div>
 
       <div className="mt-14 grid grid-cols-3 gap-6 max-w-lg">
-        <div className="rounded-2xl border border-white/10 bg-white/[0.03] p-5">
-          <div className="text-3xl font-semibold">4.9</div>
-          <div className="text-white/50 text-sm mt-1">Ocena klientek</div>
-        </div>
 
-        <div className="rounded-2xl border border-white/10 bg-white/[0.03] p-5">
-          <div className="text-3xl font-semibold">24/7</div>
-          <div className="text-white/50 text-sm mt-1">Booksy online</div>
-        </div>
+  {[
+    { number: "4.9", label: "Ocena klientek" },
+    { number: "24/7", label: "Booksy online" },
+    { number: "Premium", label: "Beauty studio" },
+  ].map((item, index) => (
+    <motion.div
+      key={item.label}
+      initial={{ opacity: 0, y: 30 }}
+      whileInView={{ opacity: 1, y: 0 }}
+      transition={{
+        duration: 0.7,
+        delay: index * 0.15,
+      }}
+      viewport={{ once: true }}
+      whileHover={{
+        y: -6,
+        scale: 1.03,
+      }}
+      className="rounded-2xl border border-white/10 bg-white/[0.03] p-5 backdrop-blur-xl"
+    >
+      <motion.div
+        initial={{ scale: 0.8 }}
+        whileInView={{ scale: 1 }}
+        transition={{
+          duration: 0.5,
+          delay: index * 0.2,
+        }}
+        className="text-3xl font-semibold"
+      >
+        {item.number}
+      </motion.div>
 
-        <div className="rounded-2xl border border-white/10 bg-white/[0.03] p-5">
-          <div className="text-3xl font-semibold">Premium</div>
-          <div className="text-white/50 text-sm mt-1">Beauty studio</div>
-        </div>
+      <div className="text-white/50 text-sm mt-1">
+        {item.label}
       </div>
+    </motion.div>
+  ))}
+
+</div>
 
 </motion.div>
     <div className="relative">
