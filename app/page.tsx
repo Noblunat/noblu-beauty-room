@@ -47,15 +47,21 @@ const smoothY = useSpring(cursorY, {
   stiffness: 120,
   damping: 25,
 })
-const { scrollY } = useScroll()
+
+const { scrollY, scrollYProgress } = useScroll()
 
 const heroParallaxY = useTransform(
   scrollY,
   [0, 600],
   [0, 80]
 )
-  const galleryItems = [
-    
+
+const scaleX = useSpring(scrollYProgress, {
+  stiffness: 100,
+  damping: 30,
+})
+
+const galleryItems = [
   { src: "/gallery/salon/salon.mp4", type: "video", category: "Salon" },
   { src: "/gallery/salon/salon1.JPEG", type: "image", category: "Salon" },
   { src: "/gallery/salon/salon2.jpg", type: "image", category: "Salon" },
@@ -99,6 +105,11 @@ if (loading) {
   }}
   className="min-h-screen bg-[#F8F5F2] text-[#1D1D1B] overflow-hidden pb-24 lg:pb-0"
 >
+
+  <motion.div
+    className="fixed left-0 right-0 top-0 z-[99999] h-[3px] origin-left bg-[#D4B483]"
+    style={{ scaleX }}
+  />
 
   <motion.div
     className="pointer-events-none fixed left-0 top-0 z-[9998] hidden h-96 w-96 rounded-full bg-[#D4B483]/40 blur-3xl lg:block"
