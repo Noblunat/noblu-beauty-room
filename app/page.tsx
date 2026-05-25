@@ -18,7 +18,7 @@ useEffect(() => {
 }, [])
 useEffect(() => {
   const interval = setInterval(() => {
-    setGalleryOffset((prev) => prev + 1)
+    setGalleryOffset((prev) => prev + 6)
   }, 7000)
 
   return () => clearInterval(interval)
@@ -126,14 +126,9 @@ const galleryItems = [
   { src: "/gallery/rzesy/IMG_9092.jpg", type: "image", category: "Rzęsy" },
 
 ]
-const rotatingGalleryItems = galleryItems
-  .slice(galleryOffset % galleryItems.length)
-  .concat(
-    galleryItems.slice(
-      0,
-      galleryOffset % galleryItems.length
-    )
-  );
+const visibleGalleryItems = Array.from({ length: 6 }, (_, index) => {
+  return galleryItems[(galleryOffset + index) % galleryItems.length]
+})
 if (loading) {
   return (
     <div className="fixed inset-0 z-[99999] bg-[#0A0A0A] flex items-center justify-center overflow-hidden">
@@ -512,10 +507,10 @@ if (loading) {
     </div>
 
     <div className="grid grid-cols-2 lg:grid-cols-3 gap-6">
-  {rotatingGalleryItems.slice(0, 6).map((item, index) => (
+  {visibleGalleryItems.map((item, index) => (
   <motion.div
   layout
-    key={item.src}
+    key={`gallery-slot-${index}`}
     onClick={() => {
   setSelectedMedia(item.src)
   setSelectedType(item.type as 'image' | 'video')
