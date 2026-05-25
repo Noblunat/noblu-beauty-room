@@ -633,16 +633,14 @@ if (loading) {
       </a>
     </div>
 
-    <div className="grid grid-cols-2 lg:grid-cols-4 gap-6">
-
-      <div className="rounded-[2rem] overflow-hidden">
-  <div
-    className="elfsight-app-fdbac9e5-8347-437d-a054-33662ac4b4be"
-    data-elfsight-app-lazy
-  ></div>
+    <div className="overflow-x-auto overflow-y-hidden pb-4 scrollbar-hide">
+  <div className="min-w-[1400px] rounded-[2rem] overflow-hidden">
+    <div
+      className="elfsight-app-fdbac9e5-8347-437d-a054-33662ac4b4be"
+      data-elfsight-app-lazy
+    ></div>
+  </div>
 </div>
-
-    </div>
 
   </div>
 </section>
