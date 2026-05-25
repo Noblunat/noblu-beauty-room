@@ -2,7 +2,7 @@
 import { useEffect, useState } from 'react'
 import Script from 'next/script'
 
-import { motion, useMotionValue, useSpring, useScroll, useTransform } from 'framer-motion'
+import { motion, AnimatePresence, useMotionValue, useSpring, useScroll, useTransform } from 'framer-motion'
 export default function NobluBeautyRoomWebsite() {
   const [loading, setLoading] = useState(true)
   const [selectedMedia, setSelectedMedia] = useState<string | null>(null)
@@ -103,7 +103,6 @@ const galleryItems = [
   { src: "/gallery/paznokcie/IMG_1745(1).JPEG", type: "image", category: "Paznokcie" },
   { src: "/gallery/paznokcie/IMG_2406(2).JPEG", type: "image", category: "Paznokcie" },
   { src: "/gallery/paznokcie/IMG_2440(1).JPEG", type: "image", category: "Paznokcie" },
-  { src: "/gallery/paznokcie/IMG_6204.DNG", type: "image", category: "Paznokcie" },
   { src: "/gallery/paznokcie/IMG_6334.JPG", type: "image", category: "Paznokcie" },
   { src: "/gallery/paznokcie/IMG_6375.JPG", type: "image", category: "Paznokcie" },
   { src: "/gallery/paznokcie/IMG_6470.JPG", type: "image", category: "Paznokcie" },
@@ -120,7 +119,6 @@ const galleryItems = [
   // RZĘSY
   { src: "/gallery/rzesy/IMG_6498.JPG", type: "image", category: "Rzęsy" },
   { src: "/gallery/rzesy/IMG_6993(1).JPG", type: "image", category: "Rzęsy" },
-  { src: "/gallery/rzesy/IMG_7223.DNG", type: "image", category: "Rzęsy" },
   { src: "/gallery/rzesy/IMG_7228.JPG", type: "image", category: "Rzęsy" },
   { src: "/gallery/rzesy/IMG_9083.JPG", type: "image", category: "Rzęsy" },
   { src: "/gallery/rzesy/IMG_9092.jpg", type: "image", category: "Rzęsy" },
@@ -519,25 +517,38 @@ if (loading) {
   transition={{ duration: 0.8 }}
   className="group relative aspect-[4/5] cursor-pointer overflow-hidden rounded-[2rem] bg-[#111111]"
     >
-    {item.type === "video" ? (
-      <video
-        src={item.src}
-        autoPlay
-        muted
-        loop
-        playsInline
-        className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
-      />
-    ) : (
-      <img
-        src={item.src}
-        alt="Noblu Beauty Room"
-        className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
-      />
-    )}
+    <AnimatePresence mode="wait">
+  {item.type === "video" ? (
+    <motion.video
+      key={item.src}
+      src={item.src}
+      autoPlay
+      muted
+      loop
+      playsInline
+      initial={{ opacity: 0, scale: 1.03 }}
+      animate={{ opacity: 1, scale: 1 }}
+      exit={{ opacity: 0, scale: 0.98 }}
+      transition={{ duration: 0.9 }}
+      className="absolute inset-0 h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
+    />
+  ) : (
+    <motion.img
+      key={item.src}
+      src={item.src}
+      alt="Noblu Beauty Room"
+      initial={{ opacity: 0, scale: 1.03 }}
+      animate={{ opacity: 1, scale: 1 }}
+      exit={{ opacity: 0, scale: 0.98 }}
+      transition={{ duration: 0.9 }}
+      className="absolute inset-0 h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
+    />
+  )}
+</AnimatePresence>
 
-    <div className="absolute inset-0 bg-black/10 group-hover:bg-black/0 transition-all duration-700"></div>
-  </motion.div>
+<div className="absolute inset-0 bg-black/10 group-hover:bg-black/0 transition-all duration-700"></div>
+
+</motion.div>
 ))}
 </div>
     </div>
