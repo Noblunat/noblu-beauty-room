@@ -395,6 +395,45 @@ if (loading) {
           </div>
           </div>
       </section>
+      {/* SEO CONTENT */}
+<section className="py-28 bg-white border-t border-[#EFE8E1]">
+  <div className="max-w-5xl mx-auto px-6 lg:px-12">
+
+    <div className="text-sm uppercase tracking-[0.3em] text-[#B08B57] mb-4">
+      Beauty Kraków
+    </div>
+
+    <h2 className="text-4xl lg:text-6xl font-light leading-tight mb-10">
+      Premium beauty studio w Krakowie
+    </h2>
+
+    <div className="space-y-10 text-[#5F5B56] text-lg leading-relaxed">
+
+      <p>
+        Noblu Beauty Room to luksusowy salon beauty w Krakowie oferujący manicure premium,
+        stylizację paznokci, pedicure SPA oraz stylizację rzęs w eleganckim,
+        kameralnym wnętrzu stworzonym dla kobiet ceniących estetykę, perfekcję
+        i najwyższą jakość wykonania.
+      </p>
+
+      <p>
+        Specjalizujemy się w nowoczesnej stylizacji paznokci w Krakowie,
+        manicure hybrydowym premium, pedicure SPA oraz profesjonalnej
+        stylizacji rzęs. Każdy zabieg wykonywany jest z wykorzystaniem
+        starannie wyselekcjonowanych produktów premium oraz z dbałością
+        o każdy detal.
+      </p>
+
+      <p>
+        Jeśli szukasz miejsca takiego jak premium salon beauty Kraków,
+        manicure Kraków, pedicure Kraków lub stylizacja rzęs Kraków —
+        Noblu Beauty Room oferuje doświadczenie beauty stworzone
+        w duchu luksusu, minimalizmu i nowoczesnej estetyki.
+      </p>
+
+    </div>
+  </div>
+</section>
 
 {/* GALLERY */}
 <section className="py-28 bg-[#F8F5F2]">
