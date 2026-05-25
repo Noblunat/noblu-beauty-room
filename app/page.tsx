@@ -18,8 +18,8 @@ useEffect(() => {
 }, [])
 useEffect(() => {
   const interval = setInterval(() => {
-    setGalleryOffset((prev) => prev + 3)
-  }, 5000)
+    setGalleryOffset((prev) => prev + 1)
+  }, 7000)
 
   return () => clearInterval(interval)
 }, [])
@@ -471,14 +471,15 @@ if (loading) {
     <div className="grid grid-cols-2 lg:grid-cols-3 gap-6">
   {rotatingGalleryItems.slice(0, 6).map((item, index) => (
   <motion.div
-    key={`${item.src}-${galleryOffset}`}
+  layout
+    key={item.src}
     onClick={() => {
   setSelectedMedia(item.src)
   setSelectedType(item.type as 'image' | 'video')
 }}
     initial={{ opacity: 0, y: 40 }}
     whileInView={{ opacity: 1, y: 0 }}
-    transition={{ duration: 0.7, delay: index * 0.06 }}
+    transition={{ duration: 0.8, delay: index * 0.08 }}
     viewport={{ once: true }}
     className="group relative aspect-[4/5] cursor-pointer overflow-hidden rounded-[2rem] bg-[#111111]"
     >
