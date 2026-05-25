@@ -18,7 +18,7 @@ useEffect(() => {
 }, [])
 useEffect(() => {
   const interval = setInterval(() => {
-    setGalleryOffset((prev) => prev + 1)
+    setGalleryOffset((prev) => prev + 3)
   }, 5000)
 
   return () => clearInterval(interval)
