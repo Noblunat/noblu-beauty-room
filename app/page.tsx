@@ -840,6 +840,110 @@ referrerPolicy="no-referrer-when-downgrade"
     )}
   </div>
 )}
+{/* FOOTER */}
+<footer className="relative overflow-hidden bg-[#0A0A0A] text-white border-t border-white/10">
+
+  <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,#D4B483,transparent_35%)] opacity-10"></div>
+
+  <div className="relative max-w-7xl mx-auto px-6 lg:px-12 py-24">
+
+    <div className="grid lg:grid-cols-4 gap-16">
+
+      <div>
+        <img
+          src="/logo.png"
+          alt="Noblu Beauty Room"
+          className="w-24 h-24 object-contain mb-6"
+        />
+
+        <p className="text-white/60 leading-relaxed max-w-sm">
+          Premium beauty studio w Krakowie stworzone dla kobiet,
+          które kochają estetykę, luksus oraz perfekcyjne wykonanie.
+        </p>
+      </div>
+
+      <div>
+        <div className="text-sm uppercase tracking-[0.3em] text-[#D4B483] mb-6">
+          Usługi
+        </div>
+
+        <div className="space-y-4 text-white/70">
+          <div>Manicure Premium</div>
+          <div>Pedicure SPA</div>
+          <div>Stylizacja Paznokci</div>
+          <div>Stylizacja Rzęs</div>
+        </div>
+      </div>
+
+      <div>
+        <div className="text-sm uppercase tracking-[0.3em] text-[#D4B483] mb-6">
+          Kontakt
+        </div>
+
+        <div className="space-y-4 text-white/70">
+          <div>Orzechowa 4/lok.1</div>
+          <div>30-422 Kraków</div>
+
+          <a
+            href="tel:+48662989534"
+            className="block hover:text-[#D4B483] transition-colors"
+          >
+            +48 662 989 534
+          </a>
+
+          <a
+            href="mailto:noblu.beautyroom@gmail.com"
+            className="block hover:text-[#D4B483] transition-colors"
+          >
+            noblu.beautyroom@gmail.com
+          </a>
+        </div>
+      </div>
+
+      <div>
+        <div className="text-sm uppercase tracking-[0.3em] text-[#D4B483] mb-6">
+          Social Media
+        </div>
+
+        <div className="space-y-4">
+
+          <a
+            href="https://www.instagram.com/noblu_beauty_room/"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="block text-white/70 hover:text-[#D4B483] transition-colors"
+          >
+            Instagram
+          </a>
+
+          <a
+            href="https://booksy.com/pl-pl/105150_noblu-beauty-room_paznokcie_8820_krakow"
+            target="_blank"
+            rel="noopener noreferrer"
+            className="block text-white/70 hover:text-[#D4B483] transition-colors"
+          >
+            Booksy
+          </a>
+
+        </div>
+      </div>
+
+    </div>
+
+    <div className="mt-20 pt-8 border-t border-white/10 flex flex-col lg:flex-row items-center justify-between gap-6">
+
+      <div className="text-white/40 text-sm">
+        © 2025 Noblu Beauty Room · Kraków
+      </div>
+
+      <div className="text-white/30 text-sm tracking-[0.2em] uppercase">
+        Premium Beauty Experience
+      </div>
+
+    </div>
+
+  </div>
+</footer>
   </div>
   )
 }
