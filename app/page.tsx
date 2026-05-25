@@ -127,7 +127,8 @@ const galleryItems = [
 
 ]
 const visibleGalleryItems = Array.from({ length: 6 }, (_, index) => {
-  return galleryItems[(galleryOffset + index) % galleryItems.length]
+  const step = galleryOffset * 6
+  return galleryItems[(step + index) % galleryItems.length]
 })
 if (loading) {
   return (
@@ -509,17 +510,14 @@ if (loading) {
     <div className="grid grid-cols-2 lg:grid-cols-3 gap-6">
   {visibleGalleryItems.map((item, index) => (
   <motion.div
-  layout
-    key={`gallery-slot-${index}`}
-    onClick={() => {
-  setSelectedMedia(item.src)
-  setSelectedType(item.type as 'image' | 'video')
-}}
-    initial={{ opacity: 0, y: 40 }}
-    whileInView={{ opacity: 1, y: 0 }}
-    transition={{ duration: 0.8, delay: index * 0.08 }}
-    viewport={{ once: true }}
-    className="group relative aspect-[4/5] cursor-pointer overflow-hidden rounded-[2rem] bg-[#111111]"
+  key={`gallery-slot-${index}`}
+  onClick={() => {
+    setSelectedMedia(item.src)
+    setSelectedType(item.type as 'image' | 'video')
+  }}
+  animate={{ opacity: 1 }}
+  transition={{ duration: 0.8 }}
+  className="group relative aspect-[4/5] cursor-pointer overflow-hidden rounded-[2rem] bg-[#111111]"
     >
     {item.type === "video" ? (
       <video
