@@ -61,7 +61,7 @@ const smoothY = useSpring(cursorY, {
 >
 
   <motion.div
-    className="pointer-events-none fixed left-0 top-0 z-[9998] hidden h-72 w-72 rounded-full bg-[#D4B483]/20 blur-3xl lg:block"
+    className="pointer-events-none fixed left-0 top-0 z-[9998] hidden h-96 w-96 rounded-full bg-[#D4B483]/40 blur-3xl lg:block"
     style={{
       x: smoothX,
       y: smoothY,
