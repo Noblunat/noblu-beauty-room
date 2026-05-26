@@ -867,8 +867,8 @@ referrerPolicy="no-referrer-when-downgrade"
         />
 
         <p className="text-[#1D1D1B] leading-relaxed max-w-sm">
-          Premium beauty studio w Krakowie stworzone dla kobiet,
-          które kochają estetykę, luksus oraz perfekcyjne wykonanie.
+          Beauty studio w Krakowie stworzone dla kobiet,
+          które kochają estetykę, oraz perfekcyjne wykonanie.
         </p>
       </div>
 
