@@ -640,7 +640,7 @@ if (loading) {
         href="https://www.instagram.com/noblu_beauty_room/"
         target="_blank"
         rel="noopener noreferrer"
-        className="hidden lg:flex px-6 py-3 rounded-full border border-white/10 hover:border-[#D4B483] transition-colors"
+        className="inline-flex items-center justify-center px-10 py-5 rounded-full bg-[#D4B483] text-black font-medium hover:scale-105 transition-transform shadow-[0_10px_30px_rgba(212,180,131,0.25)]"
       >
         Obserwuj
       </a>
@@ -745,7 +745,7 @@ if (loading) {
         href="https://booksy.com/pl-pl/105150_noblu-beauty-room_paznokcie_8820_krakow"
         target="_blank"
         rel="noopener noreferrer"
-        className="inline-flex mt-10 px-10 py-5 rounded-full bg-[#D4B483] text-black font-medium hover:scale-105 transition-transform"
+        className="inline-flex items-center justify-center px-10 py-5 rounded-full bg-[#D4B483] text-black font-medium hover:scale-105 transition-transform shadow-[0_10px_30px_rgba(212,180,131,0.25)]"
       >
         Przejdź do Booksy
       </a>
