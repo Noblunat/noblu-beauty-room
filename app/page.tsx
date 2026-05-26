@@ -328,7 +328,7 @@ if (loading) {
   transition={{ duration: 1 }}
 >
       <div className="inline-flex items-center px-4 py-2 rounded-full border border-[#D4B483]/30 bg-white/5 backdrop-blur-xl text-[#D4B483] text-xs uppercase tracking-[0.3em] mb-8">
-        Premium Beauty Room · Kraków
+       Beauty Room · Kraków
       </div>
 
       <h1 className="text-6xl lg:text-8xl font-light leading-[0.92] tracking-tight">
@@ -494,7 +494,7 @@ if (loading) {
 
       <p>
         Jeśli szukasz miejsca takiego jak premium salon beauty Kraków,
-        manicure Kraków, pedicure Kraków lub stylizacja rzęs Kraków —
+        manicure Kraków, pedicure Kraków lub stylizacja rzęs Kraków - 
         Noblu Beauty Room oferuje doświadczenie beauty stworzone
         w duchu luksusu, minimalizmu i nowoczesnej estetyki.
       </p>
@@ -578,9 +578,9 @@ if (loading) {
       </div>
 
       <h2 className="text-4xl lg:text-6xl font-light leading-tight">
-        Kobiety wracają
+        Kobiety wracają dla jakości i atmosfery
         <span className="block text-[#D4B483]">
-          dla jakości i atmosfery potwierdzają to opinie z Booksy
+           potwierdzają to opinie w Booksy
         </span>
       </h2>
     </div>
@@ -686,7 +686,7 @@ if (loading) {
     </div>
 
     <div className="rounded-[2rem] border border-[#E8DED2] bg-white/70 p-8 backdrop-blur-xl">
-      {["Manicure Premium", "Stylizacja paznokci", "Pedicure SPA", "Beauty Room"].map((item) => (
+      {["Manicure", "Stylizacja paznokci", "Pedicure SPA", "Stylizacja rzęs"].map((item) => (
         <a
           key={item}
           href="https://booksy.com/pl-pl/105150_noblu-beauty-room_paznokcie_8820_krakow"
@@ -947,7 +947,7 @@ referrerPolicy="no-referrer-when-downgrade"
       </div>
 
       <div className="text-[#1D1D1B] text-sm tracking-[0.2em] uppercase">
-        Premium Beauty Experience
+       Beauty Experience
       </div>
 
     </div>
