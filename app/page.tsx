@@ -466,7 +466,7 @@ if (loading) {
       </section>
       {/* SEO CONTENT */}
 <section className="py-28 bg-white border-t border-[#EFE8E1]">
-  <div className="max-w-5xl mx-auto px-6 lg:px-12">
+  <div className="grid grid-cols-2 lg:grid-cols-3 gap-6">
 
     <div className="text-sm uppercase tracking-[0.3em] text-[#B08B57] mb-4">
       Beauty Kraków
@@ -529,7 +529,7 @@ if (loading) {
   }}
   animate={{ opacity: 1 }}
   transition={{ duration: 0.8 }}
-  className="group relative aspect-[3/4] cursor-pointer overflow-hidden rounded-[2rem] bg-[#E8D6BE]/40 max-w-[320px] mx-auto"
+  className="group relative w-full aspect-[3/4] cursor-pointer overflow-hidden rounded-[2rem] bg-[#E8D6BE]/40"
     >
     <AnimatePresence mode="wait">
   {item.type === "video" ? (
