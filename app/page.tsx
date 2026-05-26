@@ -649,9 +649,9 @@ if (loading) {
     <div className="overflow-x-auto overflow-y-hidden pb-4 scrollbar-hide">
   <div className="min-w-[1400px] rounded-[2rem] overflow-hidden">
     <div
-      className="elfsight-app-fdbac9e5-8347-437d-a054-33662ac4b4be"
-      data-elfsight-app-lazy
-    ></div>
+  className="elfsight-app-3c7474f5-b323-4f42-a3d9-adffc9a0e6c8"
+  data-elfsight-app-lazy
+></div>
   </div>
 </div>
 
@@ -1020,6 +1020,11 @@ referrerPolicy="no-referrer-when-downgrade"
 
   </div>
 </footer>
+
+<Script
+  src="https://elfsightcdn.com/platform.js"
+  strategy="afterInteractive"
+/>
   </div>
   )
 }
