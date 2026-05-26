@@ -832,29 +832,42 @@ if (loading) {
       </div>
 
       <div>
-        <div className="text-sm uppercase tracking-[0.3em] text-[#D4B483] mb-6">
-          Kontakt
-        </div>
+  <div className="text-sm uppercase tracking-[0.3em] text-[#D4B483] mb-6">
+    Kontakt
+  </div>
 
-        <div className="space-y-4 text-[#1D1D1B]">
-          <div>Orzechowa 4/lok.1</div>
-          <div>30-422 Kraków</div>
+  <div className="space-y-4 text-[#1D1D1B]">
+    <div>Orzechowa 4/lok.1</div>
+    <div>30-422 Kraków</div>
 
-          <a
-            href="tel:+48662989534"
-            className="block hover:text-[#D4B483] transition-colors"
-          >
-            +48 662 989 534
-          </a>
+    <a
+      href="tel:+48662989534"
+      className="block hover:text-[#D4B483] transition-colors"
+    >
+      +48 662 989 534
+    </a>
 
-          <a
-            href="mailto:noblu.beautyroom@gmail.com"
-            className="block hover:text-[#D4B483] transition-colors"
-          >
-            noblu.beautyroom@gmail.com
-          </a>
-        </div>
-      </div>
+    <a
+      href="mailto:noblu.beautyroom@gmail.com"
+      className="block hover:text-[#D4B483] transition-colors"
+    >
+      noblu.beautyroom@gmail.com
+    </a>
+
+    <div className="mt-6 rounded-[1.5rem] overflow-hidden border border-[#E8DED2] h-[220px]">
+      <iframe
+        title="Mapa Noblu Beauty Room"
+        src="https://maps.google.com/maps?q=Orzechowa%204%20Kraków&t=&z=17&ie=UTF8&iwloc=&output=embed"
+        width="100%"
+        height="100%"
+        style={{ border: 0 }}
+        allowFullScreen
+        loading="lazy"
+        referrerPolicy="no-referrer-when-downgrade"
+      />
+    </div>
+  </div>
+</div>
 
       <div>
         <div className="text-sm uppercase tracking-[0.3em] text-[#D4B483] mb-6">
