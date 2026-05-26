@@ -339,7 +339,7 @@ if (loading) {
       </h1>
 
       <p className="mt-8 text-lg lg:text-xl text-[#6D6B68] leading-relaxed max-w-xl">
-        Kameralny salon beauty premium w Krakowie. Stylizacja paznokci, rzęs i doświadczenie stworzone dla kobiet kochających elegancję, estetykę oraz perfekcyjne wykonanie.
+        Kameralny salon beauty w Krakowie. Stylizacja paznokci, rzęs i doświadczenie stworzone dla kobiet kochających elegancję, estetykę oraz perfekcyjne wykonanie.
       </p>
 
       <div className="mt-10 flex flex-wrap gap-4">
