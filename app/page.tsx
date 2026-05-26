@@ -580,7 +580,7 @@ if (loading) {
       <h2 className="text-4xl lg:text-6xl font-light leading-tight">
         Kobiety wracają
         <span className="block text-[#D4B483]">
-          dla jakości i atmosfery
+          dla jakości i atmosfery potwierdzają to opinie z Booksy
         </span>
       </h2>
     </div>
