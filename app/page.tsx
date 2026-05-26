@@ -474,7 +474,7 @@ if (loading) {
     </div>
 
     <h2 className="text-4xl lg:text-6xl font-light leading-tight mb-10">
-      Premium beauty studio w Krakowie
+      
     </h2>
 
     <div className="space-y-10 text-[#5F5B56] text-lg leading-relaxed">
