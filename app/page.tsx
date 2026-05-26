@@ -17,7 +17,7 @@ useEffect(() => {
 }, [])
 
   const services = [
-    'Manicure Premium',
+    'Manicure',
     'Pedicure SPA',
     'Stylizacja Paznokci',
     'Stylizacja rzęs',
@@ -411,7 +411,7 @@ if (loading) {
         <div className="max-w-7xl mx-auto px-6 lg:px-12">
           <div className="max-w-3xl mb-16">
             <div className="text-sm uppercase tracking-[0.3em] text-[#B08B57] mb-4">
-              Oferta premium
+              Oferta
             </div>
 
             <h2 className="text-4xl lg:text-6xl font-light leading-tight">
@@ -493,10 +493,10 @@ if (loading) {
       </p>
 
       <p>
-        Jeśli szukasz miejsca takiego jak premium salon beauty Kraków,
+        Jeśli szukasz miejsca takiego jak salon beauty Kraków,
         manicure Kraków, pedicure Kraków lub stylizacja rzęs Kraków - 
         Noblu Beauty Room oferuje doświadczenie beauty stworzone
-        w duchu luksusu, minimalizmu i nowoczesnej estetyki.
+        w duchu, minimalizmu i nowoczesnej estetyki.
       </p>
 
     </div>
@@ -878,9 +878,8 @@ referrerPolicy="no-referrer-when-downgrade"
         </div>
 
         <div className="space-y-4 text-[#1D1D1B]">
-          <div>Manicure Premium</div>
+          <div>Manicure </div>
           <div>Pedicure SPA</div>
-          <div>Stylizacja Paznokci</div>
           <div>Stylizacja Rzęs</div>
         </div>
       </div>
