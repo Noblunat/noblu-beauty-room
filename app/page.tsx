@@ -319,7 +319,8 @@ if (loading) {
       {/* HERO */}
 <section className="relative min-h-screen bg-gradient-to-b from-[#FFFDFB] via-[#F8F5F2] to-[#EFE7DD] text-[#1D1D1B] flex items-center overflow-hidden">
   <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,#D4B483,transparent_35%)] opacity-25"></div>
-  
+  <div className="absolute bottom-0 left-0 w-full h-40 bg-gradient-to-t from-[#EFE7DD] to-transparent"></div>
+
   <div className="relative max-w-7xl mx-auto px-6 lg:px-12 pt-40 pb-24 grid lg:grid-cols-2 gap-20 items-center">
     <motion.div
   initial={{ opacity: 0, y: 40 }}
@@ -355,7 +356,7 @@ if (loading) {
           href="https://www.instagram.com/noblu_beauty_room/"
           target="_blank"
           rel="noopener noreferrer"
-          className="px-8 py-5 rounded-full bg-[#D4B483] text-black font-medium hover:scale-105 transition-transform shadow-[0_20px_60px_rgba(212,180,131,0.35)]"
+          className="px-8 py-5 rounded-full border border-[#E8DED2] bg-white/70 text-[#1D1D1B] backdrop-blur-xl hover:bg-[#D4B483] hover:text-black transition-all"
         >
           Zobacz efekty
         </a>
@@ -406,7 +407,7 @@ if (loading) {
 </div>
 </section>
       {/* SERVICES */}
-      <section id="services" className="py-28 bg-gradient-to-b from-[#EFE7DD] via-[#F8F5F2] to-[#FFFDFB]">
+      <section id="services" className="py-28 bg-[#F8F5F2]">
         <div className="max-w-7xl mx-auto px-6 lg:px-12">
           <div className="max-w-3xl mb-16">
             <div className="text-sm uppercase tracking-[0.3em] text-[#B08B57] mb-4">
@@ -466,7 +467,7 @@ if (loading) {
       </section>
       {/* SEO CONTENT */}
 <section className="py-28 bg-white border-t border-[#EFE8E1]">
-  <div className="grid grid-cols-2 lg:grid-cols-3 gap-6">
+  <div className="max-w-5xl mx-auto px-6 lg:px-12">
 
     <div className="text-sm uppercase tracking-[0.3em] text-[#B08B57] mb-4">
       Beauty Kraków
@@ -519,7 +520,7 @@ if (loading) {
       </h2>
     </div>
 
-    <div className="grid grid-cols-2 lg:grid-cols-3 gap-4 max-w-5xl mx-auto">
+    <div className="grid grid-cols-2 lg:grid-cols-3 gap-4 max-w-6xl mx-auto">
   {visibleGalleryItems.map((item, index) => (
   <motion.div
   key={`gallery-slot-${index}`}
@@ -529,7 +530,7 @@ if (loading) {
   }}
   animate={{ opacity: 1 }}
   transition={{ duration: 0.8 }}
-  className="group relative w-full aspect-[3/4] cursor-pointer overflow-hidden rounded-[2rem] bg-[#E8D6BE]/40"
+  className="group relative aspect-[3/4] cursor-pointer overflow-hidden rounded-[2rem] bg-[#E8D6BE]/40"
     >
     <AnimatePresence mode="wait">
   {item.type === "video" ? (
@@ -639,7 +640,7 @@ if (loading) {
         href="https://www.instagram.com/noblu_beauty_room/"
         target="_blank"
         rel="noopener noreferrer"
-        className="hidden lg:flex px-6 py-3 rounded-full bg-[#D4B483] text-black font-medium hover:scale-105 transition-transform shadow-[0_10px_30px_rgba(212,180,131,0.25)]"
+        className="hidden lg:flex px-6 py-3 rounded-full border border-white/10 hover:border-[#D4B483] transition-colors"
       >
         Obserwuj
       </a>
@@ -656,7 +657,73 @@ if (loading) {
 
   </div>
 </section>
+{/* LOCATION */}
+<section className="py-28 bg-[#F8F5F2]">
+  <div className="max-w-7xl mx-auto px-6 lg:px-12 grid lg:grid-cols-2 gap-16 items-center">
 
+    <div>
+
+      <div className="text-sm uppercase tracking-[0.3em] text-[#B08B57] mb-4">
+        Lokalizacja
+      </div>
+
+      <h2 className="text-4xl lg:text-6xl font-light leading-tight mb-8">
+        Beauty destination
+        <span className="block text-[#B08B57]">
+          w sercu Krakowa
+        </span>
+      </h2>
+
+      <p className="text-[#6D6B68] text-lg leading-relaxed mb-10 max-w-xl">
+        Noblu Beauty Room mieści się w Krakowie przy ul. Orzechowej 4/lok.1.
+        Kameralna przestrzeń premium została stworzona dla kobiet
+        poszukujących luksusowego doświadczenia beauty, perfekcyjnej
+        estetyki oraz najwyższej jakości usług.
+      </p>
+
+      <div className="space-y-6">
+
+        <div>
+          <div className="text-sm uppercase tracking-[0.2em] text-[#B08B57] mb-2">
+            Adres
+          </div>
+
+          <div className="text-xl">
+            Orzechowa 4/lok.1<br />
+            30-422 Kraków
+          </div>
+        </div>
+
+        <div>
+          <div className="text-sm uppercase tracking-[0.2em] text-[#B08B57] mb-2">
+            Rezerwacje
+          </div>
+
+          <a
+            href="tel:+48662989534"
+            className="text-xl hover:text-[#B08B57] transition-colors"
+          >
+            +48 662 989 534
+          </a>
+        </div>
+
+      </div>
+    </div>
+
+    <div className="rounded-[2rem] overflow-hidden border border-[#EFE8E1] shadow-[0_20px_60px_rgba(0,0,0,0.08)] h-[500px]">
+      <iframe
+        src="https://www.google.com/maps?q=Orzechowa+4+Kraków&output=embed"
+        width="100%"
+        height="100%"
+        loading="lazy"
+        allowFullScreen
+        referrerPolicy="no-referrer-when-downgrade"
+        className="w-full h-full border-0"
+      />
+    </div>
+
+  </div>
+</section>
 {/* BOOKSY BOOKING */}
 <section className="py-28 bg-gradient-to-b from-[#FFFDFB] via-[#F8F5F2] to-[#EFE7DD] text-[#1D1D1B]">
   <div className="max-w-7xl mx-auto px-6 lg:px-12 grid lg:grid-cols-2 gap-16 items-center">
@@ -754,6 +821,59 @@ if (loading) {
 </div>
 </section>
 
+      {/* CONTACT */}
+      <section id="contact" className="py-28 bg-gradient-to-b from-[#FFFDFB] via-[#F8F5F2] to-[#EFE7DD] text-[#1D1D1B]">
+        <div className="max-w-7xl mx-auto px-6 lg:px-12 grid lg:grid-cols-2 gap-20 items-start">
+          <div>
+            <div className="text-sm uppercase tracking-[0.3em] text-[#D4B483] mb-4">
+              Kontakt
+            </div>
+
+            <h2 className="text-4xl lg:text-6xl font-light leading-tight">
+              Noblu Beauty Room
+            </h2>
+
+            <div className="mt-10 space-y-8 text-[#6D6B68] text-lg">
+              <div>
+                <div className="text-[#1D1D1B] mb-2">Adres</div>
+                <p>Orzechowa 4/lok.1</p>
+                <p>30-422 Kraków</p>
+              </div>
+
+              <div>
+                <div className="text-[#1D1D1B] mb-2">Telefon</div>
+                <a href="tel:+48662989534" className="hover:text-[#1D1D1B] transition-colors">
+                  662 989 534
+                </a>
+              </div>
+
+              <div>
+                <div className="text-[#1D1D1B] mb-2">E-mail</div>
+                <a
+                  href="mailto:noblu.beautyroom@gmail.com"
+                  className="hover:text-[#B08B57] transition-colors"
+                >
+                  noblu.beautyroom@gmail.com
+                </a>
+              </div>
+            </div>
+          </div>
+
+                   <div className="rounded-[2rem] overflow-hidden border border-[#EFE8E1] h-[500px] shadow-[0_20px_60px_rgba(0,0,0,0.08)]">
+            <iframe
+              title="Mapa dojazdu Noblu Beauty Room"
+              src="https://maps.google.com/maps?q=Noblu%20Beauty%20Room%20Krak%C3%B3w&t=&z=17&ie=UTF8&iwloc=&output=embed"
+              width="100%"
+              height="100%"
+              style={{ border: 0 }}
+              allowFullScreen
+              loading="lazy"
+referrerPolicy="no-referrer-when-downgrade"
+/>
+</div>
+</div>
+</section>
+
     <a
       href="https://booksy.com/pl-pl/105150_noblu-beauty-room_paznokcie_8820_krakow"
       target="_blank"
@@ -813,7 +933,7 @@ if (loading) {
         />
 
         <p className="text-[#1D1D1B] leading-relaxed max-w-sm">
-         Beauty studio w Krakowie stworzone dla kobiet,
+          Premium beauty studio w Krakowie stworzone dla kobiet,
           które kochają estetykę, luksus oraz perfekcyjne wykonanie.
         </p>
       </div>
@@ -832,42 +952,29 @@ if (loading) {
       </div>
 
       <div>
-  <div className="text-sm uppercase tracking-[0.3em] text-[#D4B483] mb-6">
-    Kontakt
-  </div>
+        <div className="text-sm uppercase tracking-[0.3em] text-[#D4B483] mb-6">
+          Kontakt
+        </div>
 
-  <div className="space-y-4 text-[#1D1D1B]">
-    <div>Orzechowa 4/lok.1</div>
-    <div>30-422 Kraków</div>
+        <div className="space-y-4 text-[#1D1D1B]">
+          <div>Orzechowa 4/lok.1</div>
+          <div>30-422 Kraków</div>
 
-    <a
-      href="tel:+48662989534"
-      className="block hover:text-[#D4B483] transition-colors"
-    >
-      +48 662 989 534
-    </a>
+          <a
+            href="tel:+48662989534"
+            className="block hover:text-[#D4B483] transition-colors"
+          >
+            +48 662 989 534
+          </a>
 
-    <a
-      href="mailto:noblu.beautyroom@gmail.com"
-      className="block hover:text-[#D4B483] transition-colors"
-    >
-      noblu.beautyroom@gmail.com
-    </a>
-
-    <div className="mt-6 rounded-[1.5rem] overflow-hidden border border-[#E8DED2] h-[220px]">
-      <iframe
-        title="Mapa Noblu Beauty Room"
-        src="https://maps.google.com/maps?q=Orzechowa%204%20Kraków&t=&z=17&ie=UTF8&iwloc=&output=embed"
-        width="100%"
-        height="100%"
-        style={{ border: 0 }}
-        allowFullScreen
-        loading="lazy"
-        referrerPolicy="no-referrer-when-downgrade"
-      />
-    </div>
-  </div>
-</div>
+          <a
+            href="mailto:noblu.beautyroom@gmail.com"
+            className="block hover:text-[#D4B483] transition-colors"
+          >
+            noblu.beautyroom@gmail.com
+          </a>
+        </div>
+      </div>
 
       <div>
         <div className="text-sm uppercase tracking-[0.3em] text-[#D4B483] mb-6">
