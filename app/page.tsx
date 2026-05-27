@@ -109,18 +109,13 @@ const galleryItems = [
   { src: "/gallery/salon/salon5.mp4", type: "video", category: "Salon" },
   { src: "/gallery/salon/salon6.mp4", type: "video", category: "Salon" },
   { src: "/gallery/salon/salon8.mp4", type: "video", category: "Salon" },
-  { src: "/gallery/salon/salon10.MOV", type: "video", category: "Salon" },
-  { src: "/gallery/salon/salon11.MOV", type: "video", category: "Salon" },
   { src: "/gallery/salon/salon1.JPEG", type: "image", category: "Salon" },
-  { src: "/gallery/salon/salon2.jpg", type: "image", category: "Salon" },
-  { src: "/gallery/salon/salon3.jpg", type: "image", category: "Salon" },
   { src: "/gallery/salon/salon4.jpg", type: "image", category: "Salon" },
   { src: "/gallery/salon/salon5.jpg", type: "image", category: "Salon" },
   { src: "/gallery/salon/salon6.JPEG", type: "image", category: "Salon" },
   { src: "/gallery/salon/salon7.jpg", type: "image", category: "Salon" },
   { src: "/gallery/salon/salon8.jpg", type: "image", category: "Salon" },
   { src: "/gallery/salon/salon9.jpg", type: "image", category: "Salon" },
-  { src: "/gallery/salon/salon10.jpg", type: "image", category: "Salon" },
   { src: "/gallery/salon/salon11.jpg", type: "image", category: "Salon" },
   { src: "/gallery/salon/salon12.JPG", type: "image", category: "Salon" },
 
@@ -134,19 +129,15 @@ const galleryItems = [
   { src: "/gallery/paznokcie/IMG_6724.JPG", type: "image", category: "Paznokcie" },
   { src: "/gallery/paznokcie/IMG_6737(1).JPG", type: "image", category: "Paznokcie" },
   { src: "/gallery/paznokcie/IMG_6990.JPG", type: "image", category: "Paznokcie" },
-  { src: "/gallery/paznokcie/IMG_6991.JPG", type: "image", category: "Paznokcie" },
-  { src: "/gallery/paznokcie/IMG_6998.JPG", type: "image", category: "Paznokcie" },
   { src: "/gallery/paznokcie/IMG_7021.JPG", type: "image", category: "Paznokcie" },
   { src: "/gallery/paznokcie/IMG_7437.MOV", type: "video", category: "Paznokcie" },
   { src: "/gallery/paznokcie/IMG_7523.JPG", type: "image", category: "Paznokcie" },
-  { src: "/gallery/paznokcie/IMG_7532.JPG", type: "image", category: "Paznokcie" },
-
   // RZĘSY
   { src: "/gallery/rzesy/IMG_6498.JPG", type: "image", category: "Rzęsy" },
   { src: "/gallery/rzesy/IMG_6993(1).JPG", type: "image", category: "Rzęsy" },
   { src: "/gallery/rzesy/IMG_7228.JPG", type: "image", category: "Rzęsy" },
   { src: "/gallery/rzesy/IMG_9083.JPG", type: "image", category: "Rzęsy" },
-  { src: "/gallery/rzesy/IMG_9092.jpg", type: "image", category: "Rzęsy" },
+
 ]
 const [visibleGalleryItems, setVisibleGalleryItems] = useState(
   galleryItems.slice(0, 6)
