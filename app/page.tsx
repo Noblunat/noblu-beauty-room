@@ -926,7 +926,7 @@ referrerPolicy="no-referrer-when-downgrade"
           </a>
 
           <a
-            href="https://booksy.com/pl-pl/105150_noblu-beauty-room_paznokcie_8820_krakow"
+            href="https://booksy.com/pl-pl/105150_noblu-beauty-room_paznokcie_8820_krakow?do=invite&_branch_match_id=1407661378558015293&utm_medium=merchant_customer_invite&_branch_referrer=H4sIAAAAAAAAA8soKSkottLXT07J0UvKz88urtRLzs%2FVr%2FSOCjd2Tw0rjkqyrytKTUstKsrMS49PKsovL04tsnXOKMrPTQUAb6Gp0TwAAAA%3D"
             target="_blank"
             rel="noopener noreferrer"
             className="block text-[#1D1D1B] hover:text-[#D4B483] transition-colors"
