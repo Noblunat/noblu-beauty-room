@@ -275,7 +275,7 @@ if (loading) {
           name: "Jakie usługi oferuje Noblu Beauty Room?",
           acceptedAnswer: {
             "@type": "Answer",
-            text: "Salon oferuje manicure premium, stylizację paznokci, pedicure oraz stylizację rzęs.",
+            text: "Salon oferuje manicure, stylizację paznokci, pedicure oraz stylizację rzęs.",
           },
         },
       ],
@@ -686,7 +686,7 @@ if (loading) {
     </div>
 
     <div className="rounded-[2rem] border border-[#E8DED2] bg-white/70 p-8 backdrop-blur-xl">
-      {["Manicure", "Stylizacja paznokci", "Pedicure SPA", "Stylizacja rzęs"].map((item) => (
+      {["Manicure", "Stylizacja hybrydowa", "Pedicure", "Stylizacja rzęs"].map((item) => (
         <a
           key={item}
           href="https://booksy.com/pl-pl/105150_noblu-beauty-room_paznokcie_8820_krakow"
