@@ -356,7 +356,7 @@ if (loading) {
           href="https://www.instagram.com/noblu_beauty_room/"
           target="_blank"
           rel="noopener noreferrer"
-          className="px-8 py-5 rounded-full border border-[#E8DED2] bg-white/70 text-[#1D1D1B] backdrop-blur-xl hover:bg-[#D4B483] hover:text-black transition-all"
+          className="px-8 py-5 rounded-full bg-[#D4B483] text-black font-medium hover:scale-105 transition-transform shadow-[0_20px_60px_rgba(212,180,131,0.35)]"
         >
           Zobacz efekty
         </a>
