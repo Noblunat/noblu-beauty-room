@@ -432,7 +432,7 @@ if (loading) {
                 <div className="h-64 overflow-hidden">
   <img
     src={
-      service === "Manicure Premium"
+      service === "Manicure"
         ? "/gallery/paznokcie/IMG_6334.JPG"
         : service === "Pedicure SPA"
         ? "/gallery/paznokcie/IMG_6470.JPG"
