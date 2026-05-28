@@ -1,6 +1,7 @@
 'use client'
 import { useEffect, useState } from 'react'
 import Script from 'next/script'
+import Image from "next/image"
 
 import { motion, AnimatePresence, useMotionValue, useSpring, useScroll, useTransform } from 'framer-motion'
 export default function NobluBeautyRoomWebsite() {
@@ -530,6 +531,7 @@ if (loading) {
       muted
       loop
       playsInline
+      preload="none"
       initial={{ opacity: 0, scale: 1.03 }}
       animate={{ opacity: 1, scale: 1 }}
       exit={{ opacity: 0, scale: 0.98 }}
@@ -537,18 +539,24 @@ if (loading) {
       className="absolute inset-0 h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
     />
   ) : (
-    <motion.img
-      key={item.src}
-      src={item.src}
-      alt="Noblu Beauty Room"
-      initial={{ opacity: 0, scale: 1.03 }}
-      animate={{ opacity: 1, scale: 1 }}
-      exit={{ opacity: 0, scale: 0.98 }}
-      transition={{ duration: 0.9 }}
-      className="absolute inset-0 h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
-    />
-  )}
-</AnimatePresence>
+    <motion.div
+  key={item.src}
+  initial={{ opacity: 0, scale: 1.03 }}
+  animate={{ opacity: 1, scale: 1 }}
+  exit={{ opacity: 0, scale: 0.98 }}
+  transition={{ duration: 0.9 }}
+  className="absolute inset-0"
+>
+  <Image
+    src={item.src}
+    alt="Noblu Beauty Room"
+    fill
+    sizes="(max-width: 768px) 50vw, 33vw"
+    className="object-cover transition-transform duration-700 group-hover:scale-105"
+  />
+</motion.div>
+ )}
+ </AnimatePresence>
 
 <div className="absolute inset-0 bg-black/10 group-hover:bg-black/0 transition-all duration-700"></div>
 
