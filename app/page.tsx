@@ -890,7 +890,12 @@ referrerPolicy="no-referrer-when-downgrade"
             Stylizacja rzęs Kraków
           </a>
 
-          <div>Pedicure SPA</div>
+          <a
+            href="/pedicure-krakow"
+            className="block hover:text-[#D4B483] transition-colors"
+          >
+            Pedicure Kraków
+          </a>
 
         </div>
       </div>
