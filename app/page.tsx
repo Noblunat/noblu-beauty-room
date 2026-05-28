@@ -875,11 +875,16 @@ referrerPolicy="no-referrer-when-downgrade"
         </div>
 
         <div className="space-y-4 text-[#1D1D1B]">
-          <div>Manicure </div>
-          <div>Pedicure SPA</div>
-          <div>Stylizacja Rzęs</div>
-        </div>
-      </div>
+  <a
+    href="/manicure-krakow"
+    className="block hover:text-[#D4B483] transition-colors"
+  >
+    Manicure Kraków
+  </a>
+
+  <div>Pedicure SPA</div>
+  <div>Stylizacja Rzęs</div>
+</div>
 
       <div>
         <div className="text-sm uppercase tracking-[0.3em] text-[#D4B483] mb-6">
