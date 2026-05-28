@@ -865,7 +865,7 @@ referrerPolicy="no-referrer-when-downgrade"
 
         <p className="text-[#1D1D1B] leading-relaxed max-w-sm">
           Beauty studio w Krakowie stworzone dla kobiet,
-          które kochają estetykę, oraz perfekcyjne wykonanie.
+          które kochają estetykę oraz perfekcyjne wykonanie.
         </p>
       </div>
 
@@ -875,16 +875,25 @@ referrerPolicy="no-referrer-when-downgrade"
         </div>
 
         <div className="space-y-4 text-[#1D1D1B]">
-  <a
-    href="/manicure-krakow"
-    className="block hover:text-[#D4B483] transition-colors"
-  >
-    Manicure Kraków
-  </a>
 
-  <div>Pedicure SPA</div>
-  <div>Stylizacja Rzęs</div>
-</div>
+          <a
+            href="/manicure-krakow"
+            className="block hover:text-[#D4B483] transition-colors"
+          >
+            Manicure Kraków
+          </a>
+
+          <a
+            href="/stylizacja-rzes-krakow"
+            className="block hover:text-[#D4B483] transition-colors"
+          >
+            Stylizacja rzęs Kraków
+          </a>
+
+          <div>Pedicure SPA</div>
+
+        </div>
+      </div>
 
       <div>
         <div className="text-sm uppercase tracking-[0.3em] text-[#D4B483] mb-6">
@@ -928,7 +937,7 @@ referrerPolicy="no-referrer-when-downgrade"
           </a>
 
           <a
-            href="https://booksy.com/pl-pl/105150_noblu-beauty-room_paznokcie_8820_krakow?do=invite&_branch_match_id=1407661378558015293&utm_medium=merchant_customer_invite&_branch_referrer=H4sIAAAAAAAAA8soKSkottLXT07J0UvKz88urtRLzs%2FVr%2FSOCjd2Tw0rjkqyrytKTUstKsrMS49PKsovL04tsnXOKMrPTQUAb6Gp0TwAAAA%3D"
+            href="https://booksy.com/pl-pl/105150_noblu-beauty-room_paznokcie_8820_krakow"
             target="_blank"
             rel="noopener noreferrer"
             className="block text-[#1D1D1B] hover:text-[#D4B483] transition-colors"
@@ -948,7 +957,7 @@ referrerPolicy="no-referrer-when-downgrade"
       </div>
 
       <div className="text-[#1D1D1B] text-sm tracking-[0.2em] uppercase">
-       Beauty Experience
+        Beauty Experience
       </div>
 
     </div>
@@ -960,6 +969,7 @@ referrerPolicy="no-referrer-when-downgrade"
   src="https://elfsightcdn.com/platform.js"
   strategy="afterInteractive"
 />
-  </div>
-  )
+
+</div>
+)
 }
