@@ -889,6 +889,12 @@ referrerPolicy="no-referrer-when-downgrade"
           >
             Stylizacja rzęs Kraków
           </a>
+          <a
+            href="/stylizacja-hybrydowa-krakow"
+            className="block hover:text-[#D4B483] transition-colors"
+          >
+            Stylizacja hybrydowa Kraków
+          </a>
 
           <a
             href="/pedicure-krakow"
