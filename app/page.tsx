@@ -240,13 +240,16 @@ useEffect(() => {
         addressCountry: "PL",
       },
       areaServed: [
-        "Kraków",
-        "Podgórze",
-        "Łagiewniki",
-        "Borek Fałęcki",
-        "Ruczaj",
-        "Kurdwanów"
-      ],
+  "Kraków",
+  "Podgórze",
+  "Podgórze Duchackie",
+  "Łagiewniki",
+  "Borek Fałęcki",
+  "Ruczaj",
+  "Kurdwanów",
+  "Wola Duchacka",
+  "Swoszowice"
+],
       sameAs: [
         "https://www.instagram.com/noblu_beauty_room/",
         "https://booksy.com/pl-pl/105150_noblu-beauty-room_paznokcie_8820_krakow"
@@ -893,6 +896,7 @@ referrerPolicy="no-referrer-when-downgrade"
         <div className="space-y-4 text-[#1D1D1B]">
           <div>Orzechowa 4/lok.1</div>
           <div>30-422 Kraków</div>
+          <div>Dogodny dojazd: Podgórze, Łagiewniki, Borek Fałęcki, Ruczaj, Kurdwanów</div>
 
           <a
             href="tel:+48662989534"
