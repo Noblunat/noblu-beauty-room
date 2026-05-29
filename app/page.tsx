@@ -4,18 +4,19 @@ import Script from 'next/script'
 import Image from "next/image"
 
 import { motion, AnimatePresence, useMotionValue, useSpring, useScroll, useTransform } from 'framer-motion'
+
 export default function NobluBeautyRoomWebsite() {
   const [loading, setLoading] = useState(true)
   const [selectedMedia, setSelectedMedia] = useState<string | null>(null)
-const [selectedType, setSelectedType] = useState<'image' | 'video' | null>(null)
+  const [selectedType, setSelectedType] = useState<'image' | 'video' | null>(null)
 
-useEffect(() => {
-  const timer = setTimeout(() => {
-    setLoading(false)
-  }, 1800)
+  useEffect(() => {
+    const timer = setTimeout(() => {
+      setLoading(false)
+    }, 1800)
 
-  return () => clearTimeout(timer)
-}, [])
+    return () => clearTimeout(timer)
+  }, [])
 
   const services = [
     'Manicure',
@@ -24,10 +25,16 @@ useEffect(() => {
     'Stylizacja rzęs',
   ]
 
+  const serviceLinks: Record<string, string> = {
+    Manicure: "/manicure-krakow",
+    "Pedicure SPA": "/pedicure-krakow",
+    "Stylizacja Paznokci": "/stylizacja-hybrydowa-krakow",
+    "Stylizacja rzęs": "/stylizacja-rzes-krakow",
+  }
   const reviews = [
   {
     name: "Katarzyna",
-    text: "Bardzo miła właścicielka. Piękny lokal. Pięknie zrobione paznokcie. Polecam Noblu Beauty Room ❤️",
+    text: "Bardzo miła właścicielka...",
   },
   {
     name: "Justyna",
@@ -157,30 +164,7 @@ useEffect(() => {
 
   return () => clearInterval(interval)
 }, [])
-if (loading) {
-  return (
-    <div className="fixed inset-0 z-[99999] bg-[#0A0A0A] flex items-center justify-center overflow-hidden">
 
-      <motion.div
-        initial={{ opacity: 0, scale: 0.9 }}
-        animate={{ opacity: 1, scale: 1 }}
-        transition={{ duration: 1.2 }}
-        className="relative"
-      >
-
-        <div className="absolute inset-0 bg-[#D4B483]/30 blur-3xl rounded-full"></div>
-
-        <img
-          src="/logo.png"
-          alt="Noblu Beauty Room"
-          className="relative w-44 h-44 object-contain"
-        />
-
-      </motion.div>
-
-    </div>
-  )
-}
   return (
     <div
   onMouseMove={(e) => {
@@ -189,6 +173,31 @@ if (loading) {
   }}
   className="min-h-screen bg-[#F8F5F2] text-[#1D1D1B] overflow-hidden pb-24 lg:pb-0"
 >
+  <AnimatePresence>
+  {loading && (
+    <motion.div
+      initial={{ opacity: 1 }}
+      exit={{ opacity: 0 }}
+      transition={{ duration: 0.5 }}
+      className="fixed inset-0 z-[99999] bg-[#0A0A0A] flex items-center justify-center overflow-hidden"
+    >
+      <motion.div
+        initial={{ opacity: 0, scale: 0.9 }}
+        animate={{ opacity: 1, scale: 1 }}
+        transition={{ duration: 1.2 }}
+        className="relative"
+      >
+        <div className="absolute inset-0 bg-[#D4B483]/30 blur-3xl rounded-full" />
+
+        <img
+          src="/logo.png"
+          alt="Noblu Beauty Room Kraków"
+          className="relative w-44 h-44 object-contain"
+        />
+      </motion.div>
+    </motion.div>
+  )}
+</AnimatePresence>
 
   <motion.div
     className="fixed left-0 right-0 top-0 z-[99999] h-[3px] origin-left bg-[#D4B483]"
@@ -204,70 +213,43 @@ if (loading) {
       translateY: "-50%",
     }}
   />
-    <Script
-      src="https://elfsightcdn.com/platform.js"
-      strategy="lazyOnload"
-    />
 
-    <script
-  type="application/ld+json"
-  dangerouslySetInnerHTML={{
-    __html: JSON.stringify({
-      "@context": "https://schema.org",
-      "@type": "BeautySalon",
-      name: "Noblu Beauty Room",
-      image: "https://noblu.pl/logo.png",
-      url: "https://noblu.pl",
-      telephone: "+48662989534",
-      email: "noblu.beautyroom@gmail.com",
-      address: {
-        "@type": "PostalAddress",
-        streetAddress: "Orzechowa 4/lok.1",
-        addressLocality: "Kraków",
-        postalCode: "30-422",
-        addressCountry: "PL",
-      },
-      areaServed: "Kraków",
-      priceRange: "$$",
-      sameAs: [
-        "https://www.instagram.com/noblu_beauty_room/",
-        "https://booksy.com/pl-pl/105150_noblu-beauty-room_paznokcie_8820_krakow",
-      ],
-    }),
-  }}
-/>
-
+    
 <script
   type="application/ld+json"
   dangerouslySetInnerHTML={{
     __html: JSON.stringify({
       "@context": "https://schema.org",
-      "@type": "FAQPage",
-      mainEntity: [
-        {
-          "@type": "Question",
-          name: "Gdzie znajduje się Noblu Beauty Room?",
-          acceptedAnswer: {
-            "@type": "Answer",
-            text: "Noblu Beauty Room znajduje się w Krakowie przy ul. Orzechowej 4/lok.1.",
-          },
-        },
-        {
-          "@type": "Question",
-          name: "Czy można zarezerwować wizytę online?",
-          acceptedAnswer: {
-            "@type": "Answer",
-            text: "Tak, wizytę można zarezerwować online przez Booksy.",
-          },
-        },
-        {
-          "@type": "Question",
-          name: "Jakie usługi oferuje Noblu Beauty Room?",
-          acceptedAnswer: {
-            "@type": "Answer",
-            text: "Salon oferuje manicure, stylizację paznokci, pedicure oraz stylizację rzęs.",
-          },
-        },
+      "@type": "BeautySalon",
+      "@id": "https://noblu.pl/#salon",
+      name: "Noblu Beauty Room",
+      image: [
+        "https://noblu.pl/logo.png",
+        "https://noblu.pl/gallery/salon/salon1.webp"
+      ],
+      url: "https://noblu.pl",
+      telephone: "+48662989534",
+      email: "noblu.beautyroom@gmail.com",
+      priceRange: "$$",
+      address: {
+        "@type": "PostalAddress",
+        streetAddress: "Orzechowa 4/lok.1",
+        addressLocality: "Kraków",
+        addressRegion: "małopolskie",
+        postalCode: "30-422",
+        addressCountry: "PL",
+      },
+      areaServed: [
+        "Kraków",
+        "Podgórze",
+        "Łagiewniki",
+        "Borek Fałęcki",
+        "Ruczaj",
+        "Kurdwanów"
+      ],
+      sameAs: [
+        "https://www.instagram.com/noblu_beauty_room/",
+        "https://booksy.com/pl-pl/105150_noblu-beauty-room_paznokcie_8820_krakow"
       ],
     }),
   }}
@@ -278,10 +260,10 @@ if (loading) {
 
     <div className="flex items-center gap-4">
       <img
-        src="/logo.png"
-        alt="Noblu Beauty Room"
-        className="w-16 h-16 object-contain"
-      />
+  src="/logo.png"
+  alt="Noblu Beauty Room Kraków"
+  className="w-16 h-16 object-contain"
+/>
 
       <div>
         <div className="text-[#1D1D1B] text-lg tracking-wide font-medium">
@@ -295,13 +277,13 @@ if (loading) {
     </div>
 
     <a
-      href="https://booksy.com/pl-pl/105150_noblu-beauty-room_paznokcie_8820_krakow"
-      target="_blank"
-      rel="noopener noreferrer"
-      className="px-6 py-3 rounded-full bg-[#D4B483] text-black text-sm font-medium hover:scale-105 transition-transform"
-    >
-      Rezerwuj
-    </a>
+  href="https://booksy.com/pl-pl/105150_noblu-beauty-room_paznokcie_8820_krakow"
+  target="_blank"
+  rel="noopener noreferrer"
+  className="px-6 py-3 rounded-full bg-[#D4B483] text-black text-sm font-medium hover:scale-105 transition-transform"
+>
+  Rezerwuj
+</a>
 
   </div>
 </header>
@@ -464,32 +446,29 @@ if (loading) {
     </div>
 
     <h2 className="text-4xl lg:text-6xl font-light leading-tight mb-10">
-      
-    </h2>
+  Salon beauty w Krakowie przy ul. Orzechowej
+</h2>
 
     <div className="space-y-10 text-[#5F5B56] text-lg leading-relaxed">
+  <p>
+    Noblu Beauty Room to kameralny salon beauty w Krakowie przy ul. Orzechowej
+    4/lok.1. Oferujemy manicure premium, stylizację paznokci, pedicure SPA oraz
+    stylizację rzęs dla kobiet, które cenią estetykę, dokładność i spokojną
+    atmosferę wizyty.
+  </p>
 
-      <p>
-        Noblu Beauty Room to salon beauty oferujący manicure premium,
-        stylizację paznokci, pedicure SPA oraz stylizację rzęs w eleganckim,
-        kameralnym wnętrzu stworzonym dla kobiet ceniących estetykę, perfekcję
-        i najwyższą jakość wykonania.
-      </p>
+  <p>
+    Salon znajduje się w wygodnej lokalizacji dla klientek z południa Krakowa:
+    Podgórza, Łagiewnik, Borku Fałęckiego, Ruczaju i Kurdwanowa. Każdy zabieg
+    wykonujemy z dbałością o higienę, komfort oraz naturalny, elegancki efekt.
+  </p>
 
-      <p>
-        Każdy zabieg wykonywany jest sterylnie z wykorzystaniem
-        starannie wyselekcjonowanych produktów premium oraz z dbałością
-        o każdy detal.
-      </p>
-
-      <p>
-        Jeśli szukasz miejsca takiego jak salon beauty Kraków,
-        manicure Kraków, pedicure Kraków lub stylizacja rzęs Kraków - 
-        Noblu Beauty Room oferuje doświadczenie beauty stworzone
-        w duchu, minimalizmu i nowoczesnej estetyki.
-      </p>
-
-    </div>
+  <p>
+    Jeśli szukasz miejsca na manicure w Krakowie, paznokcie hybrydowe,
+    pedicure lub stylizację rzęs, Noblu Beauty Room łączy profesjonalne
+    wykonanie z estetyką premium i wygodną rezerwacją online przez Booksy.
+  </p>
+</div>
   </div>
 </section>
 
@@ -549,7 +528,7 @@ if (loading) {
 >
   <Image
     src={item.src}
-    alt="Noblu Beauty Room"
+    alt={`${item.category} w Noblu Beauty Room Kraków`}
     fill
     sizes="(max-width: 768px) 50vw, 33vw"
     className="object-cover transition-transform duration-700 group-hover:scale-105"
@@ -841,7 +820,7 @@ referrerPolicy="no-referrer-when-downgrade"
     ) : (
       <img
         src={selectedMedia}
-        alt="Noblu Beauty Room"
+        alt="Noblu Beauty Room Kraków"
         className="max-h-[90vh] max-w-[90vw] rounded-[2rem] object-contain"
       />
     )}
@@ -859,7 +838,7 @@ referrerPolicy="no-referrer-when-downgrade"
       <div>
         <img
           src="/logo.png"
-          alt="Noblu Beauty Room"
+          alt="Noblu Beauty Room Kraków"
           className="w-24 h-24 object-contain mb-6"
         />
 
