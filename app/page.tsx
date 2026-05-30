@@ -356,6 +356,13 @@ useEffect(() => {
         >
           Zobacz efekty
         </a>
+
+        <a
+          href="/cennik"
+          className="px-8 py-5 rounded-full bg-white/70 border border-[#E8DED2] text-[#1D1D1B] font-medium hover:scale-105 hover:border-[#D4B483] transition-all"
+        >
+          Cennik
+        </a>
       </div>
 
       <div className="mt-14 grid grid-cols-3 gap-6 max-w-lg">
