@@ -27,6 +27,12 @@ export default function sitemap() {
       priority: 0.85,
     },
     {
+      url: `${baseUrl}/przedluzanie-rzes-krakow`,
+      lastModified: new Date(),
+      changeFrequency: "monthly",
+      priority: 0.9,
+    },
+    {
       url: `${baseUrl}/pedicure-krakow`,
       lastModified: new Date(),
       changeFrequency: "monthly",

@@ -252,6 +252,28 @@ useEffect(() => {
       telephone: "+48662989534",
       email: "noblu.beautyroom@gmail.com",
       priceRange: "$$",
+      hasMap:
+        "https://maps.google.com/maps?q=Noblu%20Beauty%20Room%20Krak%C3%B3w",
+      geo: {
+        "@type": "GeoCoordinates",
+        latitude: 50.0059,
+        longitude: 19.9367,
+      },
+      openingHoursSpecification: [
+        {
+          "@type": "OpeningHoursSpecification",
+          dayOfWeek: [
+            "Monday",
+            "Tuesday",
+            "Wednesday",
+            "Thursday",
+            "Friday",
+            "Saturday",
+          ],
+          opens: "09:00",
+          closes: "20:00",
+        },
+      ],
       address: {
         "@type": "PostalAddress",
         streetAddress: "Orzechowa 4/lok.1",
@@ -274,6 +296,40 @@ useEffect(() => {
       sameAs: [
         "https://www.instagram.com/noblu_beauty_room/",
         "https://booksy.com/pl-pl/105150_noblu-beauty-room_paznokcie_8820_krakow"
+      ],
+      makesOffer: [
+        {
+          "@type": "Offer",
+          itemOffered: {
+            "@type": "Service",
+            name: "Przedłużanie rzęs",
+            url: "https://noblu.pl/przedluzanie-rzes-krakow",
+          },
+        },
+        {
+          "@type": "Offer",
+          itemOffered: {
+            "@type": "Service",
+            name: "Stylizacja rzęs",
+            url: "https://noblu.pl/stylizacja-rzes-krakow",
+          },
+        },
+        {
+          "@type": "Offer",
+          itemOffered: {
+            "@type": "Service",
+            name: "Manicure",
+            url: "https://noblu.pl/manicure-krakow",
+          },
+        },
+        {
+          "@type": "Offer",
+          itemOffered: {
+            "@type": "Service",
+            name: "Pedicure",
+            url: "https://noblu.pl/pedicure-krakow",
+          },
+        },
       ],
     }),
   }}
@@ -491,6 +547,55 @@ useEffect(() => {
     wykonanie z estetyką premium i wygodną rezerwacją online przez Booksy.
   </p>
 </div>
+  </div>
+</section>
+
+{/* LOCAL SEO */}
+<section className="py-24 bg-[#F8F5F2] border-t border-[#EFE8E1]">
+  <div className="max-w-6xl mx-auto px-6 lg:px-12 grid lg:grid-cols-2 gap-12 items-start">
+    <div>
+      <div className="text-sm uppercase tracking-[0.3em] text-[#B08B57] mb-4">
+        Lokalizacja
+      </div>
+
+      <h2 className="text-4xl lg:text-5xl font-light leading-tight mb-8">
+        Dojazd do Noblu Beauty Room przy ul. Orzechowej
+      </h2>
+
+      <div className="space-y-6 text-[#5F5B56] text-lg leading-relaxed">
+        <p>
+          Salon znajduje się przy ul. Orzechowej 4/lok.1 w Krakowie, w
+          południowej części miasta. To wygodny adres dla klientek z Borku
+          Fałęckiego, Łagiewnik, Ruczaju, Kurdwanowa, Podgórza Duchackiego,
+          Woli Duchackiej i Swoszowic.
+        </p>
+
+        <p>
+          Jeśli szukasz miejsca na manicure, pedicure albo przedłużanie rzęs w
+          Krakowie, możesz umówić wizytę online i łatwo zaplanować dojazd z
+          pobliskich dzielnic.
+        </p>
+      </div>
+    </div>
+
+    <div className="rounded-[2rem] border border-[#E8DED2] bg-white/80 p-8">
+      <h3 className="text-3xl font-light mb-6">Najczęściej wybierane usługi lokalnie</h3>
+
+      <div className="grid gap-4 text-[#1D1D1B]">
+        <a href="/przedluzanie-rzes-krakow" className="flex items-center justify-between rounded-2xl border border-[#E8DED2] bg-white p-5 hover:border-[#D4B483] transition-colors">
+          <span>Przedłużanie rzęs Kraków</span>
+          <span className="text-[#B08B57]">Zobacz</span>
+        </a>
+        <a href="/stylizacja-rzes-krakow" className="flex items-center justify-between rounded-2xl border border-[#E8DED2] bg-white p-5 hover:border-[#D4B483] transition-colors">
+          <span>Stylizacja rzęs Borek Fałęcki i okolice</span>
+          <span className="text-[#B08B57]">Zobacz</span>
+        </a>
+        <a href="/manicure-krakow" className="flex items-center justify-between rounded-2xl border border-[#E8DED2] bg-white p-5 hover:border-[#D4B483] transition-colors">
+          <span>Manicure Kraków południe</span>
+          <span className="text-[#B08B57]">Zobacz</span>
+        </a>
+      </div>
+    </div>
   </div>
 </section>
 
@@ -889,6 +994,12 @@ referrerPolicy="no-referrer-when-downgrade"
             className="block hover:text-[#D4B483] transition-colors"
           >
             Stylizacja rzęs Kraków
+          </a>
+          <a
+            href="/przedluzanie-rzes-krakow"
+            className="block hover:text-[#D4B483] transition-colors"
+          >
+            Przedłużanie rzęs Kraków
           </a>
           <a
             href="/stylizacja-hybrydowa-krakow"

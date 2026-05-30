@@ -163,6 +163,9 @@ export default function StylizacjaRzesKrakowPage() {
           </div>
 
           <div className="pt-6 flex flex-wrap gap-4">
+            <a href="/przedluzanie-rzes-krakow" className="text-[#B08B57]">
+              Przedłużanie rzęs Kraków
+            </a>
             <a href="/manicure-krakow" className="text-[#B08B57]">
               Manicure Kraków
             </a>
