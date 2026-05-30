@@ -138,6 +138,32 @@ export default function StylizacjaHybrydowaKrakowPage() {
             ))}
           </div>
 
+          <div className="rounded-[2rem] border border-[#E8DED2] bg-white/80 p-8 lg:p-10">
+            <h2 className="text-3xl lg:text-4xl font-light text-[#1D1D1B] mb-5">
+              Umów stylizację hybrydową
+            </h2>
+            <p className="max-w-3xl">
+              Zarezerwuj termin online i wybierz manicure hybrydowy dopasowany
+              do Twoich dłoni, stylu i oczekiwanego efektu.
+            </p>
+            <div className="mt-8 flex flex-wrap gap-4">
+              <a
+                href={booksyUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="inline-flex items-center justify-center px-8 py-4 rounded-full bg-[#D4B483] text-black font-medium hover:scale-105 transition-transform"
+              >
+                Zarezerwuj przez Booksy
+              </a>
+              <a
+                href="/"
+                className="inline-flex items-center justify-center px-8 py-4 rounded-full border border-[#E8DED2] text-[#1D1D1B] hover:border-[#D4B483] transition-colors"
+              >
+                Wróć do strony głównej
+              </a>
+            </div>
+          </div>
+
           <div className="pt-6 flex flex-wrap gap-4">
             <a href="/manicure-krakow" className="text-[#B08B57]">
               Manicure Kraków
