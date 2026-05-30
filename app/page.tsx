@@ -539,6 +539,7 @@ useEffect(() => {
     Salon znajduje się w wygodnej lokalizacji dla klientek z południa Krakowa:
     Podgórza, Łagiewnik, Borku Fałęckiego, Ruczaju i Kurdwanowa. Każdy zabieg
     wykonujemy z dbałością o higienę, komfort oraz naturalny, elegancki efekt.
+    Pod salonem dostępny jest darmowy parking dla klientek.
   </p>
 
   <p>
@@ -567,7 +568,9 @@ useEffect(() => {
           Salon znajduje się przy ul. Orzechowej 4/lok.1 w Krakowie, w
           południowej części miasta. To wygodny adres dla klientek z Borku
           Fałęckiego, Łagiewnik, Ruczaju, Kurdwanowa, Podgórza Duchackiego,
-          Woli Duchackiej i Swoszowic.
+          Woli Duchackiej i Swoszowic. Pod salonem dostępny jest darmowy
+          parking, dlatego wizytę można wygodnie zaplanować także przy dojeździe
+          samochodem.
         </p>
 
         <p>
@@ -1026,6 +1029,7 @@ referrerPolicy="no-referrer-when-downgrade"
         <div className="space-y-4 text-[#1D1D1B]">
           <div>Orzechowa 4/lok.1</div>
           <div>30-422 Kraków</div>
+          <div>Darmowy parking pod salonem</div>
           <div>Dogodny dojazd: Podgórze, Łagiewniki, Borek Fałęcki, Ruczaj, Kurdwanów</div>
 
           <a

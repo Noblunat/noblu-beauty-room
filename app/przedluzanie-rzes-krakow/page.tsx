@@ -32,7 +32,7 @@ const faq = [
   },
   {
     q: "Gdzie w Krakowie znajduje się salon przedłużania rzęs?",
-    a: "Salon znajduje się przy ul. Orzechowej 4/lok.1 w Krakowie, wygodnie dla klientek z Borku Fałęckiego, Łagiewnik, Ruczaju, Kurdwanowa i Podgórza.",
+    a: "Salon znajduje się przy ul. Orzechowej 4/lok.1 w Krakowie, wygodnie dla klientek z Borku Fałęckiego, Łagiewnik, Ruczaju, Kurdwanowa i Podgórza. Pod salonem dostępny jest darmowy parking.",
   },
 ];
 
@@ -191,7 +191,8 @@ export default function PrzedluzanieRzesKrakowPage() {
                 Noblu Beauty Room znajduje się przy ul. Orzechowej 4/lok.1 w
                 Krakowie. To wygodna lokalizacja dla klientek z Borku
                 Fałęckiego, Łagiewnik, Ruczaju, Kurdwanowa, Podgórza i
-                południowej części Krakowa.
+                południowej części Krakowa. Pod salonem dostępny jest darmowy
+                parking dla klientek.
               </p>
               <p>
                 Jeśli wpisujesz w Google „przedłużanie rzęs Kraków”, „rzęsy
