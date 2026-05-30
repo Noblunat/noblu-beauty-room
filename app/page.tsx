@@ -962,8 +962,15 @@ referrerPolicy="no-referrer-when-downgrade"
         © 2025 Noblu Beauty Room · Kraków
       </div>
 
-      <div className="text-[#1D1D1B] text-sm tracking-[0.2em] uppercase">
-        Beauty Experience
+      <div className="flex flex-col items-center gap-3 text-[#1D1D1B] text-sm lg:flex-row">
+        <a
+          href="/polityka-prywatnosci"
+          className="hover:text-[#D4B483] transition-colors"
+        >
+          Polityka prywatności
+        </a>
+        <span className="hidden lg:inline text-[#C9BDAF]">/</span>
+        <span className="tracking-[0.2em] uppercase">Beauty Experience</span>
       </div>
 
     </div>
