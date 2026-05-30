@@ -281,10 +281,6 @@ useEffect(() => {
   animate={{ opacity: 1, y: 0 }}
   transition={{ duration: 1 }}
 >
-      <div className="inline-flex items-center px-4 py-2 rounded-full border border-[#D4B483]/30 bg-white/5 backdrop-blur-xl text-[#D4B483] text-xs uppercase tracking-[0.3em] mb-8">
-       Beauty Room · Kraków
-      </div>
-
       <h1 className="text-6xl lg:text-8xl font-light leading-[0.92] tracking-tight">
         Noblu
         <span className="block text-[#D4B483] font-medium">
