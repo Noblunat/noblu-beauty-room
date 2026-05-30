@@ -19,18 +19,39 @@ export default function NobluBeautyRoomWebsite() {
   }, [])
 
   const services = [
-    'Manicure',
-    'Pedicure SPA',
-    'Stylizacja Paznokci',
-    'Stylizacja rzęs',
+    {
+      title: "Manicure",
+      href: "/manicure-krakow",
+      image: "/gallery/paznokcie/IMG_6334.webp",
+      alt: "Manicure premium w Noblu Beauty Room Kraków",
+      description:
+        "Precyzyjny manicure w Krakowie dla kobiet, które cenią zadbane dłonie, elegancki kształt paznokci i naturalny, dopracowany efekt.",
+    },
+    {
+      title: "Pedicure SPA",
+      href: "/pedicure-krakow",
+      image: "/gallery/paznokcie/IMG_6470.webp",
+      alt: "Pedicure SPA w Noblu Beauty Room Kraków",
+      description:
+        "Komfortowa pielęgnacja stóp i paznokci w spokojnej atmosferze salonu beauty przy ul. Orzechowej w Krakowie.",
+    },
+    {
+      title: "Stylizacja Paznokci",
+      href: "/stylizacja-hybrydowa-krakow",
+      image: "/gallery/paznokcie/IMG_6375.webp",
+      alt: "Stylizacja paznokci hybrydowych w Krakowie",
+      description:
+        "Stylizacja hybrydowa i żelowa dopasowana do dłoni, stylu i okazji. Estetyczne paznokcie z dbałością o trwałość oraz detal.",
+    },
+    {
+      title: "Stylizacja rzęs",
+      href: "/stylizacja-rzes-krakow",
+      image: "/gallery/rzesy/IMG_6498.webp",
+      alt: "Stylizacja rzęs w Noblu Beauty Room Kraków",
+      description:
+        "Natural look, rzęsy 1:1 i lekkie objętości dobierane do kształtu oka, urody i oczekiwanego efektu.",
+    },
   ]
-
-  const serviceLinks: Record<string, string> = {
-    Manicure: "/manicure-krakow",
-    "Pedicure SPA": "/pedicure-krakow",
-    "Stylizacja Paznokci": "/stylizacja-hybrydowa-krakow",
-    "Stylizacja rzęs": "/stylizacja-rzes-krakow",
-  }
   const reviews = [
   {
     name: "Katarzyna",
@@ -340,7 +361,7 @@ useEffect(() => {
       <div className="mt-14 grid grid-cols-3 gap-6 max-w-lg">
 
   {[
-    { number: "4.9", label: "Ocena klientek" },
+    { number: "5.0", label: "Ocena klientek z Booksy" },
     { number: "24/7", label: "Booksy online" },
     { number: "Premium", label: "Beauty studio" },
   ].map((item, index) => (
@@ -397,7 +418,7 @@ useEffect(() => {
 
           {services.map((service) => (
   <motion.div
-    key={service}
+    key={service.title}
     initial={{ opacity: 0, y: 30 }}
     whileInView={{ opacity: 1, y: 0 }}
     transition={{ duration: 0.6 }}
@@ -406,33 +427,24 @@ useEffect(() => {
   >
                 <div className="h-64 overflow-hidden">
   <img
-    src={
-      service === "Manicure"
-        ? "/gallery/paznokcie/IMG_6334.webp"
-        : service === "Pedicure SPA"
-        ? "/gallery/paznokcie/IMG_6470.webp"
-        : service === "Stylizacja Paznokci"
-        ? "/gallery/paznokcie/IMG_6375.webp"
-        : "/gallery/rzesy/IMG_6498.webp"
-    }
-    alt={service}
+    src={service.image}
+    alt={service.alt}
     className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
   />
 </div>
 
                 <div className="p-8">
-                  <h3 className="text-2xl mb-4">{service}</h3>
+                  <h3 className="text-2xl mb-4">{service.title}</h3>
 
                   <p className="text-[#6D6B68] leading-relaxed mb-6">
-                    Profesjonalne zabiegi wykonywane w luksusowej atmosferze z wykorzystaniem premium produktów.
+                    {service.description}
                   </p>
 
                   <a
-                    href="https://booksy.com/pl-pl/105150_noblu-beauty-room_paznokcie_8820_krakow"
-                    target="_blank"
+                    href={service.href}
                     className="text-sm uppercase tracking-[0.2em] text-[#B08B57] group-hover:translate-x-1 transition-transform inline-block"
                   >
-                    Rezerwuj →
+                    Zobacz więcej →
                   </a>
                 </div>
               </motion.div>
