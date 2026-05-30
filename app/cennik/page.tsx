@@ -61,6 +61,62 @@ const pedicurePrices = [
   { name: "Usunięcie hybrydy z pełnym pedicure", price: "190 zł" },
 ];
 
+const priceToNumber = (price: string) => price.replace(/[^0-9]/g, "");
+
+const offerCatalogJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "OfferCatalog",
+  name: "Cennik Noblu Beauty Room",
+  url: "https://noblu.pl/cennik",
+  itemListElement: [
+    {
+      "@type": "OfferCatalog",
+      name: "Stylizacja rzęs",
+      itemListElement: lashPrices.map((item) => ({
+        "@type": "Offer",
+        name: item.name,
+        price: priceToNumber(item.price),
+        priceCurrency: "PLN",
+        itemOffered: {
+          "@type": "Service",
+          name: item.name,
+          provider: { "@id": "https://noblu.pl/#salon" },
+        },
+      })),
+    },
+    {
+      "@type": "OfferCatalog",
+      name: "Stylizacja paznokci",
+      itemListElement: nailPrices.map((item) => ({
+        "@type": "Offer",
+        name: item.name,
+        price: priceToNumber(item.price),
+        priceCurrency: "PLN",
+        itemOffered: {
+          "@type": "Service",
+          name: item.name,
+          provider: { "@id": "https://noblu.pl/#salon" },
+        },
+      })),
+    },
+    {
+      "@type": "OfferCatalog",
+      name: "Pedicure",
+      itemListElement: pedicurePrices.map((item) => ({
+        "@type": "Offer",
+        name: item.name,
+        price: priceToNumber(item.price),
+        priceCurrency: "PLN",
+        itemOffered: {
+          "@type": "Service",
+          name: item.name,
+          provider: { "@id": "https://noblu.pl/#salon" },
+        },
+      })),
+    },
+  ],
+};
+
 function PriceList({
   title,
   items,
@@ -102,6 +158,12 @@ function PriceList({
 export default function CennikPage() {
   return (
     <main className="min-h-screen overflow-hidden bg-[#F8F5F2] text-[#1D1D1B]">
+      <script
+        type="application/ld+json"
+        dangerouslySetInnerHTML={{
+          __html: JSON.stringify(offerCatalogJsonLd),
+        }}
+      />
       <section className="relative px-6 pb-16 pt-28 lg:px-12">
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,#D4B483,transparent_34%)] opacity-20" />
         <div className="relative mx-auto max-w-6xl">
