@@ -427,8 +427,8 @@ useEffect(() => {
 
     <div className="space-y-10 text-[#5F5B56] text-lg leading-relaxed">
   <p>
-    Noblu Beauty Room to kameralny salon beauty w Krakowie przy ul. Orzechowej
-    4/lok.1. Oferujemy manicure premium, stylizację paznokci, pedicure SPA oraz
+    Noblu Beauty Room to kameralny salon beauty.
+    Oferujemy manicure premium, stylizację paznokci, pedicure SPA oraz
     stylizację rzęs dla kobiet, które cenią estetykę, dokładność i spokojną
     atmosferę wizyty.
   </p>
@@ -458,7 +458,7 @@ useEffect(() => {
       </div>
 
       <h2 className="text-4xl lg:text-5xl font-light leading-tight mb-8">
-        Dojazd do Noblu Beauty Room przy ul. Orzechowej
+        Dojazd do Noblu Beauty Room 
       </h2>
 
       <div className="space-y-6 text-[#5F5B56] text-lg leading-relaxed">
