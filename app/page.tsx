@@ -359,7 +359,7 @@ useEffect(() => {
 
         <a
           href="/cennik"
-          className="px-8 py-5 rounded-full bg-white/70 border border-[#E8DED2] text-[#1D1D1B] font-medium hover:scale-105 hover:border-[#D4B483] transition-all"
+          className="px-8 py-5 rounded-full bg-[#D4B483] text-black font-medium hover:scale-105 transition-transform shadow-[0_20px_60px_rgba(212,180,131,0.35)]"
         >
           Cennik
         </a>
