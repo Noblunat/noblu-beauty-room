@@ -404,10 +404,10 @@ useEffect(() => {
   transition={{ duration: 1, delay: 0.2 }}
   className="relative hidden lg:block"
 >
-  <div className="relative aspect-[4/3] overflow-hidden rounded-[2rem] border border-[#E8DED2] bg-white/50 shadow-[0_30px_80px_rgba(0,0,0,0.08)]">
+  <div className="relative aspect-[4/5] overflow-hidden rounded-[2rem] border border-[#E8DED2] bg-white/50 shadow-[0_30px_80px_rgba(0,0,0,0.08)]">
     <Image
-      src="/gallery/paznokcie/pedicure-spa.webp"
-      alt="Eleganckie stanowisko zabiegowe Noblu Beauty Room Kraków"
+      src="/gallery/salon/salon11-hero.webp"
+      alt="Eleganckie wnętrze Noblu Beauty Room Kraków"
       fill
       priority
       sizes="(min-width: 1024px) 42vw, 100vw"
