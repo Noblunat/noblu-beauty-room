@@ -230,7 +230,7 @@ useEffect(() => {
     cursorX.set(e.clientX)
     cursorY.set(e.clientY)
   }}
-  className="min-h-screen bg-[#F8F5F2] text-[#1D1D1B] overflow-hidden pb-24 lg:pb-0"
+  className="min-h-screen bg-[linear-gradient(180deg,#FFFDFB_0%,#F8F5F2_18%,#EFE7DD_46%,#F8F5F2_72%,#FFFDFB_100%)] text-[#1D1D1B] overflow-hidden pb-24 lg:pb-0"
 >
   <AnimatePresence>
   {loading && (
@@ -309,9 +309,8 @@ useEffect(() => {
 </header>
 
       {/* HERO */}
-<section className="relative min-h-screen bg-gradient-to-b from-[#FFFDFB] via-[#F8F5F2] to-[#F8F5F2] text-[#1D1D1B] flex items-center overflow-hidden">
+<section className="relative min-h-screen text-[#1D1D1B] flex items-center overflow-hidden">
   <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,#D4B483,transparent_35%)] opacity-25"></div>
-  <div className="absolute bottom-0 left-0 w-full h-40 bg-gradient-to-t from-[#F8F5F2] to-transparent"></div>
 
   <div className="relative max-w-7xl mx-auto px-6 lg:px-12 pt-40 pb-24 grid lg:grid-cols-2 gap-20 items-center">
     <motion.div
@@ -402,7 +401,7 @@ useEffect(() => {
 </div>
 </section>
       {/* SERVICES */}
-      <section id="services" className="py-28 bg-[#F8F5F2]">
+      <section id="services" className="py-28 bg-transparent">
         <div className="max-w-7xl mx-auto px-6 lg:px-12">
           <div className="max-w-3xl mb-16">
             <div className="text-sm uppercase tracking-[0.3em] text-[#B08B57] mb-4">
@@ -452,7 +451,7 @@ useEffect(() => {
           </div>
       </section>
       {/* SEO CONTENT */}
-<section className="py-28 bg-[#F8F5F2]">
+<section className="py-28 bg-transparent">
   <div className="max-w-5xl mx-auto px-6 lg:px-12">
 
     <div className="text-sm uppercase tracking-[0.3em] text-[#B08B57] mb-4">
@@ -488,7 +487,7 @@ useEffect(() => {
 </section>
 
 {/* GALLERY */}
-<section className="py-28 bg-[#F8F5F2]">
+<section className="py-28 bg-transparent">
   <div className="max-w-7xl mx-auto px-6 lg:px-12">
 
     <div className="mb-16">
@@ -560,7 +559,7 @@ useEffect(() => {
     </div>
 </section>
 {/* REVIEWS */}
-<section className="relative py-28 overflow-hidden bg-[#F8F5F2] text-[#1D1D1B]">
+<section className="relative py-28 overflow-hidden bg-transparent text-[#1D1D1B]">
   <div className="max-w-7xl mx-auto px-6 lg:px-12">
 
     <div className="mb-16">
@@ -613,7 +612,7 @@ useEffect(() => {
   </div>
 </section>
       {/* LOCAL SEO */}
-<section className="py-24 bg-[#F8F5F2]">
+<section className="py-24 bg-transparent">
   <div className="max-w-6xl mx-auto px-6 lg:px-12 grid lg:grid-cols-2 gap-12 items-start">
     <div>
       <div className="text-sm uppercase tracking-[0.3em] text-[#B08B57] mb-4">
@@ -664,7 +663,7 @@ useEffect(() => {
 </section>
 
 {/* INSTAGRAM */}
-<section id="instagram" className="py-28 bg-[#F8F5F2] text-[#1D1D1B]">
+<section id="instagram" className="py-28 bg-transparent text-[#1D1D1B]">
   <div className="max-w-7xl mx-auto px-6 lg:px-12">
 
     <div className="flex items-center justify-between mb-14">
@@ -701,7 +700,7 @@ useEffect(() => {
 </section>
 
 {/* BOOKSY BOOKING */}
-<section className="py-28 bg-[#F8F5F2] text-[#1D1D1B]">
+<section className="py-28 bg-transparent text-[#1D1D1B]">
   <div className="max-w-7xl mx-auto px-6 lg:px-12 grid lg:grid-cols-2 gap-16 items-center">
     <div>
       <div className="text-sm uppercase tracking-[0.3em] text-[#D4B483] mb-4">
@@ -746,7 +745,7 @@ useEffect(() => {
     </div>
 </section>
 {/* FAQ */}
-<section id="faq" className="py-28 bg-[#F8F5F2] text-[#1D1D1B]">
+<section id="faq" className="py-28 bg-transparent text-[#1D1D1B]">
   <div className="max-w-5xl mx-auto px-6 lg:px-12">
 
     <div className="mb-16">
@@ -798,7 +797,7 @@ useEffect(() => {
 </section>
 
       {/* CONTACT */}
-      <section id="contact" className="py-28 bg-[#F8F5F2] text-[#1D1D1B]">
+      <section id="contact" className="py-28 bg-transparent text-[#1D1D1B]">
         <div className="max-w-7xl mx-auto px-6 lg:px-12 grid lg:grid-cols-2 gap-20 items-start">
           <div>
             <div className="text-sm uppercase tracking-[0.3em] text-[#D4B483] mb-4">
@@ -893,7 +892,7 @@ referrerPolicy="no-referrer-when-downgrade"
   </div>
 )}
 {/* FOOTER */}
-<footer className="relative overflow-hidden bg-gradient-to-b from-[#F8F5F2] to-[#EFE7DD] text-[#1D1D1B]">
+<footer className="relative overflow-hidden bg-transparent text-[#1D1D1B]">
 
   <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,#D4B483,transparent_35%)] opacity-10"></div>
 
