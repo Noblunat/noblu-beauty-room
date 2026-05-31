@@ -311,6 +311,29 @@ useEffect(() => {
       {/* HERO */}
 <section className="relative min-h-screen text-[#1D1D1B] flex items-center overflow-hidden">
   <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,#D4B483,transparent_35%)] opacity-25"></div>
+  <motion.div
+    initial={{ opacity: 0, x: 50 }}
+    animate={{ opacity: 1, x: 0 }}
+    transition={{ duration: 1.1, delay: 0.2 }}
+    className="pointer-events-none absolute inset-y-0 right-0 hidden w-[58%] lg:block"
+  >
+    <Image
+      src="/gallery/salon/salon11-hero.webp"
+      alt="Eleganckie wnętrze Noblu Beauty Room Kraków"
+      fill
+      priority
+      sizes="58vw"
+      className="object-cover object-center opacity-85"
+      style={{
+        WebkitMaskImage:
+          "linear-gradient(to right, transparent 0%, black 28%, black 78%, transparent 100%)",
+        maskImage:
+          "linear-gradient(to right, transparent 0%, black 28%, black 78%, transparent 100%)",
+      }}
+    />
+    <div className="absolute inset-0 bg-gradient-to-b from-[#FFFDFB]/30 via-transparent to-[#EFE7DD]/70" />
+    <div className="absolute inset-0 bg-gradient-to-r from-[#FFFDFB] via-transparent to-[#F8F5F2]/30" />
+  </motion.div>
 
   <div className="relative max-w-7xl mx-auto px-6 lg:px-12 pt-40 pb-24 grid lg:grid-cols-2 gap-20 items-center">
     <motion.div
@@ -396,25 +419,6 @@ useEffect(() => {
     </motion.div>
   ))}
 </div>
-</motion.div>
-
-<motion.div
-  initial={{ opacity: 0, x: 40 }}
-  animate={{ opacity: 1, x: 0 }}
-  transition={{ duration: 1, delay: 0.2 }}
-  className="relative hidden lg:block"
->
-  <div className="relative aspect-[4/5] overflow-hidden rounded-[2rem] border border-[#E8DED2] bg-white/50 shadow-[0_30px_80px_rgba(0,0,0,0.08)]">
-    <Image
-      src="/gallery/salon/salon11-hero.webp"
-      alt="Eleganckie wnętrze Noblu Beauty Room Kraków"
-      fill
-      priority
-      sizes="(min-width: 1024px) 42vw, 100vw"
-      className="object-cover"
-    />
-    <div className="absolute inset-0 bg-gradient-to-t from-black/10 via-transparent to-white/10" />
-  </div>
 </motion.div>
 
 </div>
