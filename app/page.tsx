@@ -452,7 +452,7 @@ useEffect(() => {
           </div>
       </section>
       {/* SEO CONTENT */}
-<section className="py-28 bg-white border-t border-[#EFE8E1]">
+<section className="py-28 bg-[#F8F5F2]">
   <div className="max-w-5xl mx-auto px-6 lg:px-12">
 
     <div className="text-sm uppercase tracking-[0.3em] text-[#B08B57] mb-4">
@@ -560,7 +560,7 @@ useEffect(() => {
     </div>
 </section>
 {/* REVIEWS */}
-<section className="relative py-28 overflow-hidden bg-gradient-to-b from-[#FFFDFB] via-[#F8F5F2] to-[#EFE7DD] text-[#1D1D1B]">
+<section className="relative py-28 overflow-hidden bg-[#F8F5F2] text-[#1D1D1B]">
   <div className="max-w-7xl mx-auto px-6 lg:px-12">
 
     <div className="mb-16">
@@ -613,7 +613,7 @@ useEffect(() => {
   </div>
 </section>
       {/* LOCAL SEO */}
-<section className="py-24 bg-[#F8F5F2] border-t border-[#EFE8E1]">
+<section className="py-24 bg-[#F8F5F2]">
   <div className="max-w-6xl mx-auto px-6 lg:px-12 grid lg:grid-cols-2 gap-12 items-start">
     <div>
       <div className="text-sm uppercase tracking-[0.3em] text-[#B08B57] mb-4">
@@ -664,7 +664,7 @@ useEffect(() => {
 </section>
 
 {/* INSTAGRAM */}
-<section id="instagram" className="py-28 bg-gradient-to-b from-[#FFFDFB] to-[#F8F5F2] text-[#1D1D1B] border-t border-white/5">
+<section id="instagram" className="py-28 bg-[#F8F5F2] text-[#1D1D1B]">
   <div className="max-w-7xl mx-auto px-6 lg:px-12">
 
     <div className="flex items-center justify-between mb-14">
@@ -701,7 +701,7 @@ useEffect(() => {
 </section>
 
 {/* BOOKSY BOOKING */}
-<section className="py-28 bg-gradient-to-b from-[#FFFDFB] via-[#F8F5F2] to-[#EFE7DD] text-[#1D1D1B]">
+<section className="py-28 bg-[#F8F5F2] text-[#1D1D1B]">
   <div className="max-w-7xl mx-auto px-6 lg:px-12 grid lg:grid-cols-2 gap-16 items-center">
     <div>
       <div className="text-sm uppercase tracking-[0.3em] text-[#D4B483] mb-4">
@@ -746,7 +746,7 @@ useEffect(() => {
     </div>
 </section>
 {/* FAQ */}
-<section id="faq" className="py-28 bg-gradient-to-b from-[#FFFDFB] via-[#F8F5F2] to-[#EFE7DD] text-[#1D1D1B]">
+<section id="faq" className="py-28 bg-[#F8F5F2] text-[#1D1D1B]">
   <div className="max-w-5xl mx-auto px-6 lg:px-12">
 
     <div className="mb-16">
@@ -798,7 +798,7 @@ useEffect(() => {
 </section>
 
       {/* CONTACT */}
-      <section id="contact" className="py-28 bg-gradient-to-b from-[#FFFDFB] via-[#F8F5F2] to-[#EFE7DD] text-[#1D1D1B]">
+      <section id="contact" className="py-28 bg-[#F8F5F2] text-[#1D1D1B]">
         <div className="max-w-7xl mx-auto px-6 lg:px-12 grid lg:grid-cols-2 gap-20 items-start">
           <div>
             <div className="text-sm uppercase tracking-[0.3em] text-[#D4B483] mb-4">
