@@ -398,6 +398,25 @@ useEffect(() => {
 </div>
 </motion.div>
 
+<motion.div
+  initial={{ opacity: 0, x: 40 }}
+  animate={{ opacity: 1, x: 0 }}
+  transition={{ duration: 1, delay: 0.2 }}
+  className="relative hidden lg:block"
+>
+  <div className="relative aspect-[4/3] overflow-hidden rounded-[2rem] border border-[#E8DED2] bg-white/50 shadow-[0_30px_80px_rgba(0,0,0,0.08)]">
+    <Image
+      src="/gallery/paznokcie/pedicure-spa.webp"
+      alt="Eleganckie stanowisko zabiegowe Noblu Beauty Room Kraków"
+      fill
+      priority
+      sizes="(min-width: 1024px) 42vw, 100vw"
+      className="object-cover"
+    />
+    <div className="absolute inset-0 bg-gradient-to-t from-black/10 via-transparent to-white/10" />
+  </div>
+</motion.div>
+
 </div>
 </section>
       {/* SERVICES */}
