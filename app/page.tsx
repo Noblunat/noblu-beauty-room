@@ -68,7 +68,7 @@ export default function NobluBeautyRoomWebsite() {
     {
       title: "Pedicure SPA",
       href: "/pedicure-krakow",
-      image: "/gallery/paznokcie/IMG_6470.webp",
+      image: "/gallery/paznokcie/pedicure-spa.webp",
       alt: "Pedicure SPA w Noblu Beauty Room Kraków",
       description:
         "Komfortowa pielęgnacja stóp i paznokci w spokojnej atmosferze salonu beauty przy ul. Orzechowej w Krakowie.",
