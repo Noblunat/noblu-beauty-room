@@ -379,7 +379,7 @@ useEffect(() => {
         </a>
       </div>
 
-      <div className="mt-14 grid max-w-lg grid-cols-[1fr_0.8fr_1.2fr] gap-3 sm:grid-cols-3 sm:gap-6">
+      <div className="mt-14 grid max-w-lg grid-cols-[1fr_0.8fr_1.2fr] gap-3 sm:max-w-xl sm:grid-cols-3 sm:gap-6">
 
   {[
     { number: "5.0", label: "Ocena klientek z Booksy" },
@@ -408,7 +408,7 @@ useEffect(() => {
           duration: 0.5,
           delay: index * 0.2,
         }}
-        className="break-words text-lg font-semibold leading-tight tracking-tight sm:text-3xl sm:tracking-normal"
+        className="break-words text-lg font-semibold leading-tight tracking-tight sm:break-normal sm:text-3xl sm:tracking-normal"
       >
         {item.number}
       </motion.div>
