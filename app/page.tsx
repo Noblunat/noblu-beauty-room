@@ -379,12 +379,12 @@ useEffect(() => {
         </a>
       </div>
 
-      <div className="mt-14 grid grid-cols-3 gap-6 max-w-lg">
+      <div className="mt-14 grid grid-cols-3 gap-3 max-w-lg sm:gap-6">
 
   {[
     { number: "5.0", label: "Ocena klientek z Booksy" },
     { number: "24/7", label: "Booksy online" },
-    { number: "Darmowy", label: "parking przy salonie" },
+    { number: "Darmowy", label: "parking pod salonem" },
   ].map((item, index) => (
     <motion.div
       key={item.label}
@@ -399,7 +399,7 @@ useEffect(() => {
         y: -6,
         scale: 1.03,
       }}
-      className="rounded-2xl border border-[#E8DED2] bg-white/70 p-5 backdrop-blur-xl"
+      className="min-w-0 rounded-2xl border border-[#E8DED2] bg-white/70 p-3 backdrop-blur-xl sm:p-5"
     >
       <motion.div
         initial={{ scale: 0.8 }}
@@ -408,12 +408,12 @@ useEffect(() => {
           duration: 0.5,
           delay: index * 0.2,
         }}
-        className="text-3xl font-semibold"
+        className="break-words text-xl font-semibold leading-tight sm:text-3xl"
       >
         {item.number}
       </motion.div>
 
-      <div className="text-[#6D6B68] text-sm mt-1">
+      <div className="mt-1 text-xs leading-snug text-[#6D6B68] sm:text-sm">
         {item.label}
       </div>
     </motion.div>
