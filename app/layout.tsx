@@ -60,10 +60,9 @@ const salonJsonLd = {
         "Wednesday",
         "Thursday",
         "Friday",
-        "Saturday",
       ],
-      opens: "09:00",
-      closes: "20:00",
+      opens: "10:00",
+      closes: "19:30",
     },
   ],
   areaServed: [

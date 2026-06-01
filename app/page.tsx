@@ -860,6 +860,12 @@ useEffect(() => {
               </div>
 
               <div>
+                <div className="text-[#1D1D1B] mb-2">Godziny otwarcia</div>
+                <p>Poniedziałek - piątek: 10:00-19:30</p>
+                <p>Rezerwacja online przez Booksy: 24/7</p>
+              </div>
+
+              <div>
                 <div className="text-[#1D1D1B] mb-2">E-mail</div>
                 <a
                   href="mailto:noblu.beautyroom@gmail.com"
@@ -1002,6 +1008,8 @@ referrerPolicy="no-referrer-when-downgrade"
           <div>Orzechowa 4/lok.1</div>
           <div>30-422 Kraków</div>
           <div>Darmowy parking pod salonem</div>
+          <div>Poniedziałek - piątek: 10:00-19:30</div>
+          <div>Rezerwacja online przez Booksy: 24/7</div>
           <div>Dogodny dojazd: Podgórze, Łagiewniki, Borek Fałęcki, Ruczaj, Kurdwanów</div>
 
           <a
