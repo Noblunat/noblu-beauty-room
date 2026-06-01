@@ -323,7 +323,7 @@ useEffect(() => {
       fill
       priority
       sizes="58vw"
-      className="object-cover object-center opacity-85"
+      className="object-cover object-bottom opacity-85"
       style={{
         WebkitMaskImage:
           "linear-gradient(to right, transparent 0%, black 28%, black 78%, transparent 100%)",
