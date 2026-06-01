@@ -17,6 +17,13 @@ declare global {
 
 const phoneConversionId = "AW-10795260361/IB8aCJvquLYcEMmzypso"
 
+type GalleryItem = {
+  src: string
+  type: 'image' | 'video'
+  category: string
+  poster?: string
+}
+
 export default function NobluBeautyRoomWebsite() {
   const [loading, setLoading] = useState(true)
   const [selectedMedia, setSelectedMedia] = useState<string | null>(null)
@@ -167,14 +174,14 @@ const scaleX = useSpring(scrollYProgress, {
   damping: 30,
 })
 
-const galleryItems = [
+const galleryItems: GalleryItem[] = [
   // SALON
-  { src: "/gallery/salon/salon.mp4", type: "video", category: "Salon" },
-  { src: "/gallery/salon/salon2.mp4", type: "video", category: "Salon" },
-  { src: "/gallery/salon/salon3.mp4", type: "video", category: "Salon" },
-  { src: "/gallery/salon/salon5.mp4", type: "video", category: "Salon" },
-  { src: "/gallery/salon/salon6.mp4", type: "video", category: "Salon" },
-  { src: "/gallery/salon/salon8.mp4", type: "video", category: "Salon" },
+  { src: "/gallery/salon/salon.mp4", type: "video", category: "Salon", poster: "/gallery/salon/salon1.webp" },
+  { src: "/gallery/salon/salon2.mp4", type: "video", category: "Salon", poster: "/gallery/salon/salon4.webp" },
+  { src: "/gallery/salon/salon3.mp4", type: "video", category: "Salon", poster: "/gallery/salon/salon5.webp" },
+  { src: "/gallery/salon/salon5.mp4", type: "video", category: "Salon", poster: "/gallery/salon/salon6.webp" },
+  { src: "/gallery/salon/salon6.mp4", type: "video", category: "Salon", poster: "/gallery/salon/salon8.webp" },
+  { src: "/gallery/salon/salon8.mp4", type: "video", category: "Salon", poster: "/gallery/salon/salon9.webp" },
   { src: "/gallery/salon/salon1.webp", type: "image", category: "Salon" },
   { src: "/gallery/salon/salon4.webp", type: "image", category: "Salon" },
   { src: "/gallery/salon/salon5.webp", type: "image", category: "Salon" },
@@ -195,7 +202,7 @@ const galleryItems = [
   { src: "/gallery/paznokcie/IMG_6737(1).webp", type: "image", category: "Paznokcie" },
   { src: "/gallery/paznokcie/IMG_6990.webp", type: "image", category: "Paznokcie" },
   { src: "/gallery/paznokcie/IMG_7021.webp", type: "image", category: "Paznokcie" },
-  { src: "/gallery/paznokcie/IMG_7437.MOV", type: "video", category: "Paznokcie" },
+  { src: "/gallery/paznokcie/IMG_7437.MOV", type: "video", category: "Paznokcie", poster: "/gallery/paznokcie/IMG_7523.webp" },
   { src: "/gallery/paznokcie/IMG_7523.webp", type: "image", category: "Paznokcie" },
   // RZĘSY
   { src: "/gallery/rzesy/IMG_6498.webp", type: "image", category: "Rzęsy" },
@@ -532,7 +539,7 @@ useEffect(() => {
   key={`gallery-slot-${index}`}
   onClick={() => {
     setSelectedMedia(item.src)
-    setSelectedType(item.type as 'image' | 'video')
+    setSelectedType(item.type)
   }}
   animate={{ opacity: 1 }}
   transition={{ duration: 0.8 }}
@@ -540,20 +547,29 @@ useEffect(() => {
     >
     <AnimatePresence mode="wait">
   {item.type === "video" ? (
-    <motion.video
+    <motion.div
       key={item.src}
-      src={item.src}
-      autoPlay
-      muted
-      loop
-      playsInline
-      preload="none"
       initial={{ opacity: 0, scale: 1.03 }}
       animate={{ opacity: 1, scale: 1 }}
       exit={{ opacity: 0, scale: 0.98 }}
       transition={{ duration: 0.9 }}
-      className="absolute inset-0 h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
-    />
+      className="absolute inset-0"
+    >
+      <Image
+        src={item.poster ?? "/logo.png"}
+        alt={`${item.category} w Noblu Beauty Room Kraków`}
+        fill
+        sizes="(max-width: 768px) 50vw, 33vw"
+        quality={70}
+        className="object-cover transition-transform duration-700 group-hover:scale-105"
+      />
+
+      <div className="absolute inset-0 flex items-center justify-center bg-black/15 transition-all duration-700 group-hover:bg-black/5">
+        <div className="flex h-12 w-12 items-center justify-center rounded-full bg-white/85 shadow-[0_10px_30px_rgba(0,0,0,0.18)] backdrop-blur-sm transition-transform duration-500 group-hover:scale-105">
+          <span className="ml-1 h-0 w-0 border-y-[7px] border-l-[11px] border-y-transparent border-l-[#B08B57]" />
+        </div>
+      </div>
+    </motion.div>
   ) : (
     <motion.div
   key={item.src}
@@ -568,6 +584,7 @@ useEffect(() => {
     alt={`${item.category} w Noblu Beauty Room Kraków`}
     fill
     sizes="(max-width: 768px) 50vw, 33vw"
+    quality={72}
     className="object-cover transition-transform duration-700 group-hover:scale-105"
   />
 </motion.div>
