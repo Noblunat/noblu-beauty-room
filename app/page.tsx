@@ -384,7 +384,7 @@ useEffect(() => {
   {[
     { number: "5.0", label: "Ocena klientek z Booksy" },
     { number: "24/7", label: "Booksy online" },
-    { number: "Premium", label: "Beauty studio" },
+    { number: "Darmowy", label: "parking przy salonie" },
   ].map((item, index) => (
     <motion.div
       key={item.label}
