@@ -175,40 +175,37 @@ const scaleX = useSpring(scrollYProgress, {
 })
 
 const galleryItems: GalleryItem[] = [
-  // SALON
+  // Kolejność jest celowo mieszana, żeby filmy nie pojawiały się obok siebie.
   { src: "/gallery/salon/salon.mp4", type: "video", category: "Salon", poster: "/gallery/salon/salon1.webp" },
-  { src: "/gallery/salon/salon2.mp4", type: "video", category: "Salon", poster: "/gallery/salon/salon4.webp" },
-  { src: "/gallery/salon/salon3.mp4", type: "video", category: "Salon", poster: "/gallery/salon/salon5.webp" },
-  { src: "/gallery/salon/salon5.mp4", type: "video", category: "Salon", poster: "/gallery/salon/salon6.webp" },
-  { src: "/gallery/salon/salon6.mp4", type: "video", category: "Salon", poster: "/gallery/salon/salon8.webp" },
-  { src: "/gallery/salon/salon8.mp4", type: "video", category: "Salon", poster: "/gallery/salon/salon9.webp" },
-  { src: "/gallery/salon/salon1.webp", type: "image", category: "Salon" },
   { src: "/gallery/salon/salon4.webp", type: "image", category: "Salon" },
-  { src: "/gallery/salon/salon5.webp", type: "image", category: "Salon" },
-  { src: "/gallery/salon/salon6.webp", type: "image", category: "Salon" },
-  { src: "/gallery/salon/salon8.webp", type: "image", category: "Salon" },
-  { src: "/gallery/salon/salon9.webp", type: "image", category: "Salon" },
-  { src: "/gallery/salon/salon11.webp", type: "image", category: "Salon" },
-  { src: "/gallery/salon/salon12.webp", type: "image", category: "Salon" },
-
-  // PAZNOKCIE
   { src: "/gallery/paznokcie/IMG_1745(1).webp", type: "image", category: "Paznokcie" },
+  { src: "/gallery/salon/salon2.mp4", type: "video", category: "Salon", poster: "/gallery/salon/salon4.webp" },
+  { src: "/gallery/rzesy/IMG_6498.webp", type: "image", category: "Rzęsy" },
+  { src: "/gallery/salon/salon5.webp", type: "image", category: "Salon" },
+  { src: "/gallery/salon/salon3.mp4", type: "video", category: "Salon", poster: "/gallery/salon/salon5.webp" },
   { src: "/gallery/paznokcie/IMG_2406(2).webp", type: "image", category: "Paznokcie" },
+  { src: "/gallery/salon/salon6.webp", type: "image", category: "Salon" },
+  { src: "/gallery/salon/salon5.mp4", type: "video", category: "Salon", poster: "/gallery/salon/salon6.webp" },
+  { src: "/gallery/rzesy/IMG_6993(1).webp", type: "image", category: "Rzęsy" },
   { src: "/gallery/paznokcie/IMG_2440(1).webp", type: "image", category: "Paznokcie" },
+  { src: "/gallery/salon/salon6.mp4", type: "video", category: "Salon", poster: "/gallery/salon/salon8.webp" },
+  { src: "/gallery/salon/salon8.webp", type: "image", category: "Salon" },
   { src: "/gallery/paznokcie/IMG_6334.webp", type: "image", category: "Paznokcie" },
+  { src: "/gallery/salon/salon8.mp4", type: "video", category: "Salon", poster: "/gallery/salon/salon9.webp" },
+  { src: "/gallery/rzesy/IMG_7228.webp", type: "image", category: "Rzęsy" },
   { src: "/gallery/paznokcie/IMG_6375.webp", type: "image", category: "Paznokcie" },
+  { src: "/gallery/salon/salon1.webp", type: "image", category: "Salon" },
+  { src: "/gallery/paznokcie/IMG_7437.MOV", type: "video", category: "Paznokcie", poster: "/gallery/paznokcie/IMG_7523.webp" },
+  { src: "/gallery/salon/salon9.webp", type: "image", category: "Salon" },
   { src: "/gallery/paznokcie/IMG_6470.webp", type: "image", category: "Paznokcie" },
+  { src: "/gallery/rzesy/IMG_9083.webp", type: "image", category: "Rzęsy" },
+  { src: "/gallery/salon/salon11.webp", type: "image", category: "Salon" },
   { src: "/gallery/paznokcie/IMG_6724.webp", type: "image", category: "Paznokcie" },
+  { src: "/gallery/salon/salon12.webp", type: "image", category: "Salon" },
   { src: "/gallery/paznokcie/IMG_6737(1).webp", type: "image", category: "Paznokcie" },
   { src: "/gallery/paznokcie/IMG_6990.webp", type: "image", category: "Paznokcie" },
   { src: "/gallery/paznokcie/IMG_7021.webp", type: "image", category: "Paznokcie" },
-  { src: "/gallery/paznokcie/IMG_7437.MOV", type: "video", category: "Paznokcie", poster: "/gallery/paznokcie/IMG_7523.webp" },
   { src: "/gallery/paznokcie/IMG_7523.webp", type: "image", category: "Paznokcie" },
-  // RZĘSY
-  { src: "/gallery/rzesy/IMG_6498.webp", type: "image", category: "Rzęsy" },
-  { src: "/gallery/rzesy/IMG_6993(1).webp", type: "image", category: "Rzęsy" },
-  { src: "/gallery/rzesy/IMG_7228.webp", type: "image", category: "Rzęsy" },
-  { src: "/gallery/rzesy/IMG_9083.webp", type: "image", category: "Rzęsy" },
 
 ]
 const [visibleGalleryItems, setVisibleGalleryItems] = useState(
