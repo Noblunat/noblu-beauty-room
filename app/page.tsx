@@ -379,7 +379,7 @@ useEffect(() => {
         </a>
       </div>
 
-      <div className="mt-14 grid grid-cols-3 gap-3 max-w-lg sm:gap-6">
+      <div className="mt-14 grid max-w-lg grid-cols-[1fr_0.8fr_1.2fr] gap-3 sm:grid-cols-3 sm:gap-6">
 
   {[
     { number: "5.0", label: "Ocena klientek z Booksy" },
