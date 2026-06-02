@@ -419,7 +419,7 @@ useEffect(() => {
         y: -6,
         scale: 1.03,
       }}
-      className="min-w-0 rounded-2xl border border-[#E8DED2] bg-white/70 px-2 py-3 text-left backdrop-blur-xl sm:p-5"
+      className="min-w-0 rounded-2xl border border-[#E8DED2] bg-white/40 px-2 py-3 text-left backdrop-blur-xl sm:bg-white/70 sm:p-5"
     >
       <motion.div
         initial={{ scale: 0.8 }}
