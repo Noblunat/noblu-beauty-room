@@ -316,6 +316,22 @@ useEffect(() => {
 <section className="relative min-h-screen text-[#1D1D1B] flex items-center overflow-hidden">
   <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,#D4B483,transparent_35%)] opacity-25"></div>
   <motion.div
+    initial={{ opacity: 0 }}
+    animate={{ opacity: 1 }}
+    transition={{ duration: 1.1, delay: 0.15 }}
+    className="pointer-events-none absolute inset-0 lg:hidden"
+  >
+    <Image
+      src="/gallery/salon/salon11-hero.webp"
+      alt="Eleganckie wnętrze Noblu Beauty Room Kraków"
+      fill
+      sizes="100vw"
+      className="object-cover object-[60%_center] opacity-35"
+    />
+    <div className="absolute inset-0 bg-gradient-to-b from-[#FFFDFB]/90 via-[#F8F5F2]/72 to-[#EFE7DD]/92" />
+    <div className="absolute inset-0 bg-gradient-to-r from-[#FFFDFB]/90 via-[#FFFDFB]/58 to-[#F8F5F2]/40" />
+  </motion.div>
+  <motion.div
     initial={{ opacity: 0, x: 50 }}
     animate={{ opacity: 1, x: 0 }}
     transition={{ duration: 1.1, delay: 0.2 }}
