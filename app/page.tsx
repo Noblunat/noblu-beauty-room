@@ -326,7 +326,7 @@ useEffect(() => {
       alt="Eleganckie wnętrze Noblu Beauty Room Kraków"
       fill
       sizes="100vw"
-      className="object-cover object-[56%_58%] opacity-85"
+      className="object-cover object-[41%_58%] opacity-85"
     />
     <div className="absolute inset-0 bg-gradient-to-b from-[#FFFDFB]/66 via-[#F8F5F2]/38 to-[#EFE7DD]/72" />
     <div className="absolute inset-0 bg-gradient-to-r from-[#FFFDFB]/68 via-[#FFFDFB]/30 to-[#F8F5F2]/14" />
