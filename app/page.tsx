@@ -326,10 +326,10 @@ useEffect(() => {
       alt="Eleganckie wnętrze Noblu Beauty Room Kraków"
       fill
       sizes="100vw"
-      className="object-cover object-[60%_center] opacity-55"
+      className="object-cover object-[60%_center] opacity-65"
     />
-    <div className="absolute inset-0 bg-gradient-to-b from-[#FFFDFB]/78 via-[#F8F5F2]/50 to-[#EFE7DD]/82" />
-    <div className="absolute inset-0 bg-gradient-to-r from-[#FFFDFB]/78 via-[#FFFDFB]/42 to-[#F8F5F2]/25" />
+    <div className="absolute inset-0 bg-gradient-to-b from-[#FFFDFB]/72 via-[#F8F5F2]/44 to-[#EFE7DD]/78" />
+    <div className="absolute inset-0 bg-gradient-to-r from-[#FFFDFB]/72 via-[#FFFDFB]/36 to-[#F8F5F2]/20" />
   </motion.div>
   <motion.div
     initial={{ opacity: 0, x: 50 }}
