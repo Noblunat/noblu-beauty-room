@@ -97,6 +97,25 @@ export default function NobluBeautyRoomWebsite() {
         "Natural look, rzęsy 1:1 i lekkie objętości dobierane do kształtu oka, urody i oczekiwanego efektu.",
     },
   ]
+
+  const whyNobluItems = [
+    {
+      title: "Darmowy parking",
+      text: "Pod salonem dostępny jest bezpłatny parking, dlatego wizytę łatwo zaplanować także przy dojeździe z Borku Fałęckiego, Łagiewnik, Ruczaju lub Kurdwanowa.",
+    },
+    {
+      title: "Rezerwacja online 24/7",
+      text: "Termin na manicure, pedicure lub stylizację rzęs możesz wybrać wygodnie przez Booksy, bez dzwonienia i czekania na odpowiedź.",
+    },
+    {
+      title: "Kameralna atmosfera",
+      text: "Noblu Beauty Room to spokojny salon beauty w Krakowie, stworzony dla klientek, które cenią komfort, estetykę i dokładne wykonanie.",
+    },
+    {
+      title: "Rzęsy i paznokcie",
+      text: "W jednym miejscu wykonasz stylizację rzęs, manicure, stylizację hybrydową, przedłużenie żelowe oraz pedicure SPA.",
+    },
+  ]
   const reviews = [
   {
     name: "Katarzyna",
@@ -493,6 +512,54 @@ useEffect(() => {
           </div>
           </div>
       </section>
+
+{/* WHY NOBLU */}
+<section className="py-24 bg-transparent">
+  <div className="max-w-7xl mx-auto px-6 lg:px-12">
+    <div className="grid gap-12 lg:grid-cols-[0.9fr_1.4fr] lg:items-start">
+      <div>
+        <div className="text-sm uppercase tracking-[0.3em] text-[#B08B57] mb-4">
+          Dlaczego Noblu
+        </div>
+
+        <h2 className="text-4xl lg:text-6xl font-light leading-tight text-[#1D1D1B]">
+          Dlaczego Noblu Beauty Room?
+        </h2>
+
+        <p className="mt-8 max-w-xl text-lg leading-relaxed text-[#5F5B56]">
+          Wybierasz miejsce, w którym liczy się nie tylko efekt stylizacji, ale
+          też komfort wizyty, wygodny dojazd i spokojna atmosfera.
+        </p>
+      </div>
+
+      <div className="grid gap-4 sm:grid-cols-2">
+        {whyNobluItems.map((item, index) => (
+          <motion.div
+            key={item.title}
+            initial={{ opacity: 0, y: 24 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.55, delay: index * 0.08 }}
+            viewport={{ once: true }}
+            className="rounded-[1.6rem] border border-[#E8DED2] bg-white/75 p-7 shadow-[0_14px_44px_rgba(0,0,0,0.04)] backdrop-blur-xl"
+          >
+            <div className="mb-5 inline-flex h-10 w-10 items-center justify-center rounded-full border border-[#D4B483]/40 bg-[#F8F0E6] text-sm font-medium text-[#B08B57]">
+              {index + 1}
+            </div>
+
+            <h3 className="text-2xl font-light text-[#1D1D1B]">
+              {item.title}
+            </h3>
+
+            <p className="mt-4 leading-relaxed text-[#6D6B68]">
+              {item.text}
+            </p>
+          </motion.div>
+        ))}
+      </div>
+    </div>
+  </div>
+</section>
+
       {/* SEO CONTENT */}
 <section className="py-28 bg-transparent">
   <div className="max-w-5xl mx-auto px-6 lg:px-12">
