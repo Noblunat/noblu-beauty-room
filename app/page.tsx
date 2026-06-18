@@ -274,7 +274,7 @@ useEffect(() => {
         <img
           src="/logo.png"
           alt="Noblu Beauty Room Kraków"
-          className="relative w-44 h-44 object-contain"
+          className="relative h-[12.3rem] w-[12.3rem] object-contain"
         />
       </motion.div>
     </motion.div>
