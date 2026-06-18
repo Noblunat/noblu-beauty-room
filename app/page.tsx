@@ -261,7 +261,7 @@ useEffect(() => {
       initial={{ opacity: 1 }}
       exit={{ opacity: 0 }}
       transition={{ duration: 0.5 }}
-      className="fixed inset-0 z-[99999] bg-[#0A0A0A] flex items-center justify-center overflow-hidden"
+      className="fixed inset-0 z-[99999] bg-[linear-gradient(180deg,#FFFDFB_0%,#F8F5F2_48%,#EFE7DD_100%)] flex items-center justify-center overflow-hidden"
     >
       <motion.div
         initial={{ opacity: 0, scale: 0.9 }}
