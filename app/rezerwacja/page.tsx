@@ -140,16 +140,16 @@ export default function RezerwacjaPage() {
               salonu.
             </p>
 
-            <div className="mt-10 grid max-w-xl grid-cols-3 gap-3 sm:gap-4">
+            <div className="mt-10 grid max-w-lg grid-cols-[1fr_0.8fr_1.2fr] gap-3 sm:max-w-xl sm:grid-cols-3 sm:gap-6">
               {highlights.map((item) => (
                 <div
                   key={item.value}
-                  className="rounded-[1.35rem] border border-[#E8DED2] bg-white/55 p-4 shadow-[0_18px_50px_rgba(80,55,25,0.06)] backdrop-blur-sm sm:p-5"
+                  className="min-w-0 rounded-2xl border border-[#E8DED2] bg-white/70 px-2 py-3 text-left backdrop-blur-xl sm:p-5"
                 >
-                  <div className="break-words text-2xl font-semibold leading-tight sm:text-3xl">
+                  <div className="break-words text-lg font-semibold leading-tight tracking-tight sm:break-normal sm:text-3xl sm:tracking-normal">
                     {item.value}
                   </div>
-                  <div className="mt-2 text-sm leading-snug text-[#6D6B68]">
+                  <div className="mt-1 text-xs leading-snug text-[#6D6B68] sm:text-sm">
                     {item.label}
                   </div>
                 </div>
