@@ -8,6 +8,7 @@ const booksyUrl =
   "https://booksy.com/pl-pl/105150_noblu-beauty-room_paznokcie_8820_krakow"
 const contactEmail = "noblu.beautyroom@gmail.com"
 const phone = "+48 662 989 534"
+const smsPhone = "+48662989534"
 
 type Service = {
   name: string
@@ -92,7 +93,6 @@ export default function RezerwacjaPage() {
   function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault()
 
-    const subject = `Prośba o termin - ${selectedService}`
     const body = [
       "Dzień dobry,",
       "",
@@ -110,9 +110,8 @@ export default function RezerwacjaPage() {
       "Wysłane z formularza rezerwacji na noblu.pl.",
     ].join("\n")
 
-    window.location.href = `mailto:${contactEmail}?subject=${encodeURIComponent(
-      subject
-    )}&body=${encodeURIComponent(body)}`
+    const smsSeparator = /iPad|iPhone|iPod/.test(navigator.userAgent) ? "&" : "?"
+    window.location.href = `sms:${smsPhone}${smsSeparator}body=${encodeURIComponent(body)}`
   }
 
   return (
