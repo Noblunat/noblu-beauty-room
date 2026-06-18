@@ -819,51 +819,6 @@ useEffect(() => {
   </div>
 </section>
 
-{/* BOOKSY BOOKING */}
-<section className="py-28 bg-transparent text-[#1D1D1B]">
-  <div className="max-w-7xl mx-auto px-6 lg:px-12 grid lg:grid-cols-2 gap-16 items-center">
-    <div>
-      <div className="text-sm uppercase tracking-[0.3em] text-[#D4B483] mb-4">
-        Rezerwacja online
-      </div>
-
-      <h2 className="text-4xl lg:text-6xl font-light leading-tight">
-        Umów wizytę
-        <span className="block text-[#D4B483]">przez Booksy</span>
-      </h2>
-
-      <p className="mt-8 text-[#6D6B68] text-lg leading-relaxed max-w-xl">
-        Wybierz usługę, dogodny termin i zarezerwuj wizytę online w Noblu Beauty Room bez dzwonienia.
-      </p>
-
-      <a
-        href="https://booksy.com/pl-pl/105150_noblu-beauty-room_paznokcie_8820_krakow"
-        target="_blank"
-        rel="noopener noreferrer"
-        className="inline-flex items-center justify-center px-10 py-5 rounded-full bg-[#D4B483] text-black font-medium hover:scale-105 transition-transform shadow-[0_10px_30px_rgba(212,180,131,0.25)]"
-      >
-        Przejdź do Booksy
-      </a>
-    </div>
-
-    <div className="rounded-[2rem] border border-[#E8DED2] bg-white/70 p-8 backdrop-blur-xl">
-      {["Manicure", "Stylizacja hybrydowa", "Pedicure", "Stylizacja rzęs"].map((item) => (
-        <a
-          key={item}
-          href="https://booksy.com/pl-pl/105150_noblu-beauty-room_paznokcie_8820_krakow"
-          target="_blank"
-          rel="noopener noreferrer"
-          className="flex items-center justify-between rounded-2xl border border-[#E8DED2] bg-white p-5 mb-4 hover:border-[#D4B483]/50 transition-colors"
-        >
-          <span>{item}</span>
-          <span className="text-[#D4B483] text-sm uppercase tracking-[0.2em]">
-            Rezerwuj
-          </span>
-        </a>
-      ))}
-      </div>
-    </div>
-</section>
 {/* FAQ */}
 <section id="faq" className="py-28 bg-transparent text-[#1D1D1B]">
   <div className="max-w-7xl mx-auto px-6 lg:px-12">
