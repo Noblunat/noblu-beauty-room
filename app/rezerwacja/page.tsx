@@ -8,7 +8,6 @@ const booksyUrl =
   "https://booksy.com/pl-pl/105150_noblu-beauty-room_paznokcie_8820_krakow"
 const contactEmail = "noblu.beautyroom@gmail.com"
 const phone = "+48 662 989 534"
-const smsPhone = "+48662989534"
 
 type Service = {
   name: string
@@ -84,34 +83,57 @@ export default function RezerwacjaPage() {
   const [date, setDate] = useState("")
   const [timePreference, setTimePreference] = useState("Dowolnie")
   const [notes, setNotes] = useState("")
+  const [website, setWebsite] = useState("")
+  const [submitStatus, setSubmitStatus] = useState<
+    "idle" | "sending" | "success" | "error"
+  >("idle")
+  const [submitMessage, setSubmitMessage] = useState("")
 
   const selected = useMemo(
     () => allServices.find((service) => service.name === selectedService),
     [selectedService]
   )
 
-  function handleSubmit(event: FormEvent<HTMLFormElement>) {
+  async function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault()
+    setSubmitStatus("sending")
+    setSubmitMessage("")
 
-    const body = [
-      "Dzień dobry,",
-      "",
-      "proszę o kontakt w sprawie terminu wizyty w Noblu Beauty Room.",
-      "",
-      `Imię: ${name || "-"}`,
-      `Telefon: ${telephone || "-"}`,
-      `Usługa: ${selectedService}`,
-      `Cena orientacyjna: ${selected?.price || "-"}`,
-      `Czas trwania: ${selected?.duration || "-"}`,
-      `Preferowany dzień: ${date || "-"}`,
-      `Pora dnia: ${timePreference}`,
-      `Uwagi: ${notes || "-"}`,
-      "",
-      "Wysłane z formularza rezerwacji na noblu.pl.",
-    ].join("\n")
+    try {
+      const response = await fetch("/api/rezerwacja", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          name,
+          telephone,
+          service: selectedService,
+          price: selected?.price,
+          duration: selected?.duration,
+          date,
+          timePreference,
+          notes,
+          website,
+        }),
+      })
 
-    const smsSeparator = /iPad|iPhone|iPod/.test(navigator.userAgent) ? "&" : "?"
-    window.location.href = `sms:${smsPhone}${smsSeparator}body=${encodeURIComponent(body)}`
+      const result = (await response.json()) as { error?: string }
+
+      if (!response.ok) {
+        throw new Error(result.error || "Nie udało się wysłać formularza.")
+      }
+
+      setSubmitStatus("success")
+      setSubmitMessage(
+        "Dziękujemy. Otrzymaliśmy prośbę o termin i skontaktujemy się telefonicznie."
+      )
+    } catch (error) {
+      setSubmitStatus("error")
+      setSubmitMessage(
+        error instanceof Error
+          ? error.message
+          : "Nie udało się wysłać formularza. Spróbuj ponownie."
+      )
+    }
   }
 
   return (
@@ -179,12 +201,23 @@ export default function RezerwacjaPage() {
           >
             <h2 className="text-3xl font-light">Dane wizyty</h2>
 
+            <label className="absolute left-[-9999px] top-auto h-px w-px overflow-hidden">
+              Strona internetowa
+              <input
+                value={website}
+                onChange={(event) => setWebsite(event.target.value)}
+                tabIndex={-1}
+                autoComplete="off"
+              />
+            </label>
+
             <div className="mt-8 grid gap-5">
               <label className="grid gap-2 text-sm text-[#6D6B68]">
                 Imię
                 <input
                   value={name}
                   onChange={(event) => setName(event.target.value)}
+                  required
                   className="rounded-2xl border border-[#E8DED2] bg-white px-4 py-4 text-base text-[#1D1D1B] outline-none transition-colors focus:border-[#D4B483]"
                   placeholder="Natalia"
                 />
@@ -195,6 +228,7 @@ export default function RezerwacjaPage() {
                 <input
                   value={telephone}
                   onChange={(event) => setTelephone(event.target.value)}
+                  required
                   className="rounded-2xl border border-[#E8DED2] bg-white px-4 py-4 text-base text-[#1D1D1B] outline-none transition-colors focus:border-[#D4B483]"
                   placeholder="+48 000 000 000"
                 />
@@ -226,6 +260,7 @@ export default function RezerwacjaPage() {
                     type="date"
                     value={date}
                     onChange={(event) => setDate(event.target.value)}
+                    required
                     className="rounded-2xl border border-[#E8DED2] bg-white px-4 py-4 text-base text-[#1D1D1B] outline-none transition-colors focus:border-[#D4B483]"
                   />
                 </label>
@@ -259,9 +294,10 @@ export default function RezerwacjaPage() {
             <div className="mt-8 flex flex-col justify-center gap-3 sm:flex-row">
               <button
                 type="submit"
-                className="rounded-full bg-[#D4B483] px-7 py-4 font-medium text-black shadow-[0_18px_50px_rgba(212,180,131,0.28)] transition-transform hover:scale-[1.02]"
+                disabled={submitStatus === "sending"}
+                className="rounded-full bg-[#D4B483] px-7 py-4 font-medium text-black shadow-[0_18px_50px_rgba(212,180,131,0.28)] transition-transform hover:scale-[1.02] disabled:cursor-wait disabled:opacity-60"
               >
-                Wyślij prośbę o termin
+                {submitStatus === "sending" ? "Wysyłanie..." : "Wyślij prośbę o termin"}
               </button>
 
               <a
@@ -273,6 +309,17 @@ export default function RezerwacjaPage() {
                 Zarezerwuj przez Booksy
               </a>
             </div>
+
+            {submitMessage && (
+              <p
+                role="status"
+                className={`mt-5 text-center text-sm font-medium ${
+                  submitStatus === "success" ? "text-emerald-700" : "text-red-700"
+                }`}
+              >
+                {submitMessage}
+              </p>
+            )}
           </form>
 
           <div className="grid gap-6">
