@@ -402,12 +402,10 @@ useEffect(() => {
         </a>
 
         <a
-          href="https://www.instagram.com/noblu_beauty_room/"
-          target="_blank"
-          rel="noopener noreferrer"
+          href="/rezerwacja"
           className="px-8 py-5 rounded-full bg-[#D4B483] text-black font-medium hover:scale-105 transition-transform shadow-[0_20px_60px_rgba(212,180,131,0.35)]"
         >
-          Zobacz efekty
+          Zapytaj o termin
         </a>
 
         <a
@@ -562,7 +560,8 @@ useEffect(() => {
 
       {/* SEO CONTENT */}
 <section className="py-28 bg-transparent">
-  <div className="max-w-5xl mx-auto px-6 lg:px-12">
+  <div className="max-w-7xl mx-auto px-6 lg:px-12">
+    <div className="max-w-5xl">
 
     <div className="text-sm uppercase tracking-[0.3em] text-[#B08B57] mb-4">
       Beauty Kraków
@@ -594,6 +593,7 @@ useEffect(() => {
   </p>
 </div>
   </div>
+</div>
 </section>
 
 {/* GALLERY */}
@@ -733,7 +733,7 @@ useEffect(() => {
 </section>
       {/* LOCAL SEO */}
 <section className="py-24 bg-transparent">
-  <div className="max-w-6xl mx-auto px-6 lg:px-12 grid lg:grid-cols-2 gap-12 items-start">
+  <div className="max-w-7xl mx-auto px-6 lg:px-12 grid lg:grid-cols-2 gap-12 items-start">
     <div>
       <div className="text-sm uppercase tracking-[0.3em] text-[#B08B57] mb-4">
         Lokalizacja
@@ -866,7 +866,8 @@ useEffect(() => {
 </section>
 {/* FAQ */}
 <section id="faq" className="py-28 bg-transparent text-[#1D1D1B]">
-  <div className="max-w-5xl mx-auto px-6 lg:px-12">
+  <div className="max-w-7xl mx-auto px-6 lg:px-12">
+    <div className="max-w-5xl">
 
     <div className="mb-16">
       <div className="text-sm uppercase tracking-[0.3em] text-[#D4B483] mb-4">
@@ -913,6 +914,7 @@ useEffect(() => {
         ))}
 </div>
 
+</div>
 </div>
 </section>
 
