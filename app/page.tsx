@@ -765,8 +765,8 @@ useEffect(() => {
       <h3 className="text-3xl font-light mb-6">Najczęściej wybierane usługi lokalnie</h3>
 
       <div className="grid gap-4 text-[#1D1D1B]">
-        <a href="/przedluzanie-rzes-krakow" className="flex items-center justify-between rounded-2xl border border-[#E8DED2] bg-white p-5 hover:border-[#D4B483] transition-colors">
-          <span>Przedłużanie rzęs Kraków</span>
+        <a href="/pedicure-krakow" className="flex items-center justify-between rounded-2xl border border-[#E8DED2] bg-white p-5 hover:border-[#D4B483] transition-colors">
+          <span>Pedicure Kraków</span>
           <span className="text-[#B08B57]">Zobacz</span>
         </a>
         <a href="/stylizacja-rzes-krakow" className="flex items-center justify-between rounded-2xl border border-[#E8DED2] bg-white p-5 hover:border-[#D4B483] transition-colors">
