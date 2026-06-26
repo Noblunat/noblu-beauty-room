@@ -24,6 +24,39 @@ type GalleryItem = {
   poster?: string
 }
 
+const faqItems = [
+  {
+    q: "Gdzie znajduje się Noblu Beauty Room?",
+    a: "Salon znajduje się w Krakowie przy ul. Orzechowej 4/lok.1.",
+  },
+  {
+    q: "Czy można zarezerwować wizytę online?",
+    a: "Tak, rezerwacja wizyt odbywa się online przez Booksy 24/7.",
+  },
+  {
+    q: "Jakie usługi oferuje salon?",
+    a: "Oferujemy manicure premium, stylizację paznokci, pedicure oraz usługi beauty premium.",
+  },
+  {
+    q: "Czy salon przyjmuje nowe klientki?",
+    a: "Tak, nowe klientki mogą wygodnie zarezerwować wizytę online.",
+  },
+]
+
+const faqJsonLd = {
+  "@context": "https://schema.org",
+  "@type": "FAQPage",
+  "@id": "https://noblu.pl/#faq",
+  mainEntity: faqItems.map((faq) => ({
+    "@type": "Question",
+    name: faq.q,
+    acceptedAnswer: {
+      "@type": "Answer",
+      text: faq.a,
+    },
+  })),
+}
+
 export default function NobluBeautyRoomWebsite() {
   const [loading, setLoading] = useState(true)
   const [selectedMedia, setSelectedMedia] = useState<string | null>(null)
@@ -255,6 +288,11 @@ useEffect(() => {
   }}
   className="min-h-screen bg-[linear-gradient(180deg,#FFFDFB_0%,#F8F5F2_18%,#EFE7DD_46%,#F8F5F2_72%,#FFFDFB_100%)] text-[#1D1D1B] overflow-hidden pb-24 lg:pb-0"
 >
+  <script
+    type="application/ld+json"
+    dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }}
+  />
+
   <AnimatePresence>
   {loading && (
     <motion.div
@@ -836,24 +874,7 @@ useEffect(() => {
 
     <div className="space-y-8 mt-12">
 
-      {[
-        {
-          q: "Gdzie znajduje się Noblu Beauty Room?",
-          a: "Salon znajduje się w Krakowie przy ul. Orzechowej 4/lok.1.",
-        },
-        {
-          q: "Czy można zarezerwować wizytę online?",
-          a: "Tak, rezerwacja wizyt odbywa się online przez Booksy 24/7.",
-        },
-        {
-          q: "Jakie usługi oferuje salon?",
-          a: "Oferujemy manicure premium, stylizację paznokci, pedicure oraz usługi beauty premium.",
-        },
-        {
-          q: "Czy salon przyjmuje nowe klientki?",
-          a: "Tak, nowe klientki mogą wygodnie zarezerwować wizytę online.",
-        },
-      ].map((faq) => (
+      {faqItems.map((faq) => (
         <div
           key={faq.q}
           className="rounded-[2rem] border border-[#E8DED2] bg-white/70 p-8 shadow-[0_10px_40px_rgba(0,0,0,0.25)]"
