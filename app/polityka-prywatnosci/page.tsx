@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import BreadcrumbJsonLd from "../components/BreadcrumbJsonLd";
 
 export const metadata: Metadata = {
   title: "Polityka prywatności | Noblu Beauty Room",
@@ -12,6 +13,15 @@ export const metadata: Metadata = {
 export default function PolitykaPrywatnosciPage() {
   return (
     <main className="min-h-screen bg-[#F8F5F2] px-6 py-24 text-[#1D1D1B] lg:px-12">
+      <BreadcrumbJsonLd
+        items={[
+          {
+            name: "Polityka prywatności",
+            url: "https://noblu.pl/polityka-prywatnosci",
+          },
+        ]}
+      />
+
       <article className="mx-auto max-w-4xl">
         <a href="/" className="text-sm font-medium text-[#B08B57]">
           Powrót do strony głównej

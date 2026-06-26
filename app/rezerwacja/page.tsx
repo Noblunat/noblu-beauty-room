@@ -3,6 +3,7 @@
 import Image from "next/image"
 import Link from "next/link"
 import { FormEvent, useMemo, useState } from "react"
+import BreadcrumbJsonLd from "../components/BreadcrumbJsonLd"
 
 const booksyUrl =
   "https://booksy.com/pl-pl/105150_noblu-beauty-room_paznokcie_8820_krakow"
@@ -138,6 +139,15 @@ export default function RezerwacjaPage() {
 
   return (
     <main className="min-h-screen bg-[linear-gradient(125deg,#fffdfb_0%,#f8f2eb_42%,#eadcc8_100%)] text-[#1D1D1B]">
+      <BreadcrumbJsonLd
+        items={[
+          {
+            name: "Zapytaj o termin",
+            url: "https://noblu.pl/rezerwacja",
+          },
+        ]}
+      />
+
       <section className="relative overflow-hidden px-6 py-10 sm:px-10 lg:px-16 lg:py-16">
         <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_15%_20%,rgba(212,180,131,0.24),transparent_30%),radial-gradient(circle_at_85%_15%,rgba(255,255,255,0.95),transparent_36%)]" />
 

@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import BreadcrumbJsonLd from "../components/BreadcrumbJsonLd";
 
 const booksyUrl =
   "https://booksy.com/pl-pl/105150_noblu-beauty-room_paznokcie_8820_krakow";
@@ -158,6 +159,15 @@ function PriceList({
 export default function CennikPage() {
   return (
     <main className="min-h-screen overflow-hidden bg-[#F8F5F2] text-[#1D1D1B]">
+      <BreadcrumbJsonLd
+        items={[
+          {
+            name: "Cennik",
+            url: "https://noblu.pl/cennik",
+          },
+        ]}
+      />
+
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{

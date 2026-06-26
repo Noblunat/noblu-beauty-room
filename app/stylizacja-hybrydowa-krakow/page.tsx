@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import BreadcrumbJsonLd from "../components/BreadcrumbJsonLd";
 
 const booksyUrl =
   "https://booksy.com/pl-pl/105150_noblu-beauty-room_paznokcie_8820_krakow";
@@ -39,6 +40,15 @@ const faq = [
 export default function StylizacjaHybrydowaKrakowPage() {
   return (
     <main className="min-h-screen bg-[#F8F5F2] text-[#1D1D1B]">
+      <BreadcrumbJsonLd
+        items={[
+          {
+            name: "Stylizacja hybrydowa Kraków",
+            url: "https://noblu.pl/stylizacja-hybrydowa-krakow",
+          },
+        ]}
+      />
+
       <script
         type="application/ld+json"
         dangerouslySetInnerHTML={{
