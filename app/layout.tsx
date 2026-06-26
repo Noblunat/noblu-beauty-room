@@ -18,24 +18,30 @@ const geistMono = Geist_Mono({
 const booksyUrl =
   "https://booksy.com/pl-pl/105150_noblu-beauty-room_paznokcie_8820_krakow";
 const googleTagId = "GT-TW5DT9Q4";
+const siteUrl = "https://noblu.pl";
+const reservationUrl = `${siteUrl}/rezerwacja`;
 
 const salonJsonLd = {
   "@context": "https://schema.org",
   "@type": ["BeautySalon", "LocalBusiness"],
-  "@id": "https://noblu.pl/#salon",
+  "@id": `${siteUrl}/#salon`,
   name: "Noblu Beauty Room",
+  legalName: "Noblu Beauty Room",
+  alternateName: "Noblu Beauty Room Kraków",
   description:
     "Kameralny salon beauty w Krakowie przy ul. Orzechowej 4/lok.1. Stylizacja rzęs, manicure, stylizacja paznokci i pedicure.",
-  url: "https://noblu.pl",
-  logo: "https://noblu.pl/logo.png",
+  url: siteUrl,
+  logo: `${siteUrl}/logo.png`,
   image: [
-    "https://noblu.pl/logo.png",
-    "https://noblu.pl/gallery/salon/salon1.webp",
-    "https://noblu.pl/gallery/rzesy/IMG_9092.webp",
+    `${siteUrl}/logo.png`,
+    `${siteUrl}/gallery/salon/salon1.webp`,
+    `${siteUrl}/gallery/paznokcie/pedicure-spa-img-7870.webp`,
   ],
   telephone: "+48662989534",
   email: "noblu.beautyroom@gmail.com",
   priceRange: "$$",
+  paymentAccepted: "Gotówka, karta płatnicza",
+  currenciesAccepted: "PLN",
   address: {
     "@type": "PostalAddress",
     streetAddress: "Orzechowa 4/lok.1",
@@ -51,6 +57,7 @@ const salonJsonLd = {
   },
   hasMap:
     "https://maps.google.com/maps?q=Noblu%20Beauty%20Room%20Krak%C3%B3w",
+  publicAccess: true,
   openingHoursSpecification: [
     {
       "@type": "OpeningHoursSpecification",
@@ -83,14 +90,26 @@ const salonJsonLd = {
       value: true,
     },
   ],
+  knowsAbout: [
+    "manicure",
+    "pedicure",
+    "stylizacja paznokci",
+    "stylizacja rzęs",
+    "przedłużanie rzęs",
+    "salon beauty Kraków",
+  ],
   sameAs: [
     "https://www.instagram.com/noblu_beauty_room/",
     booksyUrl,
   ],
   potentialAction: {
     "@type": "ReserveAction",
-    target: booksyUrl,
-    name: "Rezerwacja wizyty online",
+    target: {
+      "@type": "EntryPoint",
+      urlTemplate: reservationUrl,
+      inLanguage: "pl-PL",
+    },
+    name: "Zapytaj o termin wizyty",
   },
   makesOffer: [
     {
@@ -98,7 +117,7 @@ const salonJsonLd = {
       itemOffered: {
         "@type": "Service",
         name: "Przedłużanie rzęs",
-        url: "https://noblu.pl/przedluzanie-rzes-krakow",
+        url: `${siteUrl}/przedluzanie-rzes-krakow`,
       },
     },
     {
@@ -106,7 +125,7 @@ const salonJsonLd = {
       itemOffered: {
         "@type": "Service",
         name: "Stylizacja rzęs",
-        url: "https://noblu.pl/stylizacja-rzes-krakow",
+        url: `${siteUrl}/stylizacja-rzes-krakow`,
       },
     },
     {
@@ -114,7 +133,7 @@ const salonJsonLd = {
       itemOffered: {
         "@type": "Service",
         name: "Manicure",
-        url: "https://noblu.pl/manicure-krakow",
+        url: `${siteUrl}/manicure-krakow`,
       },
     },
     {
@@ -122,7 +141,7 @@ const salonJsonLd = {
       itemOffered: {
         "@type": "Service",
         name: "Stylizacja paznokci",
-        url: "https://noblu.pl/stylizacja-hybrydowa-krakow",
+        url: `${siteUrl}/stylizacja-hybrydowa-krakow`,
       },
     },
     {
@@ -130,19 +149,19 @@ const salonJsonLd = {
       itemOffered: {
         "@type": "Service",
         name: "Pedicure",
-        url: "https://noblu.pl/pedicure-krakow",
+        url: `${siteUrl}/pedicure-krakow`,
       },
     },
   ],
 };
 
 export const metadata: Metadata = {
-  metadataBase: new URL("https://noblu.pl"),
+  metadataBase: new URL(siteUrl),
   title: "Noblu Beauty Room Kraków | Manicure, paznokcie i beauty premium",
   description:
-    "Noblu Beauty Room to salon beauty premium w Krakowie przy ul. Orzechowej 4/lok.1. Manicure, stylizacja paznokci, rzęsy i rezerwacja online przez Booksy.",
+    "Noblu Beauty Room to salon beauty premium w Krakowie przy ul. Orzechowej 4/lok.1. Manicure, stylizacja paznokci, rzęsy, pedicure i zapytanie o termin online.",
   alternates: {
-  canonical: "https://noblu.pl",
+  canonical: siteUrl,
 },
   icons: {
     icon: [
@@ -154,8 +173,8 @@ export const metadata: Metadata = {
   openGraph: {
     title: "Noblu Beauty Room Kraków",
     description:
-      "Salon beauty premium w Krakowie. Zarezerwuj wizytę online przez Booksy.",
-    url: "https://noblu.pl",
+      "Salon beauty premium w Krakowie. Zapytaj o termin wizyty online.",
+    url: siteUrl,
     siteName: "Noblu Beauty Room",
      images: [
     {
