@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 import BreadcrumbJsonLd from "../components/BreadcrumbJsonLd";
 
 const booksyUrl =
@@ -165,12 +166,12 @@ export default function StylizacjaHybrydowaKrakowPage() {
               >
                 Zarezerwuj przez Booksy
               </a>
-              <a
+              <Link
                 href="/"
                 className="inline-flex items-center justify-center px-8 py-4 rounded-full border border-[#E8DED2] text-[#1D1D1B] hover:border-[#D4B483] transition-colors"
               >
                 Wróć do strony głównej
-              </a>
+              </Link>
             </div>
           </div>
 

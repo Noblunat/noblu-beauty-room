@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 import BreadcrumbJsonLd from "../components/BreadcrumbJsonLd";
 
 const booksyUrl =
@@ -177,9 +178,9 @@ export default function CennikPage() {
       <section className="relative px-6 pb-16 pt-28 lg:px-12">
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,#D4B483,transparent_34%)] opacity-20" />
         <div className="relative mx-auto max-w-6xl">
-          <a href="/" className="text-sm font-medium text-[#B08B57]">
+          <Link href="/" className="text-sm font-medium text-[#B08B57]">
             Powrót do strony głównej
-          </a>
+          </Link>
 
           <div className="mt-10 max-w-3xl">
             <div className="text-sm uppercase tracking-[0.3em] text-[#B08B57]">

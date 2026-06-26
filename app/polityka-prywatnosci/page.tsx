@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Link from "next/link";
 import BreadcrumbJsonLd from "../components/BreadcrumbJsonLd";
 
 export const metadata: Metadata = {
@@ -23,9 +24,9 @@ export default function PolitykaPrywatnosciPage() {
       />
 
       <article className="mx-auto max-w-4xl">
-        <a href="/" className="text-sm font-medium text-[#B08B57]">
+        <Link href="/" className="text-sm font-medium text-[#B08B57]">
           Powrót do strony głównej
-        </a>
+        </Link>
 
         <h1 className="mt-10 text-5xl font-light leading-tight lg:text-7xl">
           Polityka prywatności
