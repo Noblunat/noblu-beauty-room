@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import BreadcrumbJsonLd from "../components/BreadcrumbJsonLd";
+import ServiceJsonLd from "../components/ServiceJsonLd";
 
 const booksyUrl =
   "https://booksy.com/pl-pl/105150_noblu-beauty-room_paznokcie_8820_krakow";
@@ -47,6 +48,17 @@ export default function StylizacjaRzesKrakowPage() {
             name: "Stylizacja rzęs Kraków",
             url: "https://noblu.pl/stylizacja-rzes-krakow",
           },
+        ]}
+      />
+      <ServiceJsonLd
+        name="Stylizacja rzęs Kraków"
+        description="Stylizacja rzęs 1:1, 2D i 3D z efektem dopasowanym do urody klientki w Noblu Beauty Room w Krakowie."
+        serviceType="Stylizacja rzęs"
+        url="https://noblu.pl/stylizacja-rzes-krakow"
+        offers={[
+          { name: "Aplikacja rzęs 1:1", price: "190" },
+          { name: "Aplikacja rzęs 2D", price: "210" },
+          { name: "Aplikacja rzęs 3D", price: "220" },
         ]}
       />
 

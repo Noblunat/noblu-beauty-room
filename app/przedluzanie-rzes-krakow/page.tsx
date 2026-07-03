@@ -71,8 +71,12 @@ export default function PrzedluzanieRzesKrakowPage() {
             {
               "@context": "https://schema.org",
               "@type": "Service",
+              "@id": "https://noblu.pl/przedluzanie-rzes-krakow#service",
               name: "Przedłużanie rzęs Kraków",
+              description:
+                "Przedłużanie rzęs metodami 1:1, 2D i 3D w Noblu Beauty Room w Krakowie.",
               serviceType: "Przedłużanie rzęs",
+              url: "https://noblu.pl/przedluzanie-rzes-krakow",
               provider: {
                 "@type": "BeautySalon",
                 "@id": "https://noblu.pl/#salon",
@@ -95,10 +99,19 @@ export default function PrzedluzanieRzesKrakowPage() {
                 "Podgórze",
               ],
               offers: [
-                { "@type": "Offer", name: "Aplikacja rzęs 1:1", price: "190", priceCurrency: "PLN" },
-                { "@type": "Offer", name: "Aplikacja rzęs 2D", price: "210", priceCurrency: "PLN" },
-                { "@type": "Offer", name: "Aplikacja rzęs 3D", price: "220", priceCurrency: "PLN" },
+                { "@type": "Offer", name: "Aplikacja rzęs 1:1", price: "190", priceCurrency: "PLN", url: "https://noblu.pl/cennik" },
+                { "@type": "Offer", name: "Aplikacja rzęs 2D", price: "210", priceCurrency: "PLN", url: "https://noblu.pl/cennik" },
+                { "@type": "Offer", name: "Aplikacja rzęs 3D", price: "220", priceCurrency: "PLN", url: "https://noblu.pl/cennik" },
               ],
+              potentialAction: {
+                "@type": "ReserveAction",
+                target: {
+                  "@type": "EntryPoint",
+                  urlTemplate: "https://noblu.pl/rezerwacja",
+                  inLanguage: "pl-PL",
+                },
+                name: "Zapytaj o termin wizyty",
+              },
             },
             {
               "@context": "https://schema.org",

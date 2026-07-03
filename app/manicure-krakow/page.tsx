@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import BreadcrumbJsonLd from "../components/BreadcrumbJsonLd";
+import ServiceJsonLd from "../components/ServiceJsonLd";
 
 const booksyUrl =
   "https://booksy.com/pl-pl/105150_noblu-beauty-room_paznokcie_8820_krakow";
@@ -48,6 +49,13 @@ export default function ManicureKrakowPage() {
             url: "https://noblu.pl/manicure-krakow",
           },
         ]}
+      />
+      <ServiceJsonLd
+        name="Manicure Kraków"
+        description="Manicure premium i estetyczna pielęgnacja paznokci w Noblu Beauty Room w Krakowie."
+        serviceType="Manicure"
+        url="https://noblu.pl/manicure-krakow"
+        offers={[{ name: "Manicure", price: "100" }]}
       />
 
       <script

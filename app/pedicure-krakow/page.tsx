@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import BreadcrumbJsonLd from "../components/BreadcrumbJsonLd";
+import ServiceJsonLd from "../components/ServiceJsonLd";
 
 const booksyUrl =
   "https://booksy.com/pl-pl/105150_noblu-beauty-room_paznokcie_8820_krakow";
@@ -34,7 +35,7 @@ const faq = [
   },
   {
     q: "Jak zarezerwować pedicure?",
-    a: "Wizytę można zarezerwować online przez Booksy.",
+    a: "Wyślij prośbę o termin przez formularz rezerwacji Noblu. Salon potwierdzi dostępność SMS-em lub telefonicznie.",
   },
 ];
 
@@ -47,6 +48,18 @@ export default function PedicureKrakowPage() {
             name: "Pedicure Kraków",
             url: "https://noblu.pl/pedicure-krakow",
           },
+        ]}
+      />
+      <ServiceJsonLd
+        name="Pedicure Kraków Podgórze"
+        description="Pedicure kosmetyczny, pedicure hybrydowy i estetyczna pielęgnacja stóp w Noblu Beauty Room w Krakowie."
+        serviceType="Pedicure"
+        url="https://noblu.pl/pedicure-krakow"
+        offers={[
+          { name: "Pedicure same paznokcie", price: "110" },
+          { name: "Pedicure same paznokcie z hybrydą", price: "160" },
+          { name: "Pedicure kosmetyczny", price: "180" },
+          { name: "Pedicure kosmetyczny z hybrydą", price: "200" },
         ]}
       />
 
@@ -86,14 +99,12 @@ export default function PedicureKrakowPage() {
           </p>
 
           <div className="mt-12">
-            <a
-              href={booksyUrl}
-              target="_blank"
-              rel="noopener noreferrer"
+            <Link
+              href="/rezerwacja"
               className="inline-flex items-center justify-center px-10 py-5 rounded-full bg-[#D4B483] text-black font-medium hover:scale-105 transition-transform shadow-[0_10px_30px_rgba(212,180,131,0.25)]"
             >
-              Zarezerwuj pedicure
-            </a>
+              Zapytaj o termin pedicure
+            </Link>
           </div>
         </div>
       </section>
@@ -129,9 +140,9 @@ export default function PedicureKrakowPage() {
               Komfortowa rezerwacja online
             </h2>
             <p>
-              Termin pedicure możesz wybrać przez Booksy bez dzwonienia. Na
-              miejscu stawiamy na spokojną atmosferę, czystość i precyzję, aby
-              wizyta była wygodna od rezerwacji aż po końcowy efekt.
+              Prośbę o termin pedicure możesz wysłać przez nasz formularz bez
+              dzwonienia. Potwierdzimy dostępność SMS-em lub telefonicznie. Na
+              miejscu stawiamy na spokojną atmosferę, czystość i precyzję.
             </p>
           </div>
 
@@ -156,20 +167,26 @@ export default function PedicureKrakowPage() {
               pielęgnację stóp w Noblu Beauty Room przy ul. Orzechowej.
             </p>
             <div className="mt-8 flex flex-wrap gap-4">
+              <Link
+                href="/rezerwacja"
+                className="inline-flex items-center justify-center px-8 py-4 rounded-full bg-[#D4B483] text-black font-medium hover:scale-105 transition-transform"
+              >
+                Zapytaj o termin
+              </Link>
+              <Link
+                href="/cennik"
+                className="inline-flex items-center justify-center px-8 py-4 rounded-full border border-[#E8DED2] text-[#1D1D1B] hover:border-[#D4B483] transition-colors"
+              >
+                Sprawdź cennik
+              </Link>
               <a
                 href={booksyUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-flex items-center justify-center px-8 py-4 rounded-full bg-[#D4B483] text-black font-medium hover:scale-105 transition-transform"
+                className="inline-flex items-center justify-center px-8 py-4 text-[#B08B57]"
               >
                 Zarezerwuj przez Booksy
               </a>
-              <Link
-                href="/"
-                className="inline-flex items-center justify-center px-8 py-4 rounded-full border border-[#E8DED2] text-[#1D1D1B] hover:border-[#D4B483] transition-colors"
-              >
-                Wróć do strony głównej
-              </Link>
             </div>
           </div>
 

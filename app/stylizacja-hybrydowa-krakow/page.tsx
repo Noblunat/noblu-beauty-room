@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import BreadcrumbJsonLd from "../components/BreadcrumbJsonLd";
+import ServiceJsonLd from "../components/ServiceJsonLd";
 
 const booksyUrl =
   "https://booksy.com/pl-pl/105150_noblu-beauty-room_paznokcie_8820_krakow";
@@ -46,6 +47,19 @@ export default function StylizacjaHybrydowaKrakowPage() {
           {
             name: "Stylizacja hybrydowa Kraków",
             url: "https://noblu.pl/stylizacja-hybrydowa-krakow",
+          },
+        ]}
+      />
+      <ServiceJsonLd
+        name="Stylizacja hybrydowa Kraków"
+        description="Manicure hybrydowy i naturalne stylizacje paznokci w Noblu Beauty Room w Krakowie."
+        serviceType="Stylizacja hybrydowa"
+        url="https://noblu.pl/stylizacja-hybrydowa-krakow"
+        offers={[
+          { name: "Stylizacja hybrydowa", price: "160" },
+          {
+            name: "Stylizacja hybrydowa - więcej niż 1 kolor",
+            price: "170",
           },
         ]}
       />
