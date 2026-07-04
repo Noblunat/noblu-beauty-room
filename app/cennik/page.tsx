@@ -123,16 +123,26 @@ function PriceList({
   title,
   items,
   note,
+  links,
 }: {
   title: string;
   items: { name: string; price: string }[];
   note?: string;
+  links: { href: string; label: string }[];
 }) {
   return (
     <section className="rounded-[2rem] border border-[#E8DED2] bg-[#FFFDFB]/85 p-7 shadow-[0_24px_80px_rgba(80,55,28,0.08)] sm:p-10">
       <h2 className="text-center text-3xl font-light text-[#3A2F26] sm:text-4xl">
         {title}
       </h2>
+
+      <div className="mt-4 flex flex-wrap justify-center gap-x-5 gap-y-2 text-sm text-[#B08B57]">
+        {links.map((link) => (
+          <Link key={link.href} href={link.href} className="hover:underline">
+            {link.label}
+          </Link>
+        ))}
+      </div>
 
       <div className="mt-10 space-y-4">
         {items.map((item) => (
@@ -204,12 +214,29 @@ export default function CennikPage() {
             title="Stylizacja rzęs"
             items={lashPrices}
             note="Do wybranej objętości istnieje możliwość dopasowania metody wispy lub wet look. Uzupełnienie liczone jest do maksymalnie 4 tygodni od założenia stylizacji."
+            links={[
+              { href: "/stylizacja-rzes-krakow", label: "Stylizacja rzęs Kraków" },
+              { href: "/przedluzanie-rzes-krakow", label: "Przedłużanie rzęs Kraków" },
+            ]}
           />
 
-          <PriceList title="Stylizacja paznokci" items={nailPrices} />
+          <PriceList
+            title="Stylizacja paznokci"
+            items={nailPrices}
+            links={[
+              { href: "/manicure-krakow", label: "Manicure Kraków" },
+              { href: "/stylizacja-hybrydowa-krakow", label: "Stylizacja hybrydowa Kraków" },
+            ]}
+          />
 
           <div className="lg:col-span-2">
-            <PriceList title="Pedicure" items={pedicurePrices} />
+            <PriceList
+              title="Pedicure"
+              items={pedicurePrices}
+              links={[
+                { href: "/pedicure-krakow", label: "Pedicure Kraków Podgórze" },
+              ]}
+            />
           </div>
         </div>
 
@@ -218,22 +245,23 @@ export default function CennikPage() {
             Zarezerwuj wizytę online
           </h2>
           <p className="mx-auto mt-4 max-w-2xl leading-relaxed text-[#5F5B56]">
-            Wybierz usługę, sprawdź dostępne terminy i umów wizytę przez Booksy.
+            Wybierz usługę i wyślij prośbę o termin przez formularz Noblu.
+            Booksy pozostaje dodatkową opcją rezerwacji.
           </p>
           <div className="mt-8 flex flex-wrap justify-center gap-4">
+            <Link
+              href="/rezerwacja"
+              className="inline-flex items-center justify-center rounded-full bg-[#D4B483] px-8 py-4 font-medium text-black transition-transform hover:scale-105"
+            >
+              Zapytaj o termin
+            </Link>
             <a
               href={booksyUrl}
               target="_blank"
               rel="noopener noreferrer"
-              className="inline-flex items-center justify-center rounded-full bg-[#D4B483] px-8 py-4 font-medium text-black transition-transform hover:scale-105"
-            >
-              Zarezerwuj przez Booksy
-            </a>
-            <a
-              href="/stylizacja-rzes-krakow"
               className="inline-flex items-center justify-center rounded-full border border-[#E8DED2] px-8 py-4 font-medium transition-colors hover:border-[#D4B483]"
             >
-              Zobacz stylizację rzęs
+              Zarezerwuj przez Booksy
             </a>
           </div>
         </div>
