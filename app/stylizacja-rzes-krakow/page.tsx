@@ -35,7 +35,7 @@ const faq = [
   },
   {
     q: "Czy wizytę na rzęsy można zarezerwować online?",
-    a: "Tak, wizytę można wygodnie umówić online przez Booksy.",
+    a: "Tak. Możesz wysłać prośbę o termin przez formularz Noblu, a salon potwierdzi dostępność SMS-em lub telefonicznie. Booksy pozostaje dodatkową opcją.",
   },
 ];
 
@@ -86,15 +86,16 @@ export default function StylizacjaRzesKrakowPage() {
             Stylizacja rzęs Kraków
           </div>
 
-          <h1 className="text-5xl lg:text-7xl font-light leading-tight">
+          <h1 className="text-4xl sm:text-5xl lg:text-7xl font-light leading-tight">
             Stylizacja rzęs
-            <span className="block text-[#D4B483]">w Krakowie</span>
+            <span className="block text-[#D4B483]">Kraków Podgórze</span>
           </h1>
 
           <p className="mt-10 text-lg text-[#6D6B68] leading-relaxed max-w-3xl">
-            Noblu Beauty Room oferuje stylizację rzęs w Krakowie dla kobiet,
-            które cenią elegancki, dopracowany i naturalny efekt. Stylizację
-            dobieramy do urody, kształtu oka i oczekiwanego rezultatu.
+            Noblu Beauty Room oferuje stylizację rzęs w Krakowie Podgórzu dla
+            kobiet, które cenią elegancki, dopracowany i naturalny efekt.
+            Stylizację dobieramy do urody, kształtu oka i oczekiwanego rezultatu.
+            Salon znajduje się przy ul. Orzechowej 4, z darmowym parkingiem.
           </p>
 
           <div className="mt-12">
@@ -114,7 +115,7 @@ export default function StylizacjaRzesKrakowPage() {
         <div className="max-w-5xl mx-auto grid gap-10 text-lg leading-relaxed text-[#5F5B56]">
           <div>
             <h2 className="text-3xl lg:text-4xl font-light text-[#1D1D1B] mb-6">
-              Rzęsy Kraków: efekt dopasowany do oka
+              Stylizacja rzęs w Krakowie: efekt dopasowany do oka
             </h2>
             <p>
               Jeśli szukasz miejsca na rzęsy w Krakowie, stylizację rzęs 1:1

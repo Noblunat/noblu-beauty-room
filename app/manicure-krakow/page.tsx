@@ -31,7 +31,7 @@ const faq = [
   },
   {
     q: "Czy można zarezerwować manicure online?",
-    a: "Tak, wizytę na manicure można zarezerwować online przez Booksy.",
+    a: "Tak. Możesz wysłać prośbę o termin przez formularz Noblu, a salon potwierdzi dostępność SMS-em lub telefonicznie. Booksy pozostaje dodatkową opcją.",
   },
   {
     q: "Jakie stylizacje paznokci wykonuje salon?",
@@ -82,16 +82,16 @@ export default function ManicureKrakowPage() {
             Manicure Kraków
           </div>
 
-          <h1 className="text-5xl lg:text-7xl font-light leading-tight">
-            Manicure premium
-            <span className="block text-[#D4B483]">w Krakowie</span>
+          <h1 className="text-4xl sm:text-5xl lg:text-7xl font-light leading-tight">
+            Manicure Kraków
+            <span className="block text-[#D4B483]">Podgórze</span>
           </h1>
 
           <p className="mt-10 text-lg text-[#6D6B68] leading-relaxed max-w-3xl">
-            Noblu Beauty Room to kameralny salon beauty w Krakowie oferujący
-            manicure premium, stylizację paznokci i manicure hybrydowy. Pracujemy
-            z dbałością o estetykę, higienę i naturalny efekt, który pasuje do
-            codzienności, pracy i wyjątkowych okazji.
+            Noblu Beauty Room to kameralny salon manicure w Krakowie Podgórzu,
+            oferujący manicure, stylizację paznokci i manicure hybrydowy.
+            Pracujemy z dbałością o estetykę, higienę i naturalny efekt. Salon
+            znajduje się przy ul. Orzechowej 4, z darmowym parkingiem.
           </p>
 
           <div className="mt-12">

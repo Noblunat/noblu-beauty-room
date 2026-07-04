@@ -136,15 +136,16 @@ export default function PrzedluzanieRzesKrakowPage() {
               Przedłużanie rzęs Kraków
             </div>
 
-            <h1 className="text-5xl lg:text-7xl font-light leading-tight">
-              Rzęsy 1:1, 2D i 3D
-              <span className="block text-[#D4B483]">w Noblu Beauty Room</span>
+            <h1 className="text-4xl sm:text-5xl lg:text-7xl font-light leading-tight">
+              Przedłużanie rzęs
+              <span className="block text-[#D4B483]">Kraków</span>
             </h1>
 
             <p className="mt-10 text-lg text-[#6D6B68] leading-relaxed max-w-3xl">
-              Przedłużanie rzęs w Krakowie dla kobiet, które chcą podkreślić
-              spojrzenie bez utraty lekkości i elegancji. Dobieramy metodę,
-              długość i efekt do oka, urody oraz kondycji naturalnych rzęs.
+              Przedłużanie rzęs 1:1, 2D i 3D w Krakowie dla kobiet, które chcą
+              podkreślić spojrzenie bez utraty lekkości i elegancji. Dobieramy
+              metodę, długość i efekt do oka, urody oraz kondycji naturalnych
+              rzęs.
             </p>
 
             <div className="mt-10 flex flex-wrap gap-4">
@@ -182,7 +183,7 @@ export default function PrzedluzanieRzesKrakowPage() {
               Metody stylizacji
             </div>
             <h2 className="text-4xl lg:text-5xl font-light leading-tight">
-              Efekt dopasowany do Twojego oka
+              Przedłużanie rzęs 1:1, 2D i 3D
             </h2>
           </div>
 
@@ -218,9 +219,9 @@ export default function PrzedluzanieRzesKrakowPage() {
                 parking dla klientek.
               </p>
               <p>
-                Jeśli wpisujesz w Google „przedłużanie rzęs Kraków”, „rzęsy
-                Borek Fałęcki” albo „rzęsy Ruczaj”, u nas możesz zarezerwować
-                wizytę online przez Booksy i wybrać termin bez dzwonienia.
+                Prośbę o termin przedłużania rzęs możesz wysłać przez formularz
+                Noblu bez dzwonienia. Obsługujemy klientki z południa Krakowa,
+                w tym z Borku Fałęckiego, Łagiewnik, Ruczaju i Podgórza.
               </p>
             </div>
           </div>
