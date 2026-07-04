@@ -5,16 +5,6 @@ import Image from "next/image"
 
 import { motion, AnimatePresence, useMotionValue, useSpring, useScroll, useTransform } from 'framer-motion'
 
-declare global {
-  interface Window {
-    gtag?: (
-      command: string,
-      eventName: string,
-      parameters: Record<string, unknown>
-    ) => void
-  }
-}
-
 const phoneConversionId = "AW-10795260361/IB8aCJvquLYcEMmzypso"
 
 type GalleryItem = {

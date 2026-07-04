@@ -1,29 +1,24 @@
 "use client";
 
 import { useState, useSyncExternalStore } from "react";
+import {
+  COOKIE_CONSENT_CHANGE_EVENT,
+  COOKIE_CONSENT_STORAGE_KEY,
+  type CookieConsent,
+  readCookieConsent,
+} from "../lib/cookieConsent";
 
-const STORAGE_KEY = "noblu-cookie-consent";
-
-type Consent = {
-  necessary: true;
-  analytics: boolean;
-  marketing: boolean;
-};
-
-const CONSENT_CHANGE_EVENT = "noblu-cookie-consent-change";
-
-const getCookieBannerVisible = () =>
-  !window.localStorage.getItem(STORAGE_KEY);
+const getCookieBannerVisible = () => readCookieConsent() === null;
 
 const getServerCookieBannerVisible = () => false;
 
 const subscribeToCookieConsent = (callback: () => void) => {
   window.addEventListener("storage", callback);
-  window.addEventListener(CONSENT_CHANGE_EVENT, callback);
+  window.addEventListener(COOKIE_CONSENT_CHANGE_EVENT, callback);
 
   return () => {
     window.removeEventListener("storage", callback);
-    window.removeEventListener(CONSENT_CHANGE_EVENT, callback);
+    window.removeEventListener(COOKIE_CONSENT_CHANGE_EVENT, callback);
   };
 };
 
@@ -37,9 +32,14 @@ export default function CookieBanner() {
   const [analytics, setAnalytics] = useState(false);
   const [marketing, setMarketing] = useState(false);
 
-  const saveConsent = (consent: Consent) => {
-    window.localStorage.setItem(STORAGE_KEY, JSON.stringify(consent));
-    window.dispatchEvent(new Event(CONSENT_CHANGE_EVENT));
+  const saveConsent = (consent: CookieConsent) => {
+    window.localStorage.setItem(
+      COOKIE_CONSENT_STORAGE_KEY,
+      JSON.stringify(consent)
+    );
+    window.dispatchEvent(
+      new CustomEvent(COOKIE_CONSENT_CHANGE_EVENT, { detail: consent })
+    );
   };
 
   if (!visible) {

@@ -2,16 +2,6 @@
 
 import { useEffect } from "react";
 
-declare global {
-  interface Window {
-    gtag?: (
-      command: string,
-      eventName: string,
-      parameters: Record<string, unknown>
-    ) => void;
-  }
-}
-
 const booksyConversionId = "AW-10795260361/w2THCKCZ0LYcEMmzypso";
 
 export default function ConversionEvents() {
