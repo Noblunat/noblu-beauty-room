@@ -31,7 +31,7 @@ const faq = [
   },
   {
     q: "Czy salon wykonuje pedicure hybrydowy?",
-    a: "Tak, w ofercie znajduje się estetyczny pedicure oraz stylizacje z eleganckim wykończeniem.",
+    a: "Tak. W Noblu możesz wybrać pedicure samych paznokci, pedicure hybrydowy, pedicure kosmetyczny lub pedicure kosmetyczny z hybrydą.",
   },
   {
     q: "Jak zarezerwować pedicure?",
@@ -87,15 +87,16 @@ export default function PedicureKrakowPage() {
             Pedicure Kraków
           </div>
 
-          <h1 className="text-5xl lg:text-7xl font-light leading-tight">
-            Pedicure premium
-            <span className="block text-[#D4B483]">w Krakowie</span>
+          <h1 className="text-4xl sm:text-5xl lg:text-7xl font-light leading-tight">
+            Pedicure Kraków
+            <span className="block text-[#D4B483]">Podgórze</span>
           </h1>
 
           <p className="mt-10 text-lg text-[#6D6B68] leading-relaxed max-w-3xl">
-            Noblu Beauty Room oferuje pedicure premium w Krakowie dla kobiet,
-            które cenią estetykę, komfort i dokładne wykończenie. To spokojna
-            wizyta w eleganckim wnętrzu i efekt dopracowany w każdym detalu.
+            Noblu Beauty Room oferuje pedicure kosmetyczny i hybrydowy w
+            Krakowie Podgórzu dla kobiet, które cenią estetykę, komfort i
+            dokładne wykończenie. Salon znajduje się przy ul. Orzechowej 4,
+            a pod budynkiem dostępny jest darmowy parking.
           </p>
 
           <div className="mt-12">
@@ -113,13 +114,13 @@ export default function PedicureKrakowPage() {
         <div className="max-w-5xl mx-auto grid gap-10 text-lg leading-relaxed text-[#5F5B56]">
           <div>
             <h2 className="text-3xl lg:text-4xl font-light text-[#1D1D1B] mb-6">
-              Pedicure SPA i pielęgnacja stóp
+              Pedicure kosmetyczny i hybrydowy w Krakowie
             </h2>
             <p>
-              Pedicure to nie tylko kolor, ale też estetyczna pielęgnacja stóp i
-              komfort noszenia otwartego obuwia. W Noblu Beauty Room dbamy o
-              dokładność, higienę i elegancki efekt, który sprawdza się na co
-              dzień oraz przed wyjazdem, wakacjami czy ważnym wydarzeniem.
+              W ofercie znajdziesz pedicure samych paznokci, pedicure z hybrydą,
+              pedicure kosmetyczny oraz pedicure kosmetyczny z hybrydą. Każdy
+              zabieg dobieramy do potrzeb stóp i oczekiwanego efektu, dbając o
+              higienę, dokładność i komfort wizyty.
             </p>
           </div>
 

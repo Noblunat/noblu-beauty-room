@@ -804,7 +804,7 @@ useEffect(() => {
 
       <div className="grid gap-4 text-[#1D1D1B]">
         <a href="/pedicure-krakow" className="flex items-center justify-between rounded-2xl border border-[#E8DED2] bg-white p-5 hover:border-[#D4B483] transition-colors">
-          <span>Pedicure Kraków</span>
+          <span>Pedicure Kraków Podgórze</span>
           <span className="text-[#B08B57]">Zobacz</span>
         </a>
         <a href="/stylizacja-rzes-krakow" className="flex items-center justify-between rounded-2xl border border-[#E8DED2] bg-white p-5 hover:border-[#D4B483] transition-colors">
@@ -1054,7 +1054,7 @@ referrerPolicy="no-referrer-when-downgrade"
             href="/pedicure-krakow"
             className="block hover:text-[#D4B483] transition-colors"
           >
-            Pedicure Kraków
+            Pedicure Kraków Podgórze
           </a>
 
         </div>
