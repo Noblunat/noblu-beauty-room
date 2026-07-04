@@ -4,6 +4,7 @@ import Image from "next/image"
 import Link from "next/link"
 import { FormEvent, useMemo, useState } from "react"
 import BreadcrumbJsonLd from "../components/BreadcrumbJsonLd"
+import { readCookieConsent } from "../lib/cookieConsent"
 
 const booksyUrl =
   "https://booksy.com/pl-pl/105150_noblu-beauty-room_paznokcie_8820_krakow"
@@ -77,6 +78,21 @@ const highlights = [
 
 const allServices = serviceGroups.flatMap((group) => group.services)
 
+function trackReservationLead(service: Service) {
+  const consent = readCookieConsent()
+
+  if (!consent?.analytics || typeof window.gtag !== "function") {
+    return
+  }
+
+  window.gtag("event", "generate_lead", {
+    currency: "PLN",
+    value: 1,
+    lead_source: "reservation_form",
+    service_name: service.name,
+  })
+}
+
 export default function RezerwacjaPage() {
   const [selectedService, setSelectedService] = useState(allServices[0].name)
   const [name, setName] = useState("")
@@ -121,6 +137,10 @@ export default function RezerwacjaPage() {
 
       if (!response.ok) {
         throw new Error(result.error || "Nie udało się wysłać formularza.")
+      }
+
+      if (selected) {
+        trackReservationLead(selected)
       }
 
       setSubmitStatus("success")
