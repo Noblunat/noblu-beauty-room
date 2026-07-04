@@ -7,16 +7,16 @@ const booksyUrl =
   "https://booksy.com/pl-pl/105150_noblu-beauty-room_paznokcie_8820_krakow";
 
 export const metadata: Metadata = {
-  title: "Stylizacja rzęs Kraków | Noblu Beauty Room",
+  title: "Stylizacja rzęs Kraków | Rzęsy 1:1, 2D i 3D | Noblu",
   description:
-    "Stylizacja rzęs w Krakowie. Naturalny efekt, rzęsy 1:1, subtelne objętości i premium lash look w Noblu Beauty Room.",
+    "Stylizacja rzęs 1:1, 2D i 3D w Krakowie Podgórzu. Noblu Beauty Room, ul. Orzechowa 4. Darmowy parking i zapytanie o termin online.",
   alternates: {
     canonical: "https://noblu.pl/stylizacja-rzes-krakow",
   },
   openGraph: {
-    title: "Stylizacja rzęs Kraków | Noblu Beauty Room",
+    title: "Stylizacja rzęs Kraków | Rzęsy 1:1, 2D i 3D | Noblu",
     description:
-      "Stylizacja rzęs, rzęsy 1:1 i naturalny lash look w Noblu Beauty Room w Krakowie.",
+      "Stylizacja rzęs 1:1, 2D i 3D w Krakowie Podgórzu. Zapytaj o termin online.",
     url: "https://noblu.pl/stylizacja-rzes-krakow",
     siteName: "Noblu Beauty Room",
     locale: "pl_PL",

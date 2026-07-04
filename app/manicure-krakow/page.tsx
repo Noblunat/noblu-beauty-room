@@ -7,16 +7,16 @@ const booksyUrl =
   "https://booksy.com/pl-pl/105150_noblu-beauty-room_paznokcie_8820_krakow";
 
 export const metadata: Metadata = {
-  title: "Manicure Kraków Podgórze | Noblu Beauty Room",
+  title: "Manicure Kraków Podgórze | Hybryda i paznokcie | Noblu",
   description:
-    "Manicure premium w Krakowie przy ul. Orzechowej 4/lok.1. Stylizacja paznokci, manicure hybrydowy i estetyczne paznokcie w Noblu Beauty Room.",
+    "Manicure i paznokcie hybrydowe w Krakowie Podgórzu. Noblu Beauty Room, ul. Orzechowa 4. Darmowy parking i zapytanie o termin online.",
   alternates: {
     canonical: "https://noblu.pl/manicure-krakow",
   },
   openGraph: {
-    title: "Manicure Kraków Podgórze | Noblu Beauty Room",
+    title: "Manicure Kraków Podgórze | Hybryda i paznokcie | Noblu",
     description:
-      "Manicure premium, paznokcie hybrydowe i stylizacja paznokci w salonie Noblu Beauty Room w Krakowie.",
+      "Manicure, paznokcie hybrydowe i stylizacja paznokci w Krakowie Podgórzu. Zapytaj o termin online.",
     url: "https://noblu.pl/manicure-krakow",
     siteName: "Noblu Beauty Room",
     locale: "pl_PL",
