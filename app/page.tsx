@@ -1,11 +1,9 @@
 'use client'
-import { useEffect, useState, type MouseEvent } from 'react'
+import { useEffect, useState } from 'react'
 import Script from 'next/script'
 import Image from "next/image"
 
 import { motion, AnimatePresence, useMotionValue, useSpring, useScroll, useTransform } from 'framer-motion'
-
-const phoneConversionId = "AW-10795260361/IB8aCJvquLYcEMmzypso"
 
 type GalleryItem = {
   src: string
@@ -59,32 +57,6 @@ export default function NobluBeautyRoomWebsite() {
 
     return () => clearTimeout(timer)
   }, [])
-
-  const handlePhoneClick = (event: MouseEvent<HTMLAnchorElement>) => {
-    const url = event.currentTarget.href
-
-    if (typeof window.gtag !== "function") {
-      return
-    }
-
-    event.preventDefault()
-
-    let redirected = false
-    const goToPhone = () => {
-      if (redirected) return
-      redirected = true
-      window.location.href = url
-    }
-
-    window.gtag("event", "conversion", {
-      send_to: phoneConversionId,
-      value: 1.0,
-      currency: "PLN",
-      event_callback: goToPhone,
-    })
-
-    window.setTimeout(goToPhone, 700)
-  }
 
   const services = [
     {
@@ -919,7 +891,7 @@ useEffect(() => {
 
               <div>
                 <div className="text-[#1D1D1B] mb-2">Telefon</div>
-                <a href="tel:+48662989534" onClick={handlePhoneClick} className="hover:text-[#1D1D1B] transition-colors">
+                <a href="tel:+48662989534" className="hover:text-[#1D1D1B] transition-colors">
                   662 989 534
                 </a>
               </div>
@@ -1079,7 +1051,6 @@ referrerPolicy="no-referrer-when-downgrade"
 
           <a
             href="tel:+48662989534"
-            onClick={handlePhoneClick}
             className="block hover:text-[#D4B483] transition-colors"
           >
             +48 662 989 534

@@ -1,8 +1,10 @@
 "use client";
 
 import { useEffect } from "react";
+import { readCookieConsent } from "../lib/cookieConsent";
 
 const booksyConversionId = "AW-10795260361/w2THCKCZ0LYcEMmzypso";
+const phoneConversionId = "AW-10795260361/IB8aCJvquLYcEMmzypso";
 
 export default function ConversionEvents() {
   useEffect(() => {
@@ -11,16 +13,31 @@ export default function ConversionEvents() {
 
       if (!(target instanceof Element)) return;
 
-      const link = target.closest<HTMLAnchorElement>('a[href*="booksy.com"]');
+      const link = target.closest<HTMLAnchorElement>("a[href]");
 
-      if (!link || typeof window.gtag !== "function") return;
+      if (!link) return;
 
       const url = link.href;
+      const isBooksyLink = url.includes("booksy.com");
+      const isPhoneLink = url.startsWith("tel:");
+      const consent = readCookieConsent();
+
+      if (
+        (!isBooksyLink && !isPhoneLink) ||
+        !consent?.marketing ||
+        typeof window.gtag !== "function"
+      ) {
+        return;
+      }
+
+      const conversionId = isPhoneLink
+        ? phoneConversionId
+        : booksyConversionId;
       const opensNewTab = link.target === "_blank";
 
       if (opensNewTab) {
         window.gtag("event", "conversion", {
-          send_to: booksyConversionId,
+          send_to: conversionId,
           value: 1.0,
           currency: "PLN",
           transport_type: "beacon",
@@ -31,20 +48,20 @@ export default function ConversionEvents() {
       event.preventDefault();
 
       let redirected = false;
-      const goToBooksy = () => {
+      const continueNavigation = () => {
         if (redirected) return;
         redirected = true;
         window.location.href = url;
       };
 
       window.gtag("event", "conversion", {
-        send_to: booksyConversionId,
+        send_to: conversionId,
         value: 1.0,
         currency: "PLN",
-        event_callback: goToBooksy,
+        event_callback: continueNavigation,
       });
 
-      window.setTimeout(goToBooksy, 700);
+      window.setTimeout(continueNavigation, 700);
     };
 
     document.addEventListener("click", handleClick, true);
