@@ -133,10 +133,17 @@ export default function RezerwacjaPage() {
         }),
       })
 
-      const result = (await response.json()) as { error?: string }
+      const result = (await response.json()) as { error?: unknown }
 
       if (!response.ok) {
-        throw new Error(result.error || "Nie udało się wysłać formularza.")
+        const rateLimitMessage =
+          response.status === 403 || response.status === 429
+            ? "Wysłano zbyt wiele prób o termin. Spróbuj ponownie za kilka minut."
+            : "Nie udało się wysłać formularza."
+
+        throw new Error(
+          typeof result.error === "string" ? result.error : rateLimitMessage
+        )
       }
 
       if (selected) {
