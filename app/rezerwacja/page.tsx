@@ -227,7 +227,7 @@ export default function RezerwacjaPage() {
         <div className="mx-auto grid max-w-7xl gap-8 lg:grid-cols-[0.95fr_1.05fr]">
           <form
             onSubmit={handleSubmit}
-            className="rounded-[2rem] border border-[#E8DED2] bg-white/75 p-6 shadow-[0_24px_70px_rgba(80,55,25,0.08)] backdrop-blur-sm sm:p-8"
+            className="min-w-0 rounded-[2rem] border border-[#E8DED2] bg-white/75 p-6 shadow-[0_24px_70px_rgba(80,55,25,0.08)] backdrop-blur-sm sm:p-8"
           >
             <h2 className="text-3xl font-light">Dane wizyty</h2>
 
@@ -248,7 +248,7 @@ export default function RezerwacjaPage() {
                   value={name}
                   onChange={(event) => setName(event.target.value)}
                   required
-                  className="rounded-2xl border border-[#E8DED2] bg-white px-4 py-4 text-base text-[#1D1D1B] outline-none transition-colors focus:border-[#D4B483]"
+                  className="min-w-0 w-full rounded-2xl border border-[#E8DED2] bg-white px-4 py-4 text-base text-[#1D1D1B] outline-none transition-colors focus:border-[#D4B483]"
                   placeholder="Natalia"
                 />
               </label>
@@ -259,7 +259,7 @@ export default function RezerwacjaPage() {
                   value={telephone}
                   onChange={(event) => setTelephone(event.target.value)}
                   required
-                  className="rounded-2xl border border-[#E8DED2] bg-white px-4 py-4 text-base text-[#1D1D1B] outline-none transition-colors focus:border-[#D4B483]"
+                  className="min-w-0 w-full rounded-2xl border border-[#E8DED2] bg-white px-4 py-4 text-base text-[#1D1D1B] outline-none transition-colors focus:border-[#D4B483]"
                   placeholder="+48 000 000 000"
                 />
               </label>
@@ -269,7 +269,7 @@ export default function RezerwacjaPage() {
                 <select
                   value={selectedService}
                   onChange={(event) => setSelectedService(event.target.value)}
-                  className="rounded-2xl border border-[#E8DED2] bg-white px-4 py-4 text-base text-[#1D1D1B] outline-none transition-colors focus:border-[#D4B483]"
+                  className="min-w-0 w-full rounded-2xl border border-[#E8DED2] bg-white px-4 py-4 text-base text-[#1D1D1B] outline-none transition-colors focus:border-[#D4B483]"
                 >
                   {serviceGroups.map((group) => (
                     <optgroup key={group.title} label={group.title}>
@@ -291,7 +291,7 @@ export default function RezerwacjaPage() {
                     value={date}
                     onChange={(event) => setDate(event.target.value)}
                     required
-                    className="rounded-2xl border border-[#E8DED2] bg-white px-4 py-4 text-base text-[#1D1D1B] outline-none transition-colors focus:border-[#D4B483]"
+                    className="min-w-0 w-full rounded-2xl border border-[#E8DED2] bg-white px-4 py-4 text-base text-[#1D1D1B] outline-none transition-colors focus:border-[#D4B483]"
                   />
                 </label>
 
@@ -300,7 +300,7 @@ export default function RezerwacjaPage() {
                   <select
                     value={timePreference}
                     onChange={(event) => setTimePreference(event.target.value)}
-                    className="rounded-2xl border border-[#E8DED2] bg-white px-4 py-4 text-base text-[#1D1D1B] outline-none transition-colors focus:border-[#D4B483]"
+                    className="min-w-0 w-full rounded-2xl border border-[#E8DED2] bg-white px-4 py-4 text-base text-[#1D1D1B] outline-none transition-colors focus:border-[#D4B483]"
                   >
                     <option>Dowolnie</option>
                     <option>Rano</option>
@@ -315,7 +315,7 @@ export default function RezerwacjaPage() {
                 <textarea
                   value={notes}
                   onChange={(event) => setNotes(event.target.value)}
-                  className="min-h-32 rounded-2xl border border-[#E8DED2] bg-white px-4 py-4 text-base text-[#1D1D1B] outline-none transition-colors focus:border-[#D4B483]"
+                  className="min-h-32 min-w-0 w-full rounded-2xl border border-[#E8DED2] bg-white px-4 py-4 text-base text-[#1D1D1B] outline-none transition-colors focus:border-[#D4B483]"
                   placeholder="Np. pytanie o termin, pierwszy raz, usługa..."
                 />
               </label>
@@ -350,6 +350,17 @@ export default function RezerwacjaPage() {
                 {submitMessage}
               </p>
             )}
+
+            <p className="mt-5 text-center text-xs leading-relaxed text-[#7A746D]">
+              Wysyłając formularz, potwierdzasz zapoznanie się z{" "}
+              <Link
+                href="/polityka-prywatnosci"
+                className="font-medium text-[#B08B57] hover:text-[#1D1D1B]"
+              >
+                polityką prywatności
+              </Link>
+              .
+            </p>
           </form>
 
           <div className="grid gap-6">
