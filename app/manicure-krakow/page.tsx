@@ -41,6 +41,10 @@ const faq = [
     q: "Jakie stylizacje paznokci wykonuje salon?",
     a: "W Noblu Beauty Room wykonywany jest manicure premium, stylizacja paznokci, manicure hybrydowy oraz estetyczne, naturalne stylizacje.",
   },
+  {
+    q: "Ile kosztuje manicure w Krakowie?",
+    a: "Manicure w Noblu Beauty Room kosztuje 100 zł, a stylizacja hybrydowa od 160 zł. Aktualne ceny wszystkich wariantów znajdują się w cenniku salonu.",
+  },
 ];
 
 export default function ManicureKrakowPage() {
@@ -123,6 +127,10 @@ export default function ManicureKrakowPage() {
               precyzyjne wykonanie z elegancką atmosferą. Stawiamy na czystą,
               dopracowaną stylizację: od naturalnych odcieni nude po bardziej
               wyraziste kolory i minimalistyczne zdobienia.
+            </p>
+            <p className="mt-4">
+              Manicure kosztuje 100 zł, a stylizacja hybrydowa od 160 zł.
+              Szczegółowe ceny znajdziesz w <Link href="/cennik" className="font-medium text-[#876536] underline underline-offset-4">cenniku Noblu</Link>.
             </p>
           </div>
 

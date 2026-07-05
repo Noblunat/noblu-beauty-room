@@ -41,6 +41,10 @@ const faq = [
     q: "Jak zarezerwować pedicure?",
     a: "Wyślij prośbę o termin przez formularz rezerwacji Noblu. Salon potwierdzi dostępność SMS-em lub telefonicznie.",
   },
+  {
+    q: "Ile kosztuje pedicure w Krakowie?",
+    a: "Pedicure samych paznokci kosztuje od 110 zł, pedicure z hybrydą od 160 zł, a pełny pedicure kosmetyczny od 180 zł.",
+  },
 ];
 
 export default function PedicureKrakowPage() {
@@ -125,6 +129,10 @@ export default function PedicureKrakowPage() {
               pedicure kosmetyczny oraz pedicure kosmetyczny z hybrydą. Każdy
               zabieg dobieramy do potrzeb stóp i oczekiwanego efektu, dbając o
               higienę, dokładność i komfort wizyty.
+            </p>
+            <p className="mt-4">
+              Ceny zaczynają się od 110 zł za pedicure samych paznokci i od
+              160 zł za wariant z hybrydą. Wszystkie opcje są opisane w <Link href="/cennik" className="font-medium text-[#876536] underline underline-offset-4">cenniku pedicure</Link>.
             </p>
           </div>
 

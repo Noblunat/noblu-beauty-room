@@ -40,19 +40,30 @@ const faq = [
     q: "Gdzie w Krakowie znajduje się salon przedłużania rzęs?",
     a: "Salon znajduje się przy ul. Orzechowej 4/lok.1 w Krakowie, wygodnie dla klientek z Borku Fałęckiego, Łagiewnik, Ruczaju, Kurdwanowa i Podgórza. Pod salonem dostępny jest darmowy parking.",
   },
+  {
+    q: "Ile kosztuje przedłużanie rzęs w Krakowie?",
+    a: "Aplikacja rzęs 1:1 kosztuje 190 zł, metoda 2D 210 zł, a metoda 3D 220 zł. Uzupełnienia zaczynają się od 160 zł.",
+  },
+  {
+    q: "Ile trwa aplikacja rzęs?",
+    a: "Pierwsza aplikacja trwa zwykle od około 2 godzin 30 minut do 3 godzin, zależnie od wybranej metody i oczekiwanego efektu.",
+  },
 ];
 
 const methods = [
   {
     title: "Rzęsy 1:1",
+    price: "190 zł",
     text: "Delikatne przedłużanie rzęs dla naturalnego efektu, który podkreśla spojrzenie bez mocnego przerysowania.",
   },
   {
     title: "Rzęsy 2D",
+    price: "210 zł",
     text: "Lekka objętość dla klientek, które chcą bardziej widocznego efektu, ale nadal eleganckiego i wygodnego na co dzień.",
   },
   {
     title: "Rzęsy 3D",
+    price: "220 zł",
     text: "Wyraźniejsza stylizacja z większą objętością, dobierana tak, aby zachować harmonię z okiem i naturalnymi rzęsami.",
   },
 ];
@@ -202,9 +213,13 @@ export default function PrzedluzanieRzesKrakowPage() {
               >
                 <h3 className="text-2xl mb-4">{method.title}</h3>
                 <p className="text-[#6D6B68] leading-relaxed">{method.text}</p>
+                <p className="mt-5 font-medium text-[#876536]">Cena: {method.price}</p>
               </div>
             ))}
           </div>
+          <p className="mt-8 text-[#6D6B68]">
+            Ceny uzupełnień i usług dodatkowych znajdziesz w <a href="/cennik" className="font-medium text-[#876536] underline underline-offset-4">pełnym cenniku</a>.
+          </p>
         </div>
       </section>
 

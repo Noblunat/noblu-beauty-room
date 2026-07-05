@@ -41,6 +41,10 @@ const faq = [
     q: "Czy wizytę na rzęsy można zarezerwować online?",
     a: "Tak. Możesz wysłać prośbę o termin przez formularz Noblu, a salon potwierdzi dostępność SMS-em lub telefonicznie. Booksy pozostaje dodatkową opcją.",
   },
+  {
+    q: "Czy rzęsy jedwabne to przedłużanie rzęs?",
+    a: "Określenie rzęsy jedwabne jest często używane potocznie dla lekkich stylizacji. W Noblu metoda i materiał są dobierane do naturalnych rzęs oraz oczekiwanego efektu.",
+  },
 ];
 
 export default function StylizacjaRzesKrakowPage() {
@@ -126,6 +130,10 @@ export default function StylizacjaRzesKrakowPage() {
               lub subtelne objętości, Noblu Beauty Room stawia na komfort i
               estetykę. Efekt może być bardzo delikatny, bardziej wyrazisty albo
               maksymalnie naturalny, zależnie od oczekiwań i typu urody.
+            </p>
+            <p className="mt-4">
+              Szczegółowy opis metod 1:1, 2D i 3D oraz aktualne ceny znajdziesz
+              na stronie <Link href="/przedluzanie-rzes-krakow" className="font-medium text-[#876536] underline underline-offset-4">przedłużanie rzęs Kraków</Link>.
             </p>
           </div>
 
