@@ -17,6 +17,16 @@ const contentSecurityPolicy = [
 ].join("; ");
 
 const nextConfig: NextConfig = {
+  async redirects() {
+    return [
+      {
+        source: "/:path*",
+        has: [{ type: "host", value: "www.noblu.pl" }],
+        destination: "https://noblu.pl/:path*",
+        permanent: true,
+      },
+    ];
+  },
   async headers() {
     return [
       {

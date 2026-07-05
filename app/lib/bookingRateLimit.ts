@@ -11,6 +11,7 @@ type RateLimitResult = {
 const windowMs = 10 * 60 * 1000
 const maxRequests = 5
 const maxTrackedClients = 5000
+// Vercel Firewall enforces the shared production limit. This is a local fallback.
 const requestsByClient = new Map<string, RateLimitEntry>()
 
 function removeExpiredEntries(now: number) {

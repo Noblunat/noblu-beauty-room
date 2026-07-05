@@ -19,6 +19,10 @@ export const metadata: Metadata = {
       "Pedicure kosmetyczny, hybrydowy i SPA w Krakowie Podgórzu. Darmowy parking i wygodne zapytanie o termin online.",
     url: "https://noblu.pl/pedicure-krakow",
     siteName: "Noblu Beauty Room",
+    images: [{
+      url: "https://noblu.pl/gallery/paznokcie/pedicure-spa-img-7870.webp",
+      alt: "Pedicure SPA w Noblu Beauty Room Kraków",
+    }],
     locale: "pl_PL",
     type: "website",
   },

@@ -19,6 +19,10 @@ export const metadata: Metadata = {
       "Stylizacja rzęs 1:1, 2D i 3D w Krakowie Podgórzu. Zapytaj o termin online.",
     url: "https://noblu.pl/stylizacja-rzes-krakow",
     siteName: "Noblu Beauty Room",
+    images: [{
+      url: "https://noblu.pl/gallery/rzesy/IMG_6498.webp",
+      alt: "Stylizacja rzęs w Noblu Beauty Room Kraków",
+    }],
     locale: "pl_PL",
     type: "website",
   },

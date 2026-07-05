@@ -784,15 +784,15 @@ useEffect(() => {
       <div className="grid gap-4 text-[#1D1D1B]">
         <a href="/pedicure-krakow" className="flex items-center justify-between rounded-2xl border border-[#E8DED2] bg-white p-5 hover:border-[#D4B483] transition-colors">
           <span>Pedicure Kraków Podgórze</span>
-          <span className="text-[#B08B57]">Zobacz</span>
+          <span className="text-[#876536]">Zobacz</span>
         </a>
         <a href="/stylizacja-rzes-krakow" className="flex items-center justify-between rounded-2xl border border-[#E8DED2] bg-white p-5 hover:border-[#D4B483] transition-colors">
           <span>Stylizacja rzęs Borek Fałęcki i okolice</span>
-          <span className="text-[#B08B57]">Zobacz</span>
+          <span className="text-[#876536]">Zobacz</span>
         </a>
         <a href="/manicure-krakow" className="flex items-center justify-between rounded-2xl border border-[#E8DED2] bg-white p-5 hover:border-[#D4B483] transition-colors">
           <span>Manicure Kraków południe</span>
-          <span className="text-[#B08B57]">Zobacz</span>
+          <span className="text-[#876536]">Zobacz</span>
         </a>
       </div>
     </div>

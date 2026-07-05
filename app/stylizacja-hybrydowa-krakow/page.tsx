@@ -19,6 +19,10 @@ export const metadata: Metadata = {
       "Manicure hybrydowy i naturalne stylizacje paznokci w Krakowie Podgórzu. Zapytaj o termin online.",
     url: "https://noblu.pl/stylizacja-hybrydowa-krakow",
     siteName: "Noblu Beauty Room",
+    images: [{
+      url: "https://noblu.pl/gallery/paznokcie/IMG_6375.webp",
+      alt: "Stylizacja hybrydowa w Noblu Beauty Room Kraków",
+    }],
     locale: "pl_PL",
     type: "website",
   },

@@ -18,6 +18,10 @@ export const metadata: Metadata = {
       "Rzęsy 1:1, 2D, 3D i naturalne przedłużanie rzęs w Krakowie, blisko Borku Fałęckiego, Łagiewnik i Ruczaju.",
     url: "https://noblu.pl/przedluzanie-rzes-krakow",
     siteName: "Noblu Beauty Room",
+    images: [{
+      url: "https://noblu.pl/gallery/rzesy/IMG_9092.webp",
+      alt: "Przedłużanie rzęs w Noblu Beauty Room Kraków",
+    }],
     locale: "pl_PL",
     type: "website",
   },
