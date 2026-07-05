@@ -13,6 +13,7 @@ export function saveCookieConsent(consent: CookieConsent) {
     COOKIE_CONSENT_STORAGE_KEY,
     JSON.stringify(consent)
   );
+  document.documentElement.dataset.cookieConsent = "saved";
   window.dispatchEvent(
     new CustomEvent(COOKIE_CONSENT_CHANGE_EVENT, { detail: consent })
   );

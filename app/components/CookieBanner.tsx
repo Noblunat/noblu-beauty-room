@@ -9,7 +9,7 @@ import {
 
 const getCookieBannerVisible = () => readCookieConsent() === null;
 
-const getServerCookieBannerVisible = () => false;
+const getServerCookieBannerVisible = () => true;
 
 const subscribeToCookieConsent = (callback: () => void) => {
   window.addEventListener("storage", callback);
@@ -37,7 +37,10 @@ export default function CookieBanner() {
   }
 
   return (
-    <div className="fixed inset-x-0 bottom-0 z-[100000] px-4 pb-4 sm:px-6">
+    <div
+      data-cookie-banner
+      className="fixed inset-x-0 bottom-0 z-[100000] px-4 pb-4 sm:px-6"
+    >
       <div className="mx-auto max-w-5xl rounded-[1.5rem] border border-[#E8DED2] bg-white/95 p-5 text-[#1D1D1B] shadow-[0_20px_80px_rgba(0,0,0,0.18)] backdrop-blur-xl sm:p-6">
         <div className="grid gap-5 lg:grid-cols-[1fr_auto] lg:items-start">
           <div>

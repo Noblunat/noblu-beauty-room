@@ -1,10 +1,10 @@
 'use client'
-import { useEffect, useState } from 'react'
+import { useEffect, useMemo, useState } from 'react'
 import Script from 'next/script'
 import Image from "next/image"
 import ExternalContentConsent from "./components/ExternalContentConsent"
 
-import { motion, AnimatePresence, useMotionValue, useSpring, useScroll, useTransform } from 'framer-motion'
+import { motion, AnimatePresence, useMotionValue, useSpring, useScroll } from 'framer-motion'
 
 type GalleryItem = {
   src: string
@@ -176,20 +176,14 @@ const smoothY = useSpring(cursorY, {
   damping: 25,
 })
 
-const { scrollY, scrollYProgress } = useScroll()
-
-const heroParallaxY = useTransform(
-  scrollY,
-  [0, 600],
-  [0, 80]
-)
+const { scrollYProgress } = useScroll()
 
 const scaleX = useSpring(scrollYProgress, {
   stiffness: 100,
   damping: 30,
 })
 
-const galleryItems: GalleryItem[] = [
+const galleryItems = useMemo<GalleryItem[]>(() => [
   // Kolejność jest celowo mieszana, żeby filmy nie pojawiały się obok siebie.
   { src: "/gallery/salon/salon.mp4", type: "video", category: "Salon", poster: "/gallery/salon/salon1.webp" },
   { src: "/gallery/salon/salon4.webp", type: "image", category: "Salon" },
@@ -222,7 +216,7 @@ const galleryItems: GalleryItem[] = [
   { src: "/gallery/paznokcie/IMG_7021.webp", type: "image", category: "Paznokcie" },
   { src: "/gallery/paznokcie/IMG_7523.webp", type: "image", category: "Paznokcie" },
 
-]
+], [])
 const [visibleGalleryItems, setVisibleGalleryItems] = useState(
   galleryItems.slice(0, 6)
 )
@@ -241,7 +235,7 @@ useEffect(() => {
   }, 16000)
 
   return () => clearInterval(interval)
-}, [])
+}, [galleryItems])
 
   return (
     <div
@@ -272,9 +266,12 @@ useEffect(() => {
       >
         <div className="absolute inset-0 bg-[#D4B483]/30 blur-3xl rounded-full" />
 
-        <img
+        <Image
           src="/logo.png"
           alt="Noblu Beauty Room Kraków"
+          width={226}
+          height={226}
+          priority
           className="relative h-[14.15rem] w-[14.15rem] object-contain"
         />
       </motion.div>
@@ -303,11 +300,14 @@ useEffect(() => {
   <div className="max-w-7xl mx-auto px-6 lg:px-12 py-5 flex items-center justify-between">
 
     <div className="flex items-center gap-4">
-      <img
-  src="/logo.png"
-  alt="Noblu Beauty Room Kraków"
-  className="w-16 h-16 object-contain"
-/>
+      <Image
+        src="/logo.png"
+        alt="Noblu Beauty Room Kraków"
+        width={64}
+        height={64}
+        priority
+        className="h-16 w-16 object-contain"
+      />
 
       <div>
         <div className="text-[#1D1D1B] text-lg tracking-wide font-medium">
@@ -484,13 +484,15 @@ useEffect(() => {
     viewport={{ once: true }}
     className="rounded-[2rem] bg-white border border-[#EFE8E1] overflow-hidden shadow-[0_10px_40px_rgba(0,0,0,0.04)] group"
   >
-                <div className="h-64 overflow-hidden">
-  <img
-    src={service.image}
-    alt={service.alt}
-    className="h-full w-full object-cover transition-transform duration-700 group-hover:scale-105"
-  />
-</div>
+                <div className="relative h-64 overflow-hidden">
+                  <Image
+                    src={service.image}
+                    alt={service.alt}
+                    fill
+                    sizes="(min-width: 1280px) 25vw, (min-width: 768px) 50vw, 100vw"
+                    className="object-cover transition-transform duration-700 group-hover:scale-105"
+                  />
+                </div>
 
                 <div className="p-8">
                   <h3 className="text-2xl mb-4">{service.title}</h3>
@@ -982,11 +984,15 @@ useEffect(() => {
         className="max-h-[90vh] max-w-[90vw] rounded-[2rem] object-contain"
       />
     ) : (
-      <img
-        src={selectedMedia}
-        alt="Noblu Beauty Room Kraków"
-        className="max-h-[90vh] max-w-[90vw] rounded-[2rem] object-contain"
-      />
+      <div className="relative h-[90vh] w-[90vw]">
+        <Image
+          src={selectedMedia}
+          alt="Noblu Beauty Room Kraków"
+          fill
+          sizes="90vw"
+          className="rounded-[2rem] object-contain"
+        />
+      </div>
     )}
   </div>
 )}
@@ -1000,9 +1006,11 @@ useEffect(() => {
     <div className="grid lg:grid-cols-4 gap-16">
 
       <div>
-        <img
+        <Image
           src="/logo.png"
           alt="Noblu Beauty Room Kraków"
+          width={96}
+          height={96}
           className="w-24 h-24 object-contain mb-6"
         />
 

@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import BreadcrumbJsonLd from "../components/BreadcrumbJsonLd";
 
 const booksyUrl =
@@ -166,11 +167,13 @@ export default function PrzedluzanieRzesKrakowPage() {
             </div>
           </div>
 
-          <div className="overflow-hidden rounded-[2rem] border border-[#E8DED2] bg-white shadow-[0_20px_60px_rgba(0,0,0,0.08)]">
-            <img
+          <div className="relative min-h-[420px] overflow-hidden rounded-[2rem] border border-[#E8DED2] bg-white shadow-[0_20px_60px_rgba(0,0,0,0.08)]">
+            <Image
               src="/gallery/rzesy/IMG_9092.webp"
               alt="Przedłużanie rzęs w Noblu Beauty Room Kraków"
-              className="h-full min-h-[420px] w-full object-cover"
+              fill
+              sizes="(min-width: 1024px) 50vw, 100vw"
+              className="object-cover"
             />
           </div>
         </div>
