@@ -27,7 +27,13 @@ const salonJsonLd = {
   "@type": ["BeautySalon", "LocalBusiness"],
   "@id": `${siteUrl}/#salon`,
   name: "Noblu Beauty Room",
-  legalName: "Noblu Beauty Room",
+  legalName: "Noblu Beauty Room Natalia Mądry",
+  taxID: "6793222358",
+  identifier: {
+    "@type": "PropertyValue",
+    propertyID: "REGON",
+    value: "389813411",
+  },
   alternateName: "Noblu Beauty Room Kraków",
   description:
     "Kameralny salon beauty w Krakowie przy ul. Orzechowej 4/lok.1. Stylizacja rzęs, manicure, stylizacja paznokci i pedicure.",

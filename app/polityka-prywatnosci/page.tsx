@@ -47,7 +47,10 @@ export default function PolitykaPrywatnosciPage() {
               Administrator danych
             </h2>
             <div className="mt-5 space-y-2 leading-relaxed">
-              <p>Administratorem danych jest Noblu Beauty Room.</p>
+              <p>
+                Administratorem danych jest Noblu Beauty Room Natalia Mądry.
+              </p>
+              <p>NIP: 6793222358, REGON: 389813411.</p>
               <p>Adres salonu: Orzechowa 4/lok.1, 30-422 Kraków.</p>
               <p>
                 Kontakt:{" "}
