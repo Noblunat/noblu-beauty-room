@@ -1,3 +1,6 @@
+import { createHash } from "node:crypto"
+import { checkBookingRateLimit } from "../../lib/bookingRateLimit"
+
 type BookingRequest = {
   name?: unknown
   telephone?: unknown
@@ -26,6 +29,16 @@ function escapeHtml(value: string) {
     .replaceAll("'", "&#039;")
 }
 
+function getClientId(request: Request) {
+  const forwardedFor = request.headers.get("x-forwarded-for")
+  const clientIp =
+    forwardedFor?.split(",")[0]?.trim() ||
+    request.headers.get("x-real-ip") ||
+    "unknown"
+
+  return createHash("sha256").update(clientIp).digest("hex")
+}
+
 export async function POST(request: Request) {
   let data: BookingRequest
 
@@ -52,6 +65,24 @@ export async function POST(request: Request) {
     return Response.json(
       { error: "Uzupełnij imię, telefon, usługę i preferowany dzień." },
       { status: 400 }
+    )
+  }
+
+  const rateLimit = checkBookingRateLimit(getClientId(request))
+
+  if (!rateLimit.allowed) {
+    return Response.json(
+      {
+        error:
+          "Wysłano zbyt wiele próśb o termin. Spróbuj ponownie za kilka minut.",
+      },
+      {
+        status: 429,
+        headers: {
+          "Cache-Control": "no-store",
+          "Retry-After": String(rateLimit.retryAfterSeconds),
+        },
+      }
     )
   }
 
