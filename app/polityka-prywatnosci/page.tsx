@@ -190,7 +190,9 @@ export default function PolitykaPrywatnosciPage() {
               oraz zapamiętania wyboru użytkownika dotyczącego cookies.
               Opcjonalne technologie analityczne i marketingowe uruchamiane są
               dopiero po udzieleniu odpowiedniej zgody. Odmowa nie wpływa na
-              możliwość wysłania formularza.
+              możliwość wysłania formularza. Mapa Google oraz treści z
+              Instagrama i Elfsight są ładowane dopiero po osobnym włączeniu
+              treści zewnętrznych.
             </p>
           </section>
 

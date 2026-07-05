@@ -5,7 +5,18 @@ export type CookieConsent = {
   necessary: true;
   analytics: boolean;
   marketing: boolean;
+  external: boolean;
 };
+
+export function saveCookieConsent(consent: CookieConsent) {
+  window.localStorage.setItem(
+    COOKIE_CONSENT_STORAGE_KEY,
+    JSON.stringify(consent)
+  );
+  window.dispatchEvent(
+    new CustomEvent(COOKIE_CONSENT_CHANGE_EVENT, { detail: consent })
+  );
+}
 
 export function readCookieConsent(): CookieConsent | null {
   const storedConsent = window.localStorage.getItem(
@@ -22,12 +33,19 @@ export function readCookieConsent(): CookieConsent | null {
     if (
       consent.necessary !== true ||
       typeof consent.analytics !== "boolean" ||
-      typeof consent.marketing !== "boolean"
+      typeof consent.marketing !== "boolean" ||
+      (consent.external !== undefined &&
+        typeof consent.external !== "boolean")
     ) {
       return null;
     }
 
-    return consent as CookieConsent;
+    return {
+      necessary: true,
+      analytics: consent.analytics,
+      marketing: consent.marketing,
+      external: consent.external ?? consent.marketing,
+    };
   } catch {
     return null;
   }

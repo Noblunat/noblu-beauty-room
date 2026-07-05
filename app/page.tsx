@@ -2,6 +2,7 @@
 import { useEffect, useState } from 'react'
 import Script from 'next/script'
 import Image from "next/image"
+import ExternalContentConsent from "./components/ExternalContentConsent"
 
 import { motion, AnimatePresence, useMotionValue, useSpring, useScroll, useTransform } from 'framer-motion'
 
@@ -821,14 +822,25 @@ useEffect(() => {
       </a>
     </div>
 
-    <div className="overflow-x-auto overflow-y-hidden pb-4 scrollbar-hide">
-  <div className="min-w-[1400px] rounded-[2rem] overflow-hidden">
-    <div
-  className="elfsight-app-3c7474f5-b323-4f42-a3d9-adffc9a0e6c8"
-  data-elfsight-app-lazy
-></div>
-  </div>
-</div>
+    <ExternalContentConsent
+      title="Zdjęcia z Instagrama"
+      description="Aby wyświetlić najnowsze zdjęcia, włącz treści zewnętrzne dostarczane przez Instagram i Elfsight."
+      buttonLabel="Włącz Instagram"
+      className="rounded-[2rem] border border-[#EFE8E1]"
+    >
+      <div className="overflow-x-auto overflow-y-hidden pb-4 scrollbar-hide">
+        <div className="min-w-[1400px] rounded-[2rem] overflow-hidden">
+          <div
+            className="elfsight-app-3c7474f5-b323-4f42-a3d9-adffc9a0e6c8"
+            data-elfsight-app-lazy
+          />
+        </div>
+      </div>
+      <Script
+        src="https://elfsightcdn.com/platform.js"
+        strategy="afterInteractive"
+      />
+    </ExternalContentConsent>
 
   </div>
 </section>
@@ -914,18 +926,25 @@ useEffect(() => {
             </div>
           </div>
 
-                   <div className="rounded-[2rem] overflow-hidden border border-[#EFE8E1] h-[500px] shadow-[0_20px_60px_rgba(0,0,0,0.08)]">
-            <iframe
-              title="Mapa dojazdu Noblu Beauty Room"
-              src="https://maps.google.com/maps?q=Noblu%20Beauty%20Room%20Krak%C3%B3w&t=&z=17&ie=UTF8&iwloc=&output=embed"
-              width="100%"
-              height="100%"
-              style={{ border: 0 }}
-              allowFullScreen
-              loading="lazy"
-referrerPolicy="no-referrer-when-downgrade"
-/>
-</div>
+          <div className="h-[500px] overflow-hidden rounded-[2rem] border border-[#EFE8E1] shadow-[0_20px_60px_rgba(0,0,0,0.08)]">
+            <ExternalContentConsent
+              title="Mapa dojazdu"
+              description="Aby wyświetlić mapę salonu, włącz treści zewnętrzne dostarczane przez Google Maps."
+              buttonLabel="Włącz mapę"
+              className="h-full"
+            >
+              <iframe
+                title="Mapa dojazdu Noblu Beauty Room"
+                src="https://maps.google.com/maps?q=Noblu%20Beauty%20Room%20Krak%C3%B3w&t=&z=17&ie=UTF8&iwloc=&output=embed"
+                width="100%"
+                height="100%"
+                style={{ border: 0 }}
+                allowFullScreen
+                loading="lazy"
+                referrerPolicy="no-referrer-when-downgrade"
+              />
+            </ExternalContentConsent>
+          </div>
 </div>
 </section>
 
@@ -1116,11 +1135,6 @@ referrerPolicy="no-referrer-when-downgrade"
 
   </div>
 </footer>
-
-<Script
-  src="https://elfsightcdn.com/platform.js"
-  strategy="afterInteractive"
-/>
 
 </div>
 )

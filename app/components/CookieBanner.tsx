@@ -3,9 +3,8 @@
 import { useState, useSyncExternalStore } from "react";
 import {
   COOKIE_CONSENT_CHANGE_EVENT,
-  COOKIE_CONSENT_STORAGE_KEY,
-  type CookieConsent,
   readCookieConsent,
+  saveCookieConsent,
 } from "../lib/cookieConsent";
 
 const getCookieBannerVisible = () => readCookieConsent() === null;
@@ -31,16 +30,7 @@ export default function CookieBanner() {
   const [settingsOpen, setSettingsOpen] = useState(false);
   const [analytics, setAnalytics] = useState(false);
   const [marketing, setMarketing] = useState(false);
-
-  const saveConsent = (consent: CookieConsent) => {
-    window.localStorage.setItem(
-      COOKIE_CONSENT_STORAGE_KEY,
-      JSON.stringify(consent)
-    );
-    window.dispatchEvent(
-      new CustomEvent(COOKIE_CONSENT_CHANGE_EVENT, { detail: consent })
-    );
-  };
+  const [external, setExternal] = useState(false);
 
   if (!visible) {
     return null;
@@ -54,8 +44,9 @@ export default function CookieBanner() {
             <h2 className="text-xl font-medium">Pliki cookies</h2>
             <p className="mt-3 text-sm leading-relaxed text-[#5F5B56]">
               Noblu Beauty Room korzysta z plików cookies i podobnych
-              technologii, aby strona działała prawidłowo oraz aby wyświetlać
-              treści zewnętrzne, takie jak mapa Google i Instagram. Możesz
+              technologii, aby strona działała prawidłowo, mierzyć jej użycie
+              oraz wyświetlać treści zewnętrzne, takie jak mapa Google i
+              Instagram. Możesz
               zaakceptować wszystkie zgody, odrzucić opcjonalne cookies albo
               dostosować ustawienia.
             </p>
@@ -100,17 +91,33 @@ export default function CookieBanner() {
                 <label className="flex items-start justify-between gap-4">
                   <span>
                     <span className="block font-medium">
-                      Marketing i treści zewnętrzne
+                      Marketing
                     </span>
                     <span className="block text-sm text-[#6D6B68]">
-                      Dotyczy osadzonych treści, map i materiałów z serwisów
-                      zewnętrznych.
+                      Służy do pomiaru działań reklamowych Google Ads.
                     </span>
                   </span>
                   <input
                     type="checkbox"
                     checked={marketing}
                     onChange={(event) => setMarketing(event.target.checked)}
+                    className="mt-1"
+                  />
+                </label>
+
+                <label className="flex items-start justify-between gap-4">
+                  <span>
+                    <span className="block font-medium">
+                      Treści zewnętrzne
+                    </span>
+                    <span className="block text-sm text-[#6D6B68]">
+                      Pozwala wyświetlić mapę Google i zdjęcia z Instagrama.
+                    </span>
+                  </span>
+                  <input
+                    type="checkbox"
+                    checked={external}
+                    onChange={(event) => setExternal(event.target.checked)}
                     className="mt-1"
                   />
                 </label>
@@ -122,10 +129,11 @@ export default function CookieBanner() {
             <button
               type="button"
               onClick={() =>
-                saveConsent({
+                saveCookieConsent({
                   necessary: true,
                   analytics: true,
                   marketing: true,
+                  external: true,
                 })
               }
               className="rounded-full bg-[#D4B483] px-5 py-3 text-sm font-medium text-black transition-transform hover:scale-[1.02]"
@@ -135,10 +143,11 @@ export default function CookieBanner() {
             <button
               type="button"
               onClick={() =>
-                saveConsent({
+                saveCookieConsent({
                   necessary: true,
                   analytics: false,
                   marketing: false,
+                  external: false,
                 })
               }
               className="rounded-full border border-[#E8DED2] px-5 py-3 text-sm font-medium transition-colors hover:border-[#D4B483]"
@@ -149,10 +158,11 @@ export default function CookieBanner() {
               <button
                 type="button"
                 onClick={() =>
-                  saveConsent({
+                  saveCookieConsent({
                     necessary: true,
                     analytics,
                     marketing,
+                    external,
                   })
                 }
                 className="rounded-full border border-[#E8DED2] px-5 py-3 text-sm font-medium transition-colors hover:border-[#D4B483]"
