@@ -7,16 +7,16 @@ const booksyUrl =
   "https://booksy.com/pl-pl/105150_noblu-beauty-room_paznokcie_8820_krakow";
 
 export const metadata: Metadata = {
-  title: "Manicure Kraków Podgórze | Hybryda i paznokcie | Noblu",
+  title: "Manicure Kraków Borek Fałęcki | Hybryda i paznokcie | Noblu",
   description:
-    "Manicure i paznokcie hybrydowe w Krakowie Podgórzu. Noblu Beauty Room, ul. Orzechowa 4. Darmowy parking i zapytanie o termin online.",
+    "Manicure i paznokcie hybrydowe w Krakowie, Borek Fałęcki. Noblu Beauty Room przy ul. Orzechowej 4. Darmowy parking i zapytanie o termin online.",
   alternates: {
     canonical: "https://noblu.pl/manicure-krakow",
   },
   openGraph: {
-    title: "Manicure Kraków Podgórze | Hybryda i paznokcie | Noblu",
+    title: "Manicure Kraków Borek Fałęcki | Hybryda i paznokcie | Noblu",
     description:
-      "Manicure, paznokcie hybrydowe i stylizacja paznokci w Krakowie Podgórzu. Zapytaj o termin online.",
+      "Manicure, paznokcie hybrydowe i stylizacja paznokci w Krakowie, Borek Fałęcki. Zapytaj o termin online.",
     url: "https://noblu.pl/manicure-krakow",
     siteName: "Noblu Beauty Room",
     images: [{
@@ -31,7 +31,7 @@ export const metadata: Metadata = {
 const faq = [
   {
     q: "Gdzie znajduje się salon Noblu Beauty Room?",
-    a: "Salon znajduje się przy ul. Orzechowej 4/lok.1 w Krakowie, w wygodnej lokalizacji dla klientek z Podgórza, Łagiewnik, Borku Fałęckiego, Ruczaju i Kurdwanowa.",
+    a: "Salon znajduje się przy ul. Orzechowej 4/lok.1 w Krakowie, na Borku Fałęckim. To wygodna lokalizacja także dla klientek z Łagiewnik, Ruczaju, Kurdwanowa, Swoszowic i Podgórza.",
   },
   {
     q: "Czy można zarezerwować manicure online?",
@@ -92,14 +92,15 @@ export default function ManicureKrakowPage() {
 
           <h1 className="text-4xl sm:text-5xl lg:text-7xl font-light leading-tight">
             Manicure Kraków
-            <span className="block text-[#D4B483]">Podgórze</span>
+            <span className="block text-[#D4B483]">Borek Fałęcki</span>
           </h1>
 
           <p className="mt-10 text-lg text-[#6D6B68] leading-relaxed max-w-3xl">
-            Noblu Beauty Room to kameralny salon manicure w Krakowie Podgórzu,
-            oferujący manicure, stylizację paznokci i manicure hybrydowy.
-            Pracujemy z dbałością o estetykę, higienę i naturalny efekt. Salon
-            znajduje się przy ul. Orzechowej 4, z darmowym parkingiem.
+            Noblu Beauty Room to kameralny salon manicure w Krakowie, na Borku
+            Fałęckim, oferujący manicure, stylizację paznokci i manicure
+            hybrydowy. Pracujemy z dbałością o estetykę, higienę i naturalny
+            efekt. Salon znajduje się przy ul. Orzechowej 4, z darmowym
+            parkingiem.
           </p>
 
           <div className="mt-12">
@@ -136,13 +137,13 @@ export default function ManicureKrakowPage() {
 
           <div>
             <h2 className="text-3xl lg:text-4xl font-light text-[#1D1D1B] mb-6">
-              Dogodny dojazd: Podgórze, Łagiewniki, Ruczaj i okolice
+              Manicure na Borku Fałęckim — dobry dojazd z południa Krakowa
             </h2>
             <p>
               Salon znajduje się przy ul. Orzechowej 4/lok.1 w Krakowie. To
-              wygodna lokalizacja dla klientek z południa miasta: Podgórza,
-              Podgórza Duchackiego, Łagiewnik, Borku Fałęckiego, Ruczaju,
-              Kurdwanowa, Woli Duchackiej i Swoszowic.
+              wygodna lokalizacja na Borku Fałęckim dla klientek z Łagiewnik,
+              Ruczaju, Kurdwanowa, Swoszowic, Woli Duchackiej oraz osób
+              dojeżdżających z Podgórza.
             </p>
           </div>
 

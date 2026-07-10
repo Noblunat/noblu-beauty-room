@@ -598,9 +598,10 @@ useEffect(() => {
 
   <p>
     Salon znajduje się w wygodnej lokalizacji dla klientek z południa Krakowa:
-    Podgórza, Łagiewnik, Borku Fałęckiego, Ruczaju i Kurdwanowa. Każdy zabieg
-    wykonujemy z dbałością o higienę, komfort oraz naturalny, elegancki efekt.
-    Pod salonem dostępny jest darmowy parking dla klientek.
+    na Borku Fałęckim, blisko Łagiewnik, Ruczaju, Kurdwanowa i z dobrym
+    dojazdem z Podgórza. Każdy zabieg wykonujemy z dbałością o higienę, komfort
+    oraz naturalny, elegancki efekt. Pod salonem dostępny jest darmowy parking
+    dla klientek.
   </p>
 
   <p>
@@ -783,7 +784,7 @@ useEffect(() => {
 
       <div className="grid gap-4 text-[#1D1D1B]">
         <a href="/pedicure-krakow" className="flex items-center justify-between rounded-2xl border border-[#E8DED2] bg-white p-5 hover:border-[#D4B483] transition-colors">
-          <span>Pedicure Kraków Podgórze</span>
+          <span>Pedicure Kraków Borek Fałęcki</span>
           <span className="text-[#876536]">Zobacz</span>
         </a>
         <a href="/stylizacja-rzes-krakow" className="flex items-center justify-between rounded-2xl border border-[#E8DED2] bg-white p-5 hover:border-[#D4B483] transition-colors">
@@ -1057,7 +1058,7 @@ useEffect(() => {
             href="/pedicure-krakow"
             className="block hover:text-[#D4B483] transition-colors"
           >
-            Pedicure Kraków Podgórze
+            Pedicure Kraków Borek Fałęcki
           </a>
 
         </div>

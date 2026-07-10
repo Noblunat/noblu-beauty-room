@@ -9,14 +9,14 @@ const booksyUrl =
 export const metadata: Metadata = {
   title: "Manicure hybrydowy Kraków | Stylizacja hybrydowa | Noblu",
   description:
-    "Manicure i stylizacja hybrydowa w Krakowie Podgórzu. Naturalne paznokcie, ul. Orzechowa 4. Darmowy parking i zapytanie o termin online.",
+    "Manicure i stylizacja hybrydowa w Krakowie, Borek Fałęcki. Naturalne paznokcie, ul. Orzechowa 4. Darmowy parking i zapytanie o termin online.",
   alternates: {
     canonical: "https://noblu.pl/stylizacja-hybrydowa-krakow",
   },
   openGraph: {
     title: "Manicure hybrydowy Kraków | Stylizacja hybrydowa | Noblu",
     description:
-      "Manicure hybrydowy i naturalne stylizacje paznokci w Krakowie Podgórzu. Zapytaj o termin online.",
+      "Manicure hybrydowy i naturalne stylizacje paznokci w Krakowie, Borek Fałęcki. Zapytaj o termin online.",
     url: "https://noblu.pl/stylizacja-hybrydowa-krakow",
     siteName: "Noblu Beauty Room",
     images: [{
@@ -35,7 +35,7 @@ const faq = [
   },
   {
     q: "Gdzie wykonać paznokcie hybrydowe w Krakowie?",
-    a: "Noblu Beauty Room znajduje się przy ul. Orzechowej 4/lok.1 w Krakowie, blisko Podgórza, Łagiewnik, Ruczaju i Kurdwanowa.",
+    a: "Noblu Beauty Room znajduje się przy ul. Orzechowej 4/lok.1 w Krakowie, na Borku Fałęckim. To wygodne miejsce także dla osób z Łagiewnik, Ruczaju, Kurdwanowa, Swoszowic i Podgórza.",
   },
   {
     q: "Czy można zarezerwować wizytę przez Booksy?",
@@ -133,13 +133,13 @@ export default function StylizacjaHybrydowaKrakowPage() {
 
           <div>
             <h2 className="text-3xl lg:text-4xl font-light text-[#1D1D1B] mb-6">
-              Lokalizacja salonu
+              Stylizacja hybrydowa na Borku Fałęckim
             </h2>
             <p>
-              Salon mieści się przy ul. Orzechowej 4/lok.1 w Krakowie. To
-              wygodny adres dla osób z Podgórza, Podgórza Duchackiego,
-              Łagiewnik, Borku Fałęckiego, Ruczaju, Kurdwanowa, Woli Duchackiej
-              i Swoszowic.
+              Salon mieści się przy ul. Orzechowej 4/lok.1 w Krakowie, na
+              Borku Fałęckim. To wygodny adres dla osób z Łagiewnik, Ruczaju,
+              Kurdwanowa, Swoszowic, Woli Duchackiej oraz dojeżdżających z
+              Podgórza.
             </p>
           </div>
 

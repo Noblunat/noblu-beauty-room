@@ -234,7 +234,7 @@ export default function CennikPage() {
               title="Pedicure"
               items={pedicurePrices}
               links={[
-                { href: "/pedicure-krakow", label: "Pedicure Kraków Podgórze" },
+                { href: "/pedicure-krakow", label: "Pedicure Kraków Borek Fałęcki" },
               ]}
             />
           </div>

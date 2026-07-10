@@ -9,14 +9,14 @@ const booksyUrl =
 export const metadata: Metadata = {
   title: "Stylizacja rzęs Kraków | Rzęsy 1:1, 2D i 3D | Noblu",
   description:
-    "Stylizacja rzęs 1:1, 2D i 3D w Krakowie Podgórzu. Noblu Beauty Room, ul. Orzechowa 4. Darmowy parking i zapytanie o termin online.",
+    "Stylizacja rzęs 1:1, 2D i 3D w Krakowie, Borek Fałęcki. Noblu Beauty Room przy ul. Orzechowej 4. Darmowy parking i zapytanie o termin online.",
   alternates: {
     canonical: "https://noblu.pl/stylizacja-rzes-krakow",
   },
   openGraph: {
     title: "Stylizacja rzęs Kraków | Rzęsy 1:1, 2D i 3D | Noblu",
     description:
-      "Stylizacja rzęs 1:1, 2D i 3D w Krakowie Podgórzu. Zapytaj o termin online.",
+      "Stylizacja rzęs 1:1, 2D i 3D w Krakowie, Borek Fałęcki. Zapytaj o termin online.",
     url: "https://noblu.pl/stylizacja-rzes-krakow",
     siteName: "Noblu Beauty Room",
     images: [{
@@ -35,7 +35,7 @@ const faq = [
   },
   {
     q: "Gdzie znajduje się salon stylizacji rzęs?",
-    a: "Noblu Beauty Room znajduje się przy ul. Orzechowej 4/lok.1 w Krakowie, w dogodnej lokalizacji dla klientek z Podgórza, Łagiewnik, Ruczaju i Kurdwanowa.",
+    a: "Noblu Beauty Room znajduje się przy ul. Orzechowej 4/lok.1 w Krakowie, na Borku Fałęckim. To dogodna lokalizacja także dla klientek z Łagiewnik, Ruczaju, Kurdwanowa, Swoszowic i Podgórza.",
   },
   {
     q: "Czy wizytę na rzęsy można zarezerwować online?",
@@ -96,14 +96,15 @@ export default function StylizacjaRzesKrakowPage() {
 
           <h1 className="text-4xl sm:text-5xl lg:text-7xl font-light leading-tight">
             Stylizacja rzęs
-            <span className="block text-[#D4B483]">Kraków Podgórze</span>
+            <span className="block text-[#D4B483]">Kraków Borek Fałęcki</span>
           </h1>
 
           <p className="mt-10 text-lg text-[#6D6B68] leading-relaxed max-w-3xl">
-            Noblu Beauty Room oferuje stylizację rzęs w Krakowie Podgórzu dla
-            kobiet, które cenią elegancki, dopracowany i naturalny efekt.
-            Stylizację dobieramy do urody, kształtu oka i oczekiwanego rezultatu.
-            Salon znajduje się przy ul. Orzechowej 4, z darmowym parkingiem.
+            Noblu Beauty Room oferuje stylizację rzęs w Krakowie, na Borku
+            Fałęckim, dla kobiet, które cenią elegancki, dopracowany i naturalny
+            efekt. Stylizację dobieramy do urody, kształtu oka i oczekiwanego
+            rezultatu. Salon znajduje się przy ul. Orzechowej 4, z darmowym
+            parkingiem.
           </p>
 
           <div className="mt-12">
@@ -142,9 +143,10 @@ export default function StylizacjaRzesKrakowPage() {
               Salon rzęs w południowej części Krakowa
             </h2>
             <p>
-              Salon znajduje się przy ul. Orzechowej 4/lok.1. To wygodny wybór
-              dla klientek z Podgórza, Podgórza Duchackiego, Łagiewnik, Borku
-              Fałęckiego, Ruczaju, Kurdwanowa, Woli Duchackiej i Swoszowic.
+              Salon znajduje się przy ul. Orzechowej 4/lok.1, na Borku
+              Fałęckim. To wygodny wybór dla klientek z Łagiewnik, Ruczaju,
+              Kurdwanowa, Swoszowic, Woli Duchackiej oraz osób dojeżdżających z
+              Podgórza.
             </p>
           </div>
 
