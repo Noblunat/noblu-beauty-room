@@ -7,16 +7,16 @@ const booksyUrl =
   "https://booksy.com/pl-pl/105150_noblu-beauty-room_paznokcie_8820_krakow";
 
 export const metadata: Metadata = {
-  title: "Pedicure Kraków Podgórze | Kosmetyczny i hybrydowy | Noblu",
+  title: "Pedicure Kraków Borek Fałęcki | Kosmetyczny i hybrydowy | Noblu",
   description:
-    "Pedicure kosmetyczny i hybrydowy w Krakowie Podgórzu. Noblu Beauty Room, ul. Orzechowa 4. Darmowy parking i zapytanie o termin online.",
+    "Pedicure kosmetyczny i hybrydowy w Krakowie, Borek Fałęcki. Noblu Beauty Room przy ul. Orzechowej 4 — wygodny dojazd z Łagiewnik, Ruczaju i Podgórza.",
   alternates: {
     canonical: "https://noblu.pl/pedicure-krakow",
   },
   openGraph: {
-    title: "Pedicure Kraków Podgórze | Kosmetyczny i hybrydowy | Noblu",
+    title: "Pedicure Kraków Borek Fałęcki | Kosmetyczny i hybrydowy | Noblu",
     description:
-      "Pedicure kosmetyczny, hybrydowy i SPA w Krakowie Podgórzu. Darmowy parking i wygodne zapytanie o termin online.",
+      "Pedicure kosmetyczny, hybrydowy i SPA w Noblu Beauty Room w Krakowie, Borek Fałęcki.",
     url: "https://noblu.pl/pedicure-krakow",
     siteName: "Noblu Beauty Room",
     images: [{
@@ -30,8 +30,8 @@ export const metadata: Metadata = {
 
 const faq = [
   {
-    q: "Gdzie wykonać pedicure w Krakowie?",
-    a: "Pedicure w Noblu Beauty Room wykonasz przy ul. Orzechowej 4/lok.1 w Krakowie, w wygodnej lokalizacji dla południowych dzielnic miasta.",
+    q: "Gdzie wykonać pedicure w Krakowie, Borek Fałęcki?",
+    a: "Pedicure w Noblu Beauty Room wykonasz przy ul. Orzechowej 4/lok.1 w Krakowie, na Borku Fałęckim. To wygodna lokalizacja także dla osób z Łagiewnik, Ruczaju, Kurdwanowa, Swoszowic i Podgórza.",
   },
   {
     q: "Czy salon wykonuje pedicure hybrydowy?",
@@ -59,8 +59,8 @@ export default function PedicureKrakowPage() {
         ]}
       />
       <ServiceJsonLd
-        name="Pedicure Kraków Podgórze"
-        description="Pedicure kosmetyczny, pedicure hybrydowy i estetyczna pielęgnacja stóp w Noblu Beauty Room w Krakowie."
+        name="Pedicure Kraków Borek Fałęcki"
+        description="Pedicure kosmetyczny, pedicure hybrydowy i estetyczna pielęgnacja stóp w Noblu Beauty Room w Krakowie, na Borku Fałęckim."
         serviceType="Pedicure"
         url="https://noblu.pl/pedicure-krakow"
         offers={[
@@ -92,19 +92,19 @@ export default function PedicureKrakowPage() {
       <section className="pt-40 pb-20 px-6 lg:px-12">
         <div className="max-w-5xl mx-auto">
           <div className="text-sm uppercase tracking-[0.3em] text-[#D4B483] mb-6">
-            Pedicure Kraków
+            Pedicure Kraków Borek Fałęcki
           </div>
 
           <h1 className="text-4xl sm:text-5xl lg:text-7xl font-light leading-tight">
             Pedicure Kraków
-            <span className="block text-[#D4B483]">Podgórze</span>
+            <span className="block text-[#D4B483]">Borek Fałęcki</span>
           </h1>
 
           <p className="mt-10 text-lg text-[#6D6B68] leading-relaxed max-w-3xl">
             Noblu Beauty Room oferuje pedicure kosmetyczny i hybrydowy w
-            Krakowie Podgórzu dla kobiet, które cenią estetykę, komfort i
-            dokładne wykończenie. Salon znajduje się przy ul. Orzechowej 4,
-            a pod budynkiem dostępny jest darmowy parking.
+            Krakowie, na Borku Fałęckim, dla kobiet, które cenią estetykę,
+            komfort i dokładne wykończenie. Salon znajduje się przy ul.
+            Orzechowej 4, a pod budynkiem dostępny jest darmowy parking.
           </p>
 
           <div className="mt-12">
@@ -138,13 +138,13 @@ export default function PedicureKrakowPage() {
 
           <div>
             <h2 className="text-3xl lg:text-4xl font-light text-[#1D1D1B] mb-6">
-              Pedicure Kraków Podgórze i okolice
+              Pedicure na Borku Fałęckim — dobry dojazd z południa Krakowa
             </h2>
             <p>
-              Salon znajduje się przy ul. Orzechowej 4/lok.1 w Krakowie. To
-              dogodna lokalizacja dla klientek z Podgórza, Podgórza Duchackiego,
-              Łagiewnik, Borku Fałęckiego, Ruczaju, Kurdwanowa, Woli Duchackiej
-              i Swoszowic.
+              Salon znajduje się przy ul. Orzechowej 4/lok.1 w Krakowie, na
+              Borku Fałęckim. To dogodna lokalizacja dla klientek z Łagiewnik,
+              Ruczaju, Kurdwanowa, Swoszowic, Woli Duchackiej oraz osób
+              dojeżdżających z Podgórza.
             </p>
           </div>
 
