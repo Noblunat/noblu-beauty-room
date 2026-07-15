@@ -3,9 +3,6 @@ import Link from "next/link";
 import BreadcrumbJsonLd from "../components/BreadcrumbJsonLd";
 import ServiceJsonLd from "../components/ServiceJsonLd";
 
-const booksyUrl =
-  "https://booksy.com/pl-pl/105150_noblu-beauty-room_paznokcie_8820_krakow";
-
 export const metadata: Metadata = {
   title: "Stylizacja rzęs Kraków | Rzęsy 1:1, 2D i 3D | Noblu",
   description:
@@ -39,7 +36,7 @@ const faq = [
   },
   {
     q: "Czy wizytę na rzęsy można zarezerwować online?",
-    a: "Tak. Możesz wysłać prośbę o termin przez formularz Noblu, a salon potwierdzi dostępność SMS-em lub telefonicznie. Booksy pozostaje dodatkową opcją.",
+    a: "Tak. Możesz wysłać prośbę o termin przez formularz Noblu, a salon potwierdzi dostępność SMS-em lub telefonicznie.",
   },
   {
     q: "Czy rzęsy jedwabne to przedłużanie rzęs?",
@@ -109,9 +106,7 @@ export default function StylizacjaRzesKrakowPage() {
 
           <div className="mt-12">
             <a
-              href={booksyUrl}
-              target="_blank"
-              rel="noopener noreferrer"
+              href="/rezerwacja"
               className="inline-flex items-center justify-center px-10 py-5 rounded-full bg-[#D4B483] text-black font-medium hover:scale-105 transition-transform shadow-[0_10px_30px_rgba(212,180,131,0.25)]"
             >
               Zarezerwuj stylizację rzęs
@@ -183,14 +178,12 @@ export default function StylizacjaRzesKrakowPage() {
               lekkie objętości dopasowane do Twojego oka.
             </p>
             <div className="mt-8 flex flex-wrap gap-4">
-              <a
-                href={booksyUrl}
-                target="_blank"
-                rel="noopener noreferrer"
+              <Link
+                href="/rezerwacja"
                 className="inline-flex items-center justify-center px-8 py-4 rounded-full bg-[#D4B483] text-black font-medium hover:scale-105 transition-transform"
               >
-                Zarezerwuj przez Booksy
-              </a>
+                Zapytaj o termin
+              </Link>
               <Link
                 href="/"
                 className="inline-flex items-center justify-center px-8 py-4 rounded-full border border-[#E8DED2] text-[#1D1D1B] hover:border-[#D4B483] transition-colors"

@@ -3,9 +3,6 @@ import Link from "next/link";
 import BreadcrumbJsonLd from "../components/BreadcrumbJsonLd";
 import ServiceJsonLd from "../components/ServiceJsonLd";
 
-const booksyUrl =
-  "https://booksy.com/pl-pl/105150_noblu-beauty-room_paznokcie_8820_krakow";
-
 export const metadata: Metadata = {
   title: "Manicure hybrydowy Kraków | Stylizacja hybrydowa | Noblu",
   description:
@@ -38,8 +35,8 @@ const faq = [
     a: "Noblu Beauty Room znajduje się przy ul. Orzechowej 4/lok.1 w Krakowie, na Borku Fałęckim. To wygodne miejsce także dla osób z Łagiewnik, Ruczaju, Kurdwanowa, Swoszowic i Podgórza.",
   },
   {
-    q: "Czy można zarezerwować wizytę przez Booksy?",
-    a: "Tak, rezerwacja stylizacji hybrydowej odbywa się online przez Booksy.",
+    q: "Czy można zarezerwować wizytę online?",
+    a: "Tak, prośbę o termin stylizacji hybrydowej możesz wysłać przez formularz Noblu. Salon potwierdzi dostępność SMS-em lub telefonicznie.",
   },
 ];
 
@@ -106,9 +103,7 @@ export default function StylizacjaHybrydowaKrakowPage() {
 
           <div className="mt-12">
             <a
-              href={booksyUrl}
-              target="_blank"
-              rel="noopener noreferrer"
+              href="/rezerwacja"
               className="inline-flex items-center justify-center px-10 py-5 rounded-full bg-[#D4B483] text-black font-medium hover:scale-105 transition-transform shadow-[0_10px_30px_rgba(212,180,131,0.25)]"
             >
               Zarezerwuj stylizację
@@ -176,14 +171,12 @@ export default function StylizacjaHybrydowaKrakowPage() {
               do Twoich dłoni, stylu i oczekiwanego efektu.
             </p>
             <div className="mt-8 flex flex-wrap gap-4">
-              <a
-                href={booksyUrl}
-                target="_blank"
-                rel="noopener noreferrer"
+              <Link
+                href="/rezerwacja"
                 className="inline-flex items-center justify-center px-8 py-4 rounded-full bg-[#D4B483] text-black font-medium hover:scale-105 transition-transform"
               >
-                Zarezerwuj przez Booksy
-              </a>
+                Zapytaj o termin
+              </Link>
               <Link
                 href="/"
                 className="inline-flex items-center justify-center px-8 py-4 rounded-full border border-[#E8DED2] text-[#1D1D1B] hover:border-[#D4B483] transition-colors"

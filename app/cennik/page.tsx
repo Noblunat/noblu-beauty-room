@@ -2,9 +2,6 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import BreadcrumbJsonLd from "../components/BreadcrumbJsonLd";
 
-const booksyUrl =
-  "https://booksy.com/pl-pl/105150_noblu-beauty-room_paznokcie_8820_krakow";
-
 export const metadata: Metadata = {
   title: "Cennik | Noblu Beauty Room Kraków",
   description:
@@ -246,7 +243,7 @@ export default function CennikPage() {
           </h2>
           <p className="mx-auto mt-4 max-w-2xl leading-relaxed text-[#5F5B56]">
             Wybierz usługę i wyślij prośbę o termin przez formularz Noblu.
-            Booksy pozostaje dodatkową opcją rezerwacji.
+            Salon potwierdzi dostępność SMS-em lub telefonicznie.
           </p>
           <div className="mt-8 flex flex-wrap justify-center gap-4">
             <Link
@@ -255,14 +252,6 @@ export default function CennikPage() {
             >
               Zapytaj o termin
             </Link>
-            <a
-              href={booksyUrl}
-              target="_blank"
-              rel="noopener noreferrer"
-              className="inline-flex items-center justify-center rounded-full border border-[#E8DED2] px-8 py-4 font-medium transition-colors hover:border-[#D4B483]"
-            >
-              Zarezerwuj przez Booksy
-            </a>
           </div>
         </div>
       </section>

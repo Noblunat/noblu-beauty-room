@@ -314,8 +314,8 @@ export default function BookingPageClient() {
                 <div className="p-5 sm:p-8">
                   <div className="grid grid-cols-3 gap-3">
                     {[
-                      { value: "5.0", label: "Ocena klientek z Booksy" },
-                      { value: "24/7", label: "Booksy online" },
+                      { value: "5.0", label: "Ocena klientek" },
+                      { value: "24/7", label: "Formularz online" },
                       { value: "Darmowy", label: "parking pod salonem" },
                     ].map((item) => (
                       <div

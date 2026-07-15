@@ -20,7 +20,7 @@ const faqItems = [
   },
   {
     q: "Czy można zarezerwować wizytę online?",
-    a: "Tak, rezerwacja wizyt odbywa się online przez Booksy 24/7.",
+    a: "Tak, prośbę o termin możesz wysłać online przez formularz Noblu 24/7. Salon potwierdza dostępność SMS-em lub telefonicznie.",
   },
   {
     q: "Jakie usługi oferuje salon?",
@@ -101,7 +101,7 @@ export default function NobluBeautyRoomWebsite() {
     },
     {
       title: "Rezerwacja online 24/7",
-      text: "Termin na manicure, pedicure lub stylizację rzęs możesz wybrać wygodnie przez Booksy, bez dzwonienia i czekania na odpowiedź.",
+      text: "Termin na manicure, pedicure lub stylizację rzęs możesz zgłosić wygodnie przez formularz Noblu, bez dzwonienia i czekania na odpowiedź.",
     },
     {
       title: "Kameralna atmosfera",
@@ -155,7 +155,7 @@ export default function NobluBeautyRoomWebsite() {
   },
   {
     name: "Justyna",
-    text: "Jestem zachwycona efektem. Paznokcie wyglądają przepięknie, wszystko wykonane bardzo starannie i z ogromnym wyczuciem estetyki. Rezerwacja przez Booksy szybka i wygodna.",
+    text: "Jestem zachwycona efektem. Paznokcie wyglądają przepięknie, wszystko wykonane bardzo starannie i z ogromnym wyczuciem estetyki. Kontakt z salonem szybki i wygodny.",
   },
   {
     name: "Iwona",
@@ -321,9 +321,7 @@ useEffect(() => {
     </div>
 
     <a
-  href="https://booksy.com/pl-pl/105150_noblu-beauty-room_paznokcie_8820_krakow"
-  target="_blank"
-  rel="noopener noreferrer"
+  href="/rezerwacja"
   className="px-6 py-3 rounded-full bg-[#D4B483] text-black text-sm font-medium hover:scale-105 transition-transform"
 >
   Rezerwuj
@@ -394,9 +392,7 @@ useEffect(() => {
 
       <div className="mt-10 flex flex-wrap gap-4">
         <a
-          href="https://booksy.com/pl-pl/105150_noblu-beauty-room_paznokcie_8820_krakow"
-          target="_blank"
-          rel="noopener noreferrer"
+          href="/rezerwacja"
           className="px-8 py-5 rounded-full bg-[#D4B483] text-black font-medium hover:scale-105 transition-transform shadow-[0_20px_60px_rgba(212,180,131,0.35)]"
         >
           Zarezerwuj online
@@ -420,8 +416,8 @@ useEffect(() => {
       <div className="mt-14 grid max-w-lg grid-cols-[1fr_0.8fr_1.2fr] gap-3 sm:max-w-xl sm:grid-cols-3 sm:gap-6">
 
   {[
-    { number: "5.0", label: "Ocena klientek z Booksy" },
-    { number: "24/7", label: "Booksy online" },
+    { number: "5.0", label: "Ocena klientek" },
+    { number: "24/7", label: "Formularz online" },
     { number: "Darmowy", label: "parking pod salonem" },
   ].map((item, index) => (
     <motion.div
@@ -607,7 +603,7 @@ useEffect(() => {
   <p>
     Jeśli szukasz miejsca na manicure w Krakowie, paznokcie hybrydowe,
     pedicure lub stylizację rzęs, Noblu Beauty Room łączy profesjonalne
-    wykonanie z estetyką premium i wygodną rezerwacją online przez Booksy.
+    wykonanie z estetyką premium i wygodnym formularzem rezerwacji online.
   </p>
 </div>
   </div>
@@ -708,7 +704,7 @@ useEffect(() => {
       <h2 className="text-4xl lg:text-6xl font-light leading-tight">
         Kobiety wracają dla jakości i atmosfery
         <span className="block text-[#D4B483]">
-           potwierdzają to opinie w Booksy
+           potwierdzają to opinie klientek
         </span>
       </h2>
     </div>
@@ -914,7 +910,7 @@ useEffect(() => {
               <div>
                 <div className="text-[#1D1D1B] mb-2">Godziny otwarcia</div>
                 <p>Poniedziałek - piątek: 10:00-19:30</p>
-                <p>Rezerwacja online przez Booksy: 24/7</p>
+                <p>Zapytanie o termin online: 24/7</p>
               </div>
 
               <div>
@@ -952,9 +948,7 @@ useEffect(() => {
 </section>
 
     <a
-      href="https://booksy.com/pl-pl/105150_noblu-beauty-room_paznokcie_8820_krakow"
-      target="_blank"
-      rel="noopener noreferrer"
+      href="/rezerwacja"
       className="fixed bottom-5 left-5 right-5 z-[9999] rounded-full bg-[#D4B483] py-5 text-center text-lg font-semibold text-black shadow-[0_10px_40px_rgba(212,180,131,0.45)] lg:hidden"
     >
       Zarezerwuj wizytę
@@ -1074,7 +1068,7 @@ useEffect(() => {
           <div>30-422 Kraków</div>
           <div>Darmowy parking pod salonem</div>
           <div>Poniedziałek - piątek: 10:00-19:30</div>
-          <div>Rezerwacja online przez Booksy: 24/7</div>
+          <div>Zapytanie o termin online: 24/7</div>
           <div>Dogodny dojazd: Podgórze, Łagiewniki, Borek Fałęcki, Ruczaj, Kurdwanów</div>
 
           <a
@@ -1110,12 +1104,10 @@ useEffect(() => {
           </a>
 
           <a
-            href="https://booksy.com/pl-pl/105150_noblu-beauty-room_paznokcie_8820_krakow"
-            target="_blank"
-            rel="noopener noreferrer"
+            href="/rezerwacja"
             className="block text-[#1D1D1B] hover:text-[#D4B483] transition-colors"
           >
-            Booksy
+            Rezerwacja
           </a>
 
         </div>

@@ -2,9 +2,6 @@ import type { Metadata } from "next";
 import Image from "next/image";
 import BreadcrumbJsonLd from "../components/BreadcrumbJsonLd";
 
-const booksyUrl =
-  "https://booksy.com/pl-pl/105150_noblu-beauty-room_paznokcie_8820_krakow";
-
 export const metadata: Metadata = {
   title: "Przedłużanie rzęs Kraków | Rzęsy 1:1, 2D i 3D | Noblu Beauty Room",
   description:
@@ -166,9 +163,7 @@ export default function PrzedluzanieRzesKrakowPage() {
 
             <div className="mt-10 flex flex-wrap gap-4">
               <a
-                href={booksyUrl}
-                target="_blank"
-                rel="noopener noreferrer"
+                href="/rezerwacja"
                 className="inline-flex items-center justify-center px-8 py-5 rounded-full bg-[#D4B483] text-black font-medium hover:scale-105 transition-transform shadow-[0_10px_30px_rgba(212,180,131,0.25)]"
               >
                 Zarezerwuj rzęsy
@@ -284,12 +279,10 @@ export default function PrzedluzanieRzesKrakowPage() {
             </p>
             <div className="mt-8 flex flex-wrap gap-4">
               <a
-                href={booksyUrl}
-                target="_blank"
-                rel="noopener noreferrer"
+                href="/rezerwacja"
                 className="inline-flex items-center justify-center px-8 py-4 rounded-full bg-[#D4B483] text-black font-medium hover:scale-105 transition-transform"
               >
-                Rezerwuj przez Booksy
+                Zapytaj o termin
               </a>
               <a
                 href="/stylizacja-rzes-krakow"

@@ -19,8 +19,6 @@ const geistMono = Geist_Mono({
 
 const cookieConsentBootstrap = `try{const value=localStorage.getItem("noblu-cookie-consent");if(value){const consent=JSON.parse(value);if(consent.necessary===true&&typeof consent.analytics==="boolean"&&typeof consent.marketing==="boolean"&&(consent.external===undefined||typeof consent.external==="boolean")){document.documentElement.dataset.cookieConsent="saved"}}}catch{}`;
 
-const booksyUrl =
-  "https://booksy.com/pl-pl/105150_noblu-beauty-room_paznokcie_8820_krakow";
 const siteUrl = "https://noblu.pl";
 const reservationUrl = `${siteUrl}/rezerwacja`;
 
@@ -109,7 +107,6 @@ const salonJsonLd = {
   ],
   sameAs: [
     "https://www.instagram.com/noblu_beauty_room/",
-    booksyUrl,
   ],
   potentialAction: {
     "@type": "ReserveAction",

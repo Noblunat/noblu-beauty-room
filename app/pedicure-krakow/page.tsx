@@ -3,9 +3,6 @@ import Link from "next/link";
 import BreadcrumbJsonLd from "../components/BreadcrumbJsonLd";
 import ServiceJsonLd from "../components/ServiceJsonLd";
 
-const booksyUrl =
-  "https://booksy.com/pl-pl/105150_noblu-beauty-room_paznokcie_8820_krakow";
-
 export const metadata: Metadata = {
   title: "Pedicure Kraków Borek Fałęcki | Kosmetyczny i hybrydowy | Noblu",
   description:
@@ -176,7 +173,7 @@ export default function PedicureKrakowPage() {
               Umów pedicure w Krakowie
             </h2>
             <p className="max-w-3xl">
-              Wybierz dogodny termin przez Booksy i zadbaj o estetyczną
+              Wyślij prośbę o dogodny termin i zadbaj o estetyczną
               pielęgnację stóp w Noblu Beauty Room przy ul. Orzechowej.
             </p>
             <div className="mt-8 flex flex-wrap gap-4">
@@ -192,14 +189,6 @@ export default function PedicureKrakowPage() {
               >
                 Sprawdź cennik
               </Link>
-              <a
-                href={booksyUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-flex items-center justify-center px-8 py-4 text-[#B08B57]"
-              >
-                Zarezerwuj przez Booksy
-              </a>
             </div>
           </div>
 
