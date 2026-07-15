@@ -392,7 +392,9 @@ useEffect(() => {
 
       <div className="mt-10 flex flex-wrap gap-4">
         <a
-          href="/rezerwacja"
+          href="https://booksy.com/pl-pl/105150_noblu-beauty-room_paznokcie_8820_krakow"
+          target="_blank"
+          rel="noopener noreferrer"
           className="px-8 py-5 rounded-full bg-[#D4B483] text-black font-medium hover:scale-105 transition-transform shadow-[0_20px_60px_rgba(212,180,131,0.35)]"
         >
           Zarezerwuj online
