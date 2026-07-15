@@ -8,6 +8,7 @@ import { readCookieConsent } from "../lib/cookieConsent"
 
 const booksyUrl =
   "https://booksy.com/pl-pl/105150_noblu-beauty-room_paznokcie_8820_krakow"
+const reservationConversionId = "AW-10795260361/w2THCKCZ0LYcEMmzypso"
 const contactEmail = "noblu.beautyroom@gmail.com"
 const phone = "+48 662 989 534"
 
@@ -81,16 +82,29 @@ const allServices = serviceGroups.flatMap((group) => group.services)
 function trackReservationLead(service: Service) {
   const consent = readCookieConsent()
 
-  if (!consent?.analytics || typeof window.gtag !== "function") {
+  if (!consent || typeof window.gtag !== "function") {
     return
   }
 
-  window.gtag("event", "generate_lead", {
-    currency: "PLN",
-    value: 1,
-    lead_source: "reservation_form",
-    service_name: service.name,
-  })
+  if (consent.analytics) {
+    window.gtag("event", "generate_lead", {
+      currency: "PLN",
+      value: 1,
+      lead_source: "reservation_form",
+      service_name: service.name,
+    })
+  }
+
+  if (consent.marketing) {
+    window.gtag("event", "conversion", {
+      send_to: reservationConversionId,
+      value: 1,
+      currency: "PLN",
+      lead_source: "reservation_form",
+      service_name: service.name,
+      transport_type: "beacon",
+    })
+  }
 }
 
 export default function RezerwacjaPage() {
