@@ -341,7 +341,7 @@ export default function RezerwacjaPage() {
                 href={booksyUrl}
                 target="_blank"
                 rel="noopener noreferrer"
-                className="rounded-full border border-[#D4B483]/60 px-7 py-4 text-center font-medium text-[#1D1D1B] transition-colors hover:bg-[#D4B483]/15"
+                className="rounded-full bg-[#D4B483] px-7 py-4 text-center font-medium text-black shadow-[0_18px_50px_rgba(212,180,131,0.28)] transition-transform hover:scale-[1.02]"
               >
                 Zarezerwuj przez Booksy
               </a>

@@ -282,7 +282,7 @@ export default function BookingPageClient() {
                     href="https://booksy.com/pl-pl/105150_noblu-beauty-room_paznokcie_8820_krakow"
                     target="_blank"
                     rel="noopener noreferrer"
-                    className="inline-flex h-14 items-center justify-center rounded-full border border-[#D4B483]/60 bg-white/65 px-8 font-medium text-[#7C5D30] transition-colors hover:bg-white"
+                    className="inline-flex h-14 items-center justify-center rounded-full bg-[#D4B483] px-8 font-medium text-black shadow-[0_18px_45px_rgba(212,180,131,0.28)] transition-transform hover:scale-[1.02]"
                   >
                     Rezerwuj przez Booksy
                   </a>
