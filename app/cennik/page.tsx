@@ -15,6 +15,12 @@ export const metadata: Metadata = {
       "Sprawdź ceny stylizacji rzęs, manicure, paznokci i pedicure w Noblu Beauty Room w Krakowie.",
     url: "https://noblu.pl/cennik",
     siteName: "Noblu Beauty Room",
+    images: [
+      {
+        url: "https://noblu.pl/gallery/salon/salon11-hero.webp",
+        alt: "Cennik usług Noblu Beauty Room Kraków",
+      },
+    ],
     locale: "pl_PL",
     type: "website",
   },
