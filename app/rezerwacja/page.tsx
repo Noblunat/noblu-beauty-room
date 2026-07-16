@@ -11,6 +11,8 @@ const booksyUrl =
 const reservationConversionId = "AW-10795260361/w2THCKCZ0LYcEMmzypso"
 const contactEmail = "noblu.beautyroom@gmail.com"
 const phone = "+48 662 989 534"
+const mapsDirectionsUrl =
+  "https://www.google.com/maps/dir/?api=1&destination=Noblu%20Beauty%20Room%20Orzechowa%204%2Flok.1%2030-422%20Krak%C3%B3w"
 
 type Service = {
   name: string
@@ -420,6 +422,14 @@ export default function RezerwacjaPage() {
                   {contactEmail}
                 </a>
                 <div>Orzechowa 4/lok.1, 30-422 Kraków</div>
+                <a
+                  href={mapsDirectionsUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="mt-2 inline-flex w-fit items-center justify-center rounded-full border border-[#D4B483] px-5 py-2 text-sm font-medium text-[#876536] transition-colors hover:bg-[#D4B483] hover:text-black"
+                >
+                  Wyznacz trasę w Google Maps
+                </a>
               </div>
             </div>
 

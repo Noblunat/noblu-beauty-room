@@ -46,6 +46,9 @@ const faqJsonLd = {
   })),
 }
 
+const mapsDirectionsUrl =
+  "https://www.google.com/maps/dir/?api=1&destination=Noblu%20Beauty%20Room%20Orzechowa%204%2Flok.1%2030-422%20Krak%C3%B3w"
+
 export default function NobluBeautyRoomWebsite() {
   const [loading, setLoading] = useState(true)
   const [selectedMedia, setSelectedMedia] = useState<string | null>(null)
@@ -774,6 +777,15 @@ useEffect(() => {
           Krakowie, możesz umówić wizytę online i łatwo zaplanować dojazd z
           pobliskich dzielnic.
         </p>
+
+        <a
+          href={mapsDirectionsUrl}
+          target="_blank"
+          rel="noopener noreferrer"
+          className="inline-flex w-fit items-center justify-center rounded-full border border-[#D4B483] px-6 py-3 text-base font-medium text-[#876536] transition-colors hover:bg-[#D4B483] hover:text-black"
+        >
+          Wyznacz trasę w Google Maps
+        </a>
       </div>
     </div>
 
