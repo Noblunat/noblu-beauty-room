@@ -48,8 +48,7 @@ export default function CookieBanner() {
             <p className="mt-3 text-sm leading-relaxed text-[#5F5B56]">
               Noblu Beauty Room korzysta z plików cookies i podobnych
               technologii, aby strona działała prawidłowo, mierzyć jej użycie
-              oraz wyświetlać treści zewnętrzne, takie jak mapa Google i
-              Instagram. Możesz
+              oraz wyświetlać treści zewnętrzne, takie jak mapa Google. Możesz
               zaakceptować wszystkie zgody, odrzucić opcjonalne cookies albo
               dostosować ustawienia.
             </p>
@@ -114,7 +113,7 @@ export default function CookieBanner() {
                       Treści zewnętrzne
                     </span>
                     <span className="block text-sm text-[#6D6B68]">
-                      Pozwala wyświetlić mapę Google i zdjęcia z Instagrama.
+                      Pozwala wyświetlić mapę Google.
                     </span>
                   </span>
                   <input

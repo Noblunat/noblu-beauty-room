@@ -190,9 +190,8 @@ export default function PolitykaPrywatnosciPage() {
               oraz zapamiętania wyboru użytkownika dotyczącego cookies.
               Opcjonalne technologie analityczne i marketingowe uruchamiane są
               dopiero po udzieleniu odpowiedniej zgody. Odmowa nie wpływa na
-              możliwość wysłania formularza. Mapa Google oraz treści z
-              Instagrama i Elfsight są ładowane dopiero po osobnym włączeniu
-              treści zewnętrznych.
+              możliwość wysłania formularza. Mapa Google jest ładowana dopiero
+              po osobnym włączeniu treści zewnętrznych.
             </p>
           </section>
 
@@ -202,7 +201,7 @@ export default function PolitykaPrywatnosciPage() {
             </h2>
             <p className="mt-5 leading-relaxed">
               Na stronie wykorzystywane są lub mogą pojawiać się usługi Vercel,
-              Resend, Google, Instagram, Elfsight oraz Booksy. Booksy obsługuje
+              Resend, Google oraz Booksy. Booksy obsługuje
               rezerwacje dokonywane bezpośrednio w swoim serwisie na zasadach
               określonych we własnej polityce prywatności. Korzystanie z
               odnośników lub osadzonych elementów zewnętrznych może wiązać się

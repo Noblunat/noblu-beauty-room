@@ -1,6 +1,5 @@
 'use client'
 import { useEffect, useMemo, useState } from 'react'
-import Script from 'next/script'
 import Image from "next/image"
 import ExternalContentConsent from "./components/ExternalContentConsent"
 
@@ -48,6 +47,41 @@ const faqJsonLd = {
 
 const mapsDirectionsUrl =
   "https://www.google.com/maps/dir/?api=1&destination=Noblu%20Beauty%20Room%20Orzechowa%204%2Flok.1%2030-422%20Krak%C3%B3w"
+
+const instagramGalleryItems = [
+  {
+    src: "/gallery/paznokcie/IMG_1745(1).webp",
+    alt: "Blekitny manicure hybrydowy w Noblu Beauty Room Krakow",
+  },
+  {
+    src: "/gallery/paznokcie/IMG_2406(2).webp",
+    alt: "Elegancki czerwony manicure w Noblu Beauty Room Krakow",
+  },
+  {
+    src: "/gallery/paznokcie/IMG_2440(1).webp",
+    alt: "Rozowy manicure ze zdobieniem w Noblu Beauty Room",
+  },
+  {
+    src: "/gallery/paznokcie/IMG_6334.webp",
+    alt: "Naturalna stylizacja paznokci w Noblu Beauty Room Krakow",
+  },
+  {
+    src: "/gallery/paznokcie/IMG_6375.webp",
+    alt: "Stylizacja paznokci hybrydowych w Noblu Beauty Room",
+  },
+  {
+    src: "/gallery/paznokcie/IMG_6470.webp",
+    alt: "Precyzyjny manicure w salonie Noblu Beauty Room",
+  },
+  {
+    src: "/gallery/paznokcie/IMG_6724.webp",
+    alt: "Manicure premium Krakow Noblu Beauty Room",
+  },
+  {
+    src: "/gallery/rzesy/IMG_6498.webp",
+    alt: "Stylizacja rzes w Noblu Beauty Room Krakow",
+  },
+]
 
 export default function NobluBeautyRoomWebsite() {
   const [loading, setLoading] = useState(true)
@@ -835,25 +869,28 @@ useEffect(() => {
       </a>
     </div>
 
-    <ExternalContentConsent
-      title="Zdjęcia z Instagrama"
-      description="Aby wyświetlić najnowsze zdjęcia, włącz treści zewnętrzne dostarczane przez Instagram i Elfsight."
-      buttonLabel="Włącz Instagram"
-      className="rounded-[2rem] border border-[#EFE8E1]"
-    >
-      <div className="overflow-x-auto overflow-y-hidden pb-4 scrollbar-hide">
-        <div className="min-w-[1400px] rounded-[2rem] overflow-hidden">
-          <div
-            className="elfsight-app-3c7474f5-b323-4f42-a3d9-adffc9a0e6c8"
-            data-elfsight-app-lazy
+    <div className="grid grid-cols-2 gap-3 sm:grid-cols-4">
+      {instagramGalleryItems.map((item) => (
+        <a
+          key={item.src}
+          href="https://www.instagram.com/noblu_beauty_room/"
+          target="_blank"
+          rel="noopener noreferrer"
+          aria-label="Zobacz profil Noblu Beauty Room na Instagramie"
+          className="group relative aspect-square overflow-hidden rounded-[1.2rem] bg-[#E8D6BE]/40"
+        >
+          <Image
+            src={item.src}
+            alt={item.alt}
+            fill
+            sizes="(max-width: 640px) 50vw, 25vw"
+            quality={76}
+            className="object-cover transition-transform duration-700 group-hover:scale-105"
           />
-        </div>
-      </div>
-      <Script
-        src="https://elfsightcdn.com/platform.js"
-        strategy="afterInteractive"
-      />
-    </ExternalContentConsent>
+          <div className="absolute inset-0 bg-black/0 transition-colors duration-500 group-hover:bg-black/10" />
+        </a>
+      ))}
+    </div>
 
   </div>
 </section>
