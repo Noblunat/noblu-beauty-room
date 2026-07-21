@@ -303,10 +303,11 @@ useEffect(() => {
 
     <div className="flex items-center gap-4">
       <Image
-        src="/logo.png"
+        src="/logo-nav.webp"
         alt="Noblu Beauty Room Kraków"
         width={64}
         height={64}
+        unoptimized
         className="h-16 w-16 object-contain"
       />
 
@@ -1024,10 +1025,11 @@ useEffect(() => {
 
       <div>
         <Image
-          src="/logo.png"
+          src="/logo-footer.webp"
           alt="Noblu Beauty Room Kraków"
           width={96}
           height={96}
+          unoptimized
           className="w-24 h-24 object-contain mb-6"
         />
 

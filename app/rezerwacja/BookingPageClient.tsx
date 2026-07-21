@@ -117,10 +117,11 @@ export default function BookingPageClient() {
             </Link>
 
             <Image
-              src="/logo.png"
+              src="/logo-nav.webp"
               alt="Noblu Beauty Room"
               width={72}
               height={72}
+              unoptimized
               className="h-14 w-14 object-contain"
               priority
             />

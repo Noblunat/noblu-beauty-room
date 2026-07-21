@@ -166,7 +166,7 @@ export default function PolitykaPrywatnosciPage() {
               <p>
                 Dane mogą być powierzane dostawcom niezbędnym do działania
                 strony i obsługi kontaktu, w szczególności Vercel
-                (hosting, Web Analytics i Speed Insights), Resend
+                (hosting), Resend
                 (wysyłka formularza) oraz Google (poczta Gmail, Analytics,
                 Ads i usługi mapowe).
               </p>

@@ -1,7 +1,5 @@
 import type { Metadata } from "next";
 import { Geist, Geist_Mono } from "next/font/google";
-import { Analytics } from "@vercel/analytics/next";
-import { SpeedInsights } from "@vercel/speed-insights/next";
 import ConversionEvents from "./components/ConversionEvents";
 import CookieBanner from "./components/CookieBanner";
 import GoogleTag from "./components/GoogleTag";
@@ -215,8 +213,6 @@ export default function RootLayout({
         <GoogleTag />
         <ConversionEvents />
         <CookieBanner />
-        <Analytics />
-        <SpeedInsights />
       </body>
     </html>
   );
