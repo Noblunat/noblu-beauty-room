@@ -774,8 +774,14 @@ useEffect(() => {
             {review.text}
           </p>
 
-          <div className="text-sm uppercase tracking-[0.2em] text-[#D4B483]">
-            {review.name}
+          <div className="flex items-center justify-between gap-4">
+            <div className="text-sm uppercase tracking-[0.2em] text-[#D4B483]">
+              {review.name}
+            </div>
+
+            <div className="rounded-full border border-[#E8DED2] bg-white/80 px-3 py-1 text-xs font-medium text-[#6D6B68]">
+              Booksy
+            </div>
           </div>
 
         </motion.div>
