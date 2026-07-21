@@ -41,16 +41,14 @@ export default function CookieBanner() {
       data-cookie-banner
       className="fixed inset-x-0 bottom-0 z-[100000] px-4 pb-4 sm:px-6"
     >
-      <div className="mx-auto max-w-5xl rounded-[1.5rem] border border-[#E8DED2] bg-white/95 p-5 text-[#1D1D1B] shadow-[0_20px_80px_rgba(0,0,0,0.18)] backdrop-blur-xl sm:p-6">
+      <div className="mx-auto max-w-5xl rounded-[1.5rem] border border-[#E8DED2] bg-white/95 p-4 text-[#1D1D1B] shadow-[0_20px_80px_rgba(0,0,0,0.18)] backdrop-blur-xl sm:p-6">
         <div className="grid gap-5 lg:grid-cols-[1fr_auto] lg:items-start">
           <div>
-            <h2 className="text-xl font-medium">Pliki cookies</h2>
-            <p className="mt-3 text-sm leading-relaxed text-[#5F5B56]">
-              Noblu Beauty Room korzysta z plików cookies i podobnych
-              technologii, aby strona działała prawidłowo, mierzyć jej użycie
-              oraz wyświetlać treści zewnętrzne, takie jak mapa Google. Możesz
-              zaakceptować wszystkie zgody, odrzucić opcjonalne cookies albo
-              dostosować ustawienia.
+            <h2 className="text-lg font-medium sm:text-xl">Pliki cookies</h2>
+            <p className="mt-2 text-sm leading-relaxed text-[#5F5B56] sm:mt-3">
+              Używamy cookies do działania strony, analityki i treści
+              zewnętrznych, takich jak mapa Google. Możesz zaakceptować zgody,
+              odrzucić opcjonalne cookies albo dostosować ustawienia.
             </p>
             <a
               href="/polityka-prywatnosci"
@@ -127,7 +125,7 @@ export default function CookieBanner() {
             )}
           </div>
 
-          <div className="flex flex-col gap-3 sm:flex-row lg:w-56 lg:flex-col">
+          <div className="grid grid-cols-2 gap-2 sm:flex sm:flex-row sm:gap-3 lg:w-56 lg:flex-col">
             <button
               type="button"
               onClick={() =>
@@ -138,7 +136,7 @@ export default function CookieBanner() {
                   external: true,
                 })
               }
-              className="rounded-full bg-[#D4B483] px-5 py-3 text-sm font-medium text-black transition-transform hover:scale-[1.02]"
+              className="col-span-2 rounded-full bg-[#D4B483] px-5 py-2.5 text-sm font-medium text-black transition-transform hover:scale-[1.02] sm:col-auto sm:py-3"
             >
               Akceptuję wszystkie
             </button>
@@ -152,7 +150,7 @@ export default function CookieBanner() {
                   external: false,
                 })
               }
-              className="rounded-full border border-[#E8DED2] px-5 py-3 text-sm font-medium transition-colors hover:border-[#D4B483]"
+              className="rounded-full border border-[#E8DED2] px-4 py-2.5 text-sm font-medium transition-colors hover:border-[#D4B483] sm:px-5 sm:py-3"
             >
               Odrzucam opcjonalne
             </button>
@@ -167,7 +165,7 @@ export default function CookieBanner() {
                     external,
                   })
                 }
-                className="rounded-full border border-[#E8DED2] px-5 py-3 text-sm font-medium transition-colors hover:border-[#D4B483]"
+                className="rounded-full border border-[#E8DED2] px-4 py-2.5 text-sm font-medium transition-colors hover:border-[#D4B483] sm:px-5 sm:py-3"
               >
                 Zapisz wybór
               </button>
@@ -175,7 +173,7 @@ export default function CookieBanner() {
               <button
                 type="button"
                 onClick={() => setSettingsOpen(true)}
-                className="rounded-full border border-[#E8DED2] px-5 py-3 text-sm font-medium transition-colors hover:border-[#D4B483]"
+                className="rounded-full border border-[#E8DED2] px-4 py-2.5 text-sm font-medium transition-colors hover:border-[#D4B483] sm:px-5 sm:py-3"
               >
                 Ustawienia
               </button>

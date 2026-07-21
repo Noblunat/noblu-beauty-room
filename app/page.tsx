@@ -380,6 +380,7 @@ useEffect(() => {
       src="/gallery/salon/salon11-hero.webp"
       alt="Eleganckie wnętrze Noblu Beauty Room Kraków"
       fill
+      priority
       sizes="100vw"
       className="object-cover object-[26%_58%] opacity-85"
     />
@@ -396,8 +397,7 @@ useEffect(() => {
       src="/gallery/salon/salon11-hero.webp"
       alt="Eleganckie wnętrze Noblu Beauty Room Kraków"
       fill
-      priority
-      sizes="58vw"
+      sizes="(min-width: 1024px) 58vw, 0vw"
       className="object-cover object-bottom opacity-85"
       style={{
         WebkitMaskImage:
