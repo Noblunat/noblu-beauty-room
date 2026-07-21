@@ -1,15 +1,52 @@
 'use client'
-import { useEffect, useMemo, useState } from 'react'
+import { Fragment, type HTMLAttributes, type ReactNode, useEffect, useMemo, useState } from 'react'
 import Image from "next/image"
 import ExternalContentConsent from "./components/ExternalContentConsent"
-
-import { motion, AnimatePresence, useMotionValue, useSpring, useScroll } from 'framer-motion'
 
 type GalleryItem = {
   src: string
   type: 'image' | 'video'
   category: string
   poster?: string
+}
+
+type StaticMotionDivProps = HTMLAttributes<HTMLDivElement> & {
+  initial?: unknown
+  animate?: unknown
+  exit?: unknown
+  transition?: unknown
+  viewport?: unknown
+  whileHover?: unknown
+  whileInView?: unknown
+}
+
+function StaticMotionDiv({
+  initial,
+  animate,
+  exit,
+  transition,
+  viewport,
+  whileHover,
+  whileInView,
+  ...props
+}: StaticMotionDivProps) {
+  void initial
+  void animate
+  void exit
+  void transition
+  void viewport
+  void whileHover
+  void whileInView
+
+  return <div {...props} />
+}
+
+const motion = {
+  div: StaticMotionDiv,
+}
+
+function AnimatePresence({ children }: { children: ReactNode; mode?: string }) {
+  return <Fragment>{children}</Fragment>
 }
 
 const faqItems = [
@@ -191,26 +228,6 @@ export default function NobluBeautyRoomWebsite() {
   },
   ]
 
-  const cursorX = useMotionValue(0)
-const cursorY = useMotionValue(0)
-
-const smoothX = useSpring(cursorX, {
-  stiffness: 120,
-  damping: 25,
-})
-
-const smoothY = useSpring(cursorY, {
-  stiffness: 120,
-  damping: 25,
-})
-
-const { scrollYProgress } = useScroll()
-
-const scaleX = useSpring(scrollYProgress, {
-  stiffness: 100,
-  damping: 30,
-})
-
 const galleryItems = useMemo<GalleryItem[]>(() => [
   // Kolejność jest celowo mieszana, żeby filmy nie pojawiały się obok siebie.
   { src: "/gallery/salon/salon.mp4", type: "video", category: "Salon", poster: "/gallery/salon/salon1.webp" },
@@ -267,10 +284,6 @@ useEffect(() => {
 
   return (
     <div
-  onMouseMove={(e) => {
-    cursorX.set(e.clientX)
-    cursorY.set(e.clientY)
-  }}
   className="min-h-screen bg-[linear-gradient(180deg,#FFFDFB_0%,#F8F5F2_18%,#EFE7DD_46%,#F8F5F2_72%,#FFFDFB_100%)] text-[#1D1D1B] overflow-hidden pb-24 lg:pb-0"
 >
   <script
@@ -280,20 +293,10 @@ useEffect(() => {
 
   <motion.div
     className="fixed left-0 right-0 top-0 z-[99999] h-[3px] origin-left bg-[#D4B483]"
-    style={{ scaleX }}
   />
 
-  <motion.div
-    className="pointer-events-none fixed left-0 top-0 z-[9998] hidden h-64 w-64 rounded-full bg-[#D4B483]/20 blur-3xl lg:block"
-    style={{
-      x: smoothX,
-      y: smoothY,
-      translateX: "-50%",
-      translateY: "-50%",
-    }}
-  />
 
-    
+
       {/* NAVBAR */}
 <header className="fixed top-0 left-0 right-0 z-50 bg-white/60 border-b border-[#E8DED2] backdrop-blur-xl">
   <div className="max-w-7xl mx-auto px-6 lg:px-12 py-5 flex items-center justify-between">
@@ -761,7 +764,7 @@ useEffect(() => {
       </div>
 
       <h2 className="text-4xl lg:text-5xl font-light leading-tight mb-8">
-        Dojazd do Noblu Beauty Room 
+        Dojazd do Noblu Beauty Room
       </h2>
 
       <div className="space-y-6 text-[#5F5B56] text-lg leading-relaxed">
