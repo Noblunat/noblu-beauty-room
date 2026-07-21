@@ -131,7 +131,7 @@ export default function BookingPageClient() {
               <div className="mb-8 max-w-2xl">
                 <h1 className="text-5xl font-light leading-[0.95] tracking-tight sm:text-6xl lg:text-7xl">
                   Zapytaj o termin
-                  <span className="block text-[#D4B483]">w Noblu</span>
+                  <span className="block text-[#7C6238]">w Noblu</span>
                 </h1>
                 <p className="mt-7 max-w-xl text-lg leading-relaxed text-[#6D6B68]">
                   Prosba o wizyte nie blokuje terminu automatycznie, a
@@ -144,7 +144,7 @@ export default function BookingPageClient() {
                 className="rounded-[2rem] border border-[#E8DED2] bg-white/75 p-5 shadow-[0_24px_70px_rgba(0,0,0,0.08)] backdrop-blur-xl sm:p-8"
               >
                 <div className="mb-8">
-                  <label className="mb-4 block text-sm uppercase tracking-[0.22em] text-[#B08B57]">
+                  <label className="mb-4 block text-sm uppercase tracking-[0.22em] text-[#7C6238]">
                     Usluga
                   </label>
                   <div className="grid gap-3 sm:grid-cols-2">
@@ -180,7 +180,7 @@ export default function BookingPageClient() {
                   <div>
                     <label
                       htmlFor="booking-date"
-                      className="mb-3 block text-sm uppercase tracking-[0.22em] text-[#B08B57]"
+                      className="mb-3 block text-sm uppercase tracking-[0.22em] text-[#7C6238]"
                     >
                       Dzien
                     </label>
@@ -195,7 +195,7 @@ export default function BookingPageClient() {
                   </div>
 
                   <div>
-                    <label className="mb-3 block text-sm uppercase tracking-[0.22em] text-[#B08B57]">
+                    <label className="mb-3 block text-sm uppercase tracking-[0.22em] text-[#7C6238]">
                       Godzina
                     </label>
                     <div className="grid grid-cols-3 gap-2">
@@ -221,7 +221,7 @@ export default function BookingPageClient() {
                   <div>
                     <label
                       htmlFor="booking-name"
-                      className="mb-3 block text-sm uppercase tracking-[0.22em] text-[#B08B57]"
+                      className="mb-3 block text-sm uppercase tracking-[0.22em] text-[#7C6238]"
                     >
                       Imie
                     </label>
@@ -238,7 +238,7 @@ export default function BookingPageClient() {
                   <div>
                     <label
                       htmlFor="booking-phone"
-                      className="mb-3 block text-sm uppercase tracking-[0.22em] text-[#B08B57]"
+                      className="mb-3 block text-sm uppercase tracking-[0.22em] text-[#7C6238]"
                     >
                       Telefon
                     </label>
@@ -256,7 +256,7 @@ export default function BookingPageClient() {
                 <div className="mb-8">
                   <label
                     htmlFor="booking-note"
-                    className="mb-3 block text-sm uppercase tracking-[0.22em] text-[#B08B57]"
+                    className="mb-3 block text-sm uppercase tracking-[0.22em] text-[#7C6238]"
                   >
                     Wiadomosc
                   </label>
@@ -340,7 +340,7 @@ export default function BookingPageClient() {
               </div>
 
               <div className="mt-5 rounded-[2rem] border border-[#E8DED2] bg-white/70 p-6 backdrop-blur-xl">
-                <div className="mb-4 text-sm uppercase tracking-[0.22em] text-[#B08B57]">
+                <div className="mb-4 text-sm uppercase tracking-[0.22em] text-[#7C6238]">
                   Podsumowanie
                 </div>
 

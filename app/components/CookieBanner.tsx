@@ -52,7 +52,7 @@ export default function CookieBanner() {
             </p>
             <a
               href="/polityka-prywatnosci"
-              className="mt-3 inline-flex text-sm font-medium text-[#B08B57] hover:text-[#1D1D1B]"
+              className="mt-3 inline-flex text-sm font-medium text-[#7C6238] hover:text-[#1D1D1B]"
             >
               Polityka prywatności
             </a>

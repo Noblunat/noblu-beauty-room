@@ -383,7 +383,7 @@ useEffect(() => {
 >
       <h1 className="text-6xl lg:text-8xl font-light leading-[0.92] tracking-tight">
         Noblu
-        <span className="block text-[#D4B483] font-medium">
+        <span className="block text-[#7C6238] font-medium">
           Beauty Room
         </span>
       </h1>
@@ -465,7 +465,7 @@ useEffect(() => {
       <section id="services" className="py-28 bg-transparent">
         <div className="max-w-7xl mx-auto px-6 lg:px-12">
           <div className="max-w-3xl mb-16">
-            <div className="text-sm uppercase tracking-[0.3em] text-[#B08B57] mb-4">
+            <div className="text-sm uppercase tracking-[0.3em] text-[#7C6238] mb-4">
               Oferta
             </div>
 
@@ -503,7 +503,7 @@ useEffect(() => {
 
                   <a
                     href={service.href}
-                    className="text-sm uppercase tracking-[0.2em] text-[#B08B57] group-hover:translate-x-1 transition-transform inline-block"
+                    className="text-sm uppercase tracking-[0.2em] text-[#7C6238] group-hover:translate-x-1 transition-transform inline-block"
                   >
                     Zobacz więcej →
                   </a>
@@ -519,7 +519,7 @@ useEffect(() => {
   <div className="max-w-7xl mx-auto px-6 lg:px-12">
     <div className="grid gap-12 lg:grid-cols-[0.9fr_1.4fr] lg:items-start">
       <div>
-        <div className="text-sm uppercase tracking-[0.3em] text-[#B08B57] mb-4">
+        <div className="text-sm uppercase tracking-[0.3em] text-[#7C6238] mb-4">
           Dlaczego Noblu
         </div>
 
@@ -543,7 +543,7 @@ useEffect(() => {
             viewport={{ once: true }}
             className="rounded-[1.6rem] border border-[#E8DED2] bg-white/75 p-7 shadow-[0_14px_44px_rgba(0,0,0,0.04)] backdrop-blur-xl"
           >
-            <div className="mb-5 inline-flex h-10 w-10 items-center justify-center rounded-full border border-[#D4B483]/40 bg-[#F8F0E6] text-sm font-medium text-[#B08B57]">
+            <div className="mb-5 inline-flex h-10 w-10 items-center justify-center rounded-full border border-[#D4B483]/40 bg-[#F8F0E6] text-sm font-medium text-[#7C6238]">
               {index + 1}
             </div>
 
@@ -566,7 +566,7 @@ useEffect(() => {
   <div className="max-w-7xl mx-auto px-6 lg:px-12">
     <div className="max-w-5xl">
 
-    <div className="text-sm uppercase tracking-[0.3em] text-[#B08B57] mb-4">
+    <div className="text-sm uppercase tracking-[0.3em] text-[#7C6238] mb-4">
       Beauty Kraków
     </div>
 
@@ -578,19 +578,19 @@ useEffect(() => {
   <p>
     Noblu Beauty Room to kameralny salon beauty.
     Oferujemy {" "}
-    <a href="/manicure-krakow" className="text-[#B08B57] hover:underline">
+    <a href="/manicure-krakow" className="text-[#7C6238] hover:underline">
       manicure w Krakowie
     </a>
     , {" "}
-    <a href="/stylizacja-hybrydowa-krakow" className="text-[#B08B57] hover:underline">
+    <a href="/stylizacja-hybrydowa-krakow" className="text-[#7C6238] hover:underline">
       stylizację paznokci
     </a>
     , {" "}
-    <a href="/pedicure-krakow" className="text-[#B08B57] hover:underline">
+    <a href="/pedicure-krakow" className="text-[#7C6238] hover:underline">
       pedicure
     </a>{" "}
     oraz {" "}
-    <a href="/stylizacja-rzes-krakow" className="text-[#B08B57] hover:underline">
+    <a href="/stylizacja-rzes-krakow" className="text-[#7C6238] hover:underline">
       stylizację rzęs
     </a>{" "}
     dla kobiet, które cenią estetykę, dokładność i spokojną atmosferę wizyty.
@@ -619,13 +619,13 @@ useEffect(() => {
   <div className="max-w-7xl mx-auto px-6 lg:px-12">
 
     <div className="mb-16">
-      <div className="text-sm uppercase tracking-[0.3em] text-[#B08B57] mb-4">
+      <div className="text-sm uppercase tracking-[0.3em] text-[#7C6238] mb-4">
         Gallery
       </div>
 
       <h2 className="text-4xl lg:text-6xl font-light leading-tight text-[#111111]">
         Luxury beauty
-        <span className="block text-[#B08B57]">
+        <span className="block text-[#7C6238]">
           experience
         </span>
       </h2>
@@ -664,7 +664,7 @@ useEffect(() => {
 
       <div className="absolute inset-0 flex items-center justify-center bg-black/15 transition-all duration-700 group-hover:bg-black/5">
         <div className="flex h-12 w-12 items-center justify-center rounded-full bg-white/85 shadow-[0_10px_30px_rgba(0,0,0,0.18)] backdrop-blur-sm transition-transform duration-500 group-hover:scale-105">
-          <span className="ml-1 h-0 w-0 border-y-[7px] border-l-[11px] border-y-transparent border-l-[#B08B57]" />
+          <span className="ml-1 h-0 w-0 border-y-[7px] border-l-[11px] border-y-transparent border-l-[#7C6238]" />
         </div>
       </div>
     </motion.div>
@@ -701,13 +701,13 @@ useEffect(() => {
   <div className="max-w-7xl mx-auto px-6 lg:px-12">
 
     <div className="mb-16">
-      <div className="text-sm uppercase tracking-[0.3em] text-[#D4B483] mb-4">
+      <div className="text-sm uppercase tracking-[0.3em] text-[#7C6238] mb-4">
         Opinie klientek
       </div>
 
       <h2 className="text-4xl lg:text-6xl font-light leading-tight">
         Kobiety wracają dla jakości i atmosfery
-        <span className="block text-[#D4B483]">
+        <span className="block text-[#7C6238]">
            potwierdzają to opinie klientek
         </span>
       </h2>
@@ -731,7 +731,7 @@ useEffect(() => {
           className="rounded-[2rem] border border-[#E8DED2] bg-white/70 backdrop-blur-2xl shadow-[0_20px_60px_rgba(0,0,0,0.06)] p-8"
         >
 
-          <div className="text-[#D4B483] text-4xl mb-6">
+          <div className="text-[#7C6238] text-4xl mb-6">
             “
           </div>
 
@@ -740,7 +740,7 @@ useEffect(() => {
           </p>
 
           <div className="flex items-center justify-between gap-4">
-            <div className="text-sm uppercase tracking-[0.2em] text-[#D4B483]">
+            <div className="text-sm uppercase tracking-[0.2em] text-[#7C6238]">
               {review.name}
             </div>
 
@@ -759,7 +759,7 @@ useEffect(() => {
 <section className="py-24 bg-transparent">
   <div className="max-w-7xl mx-auto px-6 lg:px-12 grid lg:grid-cols-2 gap-12 items-start">
     <div>
-      <div className="text-sm uppercase tracking-[0.3em] text-[#B08B57] mb-4">
+      <div className="text-sm uppercase tracking-[0.3em] text-[#7C6238] mb-4">
         Lokalizacja
       </div>
 
@@ -821,7 +821,7 @@ useEffect(() => {
 
     <div className="flex items-center justify-between mb-14">
       <div>
-        <div className="text-sm uppercase tracking-[0.3em] text-[#D4B483] mb-4">
+        <div className="text-sm uppercase tracking-[0.3em] text-[#7C6238] mb-4">
           Instagram
         </div>
 
@@ -872,7 +872,7 @@ useEffect(() => {
     <div className="max-w-5xl">
 
     <div className="mb-16">
-      <div className="text-sm uppercase tracking-[0.3em] text-[#D4B483] mb-4">
+      <div className="text-sm uppercase tracking-[0.3em] text-[#7C6238] mb-4">
         FAQ
       </div>
 
@@ -907,7 +907,7 @@ useEffect(() => {
       <section id="contact" className="py-28 bg-transparent text-[#1D1D1B]">
         <div className="max-w-7xl mx-auto px-6 lg:px-12 grid lg:grid-cols-2 gap-20 items-start">
           <div>
-            <div className="text-sm uppercase tracking-[0.3em] text-[#D4B483] mb-4">
+            <div className="text-sm uppercase tracking-[0.3em] text-[#7C6238] mb-4">
               Kontakt
             </div>
 
@@ -939,7 +939,7 @@ useEffect(() => {
                 <div className="text-[#1D1D1B] mb-2">E-mail</div>
                 <a
                   href="mailto:noblu.beautyroom@gmail.com"
-                  className="hover:text-[#B08B57] transition-colors"
+                  className="hover:text-[#7C6238] transition-colors"
                 >
                   noblu.beautyroom@gmail.com
                 </a>
@@ -1038,7 +1038,7 @@ useEffect(() => {
       </div>
 
       <div>
-        <div className="text-sm uppercase tracking-[0.3em] text-[#D4B483] mb-6">
+        <div className="text-sm uppercase tracking-[0.3em] text-[#7C6238] mb-6">
           Usługi
         </div>
 
@@ -1046,33 +1046,33 @@ useEffect(() => {
 
           <a
             href="/manicure-krakow"
-            className="block hover:text-[#D4B483] transition-colors"
+            className="block hover:text-[#7C6238] transition-colors"
           >
             Manicure Kraków
           </a>
 
           <a
             href="/stylizacja-rzes-krakow"
-            className="block hover:text-[#D4B483] transition-colors"
+            className="block hover:text-[#7C6238] transition-colors"
           >
             Stylizacja rzęs Kraków
           </a>
           <a
             href="/przedluzanie-rzes-krakow"
-            className="block hover:text-[#D4B483] transition-colors"
+            className="block hover:text-[#7C6238] transition-colors"
           >
             Przedłużanie rzęs Kraków
           </a>
           <a
             href="/stylizacja-hybrydowa-krakow"
-            className="block hover:text-[#D4B483] transition-colors"
+            className="block hover:text-[#7C6238] transition-colors"
           >
             Stylizacja hybrydowa Kraków
           </a>
 
           <a
             href="/pedicure-krakow"
-            className="block hover:text-[#D4B483] transition-colors"
+            className="block hover:text-[#7C6238] transition-colors"
           >
             Pedicure Kraków Borek Fałęcki
           </a>
@@ -1081,7 +1081,7 @@ useEffect(() => {
       </div>
 
       <div>
-        <div className="text-sm uppercase tracking-[0.3em] text-[#D4B483] mb-6">
+        <div className="text-sm uppercase tracking-[0.3em] text-[#7C6238] mb-6">
           Kontakt
         </div>
 
@@ -1095,14 +1095,14 @@ useEffect(() => {
 
           <a
             href="tel:+48662989534"
-            className="block hover:text-[#D4B483] transition-colors"
+            className="block hover:text-[#7C6238] transition-colors"
           >
             +48 662 989 534
           </a>
 
           <a
             href="mailto:noblu.beautyroom@gmail.com"
-            className="block hover:text-[#D4B483] transition-colors"
+            className="block hover:text-[#7C6238] transition-colors"
           >
             noblu.beautyroom@gmail.com
           </a>
@@ -1110,7 +1110,7 @@ useEffect(() => {
       </div>
 
       <div>
-        <div className="text-sm uppercase tracking-[0.3em] text-[#D4B483] mb-6">
+        <div className="text-sm uppercase tracking-[0.3em] text-[#7C6238] mb-6">
           Social Media
         </div>
 
@@ -1120,14 +1120,14 @@ useEffect(() => {
             href="https://www.instagram.com/noblu_beauty_room/"
             target="_blank"
             rel="noopener noreferrer"
-            className="block text-[#1D1D1B] hover:text-[#D4B483] transition-colors"
+            className="block text-[#1D1D1B] hover:text-[#7C6238] transition-colors"
           >
             Instagram
           </a>
 
           <a
             href="/rezerwacja"
-            className="block text-[#1D1D1B] hover:text-[#D4B483] transition-colors"
+            className="block text-[#1D1D1B] hover:text-[#7C6238] transition-colors"
           >
             Rezerwacja
           </a>
@@ -1146,7 +1146,7 @@ useEffect(() => {
       <div className="flex flex-col items-center gap-3 text-[#1D1D1B] text-sm lg:flex-row">
         <a
           href="/polityka-prywatnosci"
-          className="hover:text-[#D4B483] transition-colors"
+          className="hover:text-[#7C6238] transition-colors"
         >
           Polityka prywatności
         </a>

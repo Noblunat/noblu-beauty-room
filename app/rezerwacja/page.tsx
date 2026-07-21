@@ -198,14 +198,14 @@ export default function RezerwacjaPage() {
           <div>
             <Link
               href="/"
-              className="mb-12 inline-flex text-sm uppercase tracking-[0.24em] text-[#B08B57] transition-colors hover:text-[#1D1D1B]"
+              className="mb-12 inline-flex text-sm uppercase tracking-[0.24em] text-[#7C6238] transition-colors hover:text-[#1D1D1B]"
             >
               Noblu Beauty Room
             </Link>
 
             <h1 className="max-w-2xl text-6xl font-light leading-[0.92] tracking-tight sm:text-7xl lg:text-8xl">
               Zapytaj o termin
-              <span className="block text-[#D4B483]">w Noblu</span>
+              <span className="block text-[#7C6238]">w Noblu</span>
             </h1>
 
             <p className="mt-8 max-w-xl text-lg leading-relaxed text-[#625b53]">
@@ -378,7 +378,7 @@ export default function RezerwacjaPage() {
               Wysyłając formularz, potwierdzasz zapoznanie się z{" "}
               <Link
                 href="/polityka-prywatnosci"
-                className="font-medium text-[#B08B57] hover:text-[#1D1D1B]"
+                className="font-medium text-[#7C6238] hover:text-[#1D1D1B]"
               >
                 polityką prywatności
               </Link>

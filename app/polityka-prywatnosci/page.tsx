@@ -24,7 +24,7 @@ export default function PolitykaPrywatnosciPage() {
       />
 
       <article className="mx-auto max-w-4xl">
-        <Link href="/" className="text-sm font-medium text-[#B08B57]">
+        <Link href="/" className="text-sm font-medium text-[#7C6238]">
           Powrót do strony głównej
         </Link>
 
@@ -58,12 +58,12 @@ export default function PolitykaPrywatnosciPage() {
                 Kontakt:{" "}
                 <a
                   href="mailto:noblu.beautyroom@gmail.com"
-                  className="text-[#B08B57]"
+                  className="text-[#7C6238]"
                 >
                   noblu.beautyroom@gmail.com
                 </a>
                 ,{" "}
-                <a href="tel:+48662989534" className="text-[#B08B57]">
+                <a href="tel:+48662989534" className="text-[#7C6238]">
                   +48 662 989 534
                 </a>
                 .

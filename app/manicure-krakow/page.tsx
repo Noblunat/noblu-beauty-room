@@ -83,13 +83,13 @@ export default function ManicureKrakowPage() {
 
       <section className="pt-40 pb-20 px-6 lg:px-12">
         <div className="max-w-5xl mx-auto">
-          <div className="text-sm uppercase tracking-[0.3em] text-[#D4B483] mb-6">
+          <div className="text-sm uppercase tracking-[0.3em] text-[#7C6238] mb-6">
             Manicure Kraków
           </div>
 
           <h1 className="text-4xl sm:text-5xl lg:text-7xl font-light leading-tight">
             Manicure Kraków
-            <span className="block text-[#D4B483]">Borek Fałęcki</span>
+            <span className="block text-[#7C6238]">Borek Fałęcki</span>
           </h1>
 
           <p className="mt-10 text-lg text-[#6D6B68] leading-relaxed max-w-3xl">
@@ -191,13 +191,13 @@ export default function ManicureKrakowPage() {
           </div>
 
           <div className="pt-6 flex flex-wrap gap-4">
-            <a href="/stylizacja-hybrydowa-krakow" className="text-[#B08B57]">
+            <a href="/stylizacja-hybrydowa-krakow" className="text-[#7C6238]">
               Stylizacja hybrydowa Kraków
             </a>
-            <a href="/pedicure-krakow" className="text-[#B08B57]">
+            <a href="/pedicure-krakow" className="text-[#7C6238]">
               Pedicure Kraków
             </a>
-            <a href="/stylizacja-rzes-krakow" className="text-[#B08B57]">
+            <a href="/stylizacja-rzes-krakow" className="text-[#7C6238]">
               Stylizacja rzęs Kraków
             </a>
           </div>

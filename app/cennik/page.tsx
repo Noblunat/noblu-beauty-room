@@ -139,7 +139,7 @@ function PriceList({
         {title}
       </h2>
 
-      <div className="mt-4 flex flex-wrap justify-center gap-x-5 gap-y-2 text-sm text-[#B08B57]">
+      <div className="mt-4 flex flex-wrap justify-center gap-x-5 gap-y-2 text-sm text-[#7C6238]">
         {links.map((link) => (
           <Link key={link.href} href={link.href} className="hover:underline">
             {link.label}
@@ -191,12 +191,12 @@ export default function CennikPage() {
       <section className="relative px-6 pb-16 pt-28 lg:px-12">
         <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,#D4B483,transparent_34%)] opacity-20" />
         <div className="relative mx-auto max-w-6xl">
-          <Link href="/" className="text-sm font-medium text-[#B08B57]">
+          <Link href="/" className="text-sm font-medium text-[#7C6238]">
             Powrót do strony głównej
           </Link>
 
           <div className="mt-10 max-w-3xl">
-            <div className="text-sm uppercase tracking-[0.3em] text-[#B08B57]">
+            <div className="text-sm uppercase tracking-[0.3em] text-[#7C6238]">
               Cennik
             </div>
             <h1 className="mt-5 text-5xl font-light leading-tight lg:text-7xl">

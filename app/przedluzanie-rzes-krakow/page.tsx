@@ -145,13 +145,13 @@ export default function PrzedluzanieRzesKrakowPage() {
       <section className="pt-40 pb-20 px-6 lg:px-12 bg-gradient-to-b from-[#FFFDFB] via-[#F8F5F2] to-[#EFE7DD]">
         <div className="max-w-6xl mx-auto grid lg:grid-cols-[1.05fr_0.95fr] gap-14 items-center">
           <div>
-            <div className="text-sm uppercase tracking-[0.3em] text-[#D4B483] mb-6">
+            <div className="text-sm uppercase tracking-[0.3em] text-[#7C6238] mb-6">
               Przedłużanie rzęs Kraków
             </div>
 
             <h1 className="text-4xl sm:text-5xl lg:text-7xl font-light leading-tight">
               Przedłużanie rzęs
-              <span className="block text-[#D4B483]">Kraków</span>
+              <span className="block text-[#7C6238]">Kraków</span>
             </h1>
 
             <p className="mt-10 text-lg text-[#6D6B68] leading-relaxed max-w-3xl">
@@ -192,7 +192,7 @@ export default function PrzedluzanieRzesKrakowPage() {
       <section className="py-24 px-6 lg:px-12 bg-white">
         <div className="max-w-6xl mx-auto">
           <div className="max-w-3xl mb-12">
-            <div className="text-sm uppercase tracking-[0.3em] text-[#B08B57] mb-4">
+            <div className="text-sm uppercase tracking-[0.3em] text-[#7C6238] mb-4">
               Metody stylizacji
             </div>
             <h2 className="text-4xl lg:text-5xl font-light leading-tight">
@@ -221,7 +221,7 @@ export default function PrzedluzanieRzesKrakowPage() {
       <section className="py-24 px-6 lg:px-12 bg-[#F8F5F2]">
         <div className="max-w-6xl mx-auto grid lg:grid-cols-2 gap-12">
           <div>
-            <div className="text-sm uppercase tracking-[0.3em] text-[#B08B57] mb-4">
+            <div className="text-sm uppercase tracking-[0.3em] text-[#7C6238] mb-4">
               Lokalizacja
             </div>
             <h2 className="text-4xl lg:text-5xl font-light leading-tight mb-8">
