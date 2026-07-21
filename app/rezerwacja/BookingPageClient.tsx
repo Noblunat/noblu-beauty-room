@@ -314,7 +314,7 @@ export default function BookingPageClient() {
                 <div className="p-5 sm:p-8">
                   <div className="grid grid-cols-3 gap-3">
                     {[
-                      { value: "5.0", label: "Ocena klientek" },
+                      { value: "★★★★★ 5.0", label: "z 208 opinii" },
                       { value: "24/7", label: "Formularz online" },
                       { value: "Darmowy", label: "parking pod salonem" },
                     ].map((item) => (
@@ -322,7 +322,7 @@ export default function BookingPageClient() {
                         key={item.value}
                         className="rounded-2xl border border-[#E8DED2] bg-white/78 p-4"
                       >
-                        <div className="text-2xl font-semibold leading-tight">
+                        <div className="text-lg font-semibold leading-tight sm:text-2xl">
                           {item.value}
                         </div>
                         <div className="mt-2 text-sm text-[#6D6B68]">
