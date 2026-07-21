@@ -84,17 +84,8 @@ const instagramGalleryItems = [
 ]
 
 export default function NobluBeautyRoomWebsite() {
-  const [loading, setLoading] = useState(true)
   const [selectedMedia, setSelectedMedia] = useState<string | null>(null)
   const [selectedType, setSelectedType] = useState<'image' | 'video' | null>(null)
-
-  useEffect(() => {
-    const timer = setTimeout(() => {
-      setLoading(false)
-    }, 1800)
-
-    return () => clearTimeout(timer)
-  }, [])
 
   const services = [
     {
@@ -287,35 +278,6 @@ useEffect(() => {
     dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }}
   />
 
-  <AnimatePresence>
-  {loading && (
-    <motion.div
-      initial={{ opacity: 1 }}
-      exit={{ opacity: 0 }}
-      transition={{ duration: 0.5 }}
-      className="fixed inset-0 z-[99999] bg-[linear-gradient(180deg,#FFFDFB_0%,#F8F5F2_48%,#EFE7DD_100%)] flex items-center justify-center overflow-hidden"
-    >
-      <motion.div
-        initial={{ opacity: 0, scale: 0.9 }}
-        animate={{ opacity: 1, scale: 1 }}
-        transition={{ duration: 1.2 }}
-        className="relative"
-      >
-        <div className="absolute inset-0 bg-[#D4B483]/30 blur-3xl rounded-full" />
-
-        <Image
-          src="/logo.png"
-          alt="Noblu Beauty Room Kraków"
-          width={226}
-          height={226}
-          priority
-          className="relative h-[14.15rem] w-[14.15rem] object-contain"
-        />
-      </motion.div>
-    </motion.div>
-  )}
-</AnimatePresence>
-
   <motion.div
     className="fixed left-0 right-0 top-0 z-[99999] h-[3px] origin-left bg-[#D4B483]"
     style={{ scaleX }}
@@ -342,7 +304,6 @@ useEffect(() => {
         alt="Noblu Beauty Room Kraków"
         width={64}
         height={64}
-        priority
         className="h-16 w-16 object-contain"
       />
 
@@ -381,6 +342,7 @@ useEffect(() => {
       alt="Eleganckie wnętrze Noblu Beauty Room Kraków"
       fill
       priority
+      fetchPriority="high"
       sizes="100vw"
       className="object-cover object-[26%_58%] opacity-85"
     />
