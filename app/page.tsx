@@ -121,6 +121,8 @@ const instagramGalleryItems = [
 ]
 
 export default function NobluBeautyRoomWebsite() {
+  const [loading, setLoading] = useState(true)
+  const [showLoader, setShowLoader] = useState(true)
   const [selectedMedia, setSelectedMedia] = useState<string | null>(null)
   const [selectedType, setSelectedType] = useState<'image' | 'video' | null>(null)
 
@@ -267,6 +269,20 @@ const [visibleGalleryItems, setVisibleGalleryItems] = useState(
 )
 
 useEffect(() => {
+  const timer = setTimeout(() => {
+    setLoading(false)
+  }, 1400)
+  const removeTimer = setTimeout(() => {
+    setShowLoader(false)
+  }, 1800)
+
+  return () => {
+    clearTimeout(timer)
+    clearTimeout(removeTimer)
+  }
+}, [])
+
+useEffect(() => {
   let start = 0
 
   const interval = setInterval(() => {
@@ -290,6 +306,37 @@ useEffect(() => {
     type="application/ld+json"
     dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }}
   />
+
+  <AnimatePresence>
+    {showLoader && (
+      <motion.div
+        initial={{ opacity: 1 }}
+        exit={{ opacity: 0 }}
+        transition={{ duration: 0.4 }}
+        className={`fixed inset-0 z-[99999] flex items-center justify-center overflow-hidden bg-[linear-gradient(180deg,#FFFDFB_0%,#F8F5F2_48%,#EFE7DD_100%)] transition-opacity duration-500 ${
+          loading ? "opacity-100" : "pointer-events-none opacity-0"
+        }`}
+      >
+        <motion.div
+          initial={{ opacity: 0, scale: 0.92 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ duration: 0.7 }}
+          className="relative flex h-64 w-64 items-center justify-center"
+        >
+          <div className="absolute inset-0 rounded-full bg-[#D4B483]/30 blur-3xl" />
+          <Image
+            src="/logo-footer.webp"
+            alt="Noblu Beauty Room Krakow"
+            width={226}
+            height={226}
+            priority
+            unoptimized
+            className="relative h-[14.15rem] w-[14.15rem] object-contain"
+          />
+        </motion.div>
+      </motion.div>
+    )}
+  </AnimatePresence>
 
   <motion.div
     className="fixed left-0 right-0 top-0 z-[99999] h-[3px] origin-left bg-[#D4B483]"
