@@ -159,6 +159,14 @@ export default function NobluBeautyRoomWebsite() {
       description:
         "Natural look, rzęsy 1:1 i lekkie objętości dobierane do kształtu oka, urody i oczekiwanego efektu.",
     },
+    {
+      title: "Przedłużanie rzęs",
+      href: "/przedluzanie-rzes-krakow",
+      image: "/gallery/rzesy/IMG_7228.webp",
+      alt: "Przedłużanie rzęs w Noblu Beauty Room Kraków",
+      description:
+        "Rzęsy 1:1, 2D i 3D wykonywane z naciskiem na lekkość, komfort noszenia oraz efekt dopasowany do naturalnych rzęs.",
+    },
   ]
 
   const whyNobluItems = [
@@ -826,9 +834,12 @@ useEffect(() => {
         </p>
 
         <p>
-          Jeśli szukasz miejsca na manicure, pedicure albo przedłużanie rzęs w
-          Krakowie, możesz umówić wizytę online i łatwo zaplanować dojazd z
-          pobliskich dzielnic.
+          Jeśli szukasz miejsca na manicure, pedicure albo{" "}
+          <a href="/przedluzanie-rzes-krakow" className="font-medium text-[#876536] underline underline-offset-4">
+            przedłużanie rzęs w Krakowie
+          </a>
+          , możesz umówić wizytę online i łatwo zaplanować dojazd z pobliskich
+          dzielnic.
         </p>
 
         <a

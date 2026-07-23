@@ -2,7 +2,7 @@ import type { MetadataRoute } from "next"
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const baseUrl = "https://noblu.pl"
-  const lastModified = "2026-07-16"
+  const lastModified = "2026-07-23"
 
   return [
     {
