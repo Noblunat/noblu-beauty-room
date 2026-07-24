@@ -6,14 +6,14 @@ import ServiceJsonLd from "../components/ServiceJsonLd";
 export const metadata: Metadata = {
   title: "Pedicure Kraków Borek Fałęcki | Kosmetyczny i hybrydowy | Noblu",
   description:
-    "Pedicure kosmetyczny i hybrydowy w Krakowie, Borek Fałęcki. Noblu Beauty Room przy ul. Orzechowej 4 — wygodny dojazd z Łagiewnik, Ruczaju i Podgórza.",
+    "Pedicure kosmetyczny i hybrydowy w Krakowie, Borek Fałęcki. Przyjmujemy nowe klientki, darmowy parking i zapytanie o termin online.",
   alternates: {
     canonical: "https://noblu.pl/pedicure-krakow",
   },
   openGraph: {
     title: "Pedicure Kraków Borek Fałęcki | Kosmetyczny i hybrydowy | Noblu",
     description:
-      "Pedicure kosmetyczny, hybrydowy i SPA w Noblu Beauty Room w Krakowie, Borek Fałęcki.",
+      "Pedicure kosmetyczny, hybrydowy i SPA w Noblu Beauty Room w Krakowie, Borek Fałęcki. Zapytaj o termin online.",
     url: "https://noblu.pl/pedicure-krakow",
     siteName: "Noblu Beauty Room",
     images: [{
@@ -36,11 +36,15 @@ const faq = [
   },
   {
     q: "Jak zarezerwować pedicure?",
-    a: "Wyślij prośbę o termin przez formularz rezerwacji Noblu. Salon potwierdzi dostępność SMS-em lub telefonicznie.",
+    a: "Wyślij prośbę o termin przez formularz rezerwacji Noblu. Salon potwierdzi dostępność SMS-em lub telefonicznie. Przyjmujemy również nowe klientki na pedicure.",
   },
   {
     q: "Ile kosztuje pedicure w Krakowie?",
     a: "Pedicure samych paznokci kosztuje od 110 zł, pedicure z hybrydą od 160 zł, a pełny pedicure kosmetyczny od 180 zł.",
+  },
+  {
+    q: "Czy Noblu przyjmuje nowe klientki na pedicure?",
+    a: "Tak. Po dołączeniu stylistki możesz zapytać o termin na pedicure samych paznokci, pedicure hybrydowy, kosmetyczny lub kosmetyczny z hybrydą.",
   },
 ];
 
@@ -101,7 +105,8 @@ export default function PedicureKrakowPage() {
             Noblu Beauty Room oferuje pedicure kosmetyczny i hybrydowy w
             Krakowie, na Borku Fałęckim, dla kobiet, które cenią estetykę,
             komfort i dokładne wykończenie. Salon znajduje się przy ul.
-            Orzechowej 4, a pod budynkiem dostępny jest darmowy parking.
+            Orzechowej 4, a pod budynkiem dostępny jest darmowy parking. Po
+            dołączeniu stylistki przyjmujemy nowe klientki na pedicure.
           </p>
 
           <div className="mt-12">
@@ -131,6 +136,12 @@ export default function PedicureKrakowPage() {
               Ceny zaczynają się od 110 zł za pedicure samych paznokci i od
               160 zł za wariant z hybrydą. Wszystkie opcje są opisane w <Link href="/cennik" className="font-medium text-[#876536] underline underline-offset-4">cenniku pedicure</Link>.
             </p>
+            <p className="mt-4">
+              Jeśli szukasz pedicure w Krakowie, możesz wybrać wariant
+              kosmetyczny, hybrydowy albo pielęgnację samych paznokci. Przed
+              wizytą warto wskazać w formularzu preferowany efekt i dogodny
+              dzień, aby łatwiej dopasować termin.
+            </p>
           </div>
 
           <div>
@@ -142,6 +153,18 @@ export default function PedicureKrakowPage() {
               Borku Fałęckim. To dogodna lokalizacja dla klientek z Łagiewnik,
               Ruczaju, Kurdwanowa, Swoszowic, Woli Duchackiej oraz osób
               dojeżdżających z Podgórza.
+            </p>
+          </div>
+
+          <div>
+            <h2 className="text-3xl lg:text-4xl font-light text-[#1D1D1B] mb-6">
+              Nowe klientki na pedicure
+            </h2>
+            <p>
+              Jeśli szukasz pedicure w Krakowie i zależy Ci na spokojnej,
+              dokładnej wizycie, możesz wysłać zapytanie przez formularz Noblu.
+              Większa dostępność zespołu pomaga lepiej dopasować termin na
+              pedicure hybrydowy, kosmetyczny lub pielęgnację samych paznokci.
             </p>
           </div>
 

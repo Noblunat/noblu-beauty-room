@@ -6,14 +6,14 @@ import ServiceJsonLd from "../components/ServiceJsonLd";
 export const metadata: Metadata = {
   title: "Manicure Kraków Borek Fałęcki | Hybryda i paznokcie | Noblu",
   description:
-    "Manicure i paznokcie hybrydowe w Krakowie, Borek Fałęcki. Noblu Beauty Room przy ul. Orzechowej 4. Darmowy parking i zapytanie o termin online.",
+    "Manicure i paznokcie hybrydowe w Krakowie, Borek Fałęcki. Przyjmujemy nowe klientki. Darmowy parking i zapytanie o termin online.",
   alternates: {
     canonical: "https://noblu.pl/manicure-krakow",
   },
   openGraph: {
     title: "Manicure Kraków Borek Fałęcki | Hybryda i paznokcie | Noblu",
     description:
-      "Manicure, paznokcie hybrydowe i stylizacja paznokci w Krakowie, Borek Fałęcki. Zapytaj o termin online.",
+      "Manicure, paznokcie hybrydowe i stylizacja paznokci w Krakowie, Borek Fałęcki. Nowe klientki mogą zapytać o termin online.",
     url: "https://noblu.pl/manicure-krakow",
     siteName: "Noblu Beauty Room",
     images: [{
@@ -32,7 +32,7 @@ const faq = [
   },
   {
     q: "Czy można zarezerwować manicure online?",
-    a: "Tak. Możesz wysłać prośbę o termin przez formularz Noblu, a salon potwierdzi dostępność SMS-em lub telefonicznie.",
+    a: "Tak. Możesz wysłać prośbę o termin przez formularz Noblu, a salon potwierdzi dostępność SMS-em lub telefonicznie. Przyjmujemy także nowe klientki na manicure i paznokcie hybrydowe.",
   },
   {
     q: "Jakie stylizacje paznokci wykonuje salon?",
@@ -41,6 +41,10 @@ const faq = [
   {
     q: "Ile kosztuje manicure w Krakowie?",
     a: "Manicure w Noblu Beauty Room kosztuje 100 zł, a stylizacja hybrydowa od 160 zł. Aktualne ceny wszystkich wariantów znajdują się w cenniku salonu.",
+  },
+  {
+    q: "Czy Noblu przyjmuje nowe klientki na paznokcie?",
+    a: "Tak. Po dołączeniu stylistki możesz zapytać o termin na manicure, manicure hybrydowy i stylizację paznokci w salonie Noblu Beauty Room na Borku Fałęckim.",
   },
 ];
 
@@ -97,7 +101,8 @@ export default function ManicureKrakowPage() {
             Fałęckim, oferujący manicure, stylizację paznokci i manicure
             hybrydowy. Pracujemy z dbałością o estetykę, higienę i naturalny
             efekt. Salon znajduje się przy ul. Orzechowej 4, z darmowym
-            parkingiem.
+            parkingiem. Po dołączeniu stylistki przyjmujemy nowe klientki na
+            manicure i paznokcie hybrydowe.
           </p>
 
           <div className="mt-12">
@@ -128,6 +133,12 @@ export default function ManicureKrakowPage() {
               Manicure kosztuje 100 zł, a stylizacja hybrydowa od 160 zł.
               Szczegółowe ceny znajdziesz w <Link href="/cennik" className="font-medium text-[#876536] underline underline-offset-4">cenniku Noblu</Link>.
             </p>
+            <p className="mt-4">
+              To dobra propozycja, jeśli szukasz manicure w Krakowie z dokładnym
+              opracowaniem skórek, estetycznym kształtem paznokci i trwałym
+              wykończeniem. Wykonujemy również manicure hybrydowy dla klientek,
+              które chcą zadbanych dłoni na co dzień.
+            </p>
           </div>
 
           <div>
@@ -139,6 +150,18 @@ export default function ManicureKrakowPage() {
               wygodna lokalizacja na Borku Fałęckim dla klientek z Łagiewnik,
               Ruczaju, Kurdwanowa, Swoszowic, Woli Duchackiej oraz osób
               dojeżdżających z Podgórza.
+            </p>
+          </div>
+
+          <div>
+            <h2 className="text-3xl lg:text-4xl font-light text-[#1D1D1B] mb-6">
+              Nowe klientki na manicure i paznokcie hybrydowe
+            </h2>
+            <p>
+              Dzięki większej dostępności zespołu możesz wysłać zapytanie o
+              termin na manicure klasyczny, manicure hybrydowy albo stylizację
+              paznokci. Formularz online działa całą dobę, a salon potwierdza
+              wizytę SMS-em lub telefonicznie po sprawdzeniu grafiku.
             </p>
           </div>
 
