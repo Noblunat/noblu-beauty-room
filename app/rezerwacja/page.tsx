@@ -204,14 +204,14 @@ export default function RezerwacjaPage() {
             </Link>
 
             <h1 className="max-w-2xl text-6xl font-light leading-[0.92] tracking-tight sm:text-7xl lg:text-8xl">
-              Zapytaj o termin
+              Rezerwacja manicure, pedicure i rzęs
               <span className="block text-[#7C6238]">w Noblu</span>
             </h1>
 
             <p className="mt-8 max-w-xl text-lg leading-relaxed text-[#625b53]">
-              Wybierz usługę i preferowany termin wizyty. Formularz nie blokuje
-              terminu automatycznie, a ostateczne potwierdzenie otrzymasz od
-              salonu.
+              Wybierz manicure, pedicure, paznokcie hybrydowe albo stylizację
+              rzęs i podaj preferowany termin wizyty. Formularz nie blokuje
+              terminu automatycznie, a ostateczne potwierdzenie otrzymasz od salonu.
             </p>
 
             <div className="mt-10 grid max-w-lg grid-cols-[1fr_0.8fr_1.2fr] gap-3 sm:max-w-xl sm:grid-cols-3 sm:gap-6">
@@ -361,6 +361,13 @@ export default function RezerwacjaPage() {
               >
                 Zarezerwuj przez Booksy
               </a>
+
+              <Link
+                href="/cennik"
+                className="rounded-full border border-[#D4B483] px-7 py-4 text-center font-medium text-[#876536] transition-colors hover:bg-[#D4B483] hover:text-black"
+              >
+                Zobacz cennik usług
+              </Link>
             </div>
 
             {submitMessage && (
@@ -403,6 +410,14 @@ export default function RezerwacjaPage() {
               <p className="mt-5 leading-relaxed text-[#625b53]">
                 Ceny i czas trwania są orientacyjne. Jeśli termin będzie
                 niedostępny, salon zaproponuje najbliższą możliwą godzinę.
+                Pełną listę usług znajdziesz w{" "}
+                <Link
+                  href="/cennik"
+                  className="font-medium text-[#7C6238] underline underline-offset-4"
+                >
+                  cenniku Noblu Beauty Room
+                </Link>
+                .
               </p>
             </div>
 

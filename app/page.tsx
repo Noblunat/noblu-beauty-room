@@ -462,14 +462,14 @@ useEffect(() => {
           href="/rezerwacja"
           className="px-8 py-5 rounded-full bg-[#D4B483] text-black font-medium hover:scale-105 transition-transform shadow-[0_20px_60px_rgba(212,180,131,0.35)]"
         >
-          Zapytaj o termin
+          Rezerwacja manicure i pedicure
         </a>
 
         <a
           href="/cennik"
           className="px-8 py-5 rounded-full bg-[#D4B483] text-black font-medium hover:scale-105 transition-transform shadow-[0_20px_60px_rgba(212,180,131,0.35)]"
         >
-          Cennik
+          Cennik manicure i pedicure
         </a>
       </div>
 
@@ -877,6 +877,10 @@ useEffect(() => {
           <span>Pedicure Kraków Borek Fałęcki</span>
           <span className="text-[#876536]">Zobacz</span>
         </a>
+        <a href="/cennik" className="flex items-center justify-between rounded-2xl border border-[#E8DED2] bg-white p-5 hover:border-[#D4B483] transition-colors">
+          <span>Cennik manicure i pedicure</span>
+          <span className="text-[#876536]">Zobacz ceny</span>
+        </a>
         <a href="/stylizacja-rzes-krakow" className="flex items-center justify-between rounded-2xl border border-[#E8DED2] bg-white p-5 hover:border-[#D4B483] transition-colors">
           <span>Stylizacja rzęs Borek Fałęcki i okolice</span>
           <span className="text-[#876536]">Zobacz</span>
@@ -884,6 +888,10 @@ useEffect(() => {
         <a href="/manicure-krakow" className="flex items-center justify-between rounded-2xl border border-[#E8DED2] bg-white p-5 hover:border-[#D4B483] transition-colors">
           <span>Manicure Kraków południe</span>
           <span className="text-[#876536]">Zobacz</span>
+        </a>
+        <a href="/rezerwacja" className="flex items-center justify-between rounded-2xl border border-[#E8DED2] bg-white p-5 hover:border-[#D4B483] transition-colors">
+          <span>Rezerwacja manicure, pedicure i rzęs</span>
+          <span className="text-[#876536]">Zapytaj o termin</span>
         </a>
       </div>
     </div>

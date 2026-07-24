@@ -4,16 +4,16 @@ import BreadcrumbJsonLd from "../components/BreadcrumbJsonLd";
 import ServiceJsonLd from "../components/ServiceJsonLd";
 
 export const metadata: Metadata = {
-  title: "Manicure Kraków Borek Fałęcki | Hybryda i paznokcie | Noblu",
+  title: "Manicure Kraków | Paznokcie hybrydowe Borek Fałęcki | Noblu",
   description:
-    "Manicure i paznokcie hybrydowe w Krakowie, Borek Fałęcki. Przyjmujemy nowe klientki. Darmowy parking i zapytanie o termin online.",
+    "Manicure i paznokcie hybrydowe w Krakowie na Borku Fałęckim. Nowa stylistka, przyjmujemy klientki. Sprawdź cennik i zapytaj o termin online.",
   alternates: {
     canonical: "https://noblu.pl/manicure-krakow",
   },
   openGraph: {
-    title: "Manicure Kraków Borek Fałęcki | Hybryda i paznokcie | Noblu",
+    title: "Manicure Kraków | Paznokcie hybrydowe Borek Fałęcki | Noblu",
     description:
-      "Manicure, paznokcie hybrydowe i stylizacja paznokci w Krakowie, Borek Fałęcki. Nowe klientki mogą zapytać o termin online.",
+      "Manicure, paznokcie hybrydowe i stylizacja paznokci w Krakowie, Borek Fałęcki. Sprawdź ceny i zapytaj o termin online.",
     url: "https://noblu.pl/manicure-krakow",
     siteName: "Noblu Beauty Room",
     images: [{
@@ -105,13 +105,19 @@ export default function ManicureKrakowPage() {
             manicure i paznokcie hybrydowe.
           </p>
 
-          <div className="mt-12">
+          <div className="mt-12 flex flex-wrap gap-4">
             <a
               href="/rezerwacja"
               className="inline-flex items-center justify-center px-10 py-5 rounded-full bg-[#D4B483] text-black font-medium hover:scale-105 transition-transform shadow-[0_10px_30px_rgba(212,180,131,0.25)]"
             >
-              Zarezerwuj manicure
+              Zarezerwuj manicure w Krakowie
             </a>
+            <Link
+              href="/cennik"
+              className="inline-flex items-center justify-center rounded-full border border-[#D4B483] px-10 py-5 font-medium text-[#876536] transition-colors hover:bg-[#D4B483] hover:text-black"
+            >
+              Zobacz cennik manicure
+            </Link>
           </div>
         </div>
       </section>
@@ -131,7 +137,7 @@ export default function ManicureKrakowPage() {
             </p>
             <p className="mt-4">
               Manicure kosztuje 100 zł, a stylizacja hybrydowa od 160 zł.
-              Szczegółowe ceny znajdziesz w <Link href="/cennik" className="font-medium text-[#876536] underline underline-offset-4">cenniku Noblu</Link>.
+              Szczegółowe ceny znajdziesz w <Link href="/cennik" className="font-medium text-[#876536] underline underline-offset-4">cenniku manicure i paznokci</Link>.
             </p>
             <p className="mt-4">
               To dobra propozycja, jeśli szukasz manicure w Krakowie z dokładnym
@@ -202,7 +208,13 @@ export default function ManicureKrakowPage() {
                 href="/rezerwacja"
                 className="inline-flex items-center justify-center px-8 py-4 rounded-full bg-[#D4B483] text-black font-medium hover:scale-105 transition-transform"
               >
-                Zapytaj o termin
+                Zapytaj o termin manicure
+              </Link>
+              <Link
+                href="/cennik"
+                className="inline-flex items-center justify-center px-8 py-4 rounded-full border border-[#E8DED2] text-[#1D1D1B] hover:border-[#D4B483] transition-colors"
+              >
+                Zobacz cennik manicure
               </Link>
               <Link
                 href="/"

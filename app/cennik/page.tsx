@@ -3,16 +3,16 @@ import Link from "next/link";
 import BreadcrumbJsonLd from "../components/BreadcrumbJsonLd";
 
 export const metadata: Metadata = {
-  title: "Cennik | Noblu Beauty Room Kraków",
+  title: "Cennik Noblu Kraków | Manicure, pedicure i rzęsy",
   description:
-    "Cennik usług Noblu Beauty Room w Krakowie. Stylizacja rzęs, manicure, stylizacja paznokci, pedicure i usługi dodatkowe.",
+    "Sprawdź cennik manicure, pedicure, paznokci hybrydowych i stylizacji rzęs w Noblu Beauty Room Kraków. Zobacz ceny i zapytaj o termin online.",
   alternates: {
     canonical: "https://noblu.pl/cennik",
   },
   openGraph: {
-    title: "Cennik | Noblu Beauty Room Kraków",
+    title: "Cennik Noblu Kraków | Manicure, pedicure i rzęsy",
     description:
-      "Sprawdź ceny stylizacji rzęs, manicure, paznokci i pedicure w Noblu Beauty Room w Krakowie.",
+      "Sprawdź ceny manicure, pedicure, paznokci hybrydowych i stylizacji rzęs w Noblu Beauty Room w Krakowie.",
     url: "https://noblu.pl/cennik",
     siteName: "Noblu Beauty Room",
     images: [
@@ -200,12 +200,13 @@ export default function CennikPage() {
               Cennik
             </div>
             <h1 className="mt-5 text-5xl font-light leading-tight lg:text-7xl">
-              Ceny usług w Noblu Beauty Room
+              Cennik manicure, pedicure i rzęs w Krakowie
             </h1>
             <p className="mt-8 text-lg leading-relaxed text-[#5F5B56]">
-              Sprawdź ceny stylizacji rzęs, manicure, stylizacji paznokci i
-              pedicure w kameralnym salonie beauty w Krakowie przy ul.
-              Orzechowej 4/lok.1.
+              Sprawdź ceny manicure, paznokci hybrydowych, pedicure oraz
+              stylizacji rzęs w kameralnym salonie beauty w Krakowie przy ul.
+              Orzechowej 4/lok.1. Jeśli pasuje Ci usługa, możesz od razu
+              wysłać prośbę o termin online.
             </p>
           </div>
         </div>
@@ -228,6 +229,7 @@ export default function CennikPage() {
             items={nailPrices}
             links={[
               { href: "/manicure-krakow", label: "Manicure Kraków" },
+              { href: "/rezerwacja", label: "Zarezerwuj manicure" },
               { href: "/stylizacja-hybrydowa-krakow", label: "Stylizacja hybrydowa Kraków" },
             ]}
           />
@@ -238,6 +240,7 @@ export default function CennikPage() {
               items={pedicurePrices}
               links={[
                 { href: "/pedicure-krakow", label: "Pedicure Kraków Borek Fałęcki" },
+                { href: "/rezerwacja", label: "Zarezerwuj pedicure" },
               ]}
             />
           </div>
@@ -256,7 +259,7 @@ export default function CennikPage() {
               href="/rezerwacja"
               className="inline-flex items-center justify-center rounded-full bg-[#D4B483] px-8 py-4 font-medium text-black transition-transform hover:scale-105"
             >
-              Zapytaj o termin
+              Zapytaj o termin manicure, pedicure lub rzęs
             </Link>
           </div>
         </div>

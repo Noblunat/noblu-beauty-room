@@ -2,9 +2,9 @@ import type { Metadata } from "next";
 import type { ReactNode } from "react";
 
 const reservationUrl = "https://noblu.pl/rezerwacja";
-const title = "Zapytaj o termin | Noblu Beauty Room Kraków";
+const title = "Rezerwacja Noblu Kraków | Manicure, pedicure i rzęsy";
 const description =
-  "Zapytaj o termin manicure, pedicure lub stylizacji rzęs w Noblu Beauty Room przy ul. Orzechowej w Krakowie. Wybierz usługę i preferowany dzień.";
+  "Wyślij prośbę o termin na manicure, pedicure, paznokcie hybrydowe lub stylizację rzęs w Noblu Beauty Room Kraków. Formularz online 24/7.";
 const socialImage = `${reservationUrl}/rezerwacja-hero.jpg`;
 
 export const metadata: Metadata = {

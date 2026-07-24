@@ -6,14 +6,14 @@ import ServiceJsonLd from "../components/ServiceJsonLd";
 export const metadata: Metadata = {
   title: "Pedicure Kraków Borek Fałęcki | Kosmetyczny i hybrydowy | Noblu",
   description:
-    "Pedicure kosmetyczny i hybrydowy w Krakowie, Borek Fałęcki. Przyjmujemy nowe klientki, darmowy parking i zapytanie o termin online.",
+    "Pedicure kosmetyczny i hybrydowy w Krakowie na Borku Fałęckim. Dobry dojazd z Podgórza, darmowy parking, cennik i zapytanie o termin online.",
   alternates: {
     canonical: "https://noblu.pl/pedicure-krakow",
   },
   openGraph: {
     title: "Pedicure Kraków Borek Fałęcki | Kosmetyczny i hybrydowy | Noblu",
     description:
-      "Pedicure kosmetyczny, hybrydowy i SPA w Noblu Beauty Room w Krakowie, Borek Fałęcki. Zapytaj o termin online.",
+      "Pedicure kosmetyczny, hybrydowy i SPA w Noblu Beauty Room w Krakowie, Borek Fałęcki. Zobacz cennik i zapytaj o termin online.",
     url: "https://noblu.pl/pedicure-krakow",
     siteName: "Noblu Beauty Room",
     images: [{
@@ -109,12 +109,18 @@ export default function PedicureKrakowPage() {
             dołączeniu stylistki przyjmujemy nowe klientki na pedicure.
           </p>
 
-          <div className="mt-12">
+          <div className="mt-12 flex flex-wrap gap-4">
             <Link
               href="/rezerwacja"
               className="inline-flex items-center justify-center px-10 py-5 rounded-full bg-[#D4B483] text-black font-medium hover:scale-105 transition-transform shadow-[0_10px_30px_rgba(212,180,131,0.25)]"
             >
               Zapytaj o termin pedicure
+            </Link>
+            <Link
+              href="/cennik"
+              className="inline-flex items-center justify-center rounded-full border border-[#D4B483] px-10 py-5 font-medium text-[#876536] transition-colors hover:bg-[#D4B483] hover:text-black"
+            >
+              Zobacz cennik pedicure
             </Link>
           </div>
         </div>
@@ -210,7 +216,7 @@ export default function PedicureKrakowPage() {
                 href="/cennik"
                 className="inline-flex items-center justify-center px-8 py-4 rounded-full border border-[#E8DED2] text-[#1D1D1B] hover:border-[#D4B483] transition-colors"
               >
-                Sprawdź cennik
+                Zobacz cennik pedicure
               </Link>
             </div>
           </div>
