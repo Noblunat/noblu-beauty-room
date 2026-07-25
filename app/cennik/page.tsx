@@ -124,11 +124,13 @@ const offerCatalogJsonLd = {
 
 function PriceList({
   title,
+  description,
   items,
   note,
   links,
 }: {
   title: string;
+  description: string;
   items: { name: string; price: string }[];
   note?: string;
   links: { href: string; label: string }[];
@@ -138,6 +140,10 @@ function PriceList({
       <h2 className="text-center text-3xl font-light text-[#3A2F26] sm:text-4xl">
         {title}
       </h2>
+
+      <p className="mx-auto mt-4 max-w-2xl text-center leading-relaxed text-[#6D6B68]">
+        {description}
+      </p>
 
       <div className="mt-4 flex flex-wrap justify-center gap-x-5 gap-y-2 text-sm text-[#7C6238]">
         {links.map((link) => (
@@ -216,6 +222,7 @@ export default function CennikPage() {
         <div className="mx-auto grid max-w-6xl gap-8 lg:grid-cols-2">
           <PriceList
             title="Stylizacja rzęs"
+            description="Cennik stylizacji rzęs obejmuje pierwsze aplikacje, uzupełnienia oraz zdjęcie stylizacji. Dobieramy objętość do naturalnych rzęs, kształtu oka i oczekiwanego efektu."
             items={lashPrices}
             note="Do wybranej objętości istnieje możliwość dopasowania metody wispy lub wet look. Uzupełnienie liczone jest do maksymalnie 4 tygodni od założenia stylizacji."
             links={[
@@ -226,6 +233,7 @@ export default function CennikPage() {
 
           <PriceList
             title="Stylizacja paznokci"
+            description="Cennik manicure i paznokci obejmuje manicure klasyczny, paznokcie hybrydowe, żel na naturalnej płytce, uzupełnienia oraz przedłużenie żelowe."
             items={nailPrices}
             links={[
               { href: "/manicure-krakow", label: "Manicure Kraków" },
@@ -237,12 +245,48 @@ export default function CennikPage() {
           <div className="lg:col-span-2">
             <PriceList
               title="Pedicure"
+              description="Cennik pedicure obejmuje pielęgnację samych paznokci, pedicure hybrydowy, pełny pedicure kosmetyczny oraz wariant kosmetyczny z hybrydą."
               items={pedicurePrices}
               links={[
                 { href: "/pedicure-krakow", label: "Pedicure Kraków Borek Fałęcki" },
                 { href: "/rezerwacja", label: "Zarezerwuj pedicure" },
               ]}
             />
+          </div>
+        </div>
+
+        <div className="mx-auto mt-10 grid max-w-6xl gap-6 lg:grid-cols-3">
+          <div className="rounded-[2rem] border border-[#E8DED2] bg-white/75 p-7">
+            <h2 className="text-2xl font-light text-[#1D1D1B]">
+              Ile kosztuje manicure w Krakowie?
+            </h2>
+            <p className="mt-4 leading-relaxed text-[#5F5B56]">
+              Manicure w Noblu Beauty Room zaczyna się od 100 zł, a stylizacja
+              hybrydowa od 160 zł. Jeśli chcesz dobrać odpowiednią usługę,
+              sprawdź warianty stylizacji paznokci albo wyślij zapytanie o termin.
+            </p>
+          </div>
+
+          <div className="rounded-[2rem] border border-[#E8DED2] bg-white/75 p-7">
+            <h2 className="text-2xl font-light text-[#1D1D1B]">
+              Ile kosztuje pedicure?
+            </h2>
+            <p className="mt-4 leading-relaxed text-[#5F5B56]">
+              Pedicure samych paznokci kosztuje od 110 zł, pedicure z hybrydą
+              od 160 zł, a pełny pedicure kosmetyczny od 180 zł. Salon znajduje
+              się na Borku Fałęckim, z wygodnym dojazdem z południa Krakowa.
+            </p>
+          </div>
+
+          <div className="rounded-[2rem] border border-[#E8DED2] bg-white/75 p-7">
+            <h2 className="text-2xl font-light text-[#1D1D1B]">
+              Jak zarezerwować wizytę?
+            </h2>
+            <p className="mt-4 leading-relaxed text-[#5F5B56]">
+              Wybierz usługę z cennika i przejdź do formularza rezerwacji.
+              Prośbę o termin możesz wysłać online 24/7, a salon potwierdzi
+              dostępność SMS-em lub telefonicznie.
+            </p>
           </div>
         </div>
 
