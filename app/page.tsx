@@ -8,6 +8,7 @@ type GalleryItem = {
   type: 'image' | 'video'
   category: string
   poster?: string
+  alt?: string
 }
 
 type StaticMotionDivProps = HTMLAttributes<HTMLDivElement> & {
@@ -88,23 +89,23 @@ const mapsDirectionsUrl =
 const instagramGalleryItems = [
   {
     src: "/gallery/paznokcie/IMG_1745(1).webp",
-    alt: "Blekitny manicure hybrydowy w Noblu Beauty Room Krakow",
+    alt: "Błękitny manicure hybrydowy w Noblu Beauty Room Kraków",
   },
   {
     src: "/gallery/paznokcie/IMG_2406(2).webp",
-    alt: "Elegancki czerwony manicure w Noblu Beauty Room Krakow",
+    alt: "Elegancki czerwony manicure hybrydowy w Noblu Beauty Room Kraków",
   },
   {
     src: "/gallery/paznokcie/IMG_2440(1).webp",
-    alt: "Rozowy manicure ze zdobieniem w Noblu Beauty Room",
+    alt: "Różowy manicure ze zdobieniem w Noblu Beauty Room Kraków",
   },
   {
-    src: "/gallery/paznokcie/IMG_6334.webp",
-    alt: "Naturalna stylizacja paznokci w Noblu Beauty Room Krakow",
+    src: "/gallery/paznokcie/manicure-hybrydowy-nude-krakow-noblu.webp",
+    alt: "Naturalny manicure hybrydowy nude w Noblu Beauty Room Kraków",
   },
   {
-    src: "/gallery/paznokcie/IMG_6375.webp",
-    alt: "Stylizacja paznokci hybrydowych w Noblu Beauty Room",
+    src: "/gallery/paznokcie/paznokcie-hybrydowe-ombre-krakow-noblu.webp",
+    alt: "Paznokcie hybrydowe ombre ze zdobieniem w Noblu Beauty Room Kraków",
   },
   {
     src: "/gallery/paznokcie/IMG_6470.webp",
@@ -112,11 +113,11 @@ const instagramGalleryItems = [
   },
   {
     src: "/gallery/paznokcie/IMG_6724.webp",
-    alt: "Manicure premium Krakow Noblu Beauty Room",
+    alt: "Manicure premium w Noblu Beauty Room Kraków",
   },
   {
-    src: "/gallery/rzesy/IMG_6498.webp",
-    alt: "Stylizacja rzes w Noblu Beauty Room Krakow",
+    src: "/gallery/rzesy/stylizacja-rzes-krakow-noblu.webp",
+    alt: "Stylizacja rzęs w Noblu Beauty Room Kraków",
   },
 ]
 
@@ -125,45 +126,46 @@ export default function NobluBeautyRoomWebsite() {
   const [showLoader, setShowLoader] = useState(true)
   const [selectedMedia, setSelectedMedia] = useState<string | null>(null)
   const [selectedType, setSelectedType] = useState<'image' | 'video' | null>(null)
+  const [selectedAlt, setSelectedAlt] = useState("Noblu Beauty Room Kraków")
 
   const services = [
     {
       title: "Manicure",
       href: "/manicure-krakow",
-      image: "/gallery/paznokcie/IMG_6334.webp",
-      alt: "Manicure premium w Noblu Beauty Room Kraków",
+      image: "/gallery/paznokcie/manicure-hybrydowy-nude-krakow-noblu.webp",
+      alt: "Naturalny manicure hybrydowy nude Noblu Beauty Room Kraków",
       description:
         "Precyzyjny manicure w Krakowie dla kobiet, które cenią zadbane dłonie, elegancki kształt paznokci i naturalny efekt. Przyjmujemy nowe klientki.",
     },
     {
       title: "Pedicure SPA",
       href: "/pedicure-krakow",
-      image: "/gallery/paznokcie/pedicure-spa-img-7870.webp",
-      alt: "Pedicure SPA w Noblu Beauty Room Kraków",
+      image: "/gallery/paznokcie/pedicure-hybrydowy-krakow-noblu.webp",
+      alt: "Pedicure hybrydowy Noblu Beauty Room Kraków Borek Fałęcki",
       description:
         "Pedicure kosmetyczny i hybrydowy w spokojnej atmosferze salonu beauty przy ul. Orzechowej w Krakowie. Zapytaj o termin online.",
     },
     {
       title: "Stylizacja Paznokci",
       href: "/stylizacja-hybrydowa-krakow",
-      image: "/gallery/paznokcie/IMG_6375.webp",
-      alt: "Stylizacja paznokci hybrydowych w Krakowie",
+      image: "/gallery/paznokcie/paznokcie-hybrydowe-ombre-krakow-noblu.webp",
+      alt: "Paznokcie hybrydowe ombre w Noblu Beauty Room Kraków",
       description:
         "Stylizacja hybrydowa i żelowa dopasowana do dłoni, stylu i okazji. Estetyczne paznokcie z dbałością o trwałość oraz detal.",
     },
     {
       title: "Stylizacja rzęs",
       href: "/stylizacja-rzes-krakow",
-      image: "/gallery/rzesy/IMG_6498.webp",
-      alt: "Stylizacja rzęs w Noblu Beauty Room Kraków",
+      image: "/gallery/rzesy/stylizacja-rzes-krakow-noblu.webp",
+      alt: "Stylizacja rzęs Noblu Beauty Room Kraków",
       description:
         "Natural look, rzęsy 1:1 i lekkie objętości dobierane do kształtu oka, urody i oczekiwanego efektu.",
     },
     {
       title: "Przedłużanie rzęs",
       href: "/przedluzanie-rzes-krakow",
-      image: "/gallery/rzesy/IMG_7228.webp",
-      alt: "Przedłużanie rzęs w Noblu Beauty Room Kraków",
+      image: "/gallery/rzesy/przedluzanie-rzes-krakow-noblu.webp",
+      alt: "Przedłużanie rzęs Noblu Beauty Room Kraków",
       description:
         "Rzęsy 1:1, 2D i 3D wykonywane z naciskiem na lekkość, komfort noszenia oraz efekt dopasowany do naturalnych rzęs.",
     },
@@ -271,7 +273,12 @@ const galleryItems = useMemo<GalleryItem[]>(() => [
   { src: "/gallery/salon/salon4.webp", type: "image", category: "Salon" },
   { src: "/gallery/paznokcie/IMG_1745(1).webp", type: "image", category: "Paznokcie" },
   { src: "/gallery/salon/salon2.mp4", type: "video", category: "Salon", poster: "/gallery/salon/salon4.webp" },
-  { src: "/gallery/rzesy/IMG_6498.webp", type: "image", category: "Rzęsy" },
+  {
+    src: "/gallery/rzesy/stylizacja-rzes-krakow-noblu.webp",
+    type: "image",
+    category: "Rzęsy",
+    alt: "Stylizacja rzęs w Noblu Beauty Room Kraków",
+  },
   { src: "/gallery/salon/salon5.webp", type: "image", category: "Salon" },
   { src: "/gallery/salon/salon3.mp4", type: "video", category: "Salon", poster: "/gallery/salon/salon5.webp" },
   { src: "/gallery/paznokcie/IMG_2406(2).webp", type: "image", category: "Paznokcie" },
@@ -281,10 +288,25 @@ const galleryItems = useMemo<GalleryItem[]>(() => [
   { src: "/gallery/paznokcie/IMG_2440(1).webp", type: "image", category: "Paznokcie" },
   { src: "/gallery/salon/salon6.mp4", type: "video", category: "Salon", poster: "/gallery/salon/salon8.webp" },
   { src: "/gallery/salon/salon8.webp", type: "image", category: "Salon" },
-  { src: "/gallery/paznokcie/IMG_6334.webp", type: "image", category: "Paznokcie" },
+  {
+    src: "/gallery/paznokcie/manicure-hybrydowy-nude-krakow-noblu.webp",
+    type: "image",
+    category: "Paznokcie",
+    alt: "Naturalny manicure hybrydowy nude w Noblu Beauty Room Kraków",
+  },
   { src: "/gallery/salon/salon8.mp4", type: "video", category: "Salon", poster: "/gallery/salon/salon9.webp" },
-  { src: "/gallery/rzesy/IMG_7228.webp", type: "image", category: "Rzęsy" },
-  { src: "/gallery/paznokcie/IMG_6375.webp", type: "image", category: "Paznokcie" },
+  {
+    src: "/gallery/rzesy/przedluzanie-rzes-krakow-noblu.webp",
+    type: "image",
+    category: "Rzęsy",
+    alt: "Przedłużanie rzęs w Noblu Beauty Room Kraków",
+  },
+  {
+    src: "/gallery/paznokcie/paznokcie-hybrydowe-ombre-krakow-noblu.webp",
+    type: "image",
+    category: "Paznokcie",
+    alt: "Paznokcie hybrydowe ombre ze zdobieniem w Noblu Beauty Room Kraków",
+  },
   { src: "/gallery/salon/salon1.webp", type: "image", category: "Salon" },
   { src: "/gallery/paznokcie/IMG_7437.MOV", type: "video", category: "Paznokcie", poster: "/gallery/paznokcie/IMG_7523.webp" },
   { src: "/gallery/salon/salon9.webp", type: "image", category: "Salon" },
@@ -361,7 +383,7 @@ useEffect(() => {
           <div className="absolute inset-0 rounded-full bg-[#D4B483]/30 blur-3xl" />
           <Image
             src="/logo-footer.webp"
-            alt="Noblu Beauty Room Krakow"
+            alt="Logo Noblu Beauty Room Kraków"
             width={226}
             height={226}
             priority
@@ -424,8 +446,8 @@ useEffect(() => {
     className="pointer-events-none absolute inset-0 lg:hidden"
   >
     <Image
-      src="/gallery/salon/salon11-hero.webp"
-      alt="Eleganckie wnętrze Noblu Beauty Room Kraków"
+      src="/gallery/salon/salon-beauty-krakow-noblu.webp"
+      alt="Salon beauty Noblu Beauty Room Kraków z wzornikiem paznokci"
       fill
       priority
       fetchPriority="high"
@@ -442,8 +464,8 @@ useEffect(() => {
     className="pointer-events-none absolute inset-y-0 right-0 hidden w-[58%] lg:block"
   >
     <Image
-      src="/gallery/salon/salon11-hero.webp"
-      alt="Eleganckie wnętrze Noblu Beauty Room Kraków"
+      src="/gallery/salon/salon-beauty-krakow-noblu.webp"
+      alt="Salon beauty Noblu Beauty Room Kraków z wzornikiem paznokci"
       fill
       sizes="(min-width: 1024px) 58vw, 0vw"
       className="object-cover object-bottom opacity-85"
@@ -794,6 +816,7 @@ useEffect(() => {
   onClick={() => {
     setSelectedMedia(item.src)
     setSelectedType(item.type)
+    setSelectedAlt(item.alt ?? `${item.category} w Noblu Beauty Room Kraków`)
   }}
   animate={{ opacity: 1 }}
   transition={{ duration: 0.8 }}
@@ -811,7 +834,7 @@ useEffect(() => {
     >
       <Image
         src={item.poster ?? "/logo.png"}
-        alt={`${item.category} w Noblu Beauty Room Kraków`}
+        alt={item.alt ?? `${item.category} w Noblu Beauty Room Kraków`}
         fill
         sizes="(max-width: 768px) 50vw, 33vw"
         quality={70}
@@ -835,7 +858,7 @@ useEffect(() => {
 >
   <Image
     src={item.src}
-    alt={`${item.category} w Noblu Beauty Room Kraków`}
+    alt={item.alt ?? `${item.category} w Noblu Beauty Room Kraków`}
     fill
     sizes="(max-width: 768px) 50vw, 33vw"
     quality={72}
@@ -1179,7 +1202,7 @@ useEffect(() => {
       <div className="relative h-[90vh] w-[90vw]">
         <Image
           src={selectedMedia}
-          alt="Noblu Beauty Room Kraków"
+          alt={selectedAlt}
           fill
           sizes="90vw"
           className="rounded-[2rem] object-contain"

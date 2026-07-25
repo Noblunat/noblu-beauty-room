@@ -17,8 +17,8 @@ export const metadata: Metadata = {
     url: "https://noblu.pl/stylizacja-hybrydowa-krakow",
     siteName: "Noblu Beauty Room",
     images: [{
-      url: "https://noblu.pl/gallery/paznokcie/IMG_6375.webp",
-      alt: "Stylizacja hybrydowa w Noblu Beauty Room Kraków",
+      url: "https://noblu.pl/gallery/paznokcie/paznokcie-hybrydowe-ombre-krakow-noblu.webp",
+      alt: "Paznokcie hybrydowe ombre Noblu Beauty Room Kraków",
     }],
     locale: "pl_PL",
     type: "website",

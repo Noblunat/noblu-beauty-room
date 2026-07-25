@@ -17,8 +17,8 @@ export const metadata: Metadata = {
     url: "https://noblu.pl/pedicure-krakow",
     siteName: "Noblu Beauty Room",
     images: [{
-      url: "https://noblu.pl/gallery/paznokcie/pedicure-spa-img-7870.webp",
-      alt: "Pedicure SPA w Noblu Beauty Room Kraków",
+      url: "https://noblu.pl/gallery/paznokcie/pedicure-hybrydowy-krakow-noblu.webp",
+      alt: "Pedicure hybrydowy w Noblu Beauty Room Kraków Borek Fałęcki",
     }],
     locale: "pl_PL",
     type: "website",

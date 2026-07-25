@@ -40,7 +40,7 @@ const salonJsonLd = {
   image: [
     `${siteUrl}/logo.png`,
     `${siteUrl}/gallery/salon/salon1.webp`,
-    `${siteUrl}/gallery/paznokcie/pedicure-spa-img-7870.webp`,
+    `${siteUrl}/gallery/paznokcie/pedicure-hybrydowy-krakow-noblu.webp`,
   ],
   telephone: "+48662989534",
   email: "noblu.beautyroom@gmail.com",
@@ -185,7 +185,7 @@ export const metadata: Metadata = {
       url: "https://noblu.pl/logo.png",
       width: 1200,
       height: 630,
-      alt: "Noblu Beauty Room Kraków",
+      alt: "Salon beauty Noblu Beauty Room Kraków",
     },
   ],
     locale: "pl_PL",

@@ -17,8 +17,8 @@ export const metadata: Metadata = {
     siteName: "Noblu Beauty Room",
     images: [
       {
-        url: "https://noblu.pl/gallery/salon/salon11-hero.webp",
-        alt: "Cennik usług Noblu Beauty Room Kraków",
+        url: "https://noblu.pl/gallery/salon/salon-beauty-krakow-noblu.webp",
+        alt: "Cennik manicure pedicure i rzęs Noblu Beauty Room Kraków",
       },
     ],
     locale: "pl_PL",

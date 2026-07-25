@@ -23,7 +23,7 @@ export const metadata: Metadata = {
         url: socialImage,
         width: 6828,
         height: 5122,
-        alt: "Stylizacja paznokci w Noblu Beauty Room Kraków",
+        alt: "Rezerwacja manicure pedicure i rzęs Noblu Beauty Room Kraków",
       },
     ],
     locale: "pl_PL",

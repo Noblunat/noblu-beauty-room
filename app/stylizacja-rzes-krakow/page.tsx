@@ -17,8 +17,8 @@ export const metadata: Metadata = {
     url: "https://noblu.pl/stylizacja-rzes-krakow",
     siteName: "Noblu Beauty Room",
     images: [{
-      url: "https://noblu.pl/gallery/rzesy/IMG_6498.webp",
-      alt: "Stylizacja rzęs w Noblu Beauty Room Kraków",
+      url: "https://noblu.pl/gallery/rzesy/stylizacja-rzes-krakow-noblu.webp",
+      alt: "Stylizacja rzęs Noblu Beauty Room Kraków",
     }],
     locale: "pl_PL",
     type: "website",

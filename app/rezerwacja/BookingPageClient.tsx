@@ -302,8 +302,8 @@ export default function BookingPageClient() {
               <div className="overflow-hidden rounded-[2rem] border border-[#E8DED2] bg-white/55 shadow-[0_24px_80px_rgba(0,0,0,0.08)] backdrop-blur-xl">
                 <div className="relative aspect-[4/3] overflow-hidden">
                   <Image
-                    src="/gallery/salon/salon11-hero.webp"
-                    alt="Wnetrze Noblu Beauty Room Krakow"
+                    src="/gallery/salon/salon-beauty-krakow-noblu.webp"
+                    alt="Salon beauty Noblu Beauty Room Kraków"
                     fill
                     sizes="(max-width: 1024px) 100vw, 45vw"
                     className="object-cover"

@@ -17,8 +17,8 @@ export const metadata: Metadata = {
     url: "https://noblu.pl/manicure-krakow",
     siteName: "Noblu Beauty Room",
     images: [{
-      url: "https://noblu.pl/gallery/paznokcie/IMG_6334.webp",
-      alt: "Manicure w Noblu Beauty Room Kraków",
+      url: "https://noblu.pl/gallery/paznokcie/manicure-hybrydowy-nude-krakow-noblu.webp",
+      alt: "Naturalny manicure hybrydowy nude Noblu Beauty Room Kraków",
     }],
     locale: "pl_PL",
     type: "website",
