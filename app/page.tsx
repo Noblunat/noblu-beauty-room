@@ -271,12 +271,7 @@ const galleryItems = useMemo<GalleryItem[]>(() => [
   // Kolejność jest celowo mieszana, żeby filmy nie pojawiały się obok siebie.
   { src: "/gallery/salon/salon.mp4", type: "video", category: "Salon", poster: "/gallery/salon/salon1.webp" },
   { src: "/gallery/salon/salon4.webp", type: "image", category: "Salon" },
-  {
-    src: "/gallery/paznokcie/manicure-bordowy-pierscionek.webp",
-    type: "image",
-    category: "Paznokcie",
-    alt: "Bordowy manicure hybrydowy w Noblu Beauty Room Krakow",
-  },
+  { src: "/gallery/paznokcie/IMG_1745(1).webp", type: "image", category: "Paznokcie" },
   { src: "/gallery/salon/salon2.mp4", type: "video", category: "Salon", poster: "/gallery/salon/salon4.webp" },
   {
     src: "/gallery/rzesy/stylizacja-rzes-krakow-noblu.webp",
@@ -286,21 +281,11 @@ const galleryItems = useMemo<GalleryItem[]>(() => [
   },
   { src: "/gallery/salon/salon5.webp", type: "image", category: "Salon" },
   { src: "/gallery/salon/salon3.mp4", type: "video", category: "Salon", poster: "/gallery/salon/salon5.webp" },
-  {
-    src: "/gallery/paznokcie/manicure-brzoskwiniowy-gradient.webp",
-    type: "image",
-    category: "Paznokcie",
-    alt: "Brzoskwiniowy manicure ombre w Noblu Beauty Room Krakow",
-  },
+  { src: "/gallery/paznokcie/IMG_2406(2).webp", type: "image", category: "Paznokcie" },
   { src: "/gallery/salon/salon6.webp", type: "image", category: "Salon" },
   { src: "/gallery/salon/salon5.mp4", type: "video", category: "Salon", poster: "/gallery/salon/salon6.webp" },
   { src: "/gallery/rzesy/IMG_6993(1).webp", type: "image", category: "Rzęsy" },
-  {
-    src: "/gallery/paznokcie/manicure-niebieski-french.webp",
-    type: "image",
-    category: "Paznokcie",
-    alt: "Niebieski french manicure ze zdobieniem w Noblu Beauty Room",
-  },
+  { src: "/gallery/paznokcie/IMG_2440(1).webp", type: "image", category: "Paznokcie" },
   { src: "/gallery/salon/salon6.mp4", type: "video", category: "Salon", poster: "/gallery/salon/salon8.webp" },
   { src: "/gallery/salon/salon8.webp", type: "image", category: "Salon" },
   {
