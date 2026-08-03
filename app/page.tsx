@@ -88,16 +88,16 @@ const mapsDirectionsUrl =
 
 const instagramGalleryItems = [
   {
-    src: "/gallery/paznokcie/manicure-bordowy-pierscionek.webp",
-    alt: "Bordowy manicure hybrydowy w Noblu Beauty Room Krakow",
+    src: "/gallery/paznokcie/IMG_1745(1).webp",
+    alt: "Błękitny manicure hybrydowy w Noblu Beauty Room Kraków",
   },
   {
-    src: "/gallery/paznokcie/manicure-brzoskwiniowy-gradient.webp",
-    alt: "Brzoskwiniowy manicure ombre w Noblu Beauty Room Krakow",
+    src: "/gallery/paznokcie/IMG_2406(2).webp",
+    alt: "Elegancki czerwony manicure hybrydowy w Noblu Beauty Room Kraków",
   },
   {
-    src: "/gallery/paznokcie/manicure-niebieski-french.webp",
-    alt: "Niebieski french manicure ze zdobieniem w Noblu Beauty Room",
+    src: "/gallery/paznokcie/IMG_2440(1).webp",
+    alt: "Różowy manicure ze zdobieniem w Noblu Beauty Room Kraków",
   },
   {
     src: "/gallery/paznokcie/manicure-hybrydowy-nude-krakow-noblu.webp",
