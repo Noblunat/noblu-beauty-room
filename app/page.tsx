@@ -88,8 +88,8 @@ const mapsDirectionsUrl =
 
 const instagramGalleryItems = [
   {
-    src: "/gallery/paznokcie/manicure-bordowy-pierscionek.webp",
-    alt: "Bordowy manicure hybrydowy w Noblu Beauty Room Krakow",
+    src: "/gallery/paznokcie/IMG_1745(1).webp",
+    alt: "Błękitny manicure hybrydowy w Noblu Beauty Room Kraków",
   },
   {
     src: "/gallery/paznokcie/IMG_2406(2).webp",
@@ -271,7 +271,7 @@ const galleryItems = useMemo<GalleryItem[]>(() => [
   // Kolejność jest celowo mieszana, żeby filmy nie pojawiały się obok siebie.
   { src: "/gallery/salon/salon.mp4", type: "video", category: "Salon", poster: "/gallery/salon/salon1.webp" },
   { src: "/gallery/salon/salon4.webp", type: "image", category: "Salon" },
-  { src: "/gallery/paznokcie/manicure-bordowy-pierscionek.webp", type: "image", category: "Paznokcie" },
+  { src: "/gallery/paznokcie/IMG_1745(1).webp", type: "image", category: "Paznokcie" },
   { src: "/gallery/salon/salon2.mp4", type: "video", category: "Salon", poster: "/gallery/salon/salon4.webp" },
   {
     src: "/gallery/rzesy/stylizacja-rzes-krakow-noblu.webp",
