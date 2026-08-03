@@ -104,12 +104,12 @@ const instagramGalleryItems = [
     alt: "Naturalny manicure hybrydowy nude w Noblu Beauty Room Kraków",
   },
   {
-    src: "/gallery/paznokcie/paznokcie-hybrydowe-ombre-krakow-noblu.webp",
-    alt: "Paznokcie hybrydowe ombre ze zdobieniem w Noblu Beauty Room Kraków",
+    src: "/gallery/paznokcie/IMG_7021.webp",
+    alt: "Kolorowy manicure pastelowy w Noblu Beauty Room Krakow",
   },
   {
-    src: "/gallery/paznokcie/IMG_6470.webp",
-    alt: "Precyzyjny manicure w salonie Noblu Beauty Room",
+    src: "/gallery/paznokcie/IMG_7523.webp",
+    alt: "Delikatny french manicure z brokatem w Noblu Beauty Room Krakow",
   },
   {
     src: "/gallery/paznokcie/IMG_6724.webp",
