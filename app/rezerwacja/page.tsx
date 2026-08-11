@@ -74,7 +74,7 @@ const serviceGroups: ServiceGroup[] = [
 ]
 
 const highlights = [
-  { value: "★★★★★ 5.0", label: "z 208 opinii" },
+  { value: "★★★★★ 5.0", label: "z 211 opinii" },
   { value: "24/7", label: "Formularz online" },
   { value: "Darmowy", label: "parking pod salonem" },
 ] as const

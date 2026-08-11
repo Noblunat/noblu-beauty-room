@@ -525,7 +525,7 @@ useEffect(() => {
       <div className="mt-14 grid max-w-lg grid-cols-[1fr_0.8fr_1.2fr] gap-3 sm:max-w-xl sm:grid-cols-3 sm:gap-6">
 
   {[
-    { number: "★★★★★ 5.0", label: "z 208 opinii" },
+    { number: "★★★★★ 5.0", label: "z 211 opinii" },
     { number: "24/7", label: "Formularz online" },
     { number: "Darmowy", label: "parking pod salonem" },
   ].map((item, index) => (
