@@ -315,7 +315,7 @@ export default function BookingPageClient() {
                 <div className="p-5 sm:p-8">
                   <div className="grid grid-cols-3 gap-3">
                     {[
-                      { value: "★★★★★ 5.0", label: "z 211 opinii" },
+                      { value: "★★★★★ 5.0", label: "z 212 opinii" },
                       { value: "24/7", label: "Formularz online" },
                       { value: "Darmowy", label: "parking pod salonem" },
                     ].map((item) => (
