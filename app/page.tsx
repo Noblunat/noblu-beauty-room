@@ -147,7 +147,7 @@ export default function NobluBeautyRoomWebsite() {
     },
     {
       title: "Stylizacja Paznokci",
-      href: "/stylizacja-hybrydowa-krakow",
+      href: "/manicure-krakow",
       image: "/gallery/paznokcie/paznokcie-hybrydowe-ombre-krakow-noblu.webp",
       alt: "Paznokcie hybrydowe ombre w Noblu Beauty Room Kraków",
       description:
@@ -752,7 +752,7 @@ useEffect(() => {
       manicure w Krakowie
     </a>
     , {" "}
-    <a href="/stylizacja-hybrydowa-krakow" className="text-[#7C6238] hover:underline">
+    <a href="/manicure-krakow" className="text-[#7C6238] hover:underline">
       stylizację paznokci
     </a>
     , {" "}
@@ -1262,13 +1262,6 @@ useEffect(() => {
           >
             Przedłużanie rzęs Kraków
           </a>
-          <a
-            href="/stylizacja-hybrydowa-krakow"
-            className="block hover:text-[#7C6238] transition-colors"
-          >
-            Stylizacja hybrydowa Kraków
-          </a>
-
           <a
             href="/pedicure-krakow"
             className="block hover:text-[#7C6238] transition-colors"

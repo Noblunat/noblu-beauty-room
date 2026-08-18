@@ -226,8 +226,8 @@ export default function ManicureKrakowPage() {
           </div>
 
           <div className="pt-6 flex flex-wrap gap-4">
-            <a href="/stylizacja-hybrydowa-krakow" className="text-[#7C6238]">
-              Stylizacja hybrydowa Kraków
+            <a href="/przedluzanie-rzes-krakow" className="text-[#7C6238]">
+              Przedłużanie rzęs Kraków
             </a>
             <a href="/pedicure-krakow" className="text-[#7C6238]">
               Pedicure Kraków

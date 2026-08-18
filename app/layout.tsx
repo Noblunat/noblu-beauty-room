@@ -145,7 +145,7 @@ const salonJsonLd = {
       itemOffered: {
         "@type": "Service",
         name: "Stylizacja paznokci",
-        url: `${siteUrl}/stylizacja-hybrydowa-krakow`,
+        url: `${siteUrl}/manicure-krakow`,
       },
     },
     {

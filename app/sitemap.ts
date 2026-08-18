@@ -2,7 +2,7 @@ import type { MetadataRoute } from "next"
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const baseUrl = "https://noblu.pl"
-  const lastModified = "2026-07-24"
+  const lastModified = "2026-08-18"
 
   return [
     {
@@ -13,12 +13,6 @@ export default function sitemap(): MetadataRoute.Sitemap {
     },
     {
       url: `${baseUrl}/manicure-krakow`,
-      lastModified,
-      changeFrequency: "monthly",
-      priority: 0.9,
-    },
-    {
-      url: `${baseUrl}/stylizacja-hybrydowa-krakow`,
       lastModified,
       changeFrequency: "monthly",
       priority: 0.9,

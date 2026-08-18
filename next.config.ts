@@ -20,6 +20,11 @@ const nextConfig: NextConfig = {
   async redirects() {
     return [
       {
+        source: "/stylizacja-hybrydowa-krakow",
+        destination: "/manicure-krakow",
+        permanent: true,
+      },
+      {
         source: "/:path*",
         has: [{ type: "host", value: "www.noblu.pl" }],
         destination: "https://noblu.pl/:path*",

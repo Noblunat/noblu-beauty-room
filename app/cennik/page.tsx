@@ -238,7 +238,6 @@ export default function CennikPage() {
             links={[
               { href: "/manicure-krakow", label: "Manicure Kraków" },
               { href: "/rezerwacja", label: "Zarezerwuj manicure" },
-              { href: "/stylizacja-hybrydowa-krakow", label: "Stylizacja hybrydowa Kraków" },
             ]}
           />
 

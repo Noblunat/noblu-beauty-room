@@ -200,9 +200,6 @@ export default function StylizacjaRzesKrakowPage() {
             <a href="/manicure-krakow" className="text-[#7C6238]">
               Manicure Kraków
             </a>
-            <a href="/stylizacja-hybrydowa-krakow" className="text-[#7C6238]">
-              Stylizacja hybrydowa Kraków
-            </a>
             <a href="/pedicure-krakow" className="text-[#7C6238]">
               Pedicure Kraków
             </a>
