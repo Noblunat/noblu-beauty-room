@@ -105,6 +105,8 @@ const salonJsonLd = {
   ],
   sameAs: [
     "https://www.instagram.com/noblu_beauty_room/",
+    "https://www.facebook.com/noblu.beautyroom/",
+    "https://booksy.com/pl-pl/105150_noblu-beauty-room_paznokcie_8820_krakow",
   ],
   potentialAction: {
     "@type": "ReserveAction",
