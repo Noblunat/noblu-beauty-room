@@ -44,7 +44,7 @@ const faq = [
   },
   {
     q: "Czy Noblu przyjmuje nowe klientki na paznokcie?",
-    a: "Tak. Po dołączeniu stylistki możesz zapytać o termin na manicure, manicure hybrydowy i stylizację paznokci w salonie Noblu Beauty Room na Borku Fałęckim.",
+    a: "Tak. Przyjmujemy nowe klientki na manicure i stylizację paznokci. Prośbę o termin możesz wysłać przez formularz online.",
   },
 ];
 
@@ -101,13 +101,13 @@ export default function ManicureKrakowPage() {
             Fałęckim, oferujący manicure, stylizację paznokci i manicure
             hybrydowy. Pracujemy z dbałością o estetykę, higienę i naturalny
             efekt. Salon znajduje się przy ul. Orzechowej 4, z darmowym
-            parkingiem. Po dołączeniu stylistki przyjmujemy nowe klientki na
-            manicure i paznokcie hybrydowe.
+            parkingiem. Przyjmujemy nowe klientki na manicure i paznokcie
+            hybrydowe.
           </p>
 
           <div className="mt-12 flex flex-wrap gap-4">
             <a
-              href="/rezerwacja"
+              href="/rezerwacja?usluga=manicure"
               className="inline-flex items-center justify-center px-10 py-5 rounded-full bg-[#D4B483] text-black font-medium hover:scale-105 transition-transform shadow-[0_10px_30px_rgba(212,180,131,0.25)]"
             >
               Zarezerwuj manicure w Krakowie
@@ -205,7 +205,7 @@ export default function ManicureKrakowPage() {
             </p>
             <div className="mt-8 flex flex-wrap gap-4">
               <Link
-                href="/rezerwacja"
+                href="/rezerwacja?usluga=manicure"
                 className="inline-flex items-center justify-center px-8 py-4 rounded-full bg-[#D4B483] text-black font-medium hover:scale-105 transition-transform"
               >
                 Zapytaj o termin manicure

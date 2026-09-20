@@ -65,7 +65,7 @@ const faqItems = [
   },
   {
     q: "Czy salon przyjmuje nowe klientki?",
-    a: "Tak, przyjmujemy nowe klientki. Po dołączeniu stylistki łatwiej zapytać o termin na manicure, paznokcie hybrydowe i pedicure.",
+    a: "Tak, przyjmujemy nowe klientki na manicure, paznokcie hybrydowe i pedicure. Termin możesz zapytać przez formularz online.",
   },
 ]
 
@@ -88,7 +88,7 @@ const mapsDirectionsUrl =
 
 const instagramGalleryItems = [
   {
-    src: "/gallery/paznokcie/IMG_1745(1).webp",
+    src: "/gallery/paznokcie/manicure-hybrydowy-blekitny-krakow-noblu.webp",
     alt: "Błękitny manicure hybrydowy w Noblu Beauty Room Kraków",
   },
   {
@@ -190,9 +190,9 @@ export default function NobluBeautyRoomWebsite() {
     },
     {
       service: "Stylizacja rzęs",
-      price: "od 190 zł",
+      price: "aplikacja od 190 zł",
       description:
-        "Rzęsy 1:1, lekkie objętości 2D i 3D oraz uzupełnienia dopasowane do oka.",
+        "Aplikacja rzęs 1:1, 2D i 3D od 190 zł. Uzupełnienia od 160 zł, ściągnięcie 40 zł.",
       href: "/stylizacja-rzes-krakow",
       cta: "Cennik rzęs",
     },
@@ -270,8 +270,8 @@ export default function NobluBeautyRoomWebsite() {
 const galleryItems = useMemo<GalleryItem[]>(() => [
   // Kolejność jest celowo mieszana, żeby filmy nie pojawiały się obok siebie.
   { src: "/gallery/salon/salon.mp4", type: "video", category: "Salon", poster: "/gallery/salon/salon1.webp" },
-  { src: "/gallery/salon/salon4.webp", type: "image", category: "Salon" },
-  { src: "/gallery/paznokcie/IMG_1745(1).webp", type: "image", category: "Paznokcie" },
+  { src: "/gallery/salon/salon7.webp", type: "image", category: "Salon" },
+  { src: "/gallery/paznokcie/manicure-hybrydowy-blekitny-krakow-noblu.webp", type: "image", category: "Paznokcie" },
   { src: "/gallery/salon/salon2.mp4", type: "video", category: "Salon", poster: "/gallery/salon/salon4.webp" },
   {
     src: "/gallery/rzesy/stylizacja-rzes-krakow-noblu.webp",
@@ -784,8 +784,8 @@ useEffect(() => {
       pedicure w Krakowie
     </a>
     , Noblu Beauty Room łączy profesjonalne wykonanie z estetyką premium i
-    wygodnym formularzem rezerwacji online. Po dołączeniu stylistki
-    przyjmujemy nowe klientki na manicure i pedicure.
+    wygodnym formularzem rezerwacji online. Przyjmujemy nowe klientki na
+    manicure i pedicure.
   </p>
 </div>
   </div>
@@ -885,7 +885,7 @@ useEffect(() => {
       </div>
 
       <h2 className="text-4xl lg:text-6xl font-light leading-tight">
-        Kobiety wracają dla jakości i atmosfery
+        Kobiety wracają dla jakości i atmosfery{" "}
         <span className="block text-[#7C6238]">
            potwierdzają to opinie klientek
         </span>
@@ -1332,7 +1332,7 @@ useEffect(() => {
     <div className="mt-20 pt-8 border-t border-[#E8DED2] flex flex-col lg:flex-row items-center justify-between gap-6">
 
       <div className="text-[#9B9187] text-sm">
-        © 2025 Noblu Beauty Room · Kraków
+        © {new Date().getFullYear()} Noblu Beauty Room · Kraków
       </div>
 
       <div className="flex flex-col items-center gap-3 text-[#1D1D1B] text-sm lg:flex-row">

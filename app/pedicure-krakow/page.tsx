@@ -44,7 +44,7 @@ const faq = [
   },
   {
     q: "Czy Noblu przyjmuje nowe klientki na pedicure?",
-    a: "Tak. Po dołączeniu stylistki możesz zapytać o termin na pedicure samych paznokci, pedicure hybrydowy, kosmetyczny lub kosmetyczny z hybrydą.",
+    a: "Tak. Przyjmujemy nowe klientki na pedicure. W formularzu możesz wybrać wariant zabiegu i zapytać o termin.",
   },
 ];
 
@@ -105,13 +105,13 @@ export default function PedicureKrakowPage() {
             Noblu Beauty Room oferuje pedicure kosmetyczny i hybrydowy w
             Krakowie, na Borku Fałęckim, dla kobiet, które cenią estetykę,
             komfort i dokładne wykończenie. Salon znajduje się przy ul.
-            Orzechowej 4, a pod budynkiem dostępny jest darmowy parking. Po
-            dołączeniu stylistki przyjmujemy nowe klientki na pedicure.
+            Orzechowej 4, a pod budynkiem dostępny jest darmowy parking.
+            Przyjmujemy nowe klientki na pedicure.
           </p>
 
           <div className="mt-12 flex flex-wrap gap-4">
             <Link
-              href="/rezerwacja"
+              href="/rezerwacja?usluga=pedicure"
               className="inline-flex items-center justify-center px-10 py-5 rounded-full bg-[#D4B483] text-black font-medium hover:scale-105 transition-transform shadow-[0_10px_30px_rgba(212,180,131,0.25)]"
             >
               Zapytaj o termin pedicure
@@ -207,7 +207,7 @@ export default function PedicureKrakowPage() {
             </p>
             <div className="mt-8 flex flex-wrap gap-4">
               <Link
-                href="/rezerwacja"
+                href="/rezerwacja?usluga=pedicure"
                 className="inline-flex items-center justify-center px-8 py-4 rounded-full bg-[#D4B483] text-black font-medium hover:scale-105 transition-transform"
               >
                 Zapytaj o termin

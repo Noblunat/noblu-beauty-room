@@ -237,7 +237,7 @@ export default function CennikPage() {
             items={nailPrices}
             links={[
               { href: "/manicure-krakow", label: "Manicure Kraków" },
-              { href: "/rezerwacja", label: "Zarezerwuj manicure" },
+              { href: "/rezerwacja?usluga=manicure", label: "Zarezerwuj manicure" },
             ]}
           />
 
@@ -248,7 +248,7 @@ export default function CennikPage() {
               items={pedicurePrices}
               links={[
                 { href: "/pedicure-krakow", label: "Pedicure Kraków Borek Fałęcki" },
-                { href: "/rezerwacja", label: "Zarezerwuj pedicure" },
+                { href: "/rezerwacja?usluga=pedicure", label: "Zarezerwuj pedicure" },
               ]}
             />
           </div>

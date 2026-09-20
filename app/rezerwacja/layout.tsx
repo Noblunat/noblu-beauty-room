@@ -5,7 +5,7 @@ const reservationUrl = "https://noblu.pl/rezerwacja";
 const title = "Rezerwacja Noblu Kraków | Manicure, pedicure i rzęsy";
 const description =
   "Wyślij prośbę o termin na manicure, pedicure, paznokcie hybrydowe lub stylizację rzęs w Noblu Beauty Room Kraków. Formularz online 24/7.";
-const socialImage = `${reservationUrl}/rezerwacja-hero.jpg`;
+const socialImage = `${reservationUrl}/og-rezerwacja.jpg`;
 
 export const metadata: Metadata = {
   title,
@@ -21,8 +21,8 @@ export const metadata: Metadata = {
     images: [
       {
         url: socialImage,
-        width: 6828,
-        height: 5122,
+        width: 1200,
+        height: 630,
         alt: "Rezerwacja manicure pedicure i rzęs Noblu Beauty Room Kraków",
       },
     ],

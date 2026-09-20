@@ -184,7 +184,7 @@ export const metadata: Metadata = {
     siteName: "Noblu Beauty Room",
      images: [
     {
-      url: "https://noblu.pl/logo.png",
+      url: "https://noblu.pl/og-noblu.jpg",
       width: 1200,
       height: 630,
       alt: "Salon beauty Noblu Beauty Room Kraków",
