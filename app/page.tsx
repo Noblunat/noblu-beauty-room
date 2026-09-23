@@ -428,9 +428,9 @@ useEffect(() => {
 
     <a
   href="/rezerwacja"
-  className="px-6 py-3 rounded-full bg-[#D4B483] text-black text-sm font-medium hover:scale-105 transition-transform"
+  className="rounded-full bg-[#D4B483] px-4 py-3 text-center text-xs font-medium text-black transition-transform hover:scale-105 sm:px-6 sm:text-sm"
 >
-  Rezerwuj
+  Zapytaj o termin
 </a>
 
   </div>
@@ -1163,7 +1163,7 @@ useEffect(() => {
       href="/rezerwacja"
       className="fixed bottom-5 left-5 right-5 z-[9999] rounded-full bg-[#D4B483] py-5 text-center text-lg font-semibold text-black shadow-[0_10px_40px_rgba(212,180,131,0.45)] lg:hidden"
     >
-      Zarezerwuj wizytę
+      Zapytaj o termin
     </a>
     {selectedMedia && (
   <div
@@ -1313,7 +1313,7 @@ useEffect(() => {
             href="/rezerwacja"
             className="block text-[#1D1D1B] hover:text-[#7C6238] transition-colors"
           >
-            Rezerwacja
+            Zapytaj o termin
           </a>
 
         </div>

@@ -115,7 +115,7 @@ const salonJsonLd = {
       urlTemplate: reservationUrl,
       inLanguage: "pl-PL",
     },
-    name: "Zapytaj o termin wizyty",
+    name: "Zapytaj o termin",
   },
   makesOffer: [
     {

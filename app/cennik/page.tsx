@@ -237,7 +237,7 @@ export default function CennikPage() {
             items={nailPrices}
             links={[
               { href: "/manicure-krakow", label: "Manicure Kraków" },
-              { href: "/rezerwacja?usluga=manicure", label: "Zarezerwuj manicure" },
+              { href: "/rezerwacja?usluga=manicure", label: "Zapytaj o termin" },
             ]}
           />
 
@@ -248,7 +248,7 @@ export default function CennikPage() {
               items={pedicurePrices}
               links={[
                 { href: "/pedicure-krakow", label: "Pedicure Kraków Borek Fałęcki" },
-                { href: "/rezerwacja?usluga=pedicure", label: "Zarezerwuj pedicure" },
+                { href: "/rezerwacja?usluga=pedicure", label: "Zapytaj o termin" },
               ]}
             />
           </div>
@@ -291,7 +291,7 @@ export default function CennikPage() {
 
         <div className="mx-auto mt-10 max-w-6xl rounded-[2rem] border border-[#E8DED2] bg-white/80 p-8 text-center">
           <h2 className="text-3xl font-light text-[#1D1D1B]">
-            Zarezerwuj wizytę online
+            Zapytaj o termin online
           </h2>
           <p className="mx-auto mt-4 max-w-2xl leading-relaxed text-[#5F5B56]">
             Wybierz usługę i wyślij prośbę o termin przez formularz Noblu.
@@ -302,7 +302,7 @@ export default function CennikPage() {
               href="/rezerwacja"
               className="inline-flex items-center justify-center rounded-full bg-[#D4B483] px-8 py-4 font-medium text-black transition-transform hover:scale-105"
             >
-              Zapytaj o termin manicure, pedicure lub rzęs
+              Zapytaj o termin
             </Link>
           </div>
         </div>

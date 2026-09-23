@@ -57,7 +57,7 @@ export default function ServiceJsonLd({
         urlTemplate: "https://noblu.pl/rezerwacja",
         inLanguage: "pl-PL",
       },
-      name: "Zapytaj o termin wizyty",
+      name: "Zapytaj o termin",
     },
   }
 

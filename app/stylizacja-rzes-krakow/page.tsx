@@ -109,7 +109,7 @@ export default function StylizacjaRzesKrakowPage() {
               href="/rezerwacja?usluga=rzesy"
               className="inline-flex items-center justify-center px-10 py-5 rounded-full bg-[#D4B483] text-black font-medium hover:scale-105 transition-transform shadow-[0_10px_30px_rgba(212,180,131,0.25)]"
             >
-              Zarezerwuj stylizację rzęs
+              Zapytaj o termin
             </a>
           </div>
         </div>
@@ -174,8 +174,8 @@ export default function StylizacjaRzesKrakowPage() {
               Umów stylizację rzęs
             </h2>
             <p className="max-w-3xl">
-              Zarezerwuj wizytę online i wybierz natural look, rzęsy 1:1 lub
-              lekkie objętości dopasowane do Twojego oka.
+              Zapytaj o termin online dla natural look, rzęs 1:1 lub lekkich
+              objętości dopasowanych do Twojego oka.
             </p>
             <div className="mt-8 flex flex-wrap gap-4">
               <Link

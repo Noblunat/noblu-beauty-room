@@ -114,7 +114,7 @@ export default function PedicureKrakowPage() {
               href="/rezerwacja?usluga=pedicure"
               className="inline-flex items-center justify-center px-10 py-5 rounded-full bg-[#D4B483] text-black font-medium hover:scale-105 transition-transform shadow-[0_10px_30px_rgba(212,180,131,0.25)]"
             >
-              Zapytaj o termin pedicure
+              Zapytaj o termin
             </Link>
             <Link
               href="/cennik"
