@@ -428,7 +428,7 @@ useEffect(() => {
 
     <a
   href="/rezerwacja"
-  className="rounded-full bg-[#D4B483] px-4 py-3 text-center text-xs font-medium text-black transition-transform hover:scale-105 sm:px-6 sm:text-sm"
+  className="rounded-full bg-[#D4B483] px-4 py-3 text-center text-xs font-medium text-black shadow-[0_20px_60px_rgba(212,180,131,0.35)] transition-transform hover:scale-105 sm:px-6 sm:text-sm"
 >
   Zapytaj o termin
 </a>
