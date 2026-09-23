@@ -510,7 +510,7 @@ useEffect(() => {
           href="/cennik"
           className="w-full rounded-full border border-[#D4B483] bg-white/75 px-8 py-4 text-center font-medium text-[#1D1D1B] backdrop-blur-sm transition-colors hover:bg-white sm:w-auto sm:py-5"
         >
-          Zobacz usługi
+          Zobacz usługi i ceny
         </a>
       </div>
 
