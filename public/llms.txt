@@ -26,7 +26,6 @@ This file provides a concise, AI-readable overview of the Noblu Beauty Room webs
 - [Price list](https://noblu.pl/cennik): Current service categories, durations and pricing information.
 - [Manicure Kraków](https://noblu.pl/manicure-krakow): Manicure and nail care services in Kraków.
 - [Pedicure Kraków](https://noblu.pl/pedicure-krakow): Pedicure, cosmetic pedicure and hybrid pedicure services in Kraków.
-- [Hybrid nail styling Kraków](https://noblu.pl/stylizacja-hybrydowa-krakow): Hybrid manicure, gel styling and nail styling information.
 - [Eyelash styling Kraków](https://noblu.pl/stylizacja-rzes-krakow): Natural eyelash styling and lash look information.
 - [Eyelash extensions Kraków](https://noblu.pl/przedluzanie-rzes-krakow): Eyelash extensions 1:1, 2D and 3D in Kraków.
 - [Privacy policy](https://noblu.pl/polityka-prywatnosci): Privacy and data processing information.

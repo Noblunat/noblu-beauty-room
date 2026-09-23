@@ -3,7 +3,7 @@ import Image from "next/image";
 import BreadcrumbJsonLd from "../components/BreadcrumbJsonLd";
 
 export const metadata: Metadata = {
-  title: "Przedłużanie rzęs Kraków | Rzęsy 1:1, 2D i 3D | Noblu Beauty Room",
+  title: "Przedłużanie rzęs Kraków | Rzęsy 1:1, 2D i 3D | Noblu",
   description:
     "Przedłużanie rzęs w Krakowie przy ul. Orzechowej 4/lok.1. Rzęsy 1:1, 2D, 3D, natural look i lekkie objętości w Noblu Beauty Room.",
   alternates: {

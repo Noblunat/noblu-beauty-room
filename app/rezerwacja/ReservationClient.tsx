@@ -14,6 +14,18 @@ const phone = "+48 662 989 534"
 const mapsDirectionsUrl =
   "https://www.google.com/maps/dir/?api=1&destination=Noblu%20Beauty%20Room%20Orzechowa%204%2Flok.1%2030-422%20Krak%C3%B3w"
 
+function getTodayInWarsaw() {
+  const parts = new Intl.DateTimeFormat("en-GB", {
+    timeZone: "Europe/Warsaw",
+    year: "numeric",
+    month: "2-digit",
+    day: "2-digit",
+  }).formatToParts(new Date())
+  const values = Object.fromEntries(parts.map((part) => [part.type, part.value]))
+
+  return `${values.year}-${values.month}-${values.day}`
+}
+
 type Service = {
   name: string
   price: string
@@ -110,6 +122,7 @@ function trackReservationLead(service: Service) {
 }
 
 export default function ReservationClient({ initialService }: { initialService: string }) {
+  const minBookingDate = getTodayInWarsaw()
   const [selectedService, setSelectedService] = useState(initialService)
   const [name, setName] = useState("")
   const [telephone, setTelephone] = useState("")
@@ -313,6 +326,7 @@ export default function ReservationClient({ initialService }: { initialService: 
                   Preferowany dzień
                   <input
                     type="date"
+                    min={minBookingDate}
                     value={date}
                     onChange={(event) => setDate(event.target.value)}
                     required

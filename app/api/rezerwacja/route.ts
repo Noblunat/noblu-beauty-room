@@ -20,6 +20,33 @@ function cleanText(value: unknown, maxLength: number) {
   return typeof value === "string" ? value.trim().slice(0, maxLength) : ""
 }
 
+function getTodayInWarsaw() {
+  const parts = new Intl.DateTimeFormat("en-GB", {
+    timeZone: "Europe/Warsaw",
+    year: "numeric",
+    month: "2-digit",
+    day: "2-digit",
+  }).formatToParts(new Date())
+  const values = Object.fromEntries(parts.map((part) => [part.type, part.value]))
+
+  return `${values.year}-${values.month}-${values.day}`
+}
+
+function isValidIsoDate(value: string) {
+  if (!/^\d{4}-\d{2}-\d{2}$/.test(value)) {
+    return false
+  }
+
+  const [year, month, day] = value.split("-").map(Number)
+  const parsedDate = new Date(Date.UTC(year, month - 1, day))
+
+  return (
+    parsedDate.getUTCFullYear() === year &&
+    parsedDate.getUTCMonth() === month - 1 &&
+    parsedDate.getUTCDate() === day
+  )
+}
+
 function escapeHtml(value: string) {
   return value
     .replaceAll("&", "&amp;")
@@ -64,6 +91,20 @@ export async function POST(request: Request) {
   if (!name || !telephone || !service || !date) {
     return Response.json(
       { error: "Uzupełnij imię, telefon, usługę i preferowany dzień." },
+      { status: 400 }
+    )
+  }
+
+  if (!isValidIsoDate(date)) {
+    return Response.json(
+      { error: "Podaj prawidłowy dzień wizyty." },
+      { status: 400 }
+    )
+  }
+
+  if (date < getTodayInWarsaw()) {
+    return Response.json(
+      { error: "Wybrany dzień nie może być wcześniejszy niż dzisiaj." },
       { status: 400 }
     )
   }

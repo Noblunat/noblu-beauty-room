@@ -308,7 +308,7 @@ const galleryItems = useMemo<GalleryItem[]>(() => [
     alt: "Paznokcie hybrydowe ombre ze zdobieniem w Noblu Beauty Room Kraków",
   },
   { src: "/gallery/salon/salon1.webp", type: "image", category: "Salon" },
-  { src: "/gallery/paznokcie/IMG_7437.MOV", type: "video", category: "Paznokcie", poster: "/gallery/paznokcie/IMG_7523.webp" },
+  { src: "/gallery/paznokcie/manicure-video-krakow-noblu.mp4", type: "video", category: "Paznokcie", poster: "/gallery/paznokcie/IMG_7523.webp" },
   { src: "/gallery/salon/salon9.webp", type: "image", category: "Salon" },
   { src: "/gallery/paznokcie/IMG_6470.webp", type: "image", category: "Paznokcie" },
   { src: "/gallery/rzesy/IMG_9083.webp", type: "image", category: "Rzęsy" },

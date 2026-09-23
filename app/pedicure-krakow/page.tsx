@@ -4,14 +4,14 @@ import BreadcrumbJsonLd from "../components/BreadcrumbJsonLd";
 import ServiceJsonLd from "../components/ServiceJsonLd";
 
 export const metadata: Metadata = {
-  title: "Pedicure Kraków Borek Fałęcki | Kosmetyczny i hybrydowy | Noblu",
+  title: "Pedicure Kraków Borek Fałęcki | Hybrydowy i SPA | Noblu",
   description:
     "Pedicure kosmetyczny i hybrydowy w Krakowie na Borku Fałęckim. Dobry dojazd z Podgórza, darmowy parking, cennik i zapytanie o termin online.",
   alternates: {
     canonical: "https://noblu.pl/pedicure-krakow",
   },
   openGraph: {
-    title: "Pedicure Kraków Borek Fałęcki | Kosmetyczny i hybrydowy | Noblu",
+    title: "Pedicure Kraków Borek Fałęcki | Hybrydowy i SPA | Noblu",
     description:
       "Pedicure kosmetyczny, hybrydowy i SPA w Noblu Beauty Room w Krakowie, Borek Fałęcki. Zobacz cennik i zapytaj o termin online.",
     url: "https://noblu.pl/pedicure-krakow",
