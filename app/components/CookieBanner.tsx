@@ -136,7 +136,7 @@ export default function CookieBanner() {
                   external: true,
                 })
               }
-              className="col-span-2 rounded-full bg-[#D4B483] px-5 py-2.5 text-sm font-medium text-black transition-transform hover:scale-[1.02] sm:col-auto sm:py-3"
+              className="col-span-2 rounded-full bg-[#D4B483] px-5 py-2.5 text-sm font-medium text-black shadow-[0_20px_60px_rgba(212,180,131,0.35)] transition-transform hover:scale-[1.02] sm:col-auto sm:py-3"
             >
               Akceptuję wszystkie
             </button>

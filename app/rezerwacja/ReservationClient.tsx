@@ -423,7 +423,7 @@ export default function ReservationClient({ initialService }: { initialService: 
               <button
                 type="submit"
                 disabled={submitStatus === "sending"}
-                className="rounded-full bg-[#D4B483] px-7 py-4 font-medium text-black shadow-[0_18px_50px_rgba(212,180,131,0.28)] transition-transform hover:scale-[1.02] disabled:cursor-wait disabled:opacity-60"
+                className="rounded-full bg-[#D4B483] px-7 py-4 font-medium text-black shadow-[0_20px_60px_rgba(212,180,131,0.35)] transition-transform hover:scale-[1.02] disabled:cursor-wait disabled:opacity-60"
               >
                 {submitStatus === "sending" ? "Wysyłanie..." : "Wyślij prośbę o termin"}
               </button>
@@ -433,7 +433,7 @@ export default function ReservationClient({ initialService }: { initialService: 
                   href={selectedBooksyUrl}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="rounded-full bg-[#D4B483] px-7 py-4 text-center font-medium text-black shadow-[0_18px_50px_rgba(212,180,131,0.28)] transition-transform hover:scale-[1.02]"
+                  className="rounded-full bg-[#D4B483] px-7 py-4 text-center font-medium text-black shadow-[0_20px_60px_rgba(212,180,131,0.35)] transition-transform hover:scale-[1.02]"
                 >
                   Zarezerwuj tę usługę przez Booksy
                 </a>

@@ -164,7 +164,7 @@ export default function PrzedluzanieRzesKrakowPage() {
             <div className="mt-10 flex flex-wrap gap-4">
               <a
                 href="/rezerwacja?usluga=rzesy"
-                className="inline-flex items-center justify-center px-8 py-5 rounded-full bg-[#D4B483] text-black font-medium hover:scale-105 transition-transform shadow-[0_10px_30px_rgba(212,180,131,0.25)]"
+                className="inline-flex items-center justify-center px-8 py-5 rounded-full bg-[#D4B483] text-black font-medium hover:scale-105 transition-transform shadow-[0_20px_60px_rgba(212,180,131,0.35)]"
               >
                 Zapytaj o termin
               </a>
@@ -280,7 +280,7 @@ export default function PrzedluzanieRzesKrakowPage() {
             <div className="mt-8 flex flex-wrap gap-4">
               <a
                 href="/rezerwacja?usluga=rzesy"
-                className="inline-flex items-center justify-center px-8 py-4 rounded-full bg-[#D4B483] text-black font-medium hover:scale-105 transition-transform"
+                className="inline-flex items-center justify-center px-8 py-4 rounded-full bg-[#D4B483] text-black font-medium hover:scale-105 transition-transform shadow-[0_20px_60px_rgba(212,180,131,0.35)]"
               >
                 Zapytaj o termin
               </a>

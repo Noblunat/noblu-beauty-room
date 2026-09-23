@@ -39,7 +39,7 @@ export default function NotFound() {
         <div className="mt-10 flex flex-wrap gap-3">
           <Link
             href="/"
-            className="rounded-full bg-[#D4B483] px-7 py-4 font-medium text-black transition-transform hover:scale-[1.02]"
+            className="rounded-full bg-[#D4B483] px-7 py-4 font-medium text-black shadow-[0_20px_60px_rgba(212,180,131,0.35)] transition-transform hover:scale-[1.02]"
           >
             Strona główna
           </Link>

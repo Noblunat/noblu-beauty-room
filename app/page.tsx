@@ -634,7 +634,7 @@ useEffect(() => {
           <div className="mt-8 flex flex-wrap gap-4">
             <a
               href="/cennik"
-              className="inline-flex items-center justify-center rounded-full bg-[#D4B483] px-8 py-4 font-medium text-black transition-transform hover:scale-105"
+              className="inline-flex items-center justify-center rounded-full bg-[#D4B483] px-8 py-4 font-medium text-black shadow-[0_20px_60px_rgba(212,180,131,0.35)] transition-transform hover:scale-105"
             >
               Zobacz pełny cennik
             </a>
@@ -1024,7 +1024,7 @@ useEffect(() => {
         href="https://www.instagram.com/noblu_beauty_room/"
         target="_blank"
         rel="noopener noreferrer"
-        className="inline-flex items-center justify-center px-10 py-5 rounded-full bg-[#D4B483] text-black font-medium hover:scale-105 transition-transform shadow-[0_10px_30px_rgba(212,180,131,0.25)]"
+        className="inline-flex items-center justify-center px-10 py-5 rounded-full bg-[#D4B483] text-black font-medium hover:scale-105 transition-transform shadow-[0_20px_60px_rgba(212,180,131,0.35)]"
       >
         Obserwuj
       </a>
@@ -1161,7 +1161,7 @@ useEffect(() => {
 
     <a
       href="/rezerwacja"
-      className="fixed bottom-5 left-5 right-5 z-[9999] rounded-full bg-[#D4B483] py-5 text-center text-lg font-semibold text-black shadow-[0_10px_40px_rgba(212,180,131,0.45)] lg:hidden"
+      className="fixed bottom-5 left-5 right-5 z-[9999] rounded-full bg-[#D4B483] py-5 text-center text-lg font-semibold text-black shadow-[0_20px_60px_rgba(212,180,131,0.35)] lg:hidden"
     >
       Zapytaj o termin
     </a>

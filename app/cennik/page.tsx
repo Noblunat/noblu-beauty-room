@@ -300,7 +300,7 @@ export default function CennikPage() {
           <div className="mt-8 flex flex-wrap justify-center gap-4">
             <Link
               href="/rezerwacja"
-              className="inline-flex items-center justify-center rounded-full bg-[#D4B483] px-8 py-4 font-medium text-black transition-transform hover:scale-105"
+              className="inline-flex items-center justify-center rounded-full bg-[#D4B483] px-8 py-4 font-medium text-black shadow-[0_20px_60px_rgba(212,180,131,0.35)] transition-transform hover:scale-105"
             >
               Zapytaj o termin
             </Link>
