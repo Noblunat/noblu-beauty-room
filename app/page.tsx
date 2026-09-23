@@ -494,7 +494,7 @@ useEffect(() => {
         Manicure, Pedicure i rzęsy w Krakowie
       </h1>
 
-      <p className="mt-5 max-w-xl text-base leading-relaxed text-[#5F5D5A] sm:mt-7 sm:text-lg lg:text-xl">
+      <p className="mt-5 max-w-xl text-base leading-relaxed text-[#343330] sm:mt-7 sm:text-lg lg:text-xl">
         Kameralny salon beauty na Borku Fałęckim. Manicure, stylizacja paznokci, pedicure i rzęsy wykonywane z naciskiem na precyzję, estetykę i komfort wizyty. Darmowy parking przy salonie.
       </p>
 
