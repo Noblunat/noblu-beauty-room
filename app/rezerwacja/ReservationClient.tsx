@@ -6,8 +6,7 @@ import { FormEvent, useMemo, useState } from "react"
 import BreadcrumbJsonLd from "../components/BreadcrumbJsonLd"
 import { readCookieConsent } from "../lib/cookieConsent"
 
-const booksyUrl =
-  "https://booksy.com/pl-pl/105150_noblu-beauty-room_paznokcie_8820_krakow"
+const booksyWidgetUrl = "https://booksy.com/widget/index.html"
 const reservationConversionId = "AW-10795260361/w2THCKCZ0LYcEMmzypso"
 const contactEmail = "noblu.beautyroom@gmail.com"
 const phone = "+48 662 989 534"
@@ -30,6 +29,7 @@ type Service = {
   name: string
   price: string
   duration: string
+  booksyVariantId?: number
 }
 
 type ServiceGroup = {
@@ -53,33 +53,76 @@ const serviceGroups: ServiceGroup[] = [
   {
     title: "Manicure i stylizacja paznokci",
     services: [
-      { name: "Manicure", price: "100 zł", duration: "ok. 1h" },
-      { name: "Stylizacja hybrydowa", price: "160 zł", duration: "1h 30min" },
+      {
+        name: "Manicure",
+        price: "100 zł",
+        duration: "ok. 1h",
+        booksyVariantId: 5209054,
+      },
+      {
+        name: "Stylizacja hybrydowa",
+        price: "160 zł",
+        duration: "1h 30min",
+        booksyVariantId: 6017028,
+      },
       {
         name: "Stylizacja hybrydowa więcej niż 1 kolor",
         price: "170 zł",
         duration: "1h 35min",
+        booksyVariantId: 6017045,
       },
-      { name: "Żel na naturalnej płytce", price: "190 zł", duration: "ok. 2h" },
-      { name: "Przedłużenie żelowe", price: "220 zł", duration: "ok. 2h 30min" },
-      { name: "Uzupełnienie żelowe", price: "190 zł", duration: "ok. 2h" },
-      { name: "Naprawa jednego paznokcia", price: "30 zł", duration: "20min" },
+      {
+        name: "Żel na naturalnej płytce",
+        price: "190 zł",
+        duration: "ok. 2h",
+        booksyVariantId: 17789240,
+      },
+      {
+        name: "Przedłużenie żelowe",
+        price: "220 zł",
+        duration: "ok. 2h 30min",
+        booksyVariantId: 6017205,
+      },
+      {
+        name: "Uzupełnienie żelowe",
+        price: "190 zł",
+        duration: "ok. 2h",
+        booksyVariantId: 22693891,
+      },
+      {
+        name: "Naprawa jednego paznokcia",
+        price: "30 zł",
+        duration: "20min",
+        booksyVariantId: 5208812,
+      },
     ],
   },
   {
     title: "Pedicure",
     services: [
-      { name: "Pedicure same paznokcie", price: "110 zł", duration: "ok. 1h" },
+      {
+        name: "Pedicure same paznokcie",
+        price: "110 zł",
+        duration: "ok. 1h",
+        booksyVariantId: 14208964,
+      },
       {
         name: "Pedicure same paznokcie z hybrydą",
         price: "160 zł",
         duration: "ok. 1h 20min",
+        booksyVariantId: 14208784,
       },
-      { name: "Pedicure kosmetyczny", price: "180 zł", duration: "ok. 1h 30min" },
+      {
+        name: "Pedicure kosmetyczny",
+        price: "180 zł",
+        duration: "ok. 1h 30min",
+        booksyVariantId: 14208809,
+      },
       {
         name: "Pedicure kosmetyczny z hybrydą",
         price: "200 zł",
         duration: "ok. 1h 45min",
+        booksyVariantId: 14208789,
       },
     ],
   },
@@ -139,6 +182,22 @@ export default function ReservationClient({ initialService }: { initialService: 
     () => allServices.find((service) => service.name === selectedService),
     [selectedService]
   )
+  const selectedBooksyUrl = useMemo(() => {
+    if (!selected?.booksyVariantId) {
+      return null
+    }
+
+    const params = new URLSearchParams({
+      id: "105150",
+      country: "pl",
+      lang: "pl",
+      mode: "dialog",
+      theme: "default",
+      variantId: String(selected.booksyVariantId),
+    })
+
+    return `${booksyWidgetUrl}?${params.toString()}`
+  }, [selected])
 
   async function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault()
@@ -369,14 +428,16 @@ export default function ReservationClient({ initialService }: { initialService: 
                 {submitStatus === "sending" ? "Wysyłanie..." : "Wyślij prośbę o termin"}
               </button>
 
-              <a
-                href={booksyUrl}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="rounded-full bg-[#D4B483] px-7 py-4 text-center font-medium text-black shadow-[0_18px_50px_rgba(212,180,131,0.28)] transition-transform hover:scale-[1.02]"
-              >
-                Zarezerwuj przez Booksy
-              </a>
+              {selectedBooksyUrl && (
+                <a
+                  href={selectedBooksyUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="rounded-full bg-[#D4B483] px-7 py-4 text-center font-medium text-black shadow-[0_18px_50px_rgba(212,180,131,0.28)] transition-transform hover:scale-[1.02]"
+                >
+                  Zarezerwuj tę usługę przez Booksy
+                </a>
+              )}
 
               <Link
                 href="/cennik"
@@ -385,6 +446,18 @@ export default function ReservationClient({ initialService }: { initialService: 
                 Zobacz cennik usług
               </Link>
             </div>
+
+            {!selected && (
+              <p className="mt-4 text-center text-xs leading-relaxed text-[#7A746D]">
+                Wybierz usługę, aby przejść bezpośrednio do jej kalendarza w Booksy.
+              </p>
+            )}
+
+            {selected && !selectedBooksyUrl && (
+              <p className="mt-4 text-center text-xs leading-relaxed text-[#7A746D]">
+                Rezerwacja tej usługi jest obecnie dostępna przez formularz Noblu.
+              </p>
+            )}
 
             {submitMessage && (
               <p
