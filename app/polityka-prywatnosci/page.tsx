@@ -114,24 +114,24 @@ export default function PolitykaPrywatnosciPage() {
             <ul className="mt-5 list-disc space-y-3 pl-6 leading-relaxed">
               <li>
                 zapewnienie bezpieczeństwa strony, przeciwdziałanie spamowi
-                oraz ustalenie, dochodzenie lub obrona roszczeń – art. 6 ust. 1
+                oraz ustalenie, dochodzenie lub obrona roszczeń - art. 6 ust. 1
                 lit. f RODO, czyli prawnie uzasadniony interes administratora,
               </li>
               <li>
                 wypełnienie obowiązków prawnych, jeżeli powstaną w związku z
-                usługą – art. 6 ust. 1 lit. c RODO,
+                usługą - art. 6 ust. 1 lit. c RODO,
               </li>
               <li>
                 podstawowe statystyki działania i szybkości strony zbierane
-                przez Vercel bez użycia cookies – art. 6 ust. 1 lit. f RODO,
+                przez Vercel bez użycia cookies - art. 6 ust. 1 lit. f RODO,
               </li>
               <li>
-                Google Analytics oraz pomiar działań reklamowych Google Ads –
+                Google Analytics oraz pomiar działań reklamowych Google Ads -
                 art. 6 ust. 1 lit. a RODO, wyłącznie po udzieleniu odpowiedniej
                 zgody,
               </li>
               <li>
-                udzielenie odpowiedzi na kontakt e-mailowy lub telefoniczny –
+                udzielenie odpowiedzi na kontakt e-mailowy lub telefoniczny -
                 odpowiednio art. 6 ust. 1 lit. b lub f RODO.
               </li>
             </ul>

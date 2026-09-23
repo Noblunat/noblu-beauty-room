@@ -149,7 +149,7 @@ export default function ManicureKrakowPage() {
 
           <div>
             <h2 className="text-3xl lg:text-4xl font-light text-[#1D1D1B] mb-6">
-              Manicure na Borku Fałęckim — dobry dojazd z południa Krakowa
+              Manicure na Borku Fałęckim - dobry dojazd z południa Krakowa
             </h2>
             <p>
               Salon znajduje się przy ul. Orzechowej 4/lok.1 w Krakowie. To

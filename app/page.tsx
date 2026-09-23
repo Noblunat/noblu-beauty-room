@@ -247,7 +247,7 @@ export default function NobluBeautyRoomWebsite() {
   },
   {
     name: "Anna",
-    text: "Po prostu perfekcyjnie. Wszystko dopracowane w najmniejszym detalu — od estetyki salonu po wykonanie manicure. Czyściutko, elegancko i bardzo profesjonalnie. Dokładnie taki efekt, jaki chciałam osiągnąć.",
+    text: "Po prostu perfekcyjnie. Wszystko dopracowane w najmniejszym detalu - od estetyki salonu po wykonanie manicure. Czyściutko, elegancko i bardzo profesjonalnie. Dokładnie taki efekt, jaki chciałam osiągnąć.",
   },
   {
     name: "Izabela",
