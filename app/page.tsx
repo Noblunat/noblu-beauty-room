@@ -480,49 +480,41 @@ useEffect(() => {
     <div className="absolute inset-0 bg-gradient-to-r from-[#FFFDFB] via-transparent to-[#F8F5F2]/30" />
   </motion.div>
 
-  <div className="relative max-w-7xl mx-auto px-6 lg:px-12 pt-40 pb-24 grid lg:grid-cols-2 gap-20 items-center">
+  <div className="relative mx-auto grid max-w-7xl items-center gap-20 px-6 pb-16 pt-28 sm:pt-36 lg:grid-cols-2 lg:px-12 lg:pb-24 lg:pt-40">
     <motion.div
   initial={{ opacity: 0, y: 40 }}
   animate={{ opacity: 1, y: 0 }}
   transition={{ duration: 1 }}
 >
-      <h1 className="text-6xl lg:text-8xl font-light leading-[0.92] tracking-tight">
-        Noblu
-        <span className="block text-[#7C6238] font-medium">
-          Beauty Room
-        </span>
-      </h1>
-
-      <p className="mt-8 text-lg lg:text-xl text-[#6D6B68] leading-relaxed max-w-xl">
-        Kameralny salon beauty w Krakowie. Stylizacja paznokci, rzęs i doświadczenie stworzone dla kobiet kochających elegancję, estetykę oraz perfekcyjne wykonanie.
+      <p className="mb-4 text-sm font-semibold uppercase text-[#7C6238]">
+        NOBLU BEAUTY ROOM
       </p>
 
-      <div className="mt-10 flex flex-wrap gap-4">
-        <a
-          href="https://booksy.com/pl-pl/105150_noblu-beauty-room_paznokcie_8820_krakow"
-          target="_blank"
-          rel="noopener noreferrer"
-          className="px-8 py-5 rounded-full bg-[#D4B483] text-black font-medium hover:scale-105 transition-transform shadow-[0_20px_60px_rgba(212,180,131,0.35)]"
-        >
-          Zarezerwuj online
-        </a>
+      <h1 className="max-w-2xl text-5xl font-light leading-[1.02] sm:text-6xl lg:text-7xl">
+        Manicure, Pedicure i rzęsy w Krakowie
+      </h1>
 
+      <p className="mt-5 max-w-xl text-base leading-relaxed text-[#5F5D5A] sm:mt-7 sm:text-lg lg:text-xl">
+        Kameralny salon beauty na Borku Fałęckim. Manicure, stylizacja paznokci, pedicure i rzęsy wykonywane z naciskiem na precyzję, estetykę i komfort wizyty. Darmowy parking przy salonie.
+      </p>
+
+      <div className="mt-6 flex flex-col gap-3 sm:mt-8 sm:flex-row sm:flex-wrap sm:gap-4">
         <a
           href="/rezerwacja"
-          className="px-8 py-5 rounded-full bg-[#D4B483] text-black font-medium hover:scale-105 transition-transform shadow-[0_20px_60px_rgba(212,180,131,0.35)]"
+          className="w-full rounded-full bg-[#D4B483] px-8 py-4 text-center font-medium text-black shadow-[0_20px_60px_rgba(212,180,131,0.35)] transition-transform hover:scale-105 sm:w-auto sm:py-5"
         >
-          Rezerwacja manicure i pedicure
+          Zapytaj o termin
         </a>
 
         <a
           href="/cennik"
-          className="px-8 py-5 rounded-full bg-[#D4B483] text-black font-medium hover:scale-105 transition-transform shadow-[0_20px_60px_rgba(212,180,131,0.35)]"
+          className="w-full rounded-full border border-[#D4B483] bg-white/75 px-8 py-4 text-center font-medium text-[#1D1D1B] backdrop-blur-sm transition-colors hover:bg-white sm:w-auto sm:py-5"
         >
-          Cennik manicure i pedicure
+          Zobacz usługi
         </a>
       </div>
 
-      <div className="mt-14 grid max-w-lg grid-cols-[1fr_0.8fr_1.2fr] gap-3 sm:max-w-xl sm:grid-cols-3 sm:gap-6">
+      <div className="mt-10 grid max-w-lg grid-cols-[1fr_0.8fr_1.2fr] gap-3 sm:mt-14 sm:max-w-xl sm:grid-cols-3 sm:gap-6">
 
   {[
     { number: "★★★★★ 5.0", label: "z 225 opinii" },
