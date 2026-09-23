@@ -514,10 +514,10 @@ useEffect(() => {
         </a>
       </div>
 
-      <div className="mt-10 grid max-w-lg grid-cols-[1fr_0.8fr_1.2fr] gap-3 sm:mt-14 sm:max-w-xl sm:grid-cols-3 sm:gap-6">
+      <div className="mt-10 grid max-w-lg grid-cols-[1.25fr_0.75fr_1fr] gap-3 sm:mt-14 sm:max-w-xl sm:grid-cols-3 sm:gap-6">
 
   {[
-    { number: "★★★★★ 5.0", label: "z 225 opinii" },
+    { number: "★★★★★ 5,0 w Booksy", label: "Ponad 220 zweryfikowanych opinii" },
     { number: "24/7", label: "Formularz online" },
     { number: "Darmowy", label: "parking pod salonem" },
   ].map((item, index) => (
