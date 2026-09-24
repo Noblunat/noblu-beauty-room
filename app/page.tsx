@@ -218,28 +218,28 @@ export default function NobluBeautyRoomWebsite() {
   ]
   const reviews = [
   {
-    name: "Katarzyna",
-    text: "Bardzo polecam Panią i samą usługę. Manicure wykonany bez zarzutu. Dziękuję!",
+    name: "Anna",
+    text: "Serdecznie polecam Panią Natalię! Paznokcie za każdym razem są wykonane niezwykle starannie, dokładnie i profesjonalnie. Zawsze wychodzę bardzo zadowolona, bo efekt jest po prostu piękny. Widać ogromne zaangażowanie, precyzję i dbałość o każdy szczegół. Zdecydowanie osoba, do której chce się wracać!",
+  },
+  {
+    name: "Grażyna",
+    text: "Paznokcie perfekcyjnie wykonane, dokładnie takie jak chciałam. Pani Natalia robi sprawnie i delikatnie. Jestem stałą klientką i nie mam zamiaru zmieniać tego stanu rzeczy.",
+  },
+  {
+    name: "Klaudia",
+    text: "Piękny salon, sterylnie i mega miło. Stylizacja - super wykonanie!",
+  },
+  {
+    name: "Anita",
+    text: "Bardzo polecam salon, korzystam już od paru lat. Miła atmosfera i usługi na jak najwyższym poziomie.",
+  },
+  {
+    name: "Luśka",
+    text: "Jestem bardzo zadowolona. Perfekcja, delikatność, profesjonalizm.",
   },
   {
     name: "Anna",
-    text: "Po prostu super. Wszystko ok. Czyściutko i elegancko. Tak jak chciałam. Pełny profesjonalizm. Polecam.",
-  },
-  {
-    name: "Anna",
-    text: "Po prostu perfekcyjnie. Wszystko dopracowane w najmniejszym detalu - od estetyki salonu po wykonanie manicure. Czyściutko, elegancko i bardzo profesjonalnie. Dokładnie taki efekt, jaki chciałam osiągnąć.",
-  },
-  {
-    name: "Izabela",
-    text: "Profesjonalna obsługa i przepiękny efekt końcowy. Stylizacja rzęs wykonana idealnie, bardzo komfortowa atmosfera i ogromna dbałość o szczegóły. Zdecydowanie jedno z najlepszych beauty places w Krakowie.",
-  },
-  {
-    name: "Justyna",
-    text: "Jestem zachwycona efektem. Paznokcie wyglądają przepięknie, wszystko wykonane bardzo starannie i z ogromnym wyczuciem estetyki. Kontakt z salonem szybki i wygodny.",
-  },
-  {
-    name: "Iwona",
-    text: "Jak zwykle wszystko na najwyższym poziomie ❤️ Profesjonalizm, estetyka i atmosfera sprawiają, że chce się wracać regularnie.",
+    text: "Polecam gorąco! Mega starannie wykonane paznokcie za każdym razem. Piękny salon i super atmosfera.",
   },
   ]
 
