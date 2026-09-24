@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import Image from "next/image";
 import Link from "next/link";
 import BreadcrumbJsonLd from "../components/BreadcrumbJsonLd";
 import ServiceJsonLd from "../components/ServiceJsonLd";
@@ -24,6 +25,41 @@ export const metadata: Metadata = {
     type: "website",
   },
 };
+
+const manicureGallery = [
+  {
+    src: "/gallery/manicure-realizacje/manicure-krotkie-nude-krakow-noblu.webp",
+    alt: "Krótki manicure hybrydowy nude wykonany w Noblu Beauty Room Kraków",
+  },
+  {
+    src: "/gallery/manicure-realizacje/french-brokatowy-krakow-noblu.webp",
+    alt: "Manicure french z delikatnym brokatem wykonany w Noblu Beauty Room Kraków",
+  },
+  {
+    src: "/gallery/manicure-realizacje/paznokcie-zelowe-perlowa-biel-krakow-noblu.webp",
+    alt: "Długie paznokcie żelowe w perłowej bieli wykonane w Noblu Beauty Room Kraków",
+  },
+  {
+    src: "/gallery/manicure-realizacje/manicure-burgund-kropki-krakow-noblu.webp",
+    alt: "Burgundowy manicure w kropki wykonany w Noblu Beauty Room Kraków",
+  },
+  {
+    src: "/gallery/manicure-realizacje/manicure-krotkie-czarno-biale-krakow-noblu.webp",
+    alt: "Krótki czarno-biały manicure ze zdobieniem wykonany w Noblu Beauty Room Kraków",
+  },
+  {
+    src: "/gallery/manicure-realizacje/manicure-ombre-zolty-krakow-noblu.webp",
+    alt: "Żółty manicure ombre wykonany w Noblu Beauty Room Kraków",
+  },
+  {
+    src: "/gallery/manicure-realizacje/paznokcie-zelowe-niebieskie-wzory-krakow-noblu.webp",
+    alt: "Długie paznokcie żelowe z niebieskim zdobieniem wykonane w Noblu Beauty Room Kraków",
+  },
+  {
+    src: "/gallery/manicure-realizacje/babyboomer-brzoskwiniowy-krakow-noblu.webp",
+    alt: "Brzoskwiniowy manicure babyboomer wykonany w Noblu Beauty Room Kraków",
+  },
+];
 
 const faq = [
   {
@@ -118,6 +154,34 @@ export default function ManicureKrakowPage() {
             >
               Zobacz cennik manicure
             </Link>
+          </div>
+        </div>
+      </section>
+
+      <section aria-labelledby="manicure-gallery-title" className="pb-24 px-6 lg:px-12">
+        <div className="max-w-6xl mx-auto">
+          <h2
+            id="manicure-gallery-title"
+            className="text-3xl font-light text-[#1D1D1B] sm:text-4xl lg:text-5xl"
+          >
+            Realizacje manicure
+          </h2>
+
+          <div className="mt-10 grid grid-cols-2 gap-4 md:grid-cols-4">
+            {manicureGallery.map((image) => (
+              <figure
+                key={image.src}
+                className="relative aspect-[3/4] overflow-hidden rounded-[1.2rem] bg-[#E8DED2]"
+              >
+                <Image
+                  src={image.src}
+                  alt={image.alt}
+                  fill
+                  sizes="(min-width: 1280px) 276px, (min-width: 768px) 22vw, calc(50vw - 2rem)"
+                  className="object-cover"
+                />
+              </figure>
+            ))}
           </div>
         </div>
       </section>
