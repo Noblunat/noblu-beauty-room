@@ -789,15 +789,8 @@ useEffect(() => {
   <div className="max-w-7xl mx-auto px-6 lg:px-12">
 
     <div className="mb-16">
-      <div className="text-sm uppercase tracking-[0.3em] text-[#7C6238] mb-4">
-        Gallery
-      </div>
-
       <h2 className="text-4xl lg:text-6xl font-light leading-tight text-[#111111]">
-        Luxury beauty
-        <span className="block text-[#7C6238]">
-          experience
-        </span>
+        Galeria
       </h2>
     </div>
 
