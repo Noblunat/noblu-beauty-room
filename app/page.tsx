@@ -219,31 +219,11 @@ export default function NobluBeautyRoomWebsite() {
   const reviews = [
   {
     name: "Katarzyna",
-    text: "Bardzo miła właścicielka...",
-  },
-  {
-    name: "Justyna",
-    text: "Piękne paznokcie, polecam.",
-  },
-  {
-    name: "Katarzyna",
     text: "Bardzo polecam Panią i samą usługę. Manicure wykonany bez zarzutu. Dziękuję!",
-  },
-  {
-    name: "Ania",
-    text: "Super, polecam!",
-  },
-  {
-    name: "Justyna",
-    text: "Polecam, przepiękne paznokcie.",
   },
   {
     name: "Anna",
     text: "Po prostu super. Wszystko ok. Czyściutko i elegancko. Tak jak chciałam. Pełny profesjonalizm. Polecam.",
-  },
-  {
-    name: "Ewa",
-    text: "Super Super Super ❤️ Pani Natalia jest prawdziwą profesjonalistką. Żaden podolog nie pomógł mi przy problemie wrastających paznokci, a tutaj w końcu znalazłam pomoc. Ogromna wiedza, precyzja i przepiękna atmosfera salonu. Polecam każdej kobiecie.",
   },
   {
     name: "Anna",
@@ -252,10 +232,6 @@ export default function NobluBeautyRoomWebsite() {
   {
     name: "Izabela",
     text: "Profesjonalna obsługa i przepiękny efekt końcowy. Stylizacja rzęs wykonana idealnie, bardzo komfortowa atmosfera i ogromna dbałość o szczegóły. Zdecydowanie jedno z najlepszych beauty places w Krakowie.",
-  },
-  {
-    name: "Katarzyna",
-    text: "Piękny, luksusowy salon i cudowna atmosfera. Paznokcie wykonane perfekcyjnie, bardzo dokładnie i estetycznie. Widać ogromne doświadczenie i pasję do pracy. Zdecydowanie wrócę.",
   },
   {
     name: "Justyna",
@@ -517,7 +493,7 @@ useEffect(() => {
       <div className="mt-10 grid max-w-lg grid-cols-[1.25fr_0.75fr_1fr] gap-3 sm:mt-14 sm:max-w-xl sm:grid-cols-3 sm:gap-6">
 
   {[
-    { number: "★★★★★ 5,0 w Booksy", label: "Ponad 220 zweryfikowanych opinii" },
+    { number: "★★★★★ 5,0 w Booksy", label: "Ponad 220 opinii" },
     { number: "24/7", label: "Formularz online" },
     { number: "Darmowy", label: "parking pod salonem" },
   ].map((item, index) => (
