@@ -61,7 +61,7 @@ const faqItems = [
   },
   {
     q: "Jakie usługi oferuje salon?",
-    a: "Oferujemy manicure premium, stylizację paznokci, pedicure, stylizację rzęs oraz usługi beauty premium.",
+    a: "Oferujemy manicure, stylizację paznokci (hybrydową i żelową), pedicure oraz stylizację i przedłużanie rzęs (1:1, 2D, 3D).",
   },
   {
     q: "Czy salon przyjmuje nowe klientki?",
@@ -586,7 +586,7 @@ useEffect(() => {
                     src={service.image}
                     alt={service.alt}
                     fill
-                    sizes="(min-width: 1280px) 25vw, (min-width: 768px) 50vw, 100vw"
+                    sizes="(min-width: 1280px) 278px, (min-width: 768px) 45vw, calc(100vw - 3rem)"
                     className="object-cover transition-transform duration-700 group-hover:scale-105"
                   />
                 </div>
@@ -821,7 +821,7 @@ useEffect(() => {
         src={item.poster ?? "/logo.png"}
         alt={item.alt ?? `${item.category} w Noblu Beauty Room Kraków`}
         fill
-        sizes="(max-width: 768px) 50vw, 33vw"
+        sizes="(min-width: 1280px) 334px, (min-width: 1024px) 30vw, calc(50vw - 1.875rem)"
         quality={70}
         className="object-cover transition-transform duration-700 group-hover:scale-105"
       />
@@ -845,7 +845,7 @@ useEffect(() => {
     src={item.src}
     alt={item.alt ?? `${item.category} w Noblu Beauty Room Kraków`}
     fill
-    sizes="(max-width: 768px) 50vw, 33vw"
+    sizes="(min-width: 1280px) 334px, (min-width: 1024px) 30vw, calc(50vw - 1.875rem)"
     quality={72}
     className="object-cover transition-transform duration-700 group-hover:scale-105"
   />
@@ -1037,7 +1037,7 @@ useEffect(() => {
             src={item.src}
             alt={item.alt}
             fill
-            sizes="(max-width: 640px) 50vw, 25vw"
+            sizes="(min-width: 1280px) 287px, (min-width: 1024px) 22.5vw, (min-width: 640px) 23vw, calc(50vw - 1.875rem)"
             quality={76}
             className="object-cover transition-transform duration-700 group-hover:scale-105"
           />

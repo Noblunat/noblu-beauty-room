@@ -182,7 +182,7 @@ export default function PrzedluzanieRzesKrakowPage() {
               src="/gallery/rzesy/rzesy-objetosciowe-krakow-noblu.webp"
               alt="Przedłużanie rzęs objętościowych Noblu Beauty Room Kraków"
               fill
-              sizes="(min-width: 1024px) 50vw, 100vw"
+              sizes="(min-width: 1280px) 521px, (min-width: 1024px) 41vw, calc(100vw - 3rem)"
               className="object-cover"
             />
           </div>

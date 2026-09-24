@@ -165,7 +165,7 @@ export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
   title: "Noblu Beauty Room Kraków | Manicure, pedicure i rzęsy",
   description:
-    "Noblu Beauty Room to salon beauty premium w Krakowie przy ul. Orzechowej 4/lok.1. Manicure, stylizacja paznokci, rzęsy, pedicure i zapytanie o termin online.",
+    "Manicure, pedicure i stylizacja rzęs w Krakowie na Borku Fałęckim. Rezerwacja online 24/7, darmowy parking, ponad 220 opinii klientek.",
   alternates: {
   canonical: siteUrl,
 },
@@ -179,7 +179,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: "Noblu Beauty Room Kraków",
     description:
-      "Salon beauty premium w Krakowie. Zapytaj o termin wizyty online.",
+      "Manicure, pedicure i stylizacja rzęs w Krakowie na Borku Fałęckim. Rezerwacja online 24/7, darmowy parking i ponad 220 opinii.",
     url: siteUrl,
     siteName: "Noblu Beauty Room",
      images: [
@@ -192,6 +192,13 @@ export const metadata: Metadata = {
   ],
     locale: "pl_PL",
     type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Noblu Beauty Room Kraków",
+    description:
+      "Manicure, pedicure i stylizacja rzęs w Krakowie na Borku Fałęckim. Rezerwacja online 24/7, darmowy parking i ponad 220 opinii.",
+    images: ["https://noblu.pl/og-noblu.jpg"],
   },
 };
 
