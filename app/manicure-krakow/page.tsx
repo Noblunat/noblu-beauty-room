@@ -7,7 +7,7 @@ import ServiceJsonLd from "../components/ServiceJsonLd";
 export const metadata: Metadata = {
   title: "Manicure Kraków | Paznokcie hybrydowe Borek Fałęcki | Noblu",
   description:
-    "Manicure i paznokcie hybrydowe w Krakowie na Borku Fałęckim. Nowa stylistka, przyjmujemy klientki. Sprawdź cennik i zapytaj o termin online.",
+    "Manicure i paznokcie hybrydowe w Krakowie na Borku Fałęckim. Przyjmujemy nowe klientki. Sprawdź cennik i zapytaj o termin online.",
   alternates: {
     canonical: "https://noblu.pl/manicure-krakow",
   },
@@ -72,7 +72,7 @@ const faq = [
   },
   {
     q: "Jakie stylizacje paznokci wykonuje salon?",
-    a: "W Noblu Beauty Room wykonywany jest manicure premium, stylizacja paznokci, manicure hybrydowy oraz estetyczne, naturalne stylizacje.",
+    a: "W Noblu Beauty Room wykonujemy manicure klasyczny i hybrydowy, stylizację żelową oraz naturalne i bardziej zdobione stylizacje paznokci.",
   },
   {
     q: "Ile kosztuje manicure w Krakowie?",
@@ -97,7 +97,7 @@ export default function ManicureKrakowPage() {
       />
       <ServiceJsonLd
         name="Manicure Kraków"
-        description="Manicure premium i estetyczna pielęgnacja paznokci w Noblu Beauty Room w Krakowie."
+        description="Manicure i stylizacja paznokci w Noblu Beauty Room w Krakowie, w tym manicure hybrydowy i stylizacje żelowe."
         serviceType="Manicure"
         url="https://noblu.pl/manicure-krakow"
         offers={[{ name: "Manicure", price: "100" }]}

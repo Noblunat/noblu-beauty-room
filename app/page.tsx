@@ -113,7 +113,7 @@ const instagramGalleryItems = [
   },
   {
     src: "/gallery/paznokcie/IMG_6724.webp",
-    alt: "Manicure premium w Noblu Beauty Room Kraków",
+    alt: "Manicure hybrydowy w Noblu Beauty Room Kraków",
   },
   {
     src: "/gallery/rzesy/stylizacja-rzes-krakow-noblu.webp",
@@ -751,7 +751,7 @@ useEffect(() => {
     <a href="/pedicure-krakow" className="font-medium text-[#876536] underline underline-offset-4">
       pedicure w Krakowie
     </a>
-    , Noblu Beauty Room łączy profesjonalne wykonanie z estetyką premium i
+    , Noblu Beauty Room łączy staranne wykonanie z dbałością o estetykę i
     wygodnym formularzem rezerwacji online. Przyjmujemy nowe klientki na
     manicure i pedicure.
   </p>
