@@ -16,6 +16,17 @@ const contentSecurityPolicy = [
   "upgrade-insecure-requests",
 ].join("; ");
 
+const publicAssetCacheHeaders = [
+  {
+    key: "Cache-Control",
+    value: "public, max-age=86400, stale-while-revalidate=604800",
+  },
+  {
+    key: "Vercel-CDN-Cache-Control",
+    value: "public, max-age=31536000",
+  },
+];
+
 const nextConfig: NextConfig = {
   turbopack: {
     root: process.cwd(),
@@ -67,6 +78,21 @@ const nextConfig: NextConfig = {
           },
         ],
       },
+      {
+        source: "/gallery/:path*",
+        headers: publicAssetCacheHeaders,
+      },
+      ...[
+        "/rezerwacja/rezerwacja-hero.jpg",
+        "/rezerwacja/og-rezerwacja.jpg",
+        "/og-noblu.jpg",
+        "/logo.png",
+        "/logo-nav.webp",
+        "/logo-footer.webp",
+      ].map((source) => ({
+        source,
+        headers: publicAssetCacheHeaders,
+      })),
     ];
   },
 };
