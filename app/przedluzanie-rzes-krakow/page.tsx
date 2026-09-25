@@ -150,7 +150,7 @@ export default function PrzedluzanieRzesKrakowPage() {
             </div>
 
             <h1 className="text-4xl sm:text-5xl lg:text-7xl font-light leading-tight">
-              Przedłużanie rzęs
+              Przedłużanie rzęs{" "}
               <span className="block text-[#7C6238]">Kraków</span>
             </h1>
 

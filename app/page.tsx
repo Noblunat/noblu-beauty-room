@@ -1192,8 +1192,8 @@ useEffect(() => {
         />
 
         <p className="text-[#1D1D1B] leading-relaxed max-w-sm">
-          Beauty studio w Krakowie stworzone dla kobiet,
-          które kochają estetykę oraz perfekcyjne wykonanie.
+          Manicure, pedicure i stylizacja rzęs w Krakowie. Darmowy parking,
+          rezerwacja online, ponad 220 opinii klientek.
         </p>
       </div>
 
@@ -1303,8 +1303,6 @@ useEffect(() => {
         >
           Polityka prywatności
         </a>
-        <span className="hidden lg:inline text-[#C9BDAF]">/</span>
-        <span className="tracking-[0.2em] uppercase">Beauty Experience</span>
       </div>
 
     </div>

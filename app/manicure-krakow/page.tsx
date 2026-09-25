@@ -128,7 +128,7 @@ export default function ManicureKrakowPage() {
           </div>
 
           <h1 className="text-4xl sm:text-5xl lg:text-7xl font-light leading-tight">
-            Manicure Kraków
+            Manicure Kraków{" "}
             <span className="block text-[#7C6238]">Borek Fałęcki</span>
           </h1>
 

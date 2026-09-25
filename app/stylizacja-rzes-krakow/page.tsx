@@ -92,7 +92,7 @@ export default function StylizacjaRzesKrakowPage() {
           </div>
 
           <h1 className="text-4xl sm:text-5xl lg:text-7xl font-light leading-tight">
-            Stylizacja rzęs
+            Stylizacja rzęs{" "}
             <span className="block text-[#7C6238]">Kraków Borek Fałęcki</span>
           </h1>
 
