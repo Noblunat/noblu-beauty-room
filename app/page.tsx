@@ -1293,7 +1293,7 @@ useEffect(() => {
     <div className="mt-20 pt-8 border-t border-[#E8DED2] flex flex-col lg:flex-row items-center justify-between gap-6">
 
       <div className="text-[#9B9187] text-sm">
-        © {new Date().getFullYear()} Noblu Beauty Room · Kraków
+        © {new Date().getFullYear()} Noblu Beauty Room. Wszystkie prawa zastrzeżone.
       </div>
 
       <div className="flex flex-col items-center gap-3 text-[#1D1D1B] text-sm lg:flex-row">
