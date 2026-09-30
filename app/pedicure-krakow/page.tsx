@@ -97,8 +97,8 @@ export default function PedicureKrakowPage() {
           </div>
 
           <h1 className="text-4xl sm:text-5xl lg:text-7xl font-light leading-tight">
-            Pedicure Kraków{" "}
-            <span className="block text-[#7C6238]">Borek Fałęcki</span>
+            Pedicure Kraków
+            <span className="block text-[#7C6238]">{"\u00A0-\u00A0Borek Fałęcki"}</span>
           </h1>
 
           <p className="mt-10 text-lg text-[#6D6B68] leading-relaxed max-w-3xl">

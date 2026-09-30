@@ -92,8 +92,8 @@ export default function StylizacjaRzesKrakowPage() {
           </div>
 
           <h1 className="text-4xl sm:text-5xl lg:text-7xl font-light leading-tight">
-            Stylizacja rzęs{" "}
-            <span className="block text-[#7C6238]">Kraków Borek Fałęcki</span>
+            Stylizacja rzęs
+            <span className="block text-[#7C6238]">{"\u00A0-\u00A0Kraków Borek Fałęcki"}</span>
           </h1>
 
           <p className="mt-10 text-lg text-[#6D6B68] leading-relaxed max-w-3xl">
@@ -104,13 +104,19 @@ export default function StylizacjaRzesKrakowPage() {
             parkingiem.
           </p>
 
-          <div className="mt-12">
+          <div className="mt-12 flex flex-wrap gap-4">
             <a
               href="/rezerwacja?usluga=rzesy"
               className="inline-flex items-center justify-center px-10 py-5 rounded-full bg-[#D4B483] text-black font-medium hover:scale-105 transition-transform shadow-[0_20px_60px_rgba(212,180,131,0.35)]"
             >
               Zapytaj o termin
             </a>
+            <Link
+              href="/cennik"
+              className="inline-flex items-center justify-center rounded-full border border-[#D4B483] px-10 py-5 font-medium text-[#876536] transition-colors hover:bg-[#D4B483] hover:text-black"
+            >
+              Zobacz cennik
+            </Link>
           </div>
         </div>
       </section>

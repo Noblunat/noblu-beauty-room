@@ -12,13 +12,13 @@ export default function sitemap(): MetadataRoute.Sitemap {
     },
     {
       url: `${baseUrl}/manicure-krakow`,
-      lastModified: "2026-09-25",
+      lastModified: "2026-09-30",
       changeFrequency: "monthly",
       priority: 0.9,
     },
     {
       url: `${baseUrl}/stylizacja-rzes-krakow`,
-      lastModified: "2026-09-25",
+      lastModified: "2026-09-30",
       changeFrequency: "monthly",
       priority: 0.85,
     },
@@ -30,7 +30,7 @@ export default function sitemap(): MetadataRoute.Sitemap {
     },
     {
       url: `${baseUrl}/pedicure-krakow`,
-      lastModified: "2026-09-25",
+      lastModified: "2026-09-30",
       changeFrequency: "monthly",
       priority: 0.85,
     },
