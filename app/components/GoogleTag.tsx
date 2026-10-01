@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect } from "react";
+import { googleAnalyticsId } from "../lib/analytics";
 import {
   COOKIE_CONSENT_CHANGE_EVENT,
   type CookieConsent,
@@ -15,7 +16,6 @@ declare global {
 }
 
 const googleTagId = "GT-TW5DT9Q4";
-const googleAnalyticsId = "G-BD9VRN0W6Q";
 const googleTagScriptId = "noblu-google-tag";
 
 function getConsentSettings(consent: CookieConsent) {
@@ -31,8 +31,10 @@ function initializeGtag() {
   window.dataLayer = window.dataLayer || [];
   window.gtag =
     window.gtag ||
-    function gtag(...args: unknown[]) {
-      window.dataLayer?.push(args);
+    function gtag() {
+      // gtag.js expects an Arguments object, not an Array, in the data layer.
+      // eslint-disable-next-line prefer-rest-params
+      window.dataLayer?.push(arguments);
     };
 }
 

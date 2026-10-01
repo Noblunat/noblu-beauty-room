@@ -2,9 +2,10 @@
 
 import Image from "next/image"
 import Link from "next/link"
-import { FormEvent, useMemo, useState } from "react"
+import { FormEvent, useMemo, useRef, useState } from "react"
 import BreadcrumbJsonLd from "../components/BreadcrumbJsonLd"
 import { readCookieConsent } from "../lib/cookieConsent"
+import { trackAnalyticsEvent } from "../lib/analytics"
 
 const booksyWidgetUrl = "https://booksy.com/widget/index.html"
 const reservationConversionId = "AW-10795260361/w2THCKCZ0LYcEMmzypso"
@@ -177,6 +178,15 @@ export default function ReservationClient({ initialService }: { initialService: 
     "idle" | "sending" | "success" | "error"
   >("idle")
   const [submitMessage, setSubmitMessage] = useState("")
+  const bookingStarted = useRef(false)
+
+  function trackBookingStart(serviceName = selectedService) {
+    if (bookingStarted.current) return
+    bookingStarted.current = trackAnalyticsEvent("booking_start", {
+      service_name: serviceName || "unspecified",
+      booking_channel: "reservation_form",
+    })
+  }
 
   const selected = useMemo(
     () => allServices.find((service) => service.name === selectedService),
@@ -201,6 +211,7 @@ export default function ReservationClient({ initialService }: { initialService: 
 
   async function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault()
+    trackBookingStart()
     setSubmitStatus("sending")
     setSubmitMessage("")
 
@@ -235,6 +246,10 @@ export default function ReservationClient({ initialService }: { initialService: 
       }
 
       if (selected) {
+        trackAnalyticsEvent("booking_complete", {
+          service_name: selected.name,
+          booking_channel: "reservation_form",
+        })
         trackReservationLead(selected)
       }
 
@@ -322,6 +337,14 @@ export default function ReservationClient({ initialService }: { initialService: 
         <div className="mx-auto grid max-w-7xl gap-8 lg:grid-cols-[0.95fr_1.05fr]">
           <form
             onSubmit={handleSubmit}
+            onChange={(event) => {
+              if (!(event.target instanceof Element)) return
+              if (event.target.closest('[aria-hidden="true"]')) return
+              const serviceName = event.target instanceof HTMLSelectElement
+                ? event.target.value
+                : selectedService
+              trackBookingStart(serviceName)
+            }}
             className="min-w-0 rounded-[2rem] border border-[#E8DED2] bg-white/75 p-6 shadow-[0_24px_70px_rgba(80,55,25,0.08)] backdrop-blur-sm sm:p-8"
           >
             <h2 className="text-3xl font-light">Dane wizyty</h2>
@@ -431,6 +454,7 @@ export default function ReservationClient({ initialService }: { initialService: 
               {selectedBooksyUrl && (
                 <a
                   href={selectedBooksyUrl}
+                  data-service-name={selected?.name}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="rounded-full bg-[#D4B483] px-7 py-4 text-center font-medium text-black shadow-[0_20px_60px_rgba(212,180,131,0.35)] transition-transform hover:scale-[1.02]"
