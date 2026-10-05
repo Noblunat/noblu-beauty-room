@@ -291,7 +291,7 @@ export default function ReservationClient({ initialService }: { initialService: 
             </Link>
 
             <h1 className="max-w-2xl text-6xl font-light leading-[0.92] tracking-tight sm:text-7xl lg:text-8xl">
-              Rezerwacja manicure, pedicure i rzęs
+              Rezerwacja manicure, pedicure i rzęs{" "}
               <span className="block text-[#7C6238]">w Noblu</span>
             </h1>
 
@@ -364,6 +364,7 @@ export default function ReservationClient({ initialService }: { initialService: 
                 Imię
                 <input
                   value={name}
+                  autoComplete="name"
                   onChange={(event) => setName(event.target.value)}
                   required
                   className="min-w-0 w-full rounded-2xl border border-[#E8DED2] bg-white px-4 py-4 text-base text-[#1D1D1B] outline-none transition-colors focus:border-[#D4B483]"
@@ -375,6 +376,8 @@ export default function ReservationClient({ initialService }: { initialService: 
                 Telefon
                 <input
                   value={telephone}
+                  type="tel"
+                  autoComplete="tel"
                   onChange={(event) => setTelephone(event.target.value)}
                   required
                   className="min-w-0 w-full rounded-2xl border border-[#E8DED2] bg-white px-4 py-4 text-base text-[#1D1D1B] outline-none transition-colors focus:border-[#D4B483]"
@@ -532,6 +535,18 @@ export default function ReservationClient({ initialService }: { initialService: 
                 </Link>
                 .
               </p>
+              <nav aria-label="Poznaj usługi" className="mt-5 flex flex-wrap gap-x-5 gap-y-3 text-sm">
+                {[
+                  ["/manicure-krakow", "Manicure i stylizacja paznokci"],
+                  ["/pedicure-krakow", "Pedicure"],
+                  ["/stylizacja-rzes-krakow", "Stylizacja rzęs"],
+                  ["/przedluzanie-rzes-krakow", "Przedłużanie rzęs"],
+                ].map(([href, label]) => (
+                  <Link key={href} href={href} className="font-medium text-[#7C6238] underline underline-offset-4">
+                    {label}
+                  </Link>
+                ))}
+              </nav>
             </div>
 
             <div className="rounded-[2rem] border border-[#E8DED2] bg-white/70 p-6 shadow-[0_24px_70px_rgba(80,55,25,0.08)] sm:p-8">

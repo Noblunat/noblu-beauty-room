@@ -15,8 +15,6 @@ const geistMono = Geist_Mono({
   subsets: ["latin"],
 });
 
-const cookieConsentBootstrap = `try{const value=localStorage.getItem("noblu-cookie-consent");if(value){const consent=JSON.parse(value);if(consent.necessary===true&&typeof consent.analytics==="boolean"&&typeof consent.marketing==="boolean"&&(consent.external===undefined||typeof consent.external==="boolean")){document.documentElement.dataset.cookieConsent="saved"}}}catch{}`;
-
 const siteUrl = "https://noblu.pl";
 const reservationUrl = `${siteUrl}/rezerwacja`;
 
@@ -213,7 +211,6 @@ export default function RootLayout({
       className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
     >
       <body className="min-h-full flex flex-col">
-        <script dangerouslySetInnerHTML={{ __html: cookieConsentBootstrap }} />
         <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(salonJsonLd) }}

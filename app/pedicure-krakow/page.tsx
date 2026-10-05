@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import BreadcrumbJsonLd from "../components/BreadcrumbJsonLd";
 import ServiceJsonLd from "../components/ServiceJsonLd";
+import ServiceGallery from "../components/ServiceGallery";
 
 export const metadata: Metadata = {
   title: "Pedicure Kraków Borek Fałęcki | Hybrydowy i SPA | Noblu",
@@ -125,6 +126,17 @@ export default function PedicureKrakowPage() {
           </div>
         </div>
       </section>
+
+      <ServiceGallery
+        id="pedicure-gallery-title"
+        title="Realizacje pedicure"
+        images={[
+          {
+            src: "/gallery/paznokcie/pedicure-hybrydowy-krakow-noblu.webp",
+            alt: "Pedicure z bordowym lakierem na paznokciach stóp w Noblu Beauty Room",
+          },
+        ]}
+      />
 
       <section className="pb-24 px-6 lg:px-12">
         <div className="max-w-5xl mx-auto grid gap-10 text-lg leading-relaxed text-[#5F5B56]">

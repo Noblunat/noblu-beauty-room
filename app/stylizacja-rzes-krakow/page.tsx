@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import BreadcrumbJsonLd from "../components/BreadcrumbJsonLd";
 import ServiceJsonLd from "../components/ServiceJsonLd";
+import ServiceGallery from "../components/ServiceGallery";
 
 export const metadata: Metadata = {
   title: "Stylizacja rzęs Kraków | Rzęsy 1:1, 2D i 3D | Noblu",
@@ -120,6 +121,25 @@ export default function StylizacjaRzesKrakowPage() {
           </div>
         </div>
       </section>
+
+      <ServiceGallery
+        id="lashes-gallery-title"
+        title="Realizacje stylizacji rzęs"
+        images={[
+          {
+            src: "/gallery/rzesy/stylizacja-rzes-krakow-noblu.webp",
+            alt: "Zbliżenie oka z podkręconymi rzęsami po stylizacji w Noblu",
+          },
+          {
+            src: "/gallery/rzesy/IMG_6993(1).webp",
+            alt: "Delikatna stylizacja rzęs obu oczu z podkreślonymi zewnętrznymi kącikami",
+          },
+          {
+            src: "/gallery/rzesy/rzesy-objetosciowe-krakow-noblu.webp",
+            alt: "Efekt przedłużonych rzęs na otwartych oczach klientki Noblu Beauty Room",
+          },
+        ]}
+      />
 
       <section className="pb-24 px-6 lg:px-12">
         <div className="max-w-5xl mx-auto grid gap-10 text-lg leading-relaxed text-[#5F5B56]">

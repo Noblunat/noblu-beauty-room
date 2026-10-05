@@ -1,8 +1,10 @@
 "use client";
 
-import { useState, useSyncExternalStore } from "react";
+import { useEffect, useState, useSyncExternalStore } from "react";
 import {
   COOKIE_CONSENT_CHANGE_EVENT,
+  COOKIE_CONSENT_OPEN_EVENT,
+  type CookieConsent,
   readCookieConsent,
   saveCookieConsent,
 } from "../lib/cookieConsent";
@@ -31,17 +33,39 @@ export default function CookieBanner() {
   const [analytics, setAnalytics] = useState(false);
   const [marketing, setMarketing] = useState(false);
   const [external, setExternal] = useState(false);
+  const [editing, setEditing] = useState(false);
 
-  if (!visible) {
+  useEffect(() => {
+    const openPreferences = () => {
+      const consent = readCookieConsent();
+      setAnalytics(consent?.analytics ?? false);
+      setMarketing(consent?.marketing ?? false);
+      setExternal(consent?.external ?? false);
+      setSettingsOpen(true);
+      setEditing(true);
+    };
+    window.addEventListener(COOKIE_CONSENT_OPEN_EVENT, openPreferences);
+    return () => window.removeEventListener(COOKIE_CONSENT_OPEN_EVENT, openPreferences);
+  }, []);
+
+  const save = (consent: CookieConsent) => {
+    saveCookieConsent(consent);
+    setEditing(false);
+    setSettingsOpen(false);
+  };
+
+  if (!visible && !editing) {
     return null;
   }
 
   return (
     <div
       data-cookie-banner
+      role="region"
+      aria-label="Preferencje plików cookie"
       className="fixed inset-x-0 bottom-0 z-[100000] px-4 pb-4 sm:px-6"
     >
-      <div className="mx-auto max-w-5xl rounded-[1.5rem] border border-[#E8DED2] bg-white/95 p-4 text-[#1D1D1B] shadow-[0_20px_80px_rgba(0,0,0,0.18)] backdrop-blur-xl sm:p-6">
+      <div className="mx-auto max-h-[85dvh] max-w-5xl overflow-y-auto rounded-[1.5rem] border border-[#E8DED2] bg-white/95 p-4 text-[#1D1D1B] shadow-[0_20px_80px_rgba(0,0,0,0.18)] backdrop-blur-xl sm:p-6">
         <div className="grid gap-5 lg:grid-cols-[1fr_auto] lg:items-start">
           <div>
             <h2 className="text-lg font-medium sm:text-xl">Pliki cookies</h2>
@@ -129,7 +153,7 @@ export default function CookieBanner() {
             <button
               type="button"
               onClick={() =>
-                saveCookieConsent({
+                save({
                   necessary: true,
                   analytics: true,
                   marketing: true,
@@ -143,7 +167,7 @@ export default function CookieBanner() {
             <button
               type="button"
               onClick={() =>
-                saveCookieConsent({
+                save({
                   necessary: true,
                   analytics: false,
                   marketing: false,
@@ -158,7 +182,7 @@ export default function CookieBanner() {
               <button
                 type="button"
                 onClick={() =>
-                  saveCookieConsent({
+                  save({
                     necessary: true,
                     analytics,
                     marketing,

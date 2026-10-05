@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import BreadcrumbJsonLd from "../components/BreadcrumbJsonLd";
+import CookiePreferencesButton from "../components/CookiePreferencesButton";
 
 export const metadata: Metadata = {
   title: "Polityka prywatności | Noblu Beauty Room",
@@ -230,10 +231,13 @@ export default function PolitykaPrywatnosciPage() {
               Zmiana ustawień cookies
             </h2>
             <p className="mt-5 leading-relaxed">
-              Użytkownik może zmienić ustawienia cookies w swojej przeglądarce
-              internetowej. Ograniczenie stosowania cookies może wpłynąć na
-              działanie niektórych funkcji strony.
+              W każdej chwili możesz zmienić lub wycofać zgody na opcjonalne
+              pliki cookie, korzystając z przycisku poniżej. Wycofanie zgody
+              nie wpływa na zgodność z prawem wcześniejszego przetwarzania.
             </p>
+            <div className="mt-5">
+              <CookiePreferencesButton />
+            </div>
           </section>
 
           <section>

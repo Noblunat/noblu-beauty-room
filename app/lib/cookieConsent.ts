@@ -1,5 +1,6 @@
 export const COOKIE_CONSENT_STORAGE_KEY = "noblu-cookie-consent";
 export const COOKIE_CONSENT_CHANGE_EVENT = "noblu-cookie-consent-change";
+export const COOKIE_CONSENT_OPEN_EVENT = "noblu-cookie-consent-open";
 
 export type CookieConsent = {
   necessary: true;
@@ -8,25 +9,38 @@ export type CookieConsent = {
   external: boolean;
 };
 
+let sessionConsent: CookieConsent | null = null;
+let storageWriteFailed = false;
+
 export function saveCookieConsent(consent: CookieConsent) {
-  window.localStorage.setItem(
-    COOKIE_CONSENT_STORAGE_KEY,
-    JSON.stringify(consent)
-  );
-  document.documentElement.dataset.cookieConsent = "saved";
+  sessionConsent = consent;
+  try {
+    window.localStorage.setItem(
+      COOKIE_CONSENT_STORAGE_KEY,
+      JSON.stringify(consent)
+    );
+    storageWriteFailed = false;
+  } catch {
+    // Keep the choice for this page when browser storage is unavailable.
+    storageWriteFailed = true;
+  }
   window.dispatchEvent(
     new CustomEvent(COOKIE_CONSENT_CHANGE_EVENT, { detail: consent })
   );
 }
 
 export function readCookieConsent(): CookieConsent | null {
-  const storedConsent = window.localStorage.getItem(
-    COOKIE_CONSENT_STORAGE_KEY
-  );
+  if (typeof window === "undefined") return null;
+  if (storageWriteFailed) return sessionConsent;
 
-  if (!storedConsent) {
-    return null;
+  let storedConsent: string | null;
+  try {
+    storedConsent = window.localStorage.getItem(COOKIE_CONSENT_STORAGE_KEY);
+  } catch {
+    return sessionConsent;
   }
+
+  if (!storedConsent) return null;
 
   try {
     const consent = JSON.parse(storedConsent) as Partial<CookieConsent>;
