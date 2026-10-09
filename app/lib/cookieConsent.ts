@@ -12,6 +12,22 @@ export type CookieConsent = {
 let sessionConsent: CookieConsent | null = null;
 let storageWriteFailed = false;
 
+export function subscribeToCookieConsent(callback: () => void) {
+  const onStorage = (event: StorageEvent) => {
+    if (event.storageArea !== window.localStorage ||
+        (event.key !== COOKIE_CONSENT_STORAGE_KEY && event.key !== null)) return;
+    sessionConsent = null;
+    storageWriteFailed = false;
+    callback();
+  };
+  window.addEventListener("storage", onStorage);
+  window.addEventListener(COOKIE_CONSENT_CHANGE_EVENT, callback);
+  return () => {
+    window.removeEventListener("storage", onStorage);
+    window.removeEventListener(COOKIE_CONSENT_CHANGE_EVENT, callback);
+  };
+}
+
 export function saveCookieConsent(consent: CookieConsent) {
   sessionConsent = consent;
   try {

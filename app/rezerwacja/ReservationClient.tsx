@@ -6,6 +6,7 @@ import { FormEvent, useMemo, useRef, useState } from "react"
 import BreadcrumbJsonLd from "../components/BreadcrumbJsonLd"
 import { readCookieConsent } from "../lib/cookieConsent"
 import { trackAnalyticsEvent } from "../lib/analytics"
+import { normalizePhoneNumber, phoneErrorMessage } from "../lib/phone"
 
 const booksyWidgetUrl = "https://booksy.com/widget/index.html"
 const reservationConversionId = "AW-10795260361/w2THCKCZ0LYcEMmzypso"
@@ -211,6 +212,12 @@ export default function ReservationClient({ initialService }: { initialService: 
 
   async function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault()
+    const normalizedTelephone = normalizePhoneNumber(telephone)
+    if (!normalizedTelephone) {
+      setSubmitStatus("error")
+      setSubmitMessage(phoneErrorMessage)
+      return
+    }
     trackBookingStart()
     setSubmitStatus("sending")
     setSubmitMessage("")
@@ -221,7 +228,7 @@ export default function ReservationClient({ initialService }: { initialService: 
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
           name,
-          telephone,
+          telephone: normalizedTelephone,
           service: selectedService,
           price: selected?.price,
           duration: selected?.duration,
@@ -278,28 +285,35 @@ export default function ReservationClient({ initialService }: { initialService: 
         ]}
       />
 
-      <section className="relative overflow-hidden px-6 py-10 sm:px-10 lg:px-16 lg:py-16">
+      <section className="relative overflow-hidden px-6 py-6 sm:px-10 sm:py-10 lg:px-16 lg:py-16">
         <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_15%_20%,rgba(212,180,131,0.24),transparent_30%),radial-gradient(circle_at_85%_15%,rgba(255,255,255,0.95),transparent_36%)]" />
 
         <div className="relative mx-auto grid max-w-7xl gap-10 lg:grid-cols-[1.05fr_0.95fr] lg:items-center">
           <div>
             <Link
               href="/"
-              className="mb-12 inline-flex text-sm uppercase tracking-[0.24em] text-[#7C6238] transition-colors hover:text-[#1D1D1B]"
+              className="mb-6 inline-flex text-sm uppercase tracking-[0.24em] text-[#7C6238] transition-colors hover:text-[#1D1D1B] sm:mb-12"
             >
               Noblu Beauty Room
             </Link>
 
-            <h1 className="max-w-2xl text-6xl font-light leading-[0.92] tracking-tight sm:text-7xl lg:text-8xl">
+            <h1 className="max-w-2xl text-4xl font-light leading-tight sm:text-7xl sm:leading-[0.92] lg:text-8xl">
               Rezerwacja manicure, pedicure i rzęs{" "}
               <span className="block text-[#7C6238]">w Noblu</span>
             </h1>
 
-            <p className="mt-8 max-w-xl text-lg leading-relaxed text-[#625b53]">
+            <p className="mt-5 max-w-xl text-base leading-relaxed text-[#625b53] sm:mt-8 sm:text-lg">
               Wybierz manicure, pedicure, paznokcie hybrydowe albo stylizację
               rzęs i podaj preferowany termin wizyty. Formularz nie blokuje
               terminu automatycznie, a ostateczne potwierdzenie otrzymasz od salonu.
             </p>
+
+            <a
+              href="#formularz"
+              className="mt-6 inline-flex rounded-full bg-[#D4B483] px-6 py-3 font-medium text-black focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#7C6238] lg:hidden"
+            >
+              Przejdź do formularza
+            </a>
 
             <div className="mt-10 grid max-w-lg grid-cols-[1fr_0.8fr_1.2fr] gap-3 sm:max-w-xl sm:grid-cols-3 sm:gap-6">
               {highlights.map((item) => (
@@ -336,6 +350,8 @@ export default function ReservationClient({ initialService }: { initialService: 
       <section className="px-6 pb-16 sm:px-10 lg:px-16">
         <div className="mx-auto grid max-w-7xl gap-8 lg:grid-cols-[0.95fr_1.05fr]">
           <form
+            id="formularz"
+            tabIndex={-1}
             onSubmit={handleSubmit}
             onChange={(event) => {
               if (!(event.target instanceof Element)) return
@@ -367,7 +383,7 @@ export default function ReservationClient({ initialService }: { initialService: 
                   autoComplete="name"
                   onChange={(event) => setName(event.target.value)}
                   required
-                  className="min-w-0 w-full rounded-2xl border border-[#E8DED2] bg-white px-4 py-4 text-base text-[#1D1D1B] outline-none transition-colors focus:border-[#D4B483]"
+                  className="min-w-0 w-full rounded-2xl border border-[#E8DED2] bg-white px-4 py-4 text-base text-[#1D1D1B] outline-none transition-colors focus:border-[#7C6238] focus:outline-2 focus:outline-solid focus:outline-offset-2 focus:outline-[#7C6238]"
                   placeholder="Natalia"
                 />
               </label>
@@ -378,9 +394,16 @@ export default function ReservationClient({ initialService }: { initialService: 
                   value={telephone}
                   type="tel"
                   autoComplete="tel"
-                  onChange={(event) => setTelephone(event.target.value)}
+                  onChange={(event) => {
+                    const value = event.target.value
+                    setTelephone(value)
+                    event.target.setCustomValidity(
+                      value && !normalizePhoneNumber(value) ? phoneErrorMessage : ""
+                    )
+                  }}
+                  maxLength={40}
                   required
-                  className="min-w-0 w-full rounded-2xl border border-[#E8DED2] bg-white px-4 py-4 text-base text-[#1D1D1B] outline-none transition-colors focus:border-[#D4B483]"
+                  className="min-w-0 w-full rounded-2xl border border-[#E8DED2] bg-white px-4 py-4 text-base text-[#1D1D1B] outline-none transition-colors focus:border-[#7C6238] focus:outline-2 focus:outline-solid focus:outline-offset-2 focus:outline-[#7C6238]"
                   placeholder="+48 000 000 000"
                 />
               </label>
@@ -391,7 +414,7 @@ export default function ReservationClient({ initialService }: { initialService: 
                   value={selectedService}
                   onChange={(event) => setSelectedService(event.target.value)}
                   required
-                  className="min-w-0 w-full rounded-2xl border border-[#E8DED2] bg-white px-4 py-4 text-base text-[#1D1D1B] outline-none transition-colors focus:border-[#D4B483]"
+                  className="min-w-0 w-full rounded-2xl border border-[#E8DED2] bg-white px-4 py-4 text-base text-[#1D1D1B] outline-none transition-colors focus:border-[#7C6238] focus:outline-2 focus:outline-solid focus:outline-offset-2 focus:outline-[#7C6238]"
                 >
                   <option value="" disabled>Wybierz usługę</option>
                   {serviceGroups.map((group) => (
@@ -415,7 +438,7 @@ export default function ReservationClient({ initialService }: { initialService: 
                     value={date}
                     onChange={(event) => setDate(event.target.value)}
                     required
-                    className="min-w-0 w-full rounded-2xl border border-[#E8DED2] bg-white px-4 py-4 text-base text-[#1D1D1B] outline-none transition-colors focus:border-[#D4B483]"
+                    className="min-w-0 w-full rounded-2xl border border-[#E8DED2] bg-white px-4 py-4 text-base text-[#1D1D1B] outline-none transition-colors focus:border-[#7C6238] focus:outline-2 focus:outline-solid focus:outline-offset-2 focus:outline-[#7C6238]"
                   />
                 </label>
 
@@ -424,7 +447,7 @@ export default function ReservationClient({ initialService }: { initialService: 
                   <select
                     value={timePreference}
                     onChange={(event) => setTimePreference(event.target.value)}
-                    className="min-w-0 w-full rounded-2xl border border-[#E8DED2] bg-white px-4 py-4 text-base text-[#1D1D1B] outline-none transition-colors focus:border-[#D4B483]"
+                    className="min-w-0 w-full rounded-2xl border border-[#E8DED2] bg-white px-4 py-4 text-base text-[#1D1D1B] outline-none transition-colors focus:border-[#7C6238] focus:outline-2 focus:outline-solid focus:outline-offset-2 focus:outline-[#7C6238]"
                   >
                     <option>Dowolnie</option>
                     <option>Rano</option>
@@ -439,7 +462,7 @@ export default function ReservationClient({ initialService }: { initialService: 
                 <textarea
                   value={notes}
                   onChange={(event) => setNotes(event.target.value)}
-                  className="min-h-32 min-w-0 w-full rounded-2xl border border-[#E8DED2] bg-white px-4 py-4 text-base text-[#1D1D1B] outline-none transition-colors focus:border-[#D4B483]"
+                  className="min-h-32 min-w-0 w-full rounded-2xl border border-[#E8DED2] bg-white px-4 py-4 text-base text-[#1D1D1B] outline-none transition-colors focus:border-[#7C6238] focus:outline-2 focus:outline-solid focus:outline-offset-2 focus:outline-[#7C6238]"
                   placeholder="Np. pytanie o termin, pierwszy raz, usługa..."
                 />
               </label>

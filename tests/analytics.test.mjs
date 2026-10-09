@@ -5,6 +5,9 @@ import { fileURLToPath } from "node:url";
 import vm from "node:vm";
 import test from "node:test";
 import ts from "typescript";
+import { createRequire } from "node:module";
+
+const nodeRequire = createRequire(import.meta.url);
 
 const root = fileURLToPath(new URL("../", import.meta.url));
 
@@ -13,6 +16,7 @@ function harness({ consent = { analytics: true, marketing: false }, ok = true } 
   const effects = [];
   const listeners = new Map();
   const states = [];
+  let stateIndex = 0;
   const window = {
     location: new URL("https://noblu.pl/manicure-krakow?email=private@example.com"),
     localStorage: { getItem: () => consent ? JSON.stringify({ necessary: true, external: false, ...consent }) : null },
@@ -24,7 +28,7 @@ function harness({ consent = { analytics: true, marketing: false }, ok = true } 
     useRef: (current) => ({ current }),
     useMemo: (fn) => fn(),
     useEffect: (fn) => effects.push(fn),
-    useState: (initial) => [initial, (value) => states.push(value)],
+    useState: (initial) => [stateIndex++ === 2 ? "+48 662 989 534" : initial, (value) => states.push(value)],
   };
   const jsx = (type, props) => ({ type, props });
   const cache = new Map();
@@ -48,6 +52,11 @@ function harness({ consent = { analytics: true, marketing: false }, ok = true } 
       fetch: async () => ({ ok, status: ok ? 200 : 400, json: async () => ok ? { success: true } : { error: "Invalid request" } }),
       require: (name) => {
         if (name === "react") return react;
+        if (name === "libphonenumber-js/min") {
+          const library = nodeRequire(name);
+          return { parsePhoneNumberFromString: (value, options) =>
+            library.parsePhoneNumberFromString(value, { ...options }) };
+        }
         if (name === "react/jsx-runtime") return { jsx, jsxs: jsx };
         if (name === "next/navigation") return { usePathname: () => window.location.pathname };
         if (name === "next/image" || name === "next/link" || name.includes("BreadcrumbJsonLd")) return { default: () => null };
@@ -132,6 +141,30 @@ test("Google tag queues commands in the documented Arguments format", () => {
   assert.equal(h.window.dataLayer[0][2].analytics_storage, "granted");
   assert.equal(h.window.dataLayer[0][2].ad_storage, "denied");
   assert.ok(h.window.dataLayer.some((command) => command[0] === "config" && command[1] === "G-BD9VRN0W6Q"));
+});
+
+test("Google Tag applies withdrawal from another tab and storage clearing", () => {
+  const h = harness();
+  h.window.gtag = undefined;
+  h.load("app/components/GoogleTag.tsx").default();
+  const cleanup = h.effects[0]();
+  h.window.localStorage.getItem = () => JSON.stringify({
+    necessary: true, analytics: false, marketing: false, external: false,
+  });
+  h.listeners.get("storage")({
+    key: "noblu-cookie-consent", storageArea: h.window.localStorage,
+  });
+  let command = h.window.dataLayer.at(-1);
+  assert.equal(command[0], "consent");
+  assert.equal(command[1], "update");
+  assert.equal(command[2].analytics_storage, "denied");
+  assert.equal(command[2].ad_storage, "denied");
+  h.window.localStorage.getItem = () => null;
+  h.listeners.get("storage")({ key: null, storageArea: h.window.localStorage });
+  command = h.window.dataLayer.at(-1);
+  assert.equal(command[2].ad_personalization, "denied");
+  cleanup();
+  assert.equal(h.listeners.size, 0);
 });
 
 for (const ok of [false, true]) {

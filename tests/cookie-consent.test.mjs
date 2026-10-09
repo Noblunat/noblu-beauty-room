@@ -6,6 +6,11 @@ import ts from "typescript";
 
 function storageHarness(value = null, blocked = false, writeBlocked = blocked) {
   const events = [];
+  const listeners = new Map();
+  const storage = {
+    getItem() { if (blocked) throw new Error("Blocked"); return value; },
+    setItem(key, next) { if (writeBlocked) throw new Error("Blocked"); value = next; },
+  };
   const testModule = { exports: {} };
   const source = readFileSync(new URL("../app/lib/cookieConsent.ts", import.meta.url), "utf8");
   vm.runInNewContext(ts.transpileModule(source, {
@@ -14,14 +19,19 @@ function storageHarness(value = null, blocked = false, writeBlocked = blocked) {
     module: testModule, exports: testModule.exports,
     CustomEvent: class { constructor(type, options) { this.type = type; this.detail = options.detail; } },
     window: {
-      localStorage: {
-        getItem() { if (blocked) throw new Error("Blocked"); return value; },
-        setItem(key, next) { if (writeBlocked) throw new Error("Blocked"); value = next; },
-      },
+      localStorage: storage,
+      addEventListener: (name, handler) => listeners.set(name, handler),
+      removeEventListener: (name) => listeners.delete(name),
       dispatchEvent: (event) => events.push(event),
     },
   });
-  return { ...testModule.exports, events };
+  return {
+    ...testModule.exports, events, listeners,
+    storageChange(next, key = "noblu-cookie-consent") {
+      value = next;
+      listeners.get("storage")?.({ key, storageArea: storage });
+    },
+  };
 }
 
 test("new visitors and invalid stored values have no consent", () => {
@@ -54,4 +64,23 @@ test("revoking consent overrides stale stored permissions when writes fail", () 
   const choice = { necessary: true, analytics: false, marketing: false, external: false };
   h.saveCookieConsent(choice);
   assert.equal(h.readCookieConsent(), choice);
+});
+
+test("another tab can revoke consent, clear storage and unsubscribe", () => {
+  const h = storageHarness(JSON.stringify({
+    necessary: true, analytics: true, marketing: true, external: true,
+  }));
+  const updates = [];
+  const stop = h.subscribeToCookieConsent(() => updates.push(h.readCookieConsent()));
+  h.storageChange(JSON.stringify({
+    necessary: true, analytics: false, marketing: false, external: false,
+  }));
+  assert.equal(updates[0].analytics, false);
+  assert.equal(updates[0].marketing, false);
+  h.storageChange(null, null);
+  assert.equal(updates[1], null);
+  h.storageChange("unrelated", "other-key");
+  assert.equal(updates.length, 2);
+  stop();
+  assert.equal(h.listeners.size, 0);
 });

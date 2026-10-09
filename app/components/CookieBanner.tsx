@@ -2,7 +2,7 @@
 
 import { useEffect, useState, useSyncExternalStore } from "react";
 import {
-  COOKIE_CONSENT_CHANGE_EVENT,
+  subscribeToCookieConsent,
   COOKIE_CONSENT_OPEN_EVENT,
   type CookieConsent,
   readCookieConsent,
@@ -12,16 +12,6 @@ import {
 const getCookieBannerVisible = () => readCookieConsent() === null;
 
 const getServerCookieBannerVisible = () => true;
-
-const subscribeToCookieConsent = (callback: () => void) => {
-  window.addEventListener("storage", callback);
-  window.addEventListener(COOKIE_CONSENT_CHANGE_EVENT, callback);
-
-  return () => {
-    window.removeEventListener("storage", callback);
-    window.removeEventListener(COOKIE_CONSENT_CHANGE_EVENT, callback);
-  };
-};
 
 export default function CookieBanner() {
   const visible = useSyncExternalStore(
@@ -36,16 +26,23 @@ export default function CookieBanner() {
   const [editing, setEditing] = useState(false);
 
   useEffect(() => {
-    const openPreferences = () => {
+    const syncPreferences = () => {
       const consent = readCookieConsent();
       setAnalytics(consent?.analytics ?? false);
       setMarketing(consent?.marketing ?? false);
       setExternal(consent?.external ?? false);
+    };
+    const openPreferences = () => {
+      syncPreferences();
       setSettingsOpen(true);
       setEditing(true);
     };
+    const unsubscribe = subscribeToCookieConsent(syncPreferences);
     window.addEventListener(COOKIE_CONSENT_OPEN_EVENT, openPreferences);
-    return () => window.removeEventListener(COOKIE_CONSENT_OPEN_EVENT, openPreferences);
+    return () => {
+      unsubscribe();
+      window.removeEventListener(COOKIE_CONSENT_OPEN_EVENT, openPreferences);
+    };
   }, []);
 
   const save = (consent: CookieConsent) => {
@@ -70,8 +67,9 @@ export default function CookieBanner() {
           <div>
             <h2 className="text-lg font-medium sm:text-xl">Pliki cookies</h2>
             <p className="mt-2 text-sm leading-relaxed text-[#5F5B56] sm:mt-3">
-              Używamy cookies do działania strony, analityki i treści
-              zewnętrznych, takich jak mapa Google. Możesz zaakceptować zgody,
+              Używamy cookies i podobnych technologii do działania strony,
+              analityki, marketingu (pomiaru i personalizacji reklam Google Ads)
+              oraz treści zewnętrznych, takich jak mapa Google. Możesz zaakceptować zgody,
               odrzucić opcjonalne cookies albo dostosować ustawienia.
             </p>
             <a
@@ -118,7 +116,7 @@ export default function CookieBanner() {
                       Marketing
                     </span>
                     <span className="block text-sm text-[#6D6B68]">
-                      Służy do pomiaru działań reklamowych Google Ads.
+                      Pozwala mierzyć skuteczność i personalizować reklamy Google Ads.
                     </span>
                   </span>
                   <input

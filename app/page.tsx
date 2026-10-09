@@ -3,6 +3,8 @@ import { Fragment, type HTMLAttributes, type ReactNode, useEffect, useMemo, useS
 import Image from "next/image"
 import ExternalContentConsent from "./components/ExternalContentConsent"
 import CookiePreferencesButton from "./components/CookiePreferencesButton"
+import GalleryLightbox from "./components/GalleryLightbox"
+import { Pause, Play } from "lucide-react"
 
 type GalleryItem = {
   src: string
@@ -125,9 +127,9 @@ const instagramGalleryItems = [
 export default function NobluBeautyRoomWebsite() {
   const [loading, setLoading] = useState(true)
   const [showLoader, setShowLoader] = useState(true)
-  const [selectedMedia, setSelectedMedia] = useState<string | null>(null)
-  const [selectedType, setSelectedType] = useState<'image' | 'video' | null>(null)
-  const [selectedAlt, setSelectedAlt] = useState("Noblu Beauty Room Kraków")
+  const [selectedGalleryIndex, setSelectedGalleryIndex] = useState<number | null>(null)
+  const [galleryPaused, setGalleryPaused] = useState(false)
+  const [galleryHasFocus, setGalleryHasFocus] = useState(false)
 
   const services = [
     {
@@ -198,7 +200,7 @@ export default function NobluBeautyRoomWebsite() {
     },
     {
       title: "Rezerwacja online 24/7",
-      text: "Termin na manicure, pedicure lub stylizację rzęs możesz zgłosić wygodnie przez formularz Noblu, bez dzwonienia i czekania na odpowiedź.",
+      text: "Termin na manicure, pedicure lub stylizację rzęs zgłosisz wygodnie przez formularz Noblu, 24 godziny na dobę. Potwierdzimy dostępność SMS-em lub telefonicznie.",
     },
     {
       title: "Kameralna atmosfera",
@@ -290,8 +292,9 @@ const galleryItems = useMemo<GalleryItem[]>(() => [
   { src: "/gallery/paznokcie/IMG_7523.webp", type: "image", category: "Paznokcie" },
 
 ], [])
-const [visibleGalleryItems, setVisibleGalleryItems] = useState(
-  galleryItems.slice(0, 6)
+const [galleryStart, setGalleryStart] = useState(0)
+const visibleGalleryItems = Array.from({ length: 6 }, (_, index) =>
+  galleryItems[(galleryStart + index) % galleryItems.length]
 )
 
 useEffect(() => {
@@ -309,20 +312,13 @@ useEffect(() => {
 }, [])
 
 useEffect(() => {
-  let start = 0
-
+  if (galleryPaused || galleryHasFocus || selectedGalleryIndex !== null) return
   const interval = setInterval(() => {
-    start = (start + 6) % galleryItems.length
-
-    const nextItems = Array.from({ length: 6 }, (_, index) => {
-      return galleryItems[(start + index) % galleryItems.length]
-    })
-
-    setVisibleGalleryItems(nextItems)
+    setGalleryStart((start) => (start + 6) % galleryItems.length)
   }, 16000)
 
   return () => clearInterval(interval)
-}, [galleryItems])
+}, [galleryItems.length, galleryPaused, galleryHasFocus, selectedGalleryIndex])
 
   return (
     <div
@@ -757,24 +753,47 @@ useEffect(() => {
 <section className="py-28 bg-transparent">
   <div className="max-w-7xl mx-auto px-6 lg:px-12">
 
-    <div className="mb-16">
+    <div className="mb-16 flex flex-wrap items-center justify-between gap-4">
       <h2 className="text-4xl lg:text-6xl font-light leading-tight text-[#111111]">
         Galeria
       </h2>
+      <button
+        type="button"
+        aria-label={galleryPaused ? "Wznów automatyczną zmianę zdjęć" : "Zatrzymaj automatyczną zmianę zdjęć"}
+        title={galleryPaused ? "Wznów automatyczną zmianę zdjęć" : "Zatrzymaj automatyczną zmianę zdjęć"}
+        aria-pressed={galleryPaused}
+        onClick={() => setGalleryPaused((paused) => !paused)}
+        className="inline-flex min-h-11 items-center gap-2 px-3 text-sm font-medium text-[#1D1D1B] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#7C6238]"
+      >
+        {galleryPaused ? <Play size={20} aria-hidden="true" /> : <Pause size={20} aria-hidden="true" />}
+        {galleryPaused ? "Wznów" : "Pauza"}
+      </button>
     </div>
 
-    <div className="grid grid-cols-2 lg:grid-cols-3 gap-3 max-w-5xl mx-auto">
+    <div
+      className="grid grid-cols-2 lg:grid-cols-3 gap-3 max-w-5xl mx-auto"
+      onFocusCapture={() => setGalleryHasFocus(true)}
+      onBlurCapture={(event) => {
+        if (!event.currentTarget.contains(event.relatedTarget)) setGalleryHasFocus(false)
+      }}
+    >
   {visibleGalleryItems.map((item, index) => (
-  <motion.div
+  <button
+  type="button"
   key={`gallery-slot-${index}`}
+  aria-label={`Otwórz realizację: ${item.alt ?? item.category}`}
   onClick={() => {
-    setSelectedMedia(item.src)
-    setSelectedType(item.type)
-    setSelectedAlt(item.alt ?? `${item.category} w Noblu Beauty Room Kraków`)
+    setSelectedGalleryIndex((galleryStart + index) % galleryItems.length)
   }}
-  animate={{ opacity: 1 }}
-  transition={{ duration: 0.8 }}
-  className="group relative aspect-[3/4] cursor-pointer overflow-hidden rounded-[1.6rem] bg-[#E8D6BE]/40"
+  onKeyDown={(event) => {
+    if (!["ArrowLeft", "ArrowRight", "ArrowUp", "ArrowDown"].includes(event.key)) return
+    event.preventDefault()
+    const buttons = event.currentTarget.parentElement?.querySelectorAll<HTMLButtonElement>("button")
+    if (!buttons) return
+    const step = event.key === "ArrowLeft" || event.key === "ArrowUp" ? -1 : 1
+    buttons[(index + step + buttons.length) % buttons.length]?.focus()
+  }}
+  className="group relative aspect-[3/4] cursor-pointer overflow-hidden rounded-[1.6rem] bg-[#E8D6BE]/40 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#7C6238]"
     >
     <AnimatePresence mode="wait">
   {item.type === "video" ? (
@@ -824,7 +843,7 @@ useEffect(() => {
 
 <div className="absolute inset-0 bg-black/10 group-hover:bg-black/0 transition-all duration-700"></div>
 
-</motion.div>
+</button>
 ))}
 </div>
     </div>
@@ -1127,44 +1146,16 @@ useEffect(() => {
     >
       Zapytaj o termin
     </a>
-    {selectedMedia && (
-  <div
-    className="fixed inset-0 z-[99999] bg-black/90 backdrop-blur-xl flex items-center justify-center p-6"
-    onClick={() => {
-      setSelectedMedia(null)
-      setSelectedType(null)
-    }}
-  >
-    <button
-      className="absolute top-6 right-6 text-white text-4xl z-10"
-      onClick={() => {
-        setSelectedMedia(null)
-        setSelectedType(null)
-      }}
-    >
-      ×
-    </button>
-
-    {selectedType === "video" ? (
-      <video
-        src={selectedMedia}
-        controls
-        autoPlay
-        className="max-h-[90vh] max-w-[90vw] rounded-[2rem] object-contain"
+    {selectedGalleryIndex !== null && (
+      <GalleryLightbox
+        item={galleryItems[selectedGalleryIndex]}
+        index={selectedGalleryIndex}
+        total={galleryItems.length}
+        onPrevious={() => setSelectedGalleryIndex((index) => index === null ? null : (index - 1 + galleryItems.length) % galleryItems.length)}
+        onNext={() => setSelectedGalleryIndex((index) => index === null ? null : (index + 1) % galleryItems.length)}
+        onClose={() => setSelectedGalleryIndex(null)}
       />
-    ) : (
-      <div className="relative h-[90vh] w-[90vw]">
-        <Image
-          src={selectedMedia}
-          alt={selectedAlt}
-          fill
-          sizes="90vw"
-          className="rounded-[2rem] object-contain"
-        />
-      </div>
     )}
-  </div>
-)}
 {/* FOOTER */}
 <footer className="relative overflow-hidden bg-transparent text-[#1D1D1B]">
 

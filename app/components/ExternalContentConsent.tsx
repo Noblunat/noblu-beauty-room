@@ -4,7 +4,7 @@ import type { ReactNode } from "react";
 import { useSyncExternalStore } from "react";
 import Link from "next/link";
 import {
-  COOKIE_CONSENT_CHANGE_EVENT,
+  subscribeToCookieConsent,
   readCookieConsent,
   saveCookieConsent,
 } from "../lib/cookieConsent";
@@ -21,16 +21,6 @@ const getExternalContentConsent = () =>
   readCookieConsent()?.external === true;
 const getServerExternalContentConsent = () => false;
 
-const subscribeToExternalContentConsent = (callback: () => void) => {
-  window.addEventListener("storage", callback);
-  window.addEventListener(COOKIE_CONSENT_CHANGE_EVENT, callback);
-
-  return () => {
-    window.removeEventListener("storage", callback);
-    window.removeEventListener(COOKIE_CONSENT_CHANGE_EVENT, callback);
-  };
-};
-
 export default function ExternalContentConsent({
   title,
   description,
@@ -39,7 +29,7 @@ export default function ExternalContentConsent({
   className = "",
 }: ExternalContentConsentProps) {
   const externalContentAllowed = useSyncExternalStore(
-    subscribeToExternalContentConsent,
+    subscribeToCookieConsent,
     getExternalContentConsent,
     getServerExternalContentConsent
   );

@@ -1,5 +1,6 @@
 import { createHash } from "node:crypto"
 import { checkBookingRateLimit } from "../../lib/bookingRateLimit"
+import { normalizePhoneNumber, phoneErrorMessage } from "../../lib/phone"
 
 type BookingRequest = {
   name?: unknown
@@ -70,7 +71,11 @@ export async function POST(request: Request) {
   let data: BookingRequest
 
   try {
-    data = (await request.json()) as BookingRequest
+    const body: unknown = await request.json()
+    if (!body || typeof body !== "object" || Array.isArray(body)) {
+      return Response.json({ error: "Nieprawidłowe dane formularza." }, { status: 400 })
+    }
+    data = body as BookingRequest
   } catch {
     return Response.json({ error: "Nieprawidłowe dane formularza." }, { status: 400 })
   }
@@ -80,7 +85,7 @@ export async function POST(request: Request) {
   }
 
   const name = cleanText(data.name, 100)
-  const telephone = cleanText(data.telephone, 40)
+  const telephone = normalizePhoneNumber(data.telephone)
   const service = cleanText(data.service, 160)
   const price = cleanText(data.price, 40)
   const duration = cleanText(data.duration, 40)
@@ -88,11 +93,15 @@ export async function POST(request: Request) {
   const timePreference = cleanText(data.timePreference, 40)
   const notes = cleanText(data.notes, 1000)
 
-  if (!name || !telephone || !service || !date) {
+  if (!name || !cleanText(data.telephone, 40) || !service || !date) {
     return Response.json(
       { error: "Uzupełnij imię, telefon, usługę i preferowany dzień." },
       { status: 400 }
     )
+  }
+
+  if (!telephone) {
+    return Response.json({ error: phoneErrorMessage }, { status: 400 })
   }
 
   if (!isValidIsoDate(date)) {

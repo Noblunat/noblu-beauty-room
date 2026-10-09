@@ -39,7 +39,7 @@ export default function PolitykaPrywatnosciPage() {
           Room dostępnej pod adresem https://noblu.pl.
         </p>
         <p className="mt-3 text-sm text-[#7A746D]">
-          Ostatnia aktualizacja: 5 lipca 2026 r.
+          Ostatnia aktualizacja: 6 października 2026 r.
         </p>
 
         <div className="mt-14 space-y-12 text-[#5F5B56]">
@@ -123,13 +123,20 @@ export default function PolitykaPrywatnosciPage() {
                 usługą - art. 6 ust. 1 lit. c RODO,
               </li>
               <li>
-                podstawowe statystyki działania i szybkości strony zbierane
-                przez Vercel bez użycia cookies - art. 6 ust. 1 lit. f RODO,
+                udostępnianie strony przez hosting i sieć CDN Vercel,
+                obsługa żądań oraz diagnostyka błędów i bezpieczeństwa -
+                art. 6 ust. 1 lit. f RODO,
               </li>
               <li>
-                Google Analytics oraz pomiar działań reklamowych Google Ads -
+                analiza korzystania ze strony w Google Analytics 4 oraz
+                pomiar i personalizacja reklam Google Ads -
                 art. 6 ust. 1 lit. a RODO, wyłącznie po udzieleniu odpowiedniej
                 zgody,
+              </li>
+              <li>
+                wyświetlanie osadzonej mapy Google i przekazanie danych
+                technicznych jej dostawcy - art. 6 ust. 1 lit. a RODO,
+                po zgodzie na treści zewnętrzne,
               </li>
               <li>
                 udzielenie odpowiedzi na kontakt e-mailowy lub telefoniczny -
@@ -172,11 +179,24 @@ export default function PolitykaPrywatnosciPage() {
                 Ads i usługi mapowe).
               </p>
               <p>
-                Niektórzy dostawcy mogą przetwarzać dane poza Europejskim
-                Obszarem Gospodarczym. W takim przypadku transfer odbywa się z
-                zastosowaniem mechanizmów przewidzianych przez RODO, takich jak
-                decyzja stwierdzająca odpowiedni stopień ochrony lub
-                standardowe klauzule umowne.
+                Korzystanie z infrastruktury Vercel, Resend i Google może
+                wiązać się z przetwarzaniem danych poza Europejskim Obszarem
+                Gospodarczym, w szczególności w Stanach Zjednoczonych.
+                Dokumentacja dostawców przewiduje zabezpieczenia transferów,
+                w tym standardowe klauzule umowne zatwierdzone przez Komisję
+                Europejską, a dla objętych nimi odbiorców także decyzje o
+                odpowiednim stopniu ochrony. Mechanizm zależy od dostawcy,
+                usługi i odbiorcy danych.
+              </p>
+              <p>
+                Informacje o zabezpieczeniach i podwykonawcach znajdują się w{" "}
+                <a className="underline" href="https://vercel.com/legal/dpa">dokumentacji Vercel</a>,{" "}
+                <a className="underline" href="https://resend.com/legal/dpa">dokumentacji Resend</a>{" "}
+                oraz{" "}
+                <a className="underline" href="https://policies.google.com/privacy/frameworks?hl=pl">zasadach transferów Google</a>.
+                O informacje dotyczące transferu Twoich danych oraz kopię
+                stosowanych zabezpieczeń możesz wystąpić do administratora
+                pod adresem noblu.beautyroom@gmail.com.
               </p>
             </div>
           </section>
@@ -194,20 +214,77 @@ export default function PolitykaPrywatnosciPage() {
               możliwość wysłania formularza. Mapa Google jest ładowana dopiero
               po osobnym włączeniu treści zewnętrznych.
             </p>
+            <ul className="mt-5 list-disc space-y-3 pl-6 leading-relaxed">
+              <li>
+                Niezbędne: zapis „noblu-cookie-consent” w pamięci lokalnej
+                przeglądarki (localStorage) przechowuje wybrane kategorie zgód.
+                Nie ma automatycznego terminu wygaśnięcia; pozostaje do zmiany
+                wyboru lub usunięcia danych witryny w przeglądarce.
+              </li>
+              <li>
+                Analityczne: Google Analytics 4 może zapisywać identyfikatory
+                cookies, np. „_ga”. Według dokumentacji Google domyślny czas
+                tego pliku wynosi 2 lata i może być odnawiany przy kolejnych
+                wizytach. To okres pliku w przeglądarce, a nie okres
+                przechowywania wszystkich danych na koncie Analytics.
+              </li>
+              <li>
+                Marketingowe: Google Ads może zapisywać identyfikatory
+                służące przypisaniu kontaktu do reklamy i jej personalizacji.
+                Rodzaje plików i ich okresy zależą od funkcji reklamowych oraz
+                ustawień przeglądarki. Szczegółowy wykaz publikuje{" "}
+                <a className="underline" href="https://business.safety.google/adscookies/">Google dla produktów reklamowych</a>.
+              </li>
+              <li>
+                Treści zewnętrzne: po włączeniu mapy przeglądarka łączy się z
+                Google Maps. Google otrzymuje m.in. adres IP i informacje o
+                przeglądarce; może korzystać z własnych plików cookies,
+                zależnie od Twoich ustawień i zalogowania do Google.
+                Więcej w{" "}
+                <a className="underline" href="https://policies.google.com/technologies/cookies?hl=pl">zasadach cookies Google</a>.
+              </li>
+            </ul>
           </section>
 
           <section>
             <h2 className="text-3xl font-light text-[#1D1D1B]">
               Narzędzia zewnętrzne
             </h2>
-            <p className="mt-5 leading-relaxed">
-              Na stronie wykorzystywane są lub mogą pojawiać się usługi Vercel,
-              Resend, Google oraz Booksy. Booksy obsługuje
-              rezerwacje dokonywane bezpośrednio w swoim serwisie na zasadach
-              określonych we własnej polityce prywatności. Korzystanie z
-              odnośników lub osadzonych elementów zewnętrznych może wiązać się
-              z przetwarzaniem danych przez ich dostawców.
-            </p>
+            <ul className="mt-5 list-disc space-y-4 pl-6 leading-relaxed">
+              <li>
+                Vercel obsługuje hosting, CDN i funkcję serwerową formularza.
+                Przy otwieraniu strony przetwarza dane techniczne żądania;
+                po wysłaniu formularza obsługuje również jego treść.
+              </li>
+              <li>
+                Resend dostarcza wiadomość ze zgłoszeniem na skrzynkę Gmail
+                salonu. Przekazywane są imię, telefon, usługa, preferowany
+                termin i dobrowolne uwagi. Dane formularza nie są w kodzie
+                strony przekazywane jako parametry zdarzeń GA4 ani Google Ads.
+              </li>
+              <li>
+                Google Analytics 4 (G-BD9VRN0W6Q) mierzy odwiedziny podstron
+                usługowych, kliknięcia prowadzące do rezerwacji oraz rozpoczęcie
+                i skuteczne wysłanie formularza. Zdarzenie wysłania oznacza
+                przyjęcie prośby o termin przez system, nie potwierdzoną wizytę.
+              </li>
+              <li>
+                Google Ads (AW-10795260361) mierzy wybrane kontakty, w tym
+                wysłanie formularza oraz kliknięcia telefonu i Booksy.
+                Zgoda marketingowa obejmuje pomiar i personalizację reklam.
+                Ustawienia są przekazywane do Google przez Consent Mode.
+              </li>
+              <li>
+                Mapa Google jest osadzona za zgodą na treści zewnętrzne.
+                Link „Wyznacz trasę w Google Maps” otwiera osobny serwis Google.
+              </li>
+              <li>
+                Booksy obsługuje rezerwacje po przejściu do jego serwisu.
+                Formularz Noblu nie wysyła do Booksy wpisanego imienia,
+                telefonu ani uwag; odnośnik może wskazywać wybraną usługę.
+                Dalsze przetwarzanie podlega zasadom prywatności Booksy.
+              </li>
+            </ul>
           </section>
 
           <section>

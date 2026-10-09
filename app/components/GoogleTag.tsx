@@ -3,7 +3,7 @@
 import { useEffect } from "react";
 import { googleAnalyticsId } from "../lib/analytics";
 import {
-  COOKIE_CONSENT_CHANGE_EVENT,
+  subscribeToCookieConsent,
   type CookieConsent,
   readCookieConsent,
 } from "../lib/cookieConsent";
@@ -71,35 +71,16 @@ function applyGoogleConsent(consent: CookieConsent) {
 
 export default function GoogleTag() {
   useEffect(() => {
-    const storedConsent = readCookieConsent();
-
-    if (storedConsent) {
-      applyGoogleConsent(storedConsent);
-    }
-
-    const handleConsentChange = (event: Event) => {
-      const consent =
-        event instanceof CustomEvent
-          ? (event.detail as CookieConsent)
-          : readCookieConsent();
-
-      if (!consent) {
-        return;
-      }
-
-      applyGoogleConsent(consent);
+    const handleConsentChange = () => {
+      applyGoogleConsent(readCookieConsent() ?? {
+        necessary: true,
+        analytics: false,
+        marketing: false,
+        external: false,
+      });
     };
-
-    window.addEventListener(
-      COOKIE_CONSENT_CHANGE_EVENT,
-      handleConsentChange
-    );
-
-    return () =>
-      window.removeEventListener(
-        COOKIE_CONSENT_CHANGE_EVENT,
-        handleConsentChange
-      );
+    handleConsentChange();
+    return subscribeToCookieConsent(handleConsentChange);
   }, []);
 
   return null;
