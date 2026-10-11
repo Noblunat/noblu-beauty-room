@@ -85,6 +85,7 @@ test("booking links map services and ignore unrelated or spoofed destinations", 
   assert.equal(bookingClickDetails("/rezerwacja", source).service_name, "Pedicure");
   assert.equal(bookingClickDetails("/rezerwacja", source).source_page, "/pedicure-krakow");
   assert.equal(bookingClickDetails("https://booksy.com/widget/index.html?id=105150", source).booking_channel, "booksy");
+  assert.equal(bookingClickDetails("https://noblubeautyroom.booksy.com/", source).booking_channel, "booksy");
   assert.equal(bookingClickDetails("/cennik", source), null);
   assert.equal(bookingClickDetails("https://booksy.com.example.org/", source), null);
   assert.equal(bookingClickDetails("https://example.org/rezerwacja", source), null);

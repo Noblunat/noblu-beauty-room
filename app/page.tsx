@@ -472,6 +472,15 @@ useEffect(() => {
         </a>
 
         <a
+          href="https://noblubeautyroom.booksy.com/"
+          target="_blank"
+          rel="noopener noreferrer"
+          className="w-full rounded-full bg-[#D4B483] px-8 py-4 text-center font-medium text-black shadow-[0_20px_60px_rgba(212,180,131,0.35)] transition-transform hover:scale-105 sm:w-auto sm:py-5"
+        >
+          Zarezerwuj przez Booksy
+        </a>
+
+        <a
           href="/cennik"
           className="w-full rounded-full border border-[#D4B483] bg-white/75 px-8 py-4 text-center font-medium text-[#1D1D1B] backdrop-blur-sm transition-colors hover:bg-white sm:w-auto sm:py-5"
         >

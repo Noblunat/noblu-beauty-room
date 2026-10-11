@@ -477,17 +477,15 @@ export default function ReservationClient({ initialService }: { initialService: 
                 {submitStatus === "sending" ? "Wysyłanie..." : "Wyślij prośbę o termin"}
               </button>
 
-              {selectedBooksyUrl && (
                 <a
-                  href={selectedBooksyUrl}
+                  href={selectedBooksyUrl ?? "https://noblubeautyroom.booksy.com/"}
                   data-service-name={selected?.name}
                   target="_blank"
                   rel="noopener noreferrer"
                   className="rounded-full bg-[#D4B483] px-7 py-4 text-center font-medium text-black shadow-[0_20px_60px_rgba(212,180,131,0.35)] transition-transform hover:scale-[1.02]"
                 >
-                  Zarezerwuj tę usługę przez Booksy
+                  {selectedBooksyUrl ? "Zarezerwuj tę usługę przez Booksy" : "Zarezerwuj przez Booksy"}
                 </a>
-              )}
 
               <Link
                 href="/cennik"
@@ -497,15 +495,9 @@ export default function ReservationClient({ initialService }: { initialService: 
               </Link>
             </div>
 
-            {!selected && (
+            {!selectedBooksyUrl && (
               <p className="mt-4 text-center text-xs leading-relaxed text-[#7A746D]">
-                Wybierz usługę, aby przejść bezpośrednio do jej kalendarza w Booksy.
-              </p>
-            )}
-
-            {selected && !selectedBooksyUrl && (
-              <p className="mt-4 text-center text-xs leading-relaxed text-[#7A746D]">
-                Rezerwacja tej usługi jest obecnie dostępna przez formularz Noblu.
+                Możesz wysłać prośbę o termin przez formularz lub wybrać usługę i termin na naszym profilu Booksy.
               </p>
             )}
 
