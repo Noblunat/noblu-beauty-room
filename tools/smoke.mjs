@@ -19,6 +19,24 @@ async function get(path, options) {
 }
 
 try {
+  if (!local && process.argv.includes("--wait-for-release")) {
+    assert.ok(process.env.EXPECTED_RELEASE, "An exact release SHA is required when waiting");
+    console.log("Waiting for the expected release on the public domain...");
+    const deadline = Date.now() + 180000;
+    let published = false;
+    while (Date.now() < deadline) {
+      try {
+        const response = await get("/");
+        const elements = nodes(parse(await response.text()));
+        if (response.ok && elements.some(n => n.tagName === "meta" && attr(n, "name") === "noblu-release" && attr(n, "content") === process.env.EXPECTED_RELEASE)) {
+          published = true;
+          break;
+        }
+      } catch { /* Deployment or network not ready. */ }
+      await delay(3000);
+    }
+    assert.ok(published, "Expected release did not reach the public domain within 3 minutes");
+  }
   if (local) {
     // Refuse to accidentally validate an unrelated server already using this port.
     try { await get("/"); throw new Error("Port 3100 is already in use"); }
