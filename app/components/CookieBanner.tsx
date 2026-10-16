@@ -13,6 +13,8 @@ const getCookieBannerVisible = () => readCookieConsent() === null;
 
 const getServerCookieBannerVisible = () => true;
 
+const consentActionClassName = "min-h-11 rounded-full bg-[#D4B483] px-5 py-3 text-sm font-medium text-black transition-colors hover:bg-[#C9A571] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#7C6238]";
+
 export default function CookieBanner() {
   const visible = useSyncExternalStore(
     subscribeToCookieConsent,
@@ -147,7 +149,7 @@ export default function CookieBanner() {
             )}
           </div>
 
-          <div className="grid grid-cols-2 gap-2 sm:flex sm:flex-row sm:gap-3 lg:w-56 lg:flex-col">
+          <div className="grid gap-2 sm:flex sm:flex-row sm:gap-3 lg:w-56 lg:flex-col">
             <button
               type="button"
               onClick={() =>
@@ -158,7 +160,7 @@ export default function CookieBanner() {
                   external: true,
                 })
               }
-              className="col-span-2 rounded-full bg-[#D4B483] px-5 py-2.5 text-sm font-medium text-black shadow-[0_20px_60px_rgba(212,180,131,0.35)] transition-transform hover:scale-[1.02] sm:col-auto sm:py-3"
+              className={consentActionClassName}
             >
               Akceptuję wszystkie
             </button>
@@ -172,7 +174,7 @@ export default function CookieBanner() {
                   external: false,
                 })
               }
-              className="rounded-full border border-[#E8DED2] px-4 py-2.5 text-sm font-medium transition-colors hover:border-[#D4B483] sm:px-5 sm:py-3"
+              className={consentActionClassName}
             >
               Odrzucam opcjonalne
             </button>
