@@ -12,8 +12,9 @@ function load(file, dependencies = {}) {
     readFileSync(new URL(file, import.meta.url), "utf8"),
     { compilerOptions: { module: ts.ModuleKind.CommonJS } }
   ).outputText, {
-    module: testModule, exports: testModule.exports, Response, process: { env: {} },
+    module: testModule, exports: testModule.exports, Response, URL, TextDecoder, AbortSignal, process: { env: {} },
     require: name => {
+      if (name.endsWith("/bookingServices")) return load("../app/lib/bookingServices.ts");
       if (name === "libphonenumber-js/min") {
         const library = require(name);
         return { parsePhoneNumberFromString: (value, options) =>
@@ -49,10 +50,10 @@ test("API rejects invalid telephone before rate limiting or email delivery", asy
     "../../lib/phone": phone,
     "../../lib/bookingRateLimit": { checkBookingRateLimit() { throw new Error("Must not reach delivery"); } },
   });
-  const response = await api.POST({ json: async () => ({
+  const response = await api.POST(new Request("https://noblu.pl/api/rezerwacja", { method: "POST", headers: { "content-type": "application/json" }, body: JSON.stringify({
     name: "Test", telephone: "abc", service: "Manicure", date: "2099-01-01",
-  }) });
+  }) }));
   assert.equal(response.status, 400);
   assert.equal((await response.json()).error, phone.phoneErrorMessage);
-  assert.equal((await api.POST({ json: async () => null })).status, 400);
+  assert.equal((await api.POST(new Request("https://noblu.pl/api/rezerwacja", { method: "POST", headers: { "content-type": "application/json" }, body: "null" }))).status, 400);
 });
