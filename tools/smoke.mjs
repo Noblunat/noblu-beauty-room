@@ -5,6 +5,7 @@ import { setTimeout as delay } from "node:timers/promises";
 import { parse } from "parse5";
 
 const local = process.argv.includes("--local");
+const waitForRelease = !local && process.argv.includes("--wait-for-release");
 const base = new URL(local ? "http://127.0.0.1:3100" : process.env.SMOKE_BASE_URL || "https://noblu.pl");
 const pages = ["/", "/manicure-krakow", "/pedicure-krakow", "/stylizacja-rzes-krakow", "/przedluzanie-rzes-krakow", "/cennik", "/rezerwacja", "/polityka-prywatnosci"];
 const require = createRequire(import.meta.url);
@@ -19,23 +20,10 @@ async function get(path, options) {
 }
 
 try {
-  if (!local && process.argv.includes("--wait-for-release")) {
+  const releaseDeadline = Date.now() + 180000;
+  if (waitForRelease) {
     assert.ok(process.env.EXPECTED_RELEASE, "An exact release SHA is required when waiting");
     console.log("Waiting for the expected release on the public domain...");
-    const deadline = Date.now() + 180000;
-    let published = false;
-    while (Date.now() < deadline) {
-      try {
-        const response = await get("/");
-        const elements = nodes(parse(await response.text()));
-        if (response.ok && elements.some(n => n.tagName === "meta" && attr(n, "name") === "noblu-release" && attr(n, "content") === process.env.EXPECTED_RELEASE)) {
-          published = true;
-          break;
-        }
-      } catch { /* Deployment or network not ready. */ }
-      await delay(3000);
-    }
-    assert.ok(published, "Expected release did not reach the public domain within 3 minutes");
   }
   if (local) {
     // Refuse to accidentally validate an unrelated server already using this port.
@@ -54,9 +42,18 @@ try {
 
   const documents = new Map();
   for (const path of pages) {
-    const response = await get(path);
-    assert.equal(response.status, 200, path);
-    const elements = nodes(parse(await response.text()));
+    let elements;
+    while (true) {
+      const response = await get(path);
+      assert.equal(response.status, 200, `${path}: HTTP response`);
+      elements = nodes(parse(await response.text()));
+      const actualRelease = attr(elements.find(n => n.tagName === "meta" && attr(n, "name") === "noblu-release") || {}, "content");
+      if (!waitForRelease || actualRelease === process.env.EXPECTED_RELEASE) break;
+      assert.ok(Date.now() < releaseDeadline, `${path}: expected release did not arrive within 3 minutes (received ${actualRelease || "none"})`);
+      // Alias/CDN propagation can briefly differ between successive requests.
+      // Poll slowly and validate each route, not just the homepage handshake.
+      await delay(15000);
+    }
     documents.set(path, elements);
     assert.equal(elements.filter(n => n.tagName === "h1").length, 1, `${path}: one H1`);
     assert.ok(text(elements.find(n => n.tagName === "title") || {}).trim(), `${path}: title`);
