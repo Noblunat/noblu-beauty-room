@@ -11,12 +11,14 @@ const nodeRequire = createRequire(import.meta.url);
 
 const root = fileURLToPath(new URL("../", import.meta.url));
 
-function harness({ consent = { analytics: true, marketing: false }, ok = true } = {}) {
+function harness({ consent = { analytics: true, marketing: false }, ok = true, status, fetchFailure, jsonFailure, body } = {}) {
   const events = [];
   const effects = [];
   const listeners = new Map();
   const states = [];
   const scripts = [];
+  const stateValues = [];
+  const requests = [];
   let stateIndex = 0;
   const window = {
     location: new URL("https://noblu.pl/manicure-krakow?email=private@example.com"),
@@ -29,7 +31,11 @@ function harness({ consent = { analytics: true, marketing: false }, ok = true } 
     useRef: (current) => ({ current }),
     useMemo: (fn) => fn(),
     useEffect: (fn) => effects.push(fn),
-    useState: (initial) => [stateIndex++ === 2 ? "+48 662 989 534" : initial, (value) => states.push(value)],
+    useState: (initial) => {
+      const index = stateIndex++;
+      if (!(index in stateValues)) stateValues[index] = index === 2 ? "+48 662 989 534" : initial;
+      return [stateValues[index], (value) => { stateValues[index] = value; states.push(value); }];
+    },
   };
   const jsx = (type, props) => ({ type, props });
   const cache = new Map();
@@ -46,7 +52,7 @@ function harness({ consent = { analytics: true, marketing: false }, ok = true } 
       compilerOptions: { module: ts.ModuleKind.CommonJS, jsx: ts.JsxEmit.ReactJSX },
     }).outputText;
     vm.runInNewContext(compiled, {
-      module: testModule, exports: testModule.exports, window, URL, URLSearchParams, Element,
+      module: testModule, exports: testModule.exports, window, URL, URLSearchParams, Element, AbortSignal,
       document: {
         addEventListener: (name, fn) => listeners.set(name, fn),
         removeEventListener: (name) => listeners.delete(name),
@@ -55,7 +61,14 @@ function harness({ consent = { analytics: true, marketing: false }, ok = true } 
         createElement: () => ({}),
         head: { appendChild(script) { scripts.push(script); } },
       },
-      fetch: async () => ({ ok, status: ok ? 200 : 400, json: async () => ok ? { success: true } : { error: "Invalid request" } }),
+      fetch: async (url, options) => {
+        requests.push({ url, options });
+        if (fetchFailure) throw new Error("Technical network error");
+        return { ok, status: status ?? (ok ? 200 : 400), json: async () => {
+          if (jsonFailure) throw new SyntaxError("Unexpected token <");
+          return body ?? (ok ? { ok: true } : { error: "Invalid request" });
+        } };
+      },
       require: (name) => {
         if (name === "react") return react;
         if (name === "libphonenumber-js/min") {
@@ -72,7 +85,8 @@ function harness({ consent = { analytics: true, marketing: false }, ok = true } 
     }, { filename });
     return testModule.exports;
   }
-  return { load, events, effects, listeners, window, states, scripts, Element };
+  return { load, events, effects, listeners, window, states, scripts, Element, requests,
+    render(component, props) { stateIndex = 0; return component(props); } };
 }
 
 function findElement(node, type) {
@@ -82,6 +96,55 @@ function findElement(node, type) {
     const found = findElement(child, type);
     if (found) return found;
   }
+}
+
+function findWhere(node, predicate) {
+  if (!node || typeof node !== "object") return undefined;
+  if (predicate(node)) return node;
+  for (const child of [node.props?.children].flat(Infinity)) {
+    const found = findWhere(child, predicate);
+    if (found) return found;
+  }
+}
+
+function elementText(node) {
+  if (typeof node === "string") return node;
+  return [node?.props?.children].flat(Infinity).map(elementText).join(" ");
+}
+
+for (const scenario of [
+  { ok: false, status: 502 },
+  { ok: false, status: 503 },
+  { ok: false, status: 429, jsonFailure: true },
+  { fetchFailure: true },
+  { jsonFailure: true },
+  { body: { unexpected: true } },
+]) {
+  test(`delivery failure offers contact fallback and preserves the inquiry: ${JSON.stringify(scenario)}`, async () => {
+    const h = harness(scenario);
+    const component = h.load("app/rezerwacja/ReservationClient.tsx").default;
+    const props = { initialService: "Manicure" };
+    let tree = h.render(component, props);
+    findWhere(tree, node => node.type === "input" && node.props.autoComplete === "name").props.onChange({ target: { value: "Testowa klientka" } });
+    findWhere(tree, node => node.type === "input" && node.props.type === "date").props.onChange({ target: { value: "2099-01-01" } });
+    findElement(tree, "textarea").props.onChange({ target: { value: "Proszę o kontakt" } });
+    tree = h.render(component, props);
+    await findElement(tree, "form").props.onSubmit({ preventDefault() {} });
+    tree = h.render(component, props);
+    const alert = findWhere(tree, node => node.props?.role === "alert");
+    assert.ok(alert, "failure has an accessible alert");
+    assert.ok(findWhere(alert, node => node.props?.href === "tel:+48662989534"));
+    assert.ok(findWhere(alert, node => node.props?.href?.startsWith("https://booksy.com/widget/")));
+    assert.doesNotMatch(elementText(alert), /Technical network error|Unexpected token/);
+    assert.equal(findWhere(tree, node => node.props?.autoComplete === "name").props.value, "Testowa klientka");
+    assert.equal(findWhere(tree, node => node.props?.type === "tel").props.value, "+48 662 989 534");
+    assert.equal(findWhere(tree, node => node.props?.type === "date").props.value, "2099-01-01");
+    assert.equal(findElement(tree, "select").props.value, "Manicure");
+    assert.equal(findElement(tree, "textarea").props.value, "Proszę o kontakt");
+    assert.equal(findWhere(tree, node => node.props?.type === "submit").props.disabled, false);
+    assert.ok(h.requests[0].options.signal, "client request has a timeout");
+    assert.equal(h.events.some(event => event[1] === "booking_complete"), false);
+  });
 }
 
 test("booking links map services and ignore unrelated or spoofed destinations", () => {

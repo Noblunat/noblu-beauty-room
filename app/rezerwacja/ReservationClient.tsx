@@ -63,6 +63,7 @@ export default function ReservationClient({ initialService }: { initialService: 
     "idle" | "sending" | "success" | "error"
   >("idle")
   const [submitMessage, setSubmitMessage] = useState("")
+  const [deliveryFailed, setDeliveryFailed] = useState(false)
   const bookingStarted = useRef(false)
 
   function trackBookingStart(serviceName = selectedService) {
@@ -96,6 +97,7 @@ export default function ReservationClient({ initialService }: { initialService: 
 
   async function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault()
+    setDeliveryFailed(false)
     const normalizedTelephone = normalizePhoneNumber(telephone)
     if (!normalizedTelephone) {
       setSubmitStatus("error")
@@ -105,10 +107,12 @@ export default function ReservationClient({ initialService }: { initialService: 
     trackBookingStart()
     setSubmitStatus("sending")
     setSubmitMessage("")
+    let failureMessage = "Nie udało się potwierdzić wysyłki. Spróbuj ponownie lub skontaktuj się z salonem."
 
     try {
       const response = await fetch("/api/rezerwacja", {
         method: "POST",
+        signal: AbortSignal.timeout(15000),
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
           name,
@@ -121,7 +125,10 @@ export default function ReservationClient({ initialService }: { initialService: 
         }),
       })
 
-      const result = (await response.json()) as { error?: unknown }
+      const result = (await response.json().catch(() => null)) as {
+        ok?: unknown
+        error?: unknown
+      } | null
 
       if (!response.ok) {
         const rateLimitMessage =
@@ -129,18 +136,15 @@ export default function ReservationClient({ initialService }: { initialService: 
             ? "Wysłano zbyt wiele prób o termin. Spróbuj ponownie za kilka minut."
             : "Nie udało się wysłać formularza."
 
-        throw new Error(
-          typeof result.error === "string" ? result.error : rateLimitMessage
-        )
+        failureMessage = typeof result?.error === "string" ? result.error : rateLimitMessage
+        throw new Error("booking_rejected")
       }
 
-    } catch (error) {
+      if (result?.ok !== true) throw new Error("booking_unconfirmed")
+    } catch {
       setSubmitStatus("error")
-      setSubmitMessage(
-        error instanceof Error
-          ? error.message
-          : "Nie udało się wysłać formularza. Spróbuj ponownie."
-      )
+      setDeliveryFailed(true)
+      setSubmitMessage(failureMessage)
       return
     }
 
@@ -387,14 +391,36 @@ export default function ReservationClient({ initialService }: { initialService: 
             )}
 
             {submitMessage && (
-              <p
-                role="status"
+              <div
+                role={submitStatus === "error" ? "alert" : "status"}
                 className={`mt-5 text-center text-sm font-medium ${
                   submitStatus === "success" ? "text-emerald-700" : "text-red-700"
                 }`}
               >
-                {submitMessage}
-              </p>
+                <p>{submitMessage}</p>
+                {deliveryFailed && (
+                  <>
+                    <p className="mt-2 text-[#625b53]">
+                      Dane pozostają w formularzu do czasu zamknięcia lub odświeżenia strony.
+                      Możesz też zadzwonić lub wybrać termin w Booksy.
+                    </p>
+                    <div className="mt-3 flex flex-wrap justify-center gap-x-5 gap-y-3">
+                      <a href="tel:+48662989534" className="text-[#7C6238] underline underline-offset-4 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#7C6238]">
+                        Zadzwoń: {phone}
+                      </a>
+                      <a
+                        href={selectedBooksyUrl ?? "https://noblubeautyroom.booksy.com/"}
+                        data-service-name={selected?.name}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="text-[#7C6238] underline underline-offset-4 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#7C6238]"
+                      >
+                        Przejdź do Booksy
+                      </a>
+                    </div>
+                  </>
+                )}
+              </div>
             )}
 
             <p className="mt-5 text-center text-xs leading-relaxed text-[#7A746D]">
