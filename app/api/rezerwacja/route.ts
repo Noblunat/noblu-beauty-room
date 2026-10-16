@@ -1,6 +1,10 @@
 import { createHash } from "node:crypto"
 import { checkBookingRateLimit } from "../../lib/bookingRateLimit"
 import { normalizePhoneNumber, phoneErrorMessage } from "../../lib/phone"
+import { findBookingService, timePreferences } from "../../lib/bookingServices"
+
+export const maxDuration = 20
+const maxBodyBytes = 8192
 
 type BookingRequest = {
   name?: unknown
@@ -68,10 +72,44 @@ function getClientId(request: Request) {
 }
 
 export async function POST(request: Request) {
+  const origin = request.headers.get("origin")
+  // Next may reconstruct request.url with its bind hostname (localhost).
+  // Host is the actual HTTP destination; browsers cannot override this header.
+  const url = new URL(request.url)
+  const destination = new URL(`${url.protocol}//${request.headers.get("host") || url.host}`).origin
+  if ((origin && origin !== destination) || request.headers.get("sec-fetch-site") === "cross-site") {
+    return Response.json({ error: "Wyślij formularz bezpośrednio ze strony salonu." }, { status: 403 })
+  }
+  if (request.headers.get("content-type")?.split(";")[0].trim().toLowerCase() !== "application/json") {
+    return Response.json({ error: "Nieprawidłowy format formularza." }, { status: 415 })
+  }
+  if (Number(request.headers.get("content-length")) > maxBodyBytes) {
+    return Response.json({ error: "Formularz zawiera zbyt dużo danych." }, { status: 413 })
+  }
   let data: BookingRequest
 
   try {
-    const body: unknown = await request.json()
+    // Enforce the limit while reading, including requests without Content-Length.
+    const reader = request.body?.getReader()
+    if (!reader) return Response.json({ error: "Brak danych formularza." }, { status: 400 })
+    const decoder = new TextDecoder("utf-8", { fatal: true })
+    let size = 0
+    let text = ""
+    try {
+      while (true) {
+        const { done, value } = await reader.read()
+        if (done) break
+        size += value.byteLength
+        if (size > maxBodyBytes) {
+          await reader.cancel()
+          return Response.json({ error: "Formularz zawiera zbyt dużo danych." }, { status: 413 })
+        }
+        text += decoder.decode(value, { stream: true })
+      }
+    } finally {
+      reader.releaseLock()
+    }
+    const body: unknown = JSON.parse(text + decoder.decode())
     if (!body || typeof body !== "object" || Array.isArray(body)) {
       return Response.json({ error: "Nieprawidłowe dane formularza." }, { status: 400 })
     }
@@ -84,13 +122,21 @@ export async function POST(request: Request) {
     return Response.json({ ok: true })
   }
 
+  const fields: [unknown, number][] = [
+    [data.name, 100], [data.telephone, 40], [data.service, 160],
+    [data.date, 20], [data.timePreference, 40], [data.notes, 1000],
+  ]
+  if (fields.some(([value, max]) => value !== undefined && (typeof value !== "string" || value.length > max)) ||
+      (typeof data.name === "string" && /[\u0000-\u001f\u007f]/.test(data.name))) {
+    return Response.json({ error: "Sprawdź długość i poprawność pól formularza." }, { status: 400 })
+  }
+
   const name = cleanText(data.name, 100)
   const telephone = normalizePhoneNumber(data.telephone)
   const service = cleanText(data.service, 160)
-  const price = cleanText(data.price, 40)
-  const duration = cleanText(data.duration, 40)
+  const selectedService = findBookingService(service)
   const date = cleanText(data.date, 20)
-  const timePreference = cleanText(data.timePreference, 40)
+  const timePreference = cleanText(data.timePreference, 40) || "Dowolnie"
   const notes = cleanText(data.notes, 1000)
 
   if (!name || !cleanText(data.telephone, 40) || !service || !date) {
@@ -102,6 +148,10 @@ export async function POST(request: Request) {
 
   if (!telephone) {
     return Response.json({ error: phoneErrorMessage }, { status: 400 })
+  }
+
+  if (!selectedService || !timePreferences.some(value => value === timePreference)) {
+    return Response.json({ error: "Wybierz usługę i porę dnia z listy w formularzu." }, { status: 400 })
   }
 
   if (!isValidIsoDate(date)) {
@@ -152,8 +202,8 @@ export async function POST(request: Request) {
     ["Imię", name],
     ["Telefon", telephone],
     ["Usługa", service],
-    ["Cena orientacyjna", price || "-"],
-    ["Czas trwania", duration || "-"],
+    ["Cena orientacyjna", selectedService.price],
+    ["Czas trwania", selectedService.duration],
     ["Preferowany dzień", date],
     ["Pora dnia", timePreference || "Dowolnie"],
     ["Uwagi", notes || "-"],
@@ -181,28 +231,31 @@ export async function POST(request: Request) {
       </table>
     </div>`
 
-  const resendResponse = await fetch("https://api.resend.com/emails", {
-    method: "POST",
-    headers: {
-      Authorization: `Bearer ${apiKey}`,
-      "Content-Type": "application/json",
-    },
-    body: JSON.stringify({
-      from: fromEmail,
-      to: [recipientEmail],
-      subject: `Nowa prośba o termin - ${service}`,
-      text,
-      html,
-    }),
-  })
+  try {
+    const resendResponse = await fetch("https://api.resend.com/emails", {
+      method: "POST",
+      headers: {
+        Authorization: `Bearer ${apiKey}`,
+        "Content-Type": "application/json",
+      },
+      signal: AbortSignal.timeout(10000),
+      body: JSON.stringify({
+        from: fromEmail,
+        to: [recipientEmail],
+        subject: `Nowa prośba o termin - ${service}`,
+        text,
+        html,
+      }),
+    })
 
-  if (!resendResponse.ok) {
-    console.error("Resend error", await resendResponse.text())
-    return Response.json(
-      { error: "Nie udało się wysłać formularza. Spróbuj ponownie." },
-      { status: 502 }
-    )
+    if (!resendResponse.ok) {
+      console.error("booking_delivery_failed", { provider: "resend", status: resendResponse.status })
+      return Response.json({ error: "Nie udało się wysłać formularza. Spróbuj ponownie." }, { status: 502 })
+    }
+  } catch {
+    console.error("booking_delivery_failed", { provider: "resend", reason: "network_or_timeout" })
+    return Response.json({ error: "Nie udało się potwierdzić wysyłki. Skontaktuj się z salonem telefonicznie." }, { status: 502 })
   }
 
-  return Response.json({ ok: true })
+  return Response.json({ ok: true }, { headers: { "Cache-Control": "no-store" } })
 }

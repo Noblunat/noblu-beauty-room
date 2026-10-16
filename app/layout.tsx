@@ -1,19 +1,8 @@
 import type { Metadata } from "next";
-import { Geist, Geist_Mono } from "next/font/google";
 import ConversionEvents from "./components/ConversionEvents";
 import CookieBanner from "./components/CookieBanner";
 import GoogleTag from "./components/GoogleTag";
 import "./globals.css";
-
-const geistSans = Geist({
-  variable: "--font-geist-sans",
-  subsets: ["latin"],
-});
-
-const geistMono = Geist_Mono({
-  variable: "--font-geist-mono",
-  subsets: ["latin"],
-});
 
 const siteUrl = "https://noblu.pl";
 const reservationUrl = `${siteUrl}/rezerwacja`;
@@ -160,6 +149,7 @@ const salonJsonLd = {
 };
 
 export const metadata: Metadata = {
+  other: { "noblu-release": process.env.VERCEL_GIT_COMMIT_SHA || "local" },
   metadataBase: new URL(siteUrl),
   title: "Noblu Beauty Room Kraków | Manicure, pedicure i rzęsy",
   description:
@@ -208,7 +198,7 @@ export default function RootLayout({
   return (
     <html
       lang="pl"
-      className={`${geistSans.variable} ${geistMono.variable} h-full antialiased`}
+      className="h-full antialiased"
     >
       <body className="min-h-full flex flex-col">
         <script
