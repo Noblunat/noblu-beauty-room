@@ -1,5 +1,5 @@
 'use client'
-import { Fragment, type HTMLAttributes, type ReactNode, useEffect, useMemo, useState } from 'react'
+import { Fragment, type HTMLAttributes, type ReactNode, useEffect, useMemo, useRef, useState } from 'react'
 import Image from "next/image"
 import ExternalContentConsent from "./components/ExternalContentConsent"
 import CookiePreferencesButton from "./components/CookiePreferencesButton"
@@ -125,11 +125,21 @@ const instagramGalleryItems = [
 ]
 
 export default function NobluBeautyRoomWebsite() {
-  const [loading, setLoading] = useState(true)
-  const [showLoader, setShowLoader] = useState(true)
   const [selectedGalleryIndex, setSelectedGalleryIndex] = useState<number | null>(null)
   const [galleryPaused, setGalleryPaused] = useState(false)
   const [galleryHasFocus, setGalleryHasFocus] = useState(false)
+  const heroRef = useRef<HTMLElement>(null)
+  const [showStickyBooking, setShowStickyBooking] = useState(false)
+
+  useEffect(() => {
+    const hero = heroRef.current
+    if (!hero || typeof IntersectionObserver === "undefined") return
+    const observer = new IntersectionObserver(([entry]) => {
+      setShowStickyBooking(!entry.isIntersecting && entry.boundingClientRect.bottom <= 0)
+    })
+    observer.observe(hero)
+    return () => observer.disconnect()
+  }, [])
 
   const services = [
     {
@@ -298,20 +308,6 @@ const visibleGalleryItems = Array.from({ length: 6 }, (_, index) =>
 )
 
 useEffect(() => {
-  const timer = setTimeout(() => {
-    setLoading(false)
-  }, 1400)
-  const removeTimer = setTimeout(() => {
-    setShowLoader(false)
-  }, 1800)
-
-  return () => {
-    clearTimeout(timer)
-    clearTimeout(removeTimer)
-  }
-}, [])
-
-useEffect(() => {
   if (galleryPaused || galleryHasFocus || selectedGalleryIndex !== null) return
   const interval = setInterval(() => {
     setGalleryStart((start) => (start + 6) % galleryItems.length)
@@ -328,37 +324,6 @@ useEffect(() => {
     type="application/ld+json"
     dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }}
   />
-
-  <AnimatePresence>
-    {showLoader && (
-      <motion.div
-        initial={{ opacity: 1 }}
-        exit={{ opacity: 0 }}
-        transition={{ duration: 0.4 }}
-        className={`fixed inset-0 z-[99999] flex items-center justify-center overflow-hidden bg-[linear-gradient(180deg,#FFFDFB_0%,#F8F5F2_48%,#EFE7DD_100%)] transition-opacity duration-500 ${
-          loading ? "opacity-100" : "pointer-events-none opacity-0"
-        }`}
-      >
-        <motion.div
-          initial={{ opacity: 0, scale: 0.92 }}
-          animate={{ opacity: 1, scale: 1 }}
-          transition={{ duration: 0.7 }}
-          className="relative flex h-64 w-64 items-center justify-center"
-        >
-          <div className="absolute inset-0 rounded-full bg-[#D4B483]/30 blur-3xl" />
-          <Image
-            src="/logo-footer.webp"
-            alt="Logo Noblu Beauty Room Kraków"
-            width={226}
-            height={226}
-            priority
-            unoptimized
-            className="relative h-[14.15rem] w-[14.15rem] object-contain"
-          />
-        </motion.div>
-      </motion.div>
-    )}
-  </AnimatePresence>
 
   <motion.div
     className="fixed left-0 right-0 top-0 z-[99999] h-[3px] origin-left bg-[#D4B483]"
@@ -402,48 +367,21 @@ useEffect(() => {
 </header>
 
       {/* HERO */}
-<section className="relative min-h-screen text-[#1D1D1B] flex items-center overflow-hidden">
+<section ref={heroRef} id="home-hero" className="relative min-h-screen text-[#1D1D1B] flex items-center overflow-hidden">
   <div className="absolute inset-0 bg-[radial-gradient(circle_at_top_right,#D4B483,transparent_35%)] opacity-25"></div>
-  <motion.div
-    initial={{ opacity: 0 }}
-    animate={{ opacity: 1 }}
-    transition={{ duration: 1.1, delay: 0.15 }}
-    className="pointer-events-none absolute inset-0 lg:hidden"
-  >
+  <div className="pointer-events-none absolute inset-y-0 right-0 w-full lg:w-[58%]">
     <Image
       src="/gallery/salon/salon-beauty-krakow-noblu.webp"
       alt="Salon beauty Noblu Beauty Room Kraków z wzornikiem paznokci"
       fill
-      priority
+      loading="eager"
       fetchPriority="high"
-      sizes="100vw"
-      className="object-cover object-[26%_58%] opacity-85"
+      sizes="(min-width: 1024px) 58vw, 100vw"
+      className="object-cover object-[26%_58%] opacity-85 lg:object-bottom lg:[mask-image:linear-gradient(to_right,transparent_0%,black_28%,black_78%,transparent_100%)]"
     />
-    <div className="absolute inset-0 bg-gradient-to-b from-[#FFFDFB]/66 via-[#F8F5F2]/38 to-[#EFE7DD]/72" />
-    <div className="absolute inset-0 bg-gradient-to-r from-[#FFFDFB]/68 via-[#FFFDFB]/30 to-[#F8F5F2]/14" />
-  </motion.div>
-  <motion.div
-    initial={{ opacity: 0, x: 50 }}
-    animate={{ opacity: 1, x: 0 }}
-    transition={{ duration: 1.1, delay: 0.2 }}
-    className="pointer-events-none absolute inset-y-0 right-0 hidden w-[58%] lg:block"
-  >
-    <Image
-      src="/gallery/salon/salon-beauty-krakow-noblu.webp"
-      alt="Salon beauty Noblu Beauty Room Kraków z wzornikiem paznokci"
-      fill
-      sizes="(min-width: 1024px) 58vw, 0vw"
-      className="object-cover object-bottom opacity-85"
-      style={{
-        WebkitMaskImage:
-          "linear-gradient(to right, transparent 0%, black 28%, black 78%, transparent 100%)",
-        maskImage:
-          "linear-gradient(to right, transparent 0%, black 28%, black 78%, transparent 100%)",
-      }}
-    />
-    <div className="absolute inset-0 bg-gradient-to-b from-[#FFFDFB]/30 via-transparent to-[#EFE7DD]/70" />
-    <div className="absolute inset-0 bg-gradient-to-r from-[#FFFDFB] via-transparent to-[#F8F5F2]/30" />
-  </motion.div>
+    <div className="absolute inset-0 bg-gradient-to-b from-[#FFFDFB]/66 via-[#F8F5F2]/38 to-[#EFE7DD]/72 lg:from-[#FFFDFB]/30 lg:via-transparent lg:to-[#EFE7DD]/70" />
+    <div className="absolute inset-0 bg-gradient-to-r from-[#FFFDFB]/68 via-[#FFFDFB]/30 to-[#F8F5F2]/14 lg:from-[#FFFDFB] lg:via-transparent lg:to-[#F8F5F2]/30" />
+  </div>
 
   <div className="relative mx-auto grid max-w-7xl items-center gap-20 px-6 pb-16 pt-28 sm:pt-36 lg:grid-cols-2 lg:px-12 lg:pb-24 lg:pt-40">
     <motion.div
@@ -1149,12 +1087,13 @@ useEffect(() => {
 </div>
 </section>
 
-    <a
+    {showStickyBooking && selectedGalleryIndex === null && <a
       href="/rezerwacja"
-      className="fixed bottom-5 left-5 right-5 z-[9999] rounded-full bg-[#D4B483] py-5 text-center text-lg font-semibold text-black shadow-[0_20px_60px_rgba(212,180,131,0.35)] lg:hidden"
+      data-sticky-booking
+      className="fixed bottom-[max(1.25rem,env(safe-area-inset-bottom))] left-5 right-5 z-40 rounded-full bg-[#D4B483] py-5 text-center text-lg font-semibold text-black shadow-[0_20px_60px_rgba(212,180,131,0.35)] lg:hidden [body:has([data-cookie-banner])_&]:hidden"
     >
       Zapytaj o termin
-    </a>
+    </a>}
     {selectedGalleryIndex !== null && (
       <GalleryLightbox
         item={galleryItems[selectedGalleryIndex]}

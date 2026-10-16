@@ -1,6 +1,6 @@
 "use client";
 
-import { useEffect } from "react";
+import { useEffect, useRef } from "react";
 import { googleAnalyticsId } from "../lib/analytics";
 import {
   subscribeToCookieConsent,
@@ -12,10 +12,11 @@ declare global {
   interface Window {
     dataLayer?: unknown[];
     gtag?: (...args: unknown[]) => void;
+    [key: `ga-disable-${string}`]: boolean | undefined;
   }
 }
 
-const googleTagId = "GT-TW5DT9Q4";
+const googleAdsId = "AW-10795260361";
 const googleTagScriptId = "noblu-google-tag";
 
 function getConsentSettings(consent: CookieConsent) {
@@ -38,7 +39,9 @@ function initializeGtag() {
     };
 }
 
-function applyGoogleConsent(consent: CookieConsent) {
+function applyGoogleConsent(consent: CookieConsent, configuredTags: Set<string>) {
+  // Consent Mode alone can allow cookieless GA4 pings; opt out of collection too.
+  window[`ga-disable-${googleAnalyticsId}`] = !consent.analytics;
   const googleTagLoaded = Boolean(
     document.getElementById(googleTagScriptId)
   );
@@ -54,30 +57,63 @@ function applyGoogleConsent(consent: CookieConsent) {
 
   if (googleTagLoaded) {
     window.gtag?.("consent", "update", getConsentSettings(consent));
-    return;
+  } else {
+    window.gtag?.("consent", "default", getConsentSettings(consent));
+    window.gtag?.("js", new Date());
   }
 
-  window.gtag?.("consent", "default", getConsentSettings(consent));
-  window.gtag?.("js", new Date());
-  window.gtag?.("config", googleTagId);
-  window.gtag?.("config", googleAnalyticsId);
+  let referrer = "";
+  try {
+    const url = new URL(document.referrer);
+    referrer = `${url.origin}${url.pathname}`;
+  } catch {
+    // Direct visits have no referrer.
+  }
+  const page = {
+    page_location: `${window.location.origin}${window.location.pathname}`,
+    page_referrer: referrer,
+  };
+  window.gtag?.("set", {
+    ...page,
+    allow_google_signals: consent.marketing,
+    allow_ad_personalization_signals: consent.marketing,
+    ads_data_redaction: !consent.marketing,
+  });
 
-  const script = document.createElement("script");
-  script.id = googleTagScriptId;
-  script.async = true;
-  script.src = `https://www.googletagmanager.com/gtag/js?id=${googleTagId}`;
-  document.head.appendChild(script);
+  for (const [id, allowed] of [
+    [googleAnalyticsId, consent.analytics],
+    [googleAdsId, consent.marketing],
+  ] as const) {
+    if (!allowed || configuredTags.has(id)) continue;
+    window.gtag?.("config", id, page);
+    configuredTags.add(id);
+  }
+
+  if (!googleTagLoaded) {
+    const script = document.createElement("script");
+    script.id = googleTagScriptId;
+    script.async = true;
+    const id = consent.analytics ? googleAnalyticsId : googleAdsId;
+    script.src = `https://www.googletagmanager.com/gtag/js?id=${id}`;
+    document.head.appendChild(script);
+  }
 }
 
 export default function GoogleTag() {
+  const configuredTags = useRef(new Set<string>());
   useEffect(() => {
     const handleConsentChange = () => {
-      applyGoogleConsent(readCookieConsent() ?? {
+      const consent = readCookieConsent() ?? {
         necessary: true,
         analytics: false,
         marketing: false,
         external: false,
-      });
+      } as const;
+      try {
+        applyGoogleConsent(consent, configuredTags.current);
+      } catch {
+        // A blocked third-party tag must not interrupt consent controls.
+      }
     };
     handleConsentChange();
     return subscribeToCookieConsent(handleConsentChange);

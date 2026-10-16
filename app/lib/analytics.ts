@@ -35,11 +35,11 @@ export function bookingClickDetails(href: string, pageUrl: string) {
   };
 }
 
-type AnalyticsEvent = "view_service" | "click_booking" | "booking_start" | "booking_complete";
+type AnalyticsEvent = "view_service" | "click_booking" | "booking_start" | "booking_complete" | "generate_lead";
 
 export function trackAnalyticsEvent(
   event: AnalyticsEvent,
-  parameters: { service_name: string; source_page?: string; booking_channel?: string },
+  parameters: { service_name: string; source_page?: string; booking_channel?: string; lead_source?: string; currency?: string; value?: number },
 ) {
   if (typeof window === "undefined") return false;
 
@@ -56,6 +56,27 @@ export function trackAnalyticsEvent(
     return true;
   } catch {
     // Analytics must never interrupt navigation or submitting a request.
+    return false;
+  }
+}
+
+export function trackGoogleAdsConversion(
+  conversionId: string,
+  parameters: { lead_source?: string; service_name?: string } = {},
+) {
+  if (typeof window === "undefined") return false;
+  try {
+    if (!readCookieConsent()?.marketing || typeof window.gtag !== "function") return false;
+    window.gtag("event", "conversion", {
+      ...parameters,
+      send_to: conversionId,
+      value: 1,
+      currency: "PLN",
+      page_location: `${window.location.origin}${window.location.pathname}`,
+      transport_type: "beacon",
+    });
+    return true;
+  } catch {
     return false;
   }
 }

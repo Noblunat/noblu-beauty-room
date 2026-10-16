@@ -4,8 +4,7 @@ import Image from "next/image"
 import Link from "next/link"
 import { FormEvent, useMemo, useRef, useState } from "react"
 import BreadcrumbJsonLd from "../components/BreadcrumbJsonLd"
-import { readCookieConsent } from "../lib/cookieConsent"
-import { trackAnalyticsEvent } from "../lib/analytics"
+import { trackAnalyticsEvent, trackGoogleAdsConversion } from "../lib/analytics"
 import { normalizePhoneNumber, phoneErrorMessage } from "../lib/phone"
 
 const booksyWidgetUrl = "https://booksy.com/widget/index.html"
@@ -139,31 +138,17 @@ const highlights = [
 const allServices = serviceGroups.flatMap((group) => group.services)
 
 function trackReservationLead(service: Service) {
-  const consent = readCookieConsent()
-
-  if (!consent || typeof window.gtag !== "function") {
-    return
-  }
-
-  if (consent.analytics) {
-    window.gtag("event", "generate_lead", {
+  trackAnalyticsEvent("generate_lead", {
       currency: "PLN",
       value: 1,
       lead_source: "reservation_form",
       service_name: service.name,
-    })
-  }
+  })
 
-  if (consent.marketing) {
-    window.gtag("event", "conversion", {
-      send_to: reservationConversionId,
-      value: 1,
-      currency: "PLN",
+  trackGoogleAdsConversion(reservationConversionId, {
       lead_source: "reservation_form",
       service_name: service.name,
-      transport_type: "beacon",
-    })
-  }
+  })
 }
 
 export default function ReservationClient({ initialService }: { initialService: string }) {
@@ -252,18 +237,6 @@ export default function ReservationClient({ initialService }: { initialService: 
         )
       }
 
-      if (selected) {
-        trackAnalyticsEvent("booking_complete", {
-          service_name: selected.name,
-          booking_channel: "reservation_form",
-        })
-        trackReservationLead(selected)
-      }
-
-      setSubmitStatus("success")
-      setSubmitMessage(
-        "Dziękujemy. Otrzymaliśmy prośbę o termin i skontaktujemy się telefonicznie."
-      )
     } catch (error) {
       setSubmitStatus("error")
       setSubmitMessage(
@@ -271,6 +244,19 @@ export default function ReservationClient({ initialService }: { initialService: 
           ? error.message
           : "Nie udało się wysłać formularza. Spróbuj ponownie."
       )
+      return
+    }
+
+    setSubmitStatus("success")
+    setSubmitMessage(
+      "Dziękujemy. Otrzymaliśmy prośbę o termin i skontaktujemy się telefonicznie."
+    )
+    if (selected) {
+      trackAnalyticsEvent("booking_complete", {
+        service_name: selected.name,
+        booking_channel: "reservation_form",
+      })
+      trackReservationLead(selected)
     }
   }
 

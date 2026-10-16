@@ -39,7 +39,7 @@ export default function PolitykaPrywatnosciPage() {
           Room dostępnej pod adresem https://noblu.pl.
         </p>
         <p className="mt-3 text-sm text-[#7A746D]">
-          Ostatnia aktualizacja: 6 października 2026 r.
+          Ostatnia aktualizacja: 15 października 2026 r.
         </p>
 
         <div className="mt-14 space-y-12 text-[#5F5B56]">
@@ -259,20 +259,30 @@ export default function PolitykaPrywatnosciPage() {
               <li>
                 Resend dostarcza wiadomość ze zgłoszeniem na skrzynkę Gmail
                 salonu. Przekazywane są imię, telefon, usługa, preferowany
-                termin i dobrowolne uwagi. Dane formularza nie są w kodzie
-                strony przekazywane jako parametry zdarzeń GA4 ani Google Ads.
+                termin i dobrowolne uwagi. Imię, numer telefonu i treść uwag
+                nie są przekazywane przez kod strony jako parametry zdarzeń
+                GA4 ani Google Ads. Nazwa usługi i kanał kontaktu mogą być
+                parametrami pomiaru po udzieleniu odpowiedniej zgody.
               </li>
               <li>
                 Google Analytics 4 (G-BD9VRN0W6Q) mierzy odwiedziny podstron
                 usługowych, kliknięcia prowadzące do rezerwacji oraz rozpoczęcie
                 i skuteczne wysłanie formularza. Zdarzenie wysłania oznacza
                 przyjęcie prośby o termin przez system, nie potwierdzoną wizytę.
+                GA4 uruchamiamy wyłącznie po zgodzie analitycznej. Sama zgoda
+                marketingowa go nie włącza. Po wycofaniu zgody analitycznej
+                blokujemy dalsze zbieranie danych przez GA4 także w innych
+                otwartych kartach tej samej przeglądarki.
               </li>
               <li>
                 Google Ads (AW-10795260361) mierzy wybrane kontakty, w tym
                 wysłanie formularza oraz kliknięcia telefonu i Booksy.
                 Zgoda marketingowa obejmuje pomiar i personalizację reklam.
                 Ustawienia są przekazywane do Google przez Consent Mode.
+                Po wycofaniu zgody marketingowej nie wysyłamy nowych zdarzeń
+                konwersji. Wcześniej załadowany tag Google może przesłać
+                techniczny sygnał zmiany zgody; nie oznacza to zgody na
+                zapis reklamowych cookies ani personalizację reklam.
               </li>
               <li>
                 Mapa Google jest osadzona za zgodą na treści zewnętrzne.

@@ -16,6 +16,7 @@ function harness({ consent = { analytics: true, marketing: false }, ok = true } 
   const effects = [];
   const listeners = new Map();
   const states = [];
+  const scripts = [];
   let stateIndex = 0;
   const window = {
     location: new URL("https://noblu.pl/manicure-krakow?email=private@example.com"),
@@ -32,6 +33,10 @@ function harness({ consent = { analytics: true, marketing: false }, ok = true } 
   };
   const jsx = (type, props) => ({ type, props });
   const cache = new Map();
+  class Element {
+    constructor(link) { this.link = link; }
+    closest() { return this.link; }
+  }
   function load(relative) {
     const filename = path.resolve(root, relative);
     if (cache.has(filename)) return cache.get(filename);
@@ -41,13 +46,14 @@ function harness({ consent = { analytics: true, marketing: false }, ok = true } 
       compilerOptions: { module: ts.ModuleKind.CommonJS, jsx: ts.JsxEmit.ReactJSX },
     }).outputText;
     vm.runInNewContext(compiled, {
-      module: testModule, exports: testModule.exports, window, URL, URLSearchParams,
+      module: testModule, exports: testModule.exports, window, URL, URLSearchParams, Element,
       document: {
         addEventListener: (name, fn) => listeners.set(name, fn),
         removeEventListener: (name) => listeners.delete(name),
-        getElementById: () => null,
+        referrer: "https://example.org/source?email=private@example.com",
+        getElementById: (id) => scripts.find((script) => script.id === id) ?? null,
         createElement: () => ({}),
-        head: { appendChild() {} },
+        head: { appendChild(script) { scripts.push(script); } },
       },
       fetch: async () => ({ ok, status: ok ? 200 : 400, json: async () => ok ? { success: true } : { error: "Invalid request" } }),
       require: (name) => {
@@ -66,7 +72,7 @@ function harness({ consent = { analytics: true, marketing: false }, ok = true } 
     }, { filename });
     return testModule.exports;
   }
-  return { load, events, effects, listeners, window, states };
+  return { load, events, effects, listeners, window, states, scripts, Element };
 }
 
 function findElement(node, type) {
@@ -182,3 +188,87 @@ for (const ok of [false, true]) {
     assert.equal(h.events.some((event) => event[1] === "conversion"), false);
   });
 }
+
+test("marketing-only consent never configures GA4 and disables its collection", () => {
+  const h = harness({ consent: { analytics: false, marketing: true } });
+  h.load("app/components/GoogleTag.tsx").default();
+  h.effects[0]();
+  assert.equal(h.events.some((event) => event[0] === "config" && event[1] === "G-BD9VRN0W6Q"), false);
+  assert.equal(h.events.some((event) => event[0] === "config" && event[1] === "GT-TW5DT9Q4"), false);
+  assert.equal(h.window["ga-disable-G-BD9VRN0W6Q"], true);
+  assert.ok(h.events.some((event) => event[0] === "config" && event[1] === "AW-10795260361"));
+});
+
+test("no optional consent means no Google loader or config", () => {
+  const h = harness({ consent: null });
+  delete h.window.gtag;
+  h.load("app/components/GoogleTag.tsx").default();
+  h.effects[0]();
+  assert.equal(h.scripts.length, 0);
+  assert.equal(h.events.length, 0);
+  assert.equal(h.window["ga-disable-G-BD9VRN0W6Q"], true);
+});
+
+test("analytics config has clean URLs and does not initialize advertising", () => {
+  const h = harness();
+  h.load("app/components/GoogleTag.tsx").default();
+  h.effects[0]();
+  const config = h.events.find((event) => event[0] === "config" && event[1] === "G-BD9VRN0W6Q");
+  assert.equal(config[2]?.page_location, "https://noblu.pl/manicure-krakow");
+  assert.equal(config[2]?.page_referrer, "https://example.org/source");
+  assert.equal(JSON.stringify(h.events).includes("private@example.com"), false);
+  assert.equal(h.events.some((event) => event[0] === "config" && event[1] === "AW-10795260361"), false);
+  assert.equal(h.window["ga-disable-G-BD9VRN0W6Q"], false);
+});
+
+test("granting and revoking categories configures each destination once with a single loader", () => {
+  const h = harness({ consent: { analytics: false, marketing: true } });
+  h.load("app/components/GoogleTag.tsx").default();
+  h.effects[0]();
+  h.window.localStorage.getItem = () => JSON.stringify({ necessary: true, analytics: true, marketing: true, external: false });
+  h.listeners.get("storage")({ key: "noblu-cookie-consent", storageArea: h.window.localStorage });
+  assert.equal(h.window["ga-disable-G-BD9VRN0W6Q"], false);
+  assert.equal(h.events.filter((event) => event[0] === "config" && event[1] === "G-BD9VRN0W6Q").length, 1);
+  h.window.localStorage.getItem = () => null;
+  h.listeners.get("storage")({ key: null, storageArea: h.window.localStorage });
+  assert.equal(h.window["ga-disable-G-BD9VRN0W6Q"], true);
+  assert.equal(h.scripts.length, 1);
+  assert.equal(h.events.at(-1)[1], "update");
+});
+
+test("service view starts when analytics consent arrives from another tab", () => {
+  const h = harness({ consent: null });
+  h.load("app/components/ConversionEvents.tsx").default();
+  h.effects[0]();
+  assert.equal(typeof h.listeners.get("storage"), "function");
+  h.window.localStorage.getItem = () => JSON.stringify({ necessary: true, analytics: true, marketing: false, external: false });
+  h.listeners.get("storage")({ key: "noblu-cookie-consent", storageArea: h.window.localStorage });
+  assert.equal(h.events.filter((event) => event[1] === "view_service").length, 1);
+});
+
+for (const failingEvent of ["generate_lead", "conversion"]) {
+  test(`successful request stays successful if ${failingEvent} throws`, async () => {
+    const h = harness({ consent: { analytics: true, marketing: true } });
+    h.window.gtag = (...args) => {
+      if (args[1] === failingEvent) throw new Error("Tag failed");
+      h.events.push(args);
+    };
+    const tree = h.load("app/rezerwacja/ReservationClient.tsx").default({ initialService: "Manicure" });
+    await findElement(tree, "form").props.onSubmit({ preventDefault() {} });
+    assert.ok(h.states.includes("success"));
+    assert.equal(h.states.includes("error"), false);
+  });
+}
+
+test("failed Ads tag cannot block telephone navigation", () => {
+  const h = harness({ consent: { analytics: true, marketing: true } });
+  h.load("app/components/ConversionEvents.tsx").default();
+  h.effects[1]();
+  h.window.gtag = () => { throw new Error("Tag failed"); };
+  let prevented = false;
+  assert.doesNotThrow(() => h.listeners.get("click")({
+    target: new h.Element({ href: "tel:+48662989534", target: "", dataset: {} }),
+    preventDefault() { prevented = true; },
+  }));
+  assert.equal(prevented, false);
+});
