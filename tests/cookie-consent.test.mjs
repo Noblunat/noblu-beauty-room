@@ -84,3 +84,28 @@ test("another tab can revoke consent, clear storage and unsubscribe", () => {
   stop();
   assert.equal(h.listeners.size, 0);
 });
+
+test("cookie preferences control supports a short label and only opens the panel", () => {
+  const h = storageHarness();
+  const m = { exports: {} };
+  const jsx = (type, props) => ({ type, props });
+  vm.runInNewContext(ts.transpileModule(readFileSync(new URL("../app/components/CookiePreferencesButton.tsx", import.meta.url), "utf8"), {
+    compilerOptions: { module: ts.ModuleKind.CommonJS, jsx: ts.JsxEmit.ReactJSX },
+  }).outputText, {
+    module: m, exports: m.exports, Event,
+    window: { dispatchEvent: event => h.events.push(event) },
+    require: name => {
+      if (name === "react/jsx-runtime") return { jsx, jsxs: jsx };
+      if (name === "../lib/cookieConsent") return h;
+      throw new Error(`Unexpected dependency ${name}`);
+    },
+  });
+  const control = m.exports.default({ label: "Ustawienia cookies" });
+  assert.equal(control.type, "button");
+  assert.equal(control.props.type, "button");
+  assert.equal(control.props.children, "Ustawienia cookies");
+  control.props.onClick();
+  assert.equal(h.events[0].type, h.COOKIE_CONSENT_OPEN_EVENT);
+  assert.equal(h.readCookieConsent(), null, "opening preferences must not grant consent");
+  assert.equal(m.exports.default({}).props.children, "Edytuj preferencje plików cookie");
+});
