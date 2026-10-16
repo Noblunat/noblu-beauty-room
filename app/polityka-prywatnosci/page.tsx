@@ -11,6 +11,97 @@ export const metadata: Metadata = {
   },
 };
 
+const privacyTools = [
+  {
+    name: "Zapis zgód",
+    provider: "Noblu Beauty Room",
+    purpose: "Zapamiętanie wybranych kategorii cookies i ich zmiany.",
+    data: "Wyłącznie ustawienia: niezbędne, analityka, marketing i treści zewnętrzne; bez danych formularza.",
+    activation: "Po zapisaniu wyboru w banerze. Zapis niezbędny do obsługi preferencji, niezależny od zgód opcjonalnych.",
+    basis: "Art. 6 ust. 1 lit. f RODO.",
+    storage: "localStorage: noblu-cookie-consent; bez automatycznego wygaśnięcia, do zmiany wyboru lub usunięcia danych witryny.",
+    href: null,
+    source: "",
+  },
+  {
+    name: "Vercel",
+    provider: "Vercel Inc.",
+    purpose: "Hosting, CDN, obsługa formularza i ochrona przed spamem, w tym Vercel Firewall.",
+    data: "Adres IP, adres żądanej strony i dane techniczne połączenia; przy wysłaniu formularza także jego treść.",
+    activation: "Przy korzystaniu ze strony; obsługa formularza po jego wysłaniu. Nie wymaga zgody na opcjonalne cookies.",
+    basis: "Art. 6 ust. 1 lit. f RODO; obsługa zapytania: lit. b.",
+    storage: "Liczniki antyspamowe pracują w oknach 10 minut. Okresy logów infrastruktury zależą od rodzaju danych i konfiguracji Vercel, nie od tego okna.",
+    href: "https://vercel.com/legal/dpa",
+    source: "Dane i podwykonawcy Vercel",
+  },
+  {
+    name: "Resend",
+    provider: "Plus Five Five, Inc. (Resend)",
+    purpose: "Wysłanie wiadomości z prośbą o termin do salonu.",
+    data: "Imię, telefon, usługa, preferowany dzień i pora, dobrowolne uwagi oraz dane dostarczenia wiadomości.",
+    activation: "Po wysłaniu poprawnie wypełnionego formularza. Odmowa cookies analitycznych i marketingowych nie blokuje wysyłki.",
+    basis: "Art. 6 ust. 1 lit. b RODO.",
+    storage: "Dane wiadomości i logi standardowo 30 dni według dokumentacji Resend; kopia w skrzynce salonu ma osobny okres przechowywania.",
+    href: "https://resend.com/security/gdpr",
+    source: "Prywatność i retencja Resend",
+  },
+  {
+    name: "Gmail",
+    provider: "Google",
+    purpose: "Odbiór zgłoszeń i korespondencja z klientkami.",
+    data: "Treść otrzymanych wiadomości, dane kontaktowe i historia korespondencji.",
+    activation: "Po dostarczeniu zgłoszenia lub kontakcie e-mailowym; nie ładuje na noblu.pl dodatkowego skryptu Gmail.",
+    basis: "Art. 6 ust. 1 lit. b lub f RODO, zależnie od celu kontaktu.",
+    storage: "Zgłoszenia w skrzynce: co do zasady do 12 miesięcy od ostatniego kontaktu, z wyjątkami opisanymi w sekcji „Okres przechowywania”.",
+    href: "https://policies.google.com/privacy?hl=pl",
+    source: "Polityka prywatności Google",
+  },
+  {
+    name: "Google Analytics 4",
+    provider: "Google; identyfikator G-BD9VRN0W6Q",
+    purpose: "Statystyki odwiedzin oraz zdarzenia związane z usługami i formularzem, nie potwierdzenie wykonania wizyty.",
+    data: "Identyfikatory cookies, dane urządzenia, adres podstrony bez parametrów zapytania, nazwa usługi i zdarzenia. Kod strony nie przekazuje imienia, telefonu ani uwag jako parametrów zdarzeń.",
+    activation: "Dopiero po zgodzie analitycznej. Sama zgoda marketingowa nie włącza GA4.",
+    basis: "Art. 6 ust. 1 lit. a RODO.",
+    storage: "Pliki _ga i _ga_<identyfikator>: domyślnie 2 lata według Google; przeglądarka może skrócić ten czas. Retencja danych w GA4 jest odrębna i zależy od ustawień usługi.",
+    href: "https://support.google.com/analytics/answer/11397207?hl=pl",
+    source: "Pliki cookie GA4",
+  },
+  {
+    name: "Google Ads",
+    provider: "Google; identyfikator AW-10795260361",
+    purpose: "Pomiar kontaktów po reklamach i personalizacja reklam.",
+    data: "Identyfikatory reklamowe i kliknięć oraz konwersje: wysłanie zgłoszenia, kliknięcie telefonu lub Booksy. Kod strony nie wysyła imienia, telefonu ani uwag jako parametrów konwersji.",
+    activation: "Dopiero po zgodzie marketingowej; ustawienia przekazujemy przez Consent Mode. Po jej wycofaniu nie wysyłamy nowych konwersji.",
+    basis: "Art. 6 ust. 1 lit. a RODO.",
+    storage: "Przykładowe pliki _gcl_* mają okres 90 dni. Rzeczywisty zestaw plików i okresy zależą od funkcji Ads oraz ustawień przeglądarki i konta Google.",
+    href: "https://business.safety.google/adscookies/",
+    source: "Wykaz cookies reklamowych Google",
+  },
+  {
+    name: "Google Maps",
+    provider: "Google",
+    purpose: "Wyświetlenie osadzonej mapy dojazdu do salonu.",
+    data: "Adres IP i dane przeglądarki; Google może korzystać z cookies lub powiązać korzystanie z mapy z kontem Google zgodnie z Twoimi ustawieniami.",
+    activation: "Osadzona mapa po zgodzie na treści zewnętrzne. Link „Wyznacz trasę” otwiera odrębny serwis Google poza noblu.pl.",
+    basis: "Osadzona mapa: art. 6 ust. 1 lit. a RODO.",
+    storage: "Pliki i okresy zależą od funkcji mapy, ustawień przeglądarki i konta Google; szczegóły określa Google.",
+    href: "https://policies.google.com/technologies/cookies?hl=pl",
+    source: "Zasady cookies Google",
+  },
+  {
+    name: "Booksy",
+    provider: "Booksy International sp. z o.o.",
+    purpose: "Rezerwacja w zewnętrznym serwisie po użyciu odnośnika.",
+    data: "Odnośnik może wskazywać usługę. Formularz Noblu nie przekazuje do Booksy wpisanego imienia, telefonu ani uwag; dalsze dane podajesz w Booksy.",
+    activation: "Po przejściu do Booksy. Zgody i przetwarzanie w tym serwisie są odrębne od banera Noblu.",
+    basis: "Zasady i podstawy przetwarzania określa polityka Booksy; obsługa wizyty przez salon: art. 6 ust. 1 lit. b RODO.",
+    storage: "Okresy dotyczące konta, rezerwacji i cookies w serwisie Booksy określa jego polityka; nie steruje nimi baner Noblu.",
+    href: "https://booksy.com/pl-pl/p/privacy",
+    source: "Polityka prywatności Booksy",
+  },
+];
+
 export default function PolitykaPrywatnosciPage() {
   return (
     <main className="min-h-screen bg-[#F8F5F2] px-6 py-24 text-[#1D1D1B] lg:px-12">
@@ -38,7 +129,7 @@ export default function PolitykaPrywatnosciPage() {
           Room dostępnej pod adresem https://noblu.pl.
         </p>
         <p className="mt-3 text-sm text-[#7A746D]">
-          Ostatnia aktualizacja: 15 października 2026 r.
+          Ostatnia aktualizacja: 16 października 2026 r.
         </p>
 
         <div className="mt-14 space-y-12 text-[#5F5B56]">
@@ -159,8 +250,9 @@ export default function PolitykaPrywatnosciPage() {
               </p>
               <p>
                 Resend przechowuje dane wysłanych wiadomości standardowo przez
-                30 dni. Techniczne dane antyspamowe są przechowywane
-                tymczasowo w pamięci funkcji obsługującej formularz.
+                30 dni. Ochrona przed spamem korzysta z liczników działających
+                w oknach 10 minut w Vercel Firewall i pomocniczo w pamięci
+                funkcji. Nie jest to okres przechowywania wszystkich logów hostingu.
               </p>
             </div>
           </section>
@@ -245,55 +337,80 @@ export default function PolitykaPrywatnosciPage() {
             </ul>
           </section>
 
-          <section>
-            <h2 className="text-3xl font-light text-[#1D1D1B]">
-              Narzędzia zewnętrzne
+          <section id="narzedzia" aria-labelledby="narzedzia-title">
+            <h2 id="narzedzia-title" className="text-3xl font-light text-[#1D1D1B]">
+              Narzędzia i dostawcy
             </h2>
-            <ul className="mt-5 list-disc space-y-4 pl-6 leading-relaxed">
-              <li>
-                Vercel obsługuje hosting, CDN i funkcję serwerową formularza.
-                Przy otwieraniu strony przetwarza dane techniczne żądania;
-                po wysłaniu formularza obsługuje również jego treść.
-              </li>
-              <li>
-                Resend dostarcza wiadomość ze zgłoszeniem na skrzynkę Gmail
-                salonu. Przekazywane są imię, telefon, usługa, preferowany
-                termin i dobrowolne uwagi. Imię, numer telefonu i treść uwag
-                nie są przekazywane przez kod strony jako parametry zdarzeń
-                GA4 ani Google Ads. Nazwa usługi i kanał kontaktu mogą być
-                parametrami pomiaru po udzieleniu odpowiedniej zgody.
-              </li>
-              <li>
-                Google Analytics 4 (G-BD9VRN0W6Q) mierzy odwiedziny podstron
-                usługowych, kliknięcia prowadzące do rezerwacji oraz rozpoczęcie
-                i skuteczne wysłanie formularza. Zdarzenie wysłania oznacza
-                przyjęcie prośby o termin przez system, nie potwierdzoną wizytę.
-                GA4 uruchamiamy wyłącznie po zgodzie analitycznej. Sama zgoda
-                marketingowa go nie włącza. Po wycofaniu zgody analitycznej
-                blokujemy dalsze zbieranie danych przez GA4 także w innych
-                otwartych kartach tej samej przeglądarki.
-              </li>
-              <li>
-                Google Ads (AW-10795260361) mierzy wybrane kontakty, w tym
-                wysłanie formularza oraz kliknięcia telefonu i Booksy.
-                Zgoda marketingowa obejmuje pomiar i personalizację reklam.
-                Ustawienia są przekazywane do Google przez Consent Mode.
-                Po wycofaniu zgody marketingowej nie wysyłamy nowych zdarzeń
-                konwersji. Wcześniej załadowany tag Google może przesłać
-                techniczny sygnał zmiany zgody; nie oznacza to zgody na
-                zapis reklamowych cookies ani personalizację reklam.
-              </li>
-              <li>
-                Mapa Google jest osadzona za zgodą na treści zewnętrzne.
-                Link „Wyznacz trasę w Google Maps” otwiera osobny serwis Google.
-              </li>
-              <li>
-                Booksy obsługuje rezerwacje po przejściu do jego serwisu.
-                Formularz Noblu nie wysyła do Booksy wpisanego imienia,
-                telefonu ani uwag; odnośnik może wskazywać wybraną usługę.
-                Dalsze przetwarzanie podlega zasadom prywatności Booksy.
-              </li>
-            </ul>
+            <p className="mt-5 leading-relaxed">
+              Poniższe zestawienie opisuje narzędzia używane przez noblu.pl.
+              Zgoda na analitykę, marketing i treści zewnętrzne jest dobrowolna
+              i nie jest potrzebna do wysłania formularza.
+            </p>
+            <div
+              role="region"
+              aria-labelledby="narzedzia-title"
+              tabIndex={0}
+              className="mt-6 overflow-x-auto rounded-lg border border-[#D8CEC1] focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#7C6238]"
+            >
+              <table className="w-full min-w-[760px] table-fixed border-collapse text-left text-sm leading-relaxed [overflow-wrap:anywhere]">
+                <caption className="bg-[#EFE7DD] px-4 py-3 text-left font-medium text-[#1D1D1B]">
+                  Zestawienie narzędzi używanych na noblu.pl
+                </caption>
+                <thead className="bg-white text-[#1D1D1B]">
+                  <tr>
+                    <th scope="col" className="w-[20%] border-t border-[#D8CEC1] p-4 align-top">Narzędzie i dostawca</th>
+                    <th scope="col" className="w-[30%] border-t border-[#D8CEC1] p-4 align-top">Cel i przetwarzane dane</th>
+                    <th scope="col" className="w-1/4 border-t border-[#D8CEC1] p-4 align-top">Uruchomienie i podstawa</th>
+                    <th scope="col" className="w-1/4 border-t border-[#D8CEC1] p-4 align-top">Zapis i przechowywanie</th>
+                  </tr>
+                </thead>
+                <tbody>
+                  {privacyTools.map((tool) => (
+                    <tr key={tool.name} className="odd:bg-white/60">
+                      <th scope="row" className="border-t border-[#D8CEC1] p-4 align-top font-normal">
+                        <span className="block font-semibold text-[#1D1D1B]">{tool.name}</span>
+                        <span className="mt-2 block">{tool.provider}</span>
+                      </th>
+                      <td className="border-t border-[#D8CEC1] p-4 align-top">
+                        <p>{tool.purpose}</p>
+                        <p className="mt-2">{tool.data}</p>
+                      </td>
+                      <td className="border-t border-[#D8CEC1] p-4 align-top">
+                        <p>{tool.activation}</p>
+                        <p className="mt-2">{tool.basis}</p>
+                      </td>
+                      <td className="border-t border-[#D8CEC1] p-4 align-top">
+                        <p>{tool.storage}</p>
+                        {tool.href && (
+                          <a href={tool.href} className="mt-2 inline-block text-[#7C6238] underline underline-offset-4">
+                            {tool.source}
+                          </a>
+                        )}
+                      </td>
+                    </tr>
+                  ))}
+                </tbody>
+              </table>
+            </div>
+            <div className="mt-5 space-y-4 leading-relaxed">
+              <p>
+                Korzystanie z usług Vercel, Resend i Google może wiązać się
+                z przetwarzaniem danych poza EOG, w tym w USA. Informacje
+                o zabezpieczeniach transferów znajdują się wyżej, w sekcji
+                „Odbiorcy danych”, oraz w dokumentacji dostawców.
+              </p>
+              <p>
+                Wycofanie zgody blokuje nowe zdarzenia zgodnie z ustawieniami,
+                również w pozostałych otwartych kartach tej przeglądarki.
+                Wcześniej załadowany tag Google może wysłać techniczny sygnał
+                zmiany zgody; nie jest to zgoda na personalizację reklam.
+              </p>
+              <p>
+                Kod strony nie zawiera Meta Pixel ani osobnego kontenera
+                Google Tag Manager. GA4 i Google Ads obsługuje Google tag (gtag.js).
+                Odnośniki do profili społecznościowych nie są osadzonymi pikselami.
+              </p>
+            </div>
           </section>
 
           <section>

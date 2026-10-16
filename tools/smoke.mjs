@@ -81,6 +81,10 @@ try {
   assert.ok(reservation.some(n => n.tagName === "input" && attr(n, "type") === "date" && /^\d{4}-\d{2}-\d{2}$/.test(attr(n, "min") || "")), "Minimum booking date");
   assert.ok(reservation.some(n => n.tagName === "input" && attr(n, "type") === "tel" && attr(n, "autocomplete") === "tel"), "Telephone input");
 
+  const privacyTable = documents.get("/polityka-prywatnosci").find(n => n.tagName === "table");
+  assert.ok(privacyTable, "Privacy tools table");
+  assert.equal(nodes(privacyTable).filter(n => n.tagName === "th" && attr(n, "scope") === "row").length, 8, "Eight configured tools in privacy table");
+
   const redirect = await get("/stylizacja-hybrydowa-krakow");
   assert.equal(redirect.status, 308);
   assert.equal(new URL(redirect.headers.get("location"), base).pathname, "/manicure-krakow");
