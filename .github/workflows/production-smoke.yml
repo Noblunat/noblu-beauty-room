@@ -9,7 +9,7 @@ permissions:
 
 jobs:
   smoke:
-    if: github.event_name == 'workflow_dispatch' || (github.event.deployment_status.state == 'success' && github.event.deployment.environment == 'Production')
+    if: github.event_name == 'workflow_dispatch' || (github.event.deployment_status.state == 'success' && startsWith(github.event.deployment.environment, 'Production') && startsWith(github.event.deployment_status.environment_url, 'https://noblu-beauty-room77-'))
     runs-on: ubuntu-latest
     timeout-minutes: 5
     steps:
@@ -24,3 +24,4 @@ jobs:
       - run: npm run smoke
         env:
           SMOKE_BASE_URL: https://noblu.pl
+          EXPECTED_RELEASE: ${{ github.event_name == 'deployment_status' && github.event.deployment.sha || '' }}
