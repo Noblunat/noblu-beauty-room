@@ -1,27 +1,35 @@
 name: Production smoke
 
 on:
-  deployment_status:
+  workflow_run:
+    workflows: [Quality]
+    types: [completed]
+    branches: [main]
   workflow_dispatch:
 
 permissions:
   contents: read
 
+concurrency:
+  group: production-smoke
+  cancel-in-progress: true
+
 jobs:
   smoke:
-    if: github.event_name == 'workflow_dispatch' || (github.event.deployment_status.state == 'success' && startsWith(github.event.deployment.environment, 'Production') && startsWith(github.event.deployment_status.environment_url, 'https://noblu-beauty-room77-'))
+    if: github.event_name == 'workflow_dispatch' || (github.event.workflow_run.conclusion == 'success' && github.event.workflow_run.event == 'push' && github.event.workflow_run.head_repository.full_name == github.repository)
     runs-on: ubuntu-latest
-    timeout-minutes: 5
+    timeout-minutes: 8
     steps:
       - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
         with:
           persist-credentials: false
+          ref: ${{ github.event.workflow_run.head_sha || github.sha }}
       - uses: actions/setup-node@49933ea5288caeca8642d1e84afbd3f7d6820020 # v4
         with:
           node-version: 24
           cache: npm
       - run: npm ci
-      - run: npm run smoke
+      - run: npm run smoke -- --wait-for-release
         env:
           SMOKE_BASE_URL: https://noblu.pl
-          EXPECTED_RELEASE: ${{ github.event_name == 'deployment_status' && github.event.deployment.sha || '' }}
+          EXPECTED_RELEASE: ${{ github.event.workflow_run.head_sha || github.sha }}
