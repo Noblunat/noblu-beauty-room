@@ -1,4 +1,5 @@
 import type { Metadata } from "next";
+import CookiePreferencesButton from "../components/CookiePreferencesButton";
 import Link from "next/link";
 import BreadcrumbJsonLd from "../components/BreadcrumbJsonLd";
 import ServiceJsonLd from "../components/ServiceJsonLd";
@@ -246,6 +247,9 @@ export default function PedicureKrakowPage() {
           </div>
         </div>
       </section>
+      <div className="mx-auto max-w-6xl px-6 pb-8 text-sm text-[#625b53] lg:px-12">
+        <CookiePreferencesButton label="Ustawienia cookies" />
+      </div>
     </main>
   );
 }
