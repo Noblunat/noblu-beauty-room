@@ -55,9 +55,9 @@ try {
       await delay(15000);
     }
     documents.set(path, elements);
-    if (path.endsWith("-krakow")) {
-      assert.equal(elements.filter(n => n.tagName === "button" && text(n).trim() === "Ustawienia cookies").length, 1, `${path}: persistent cookie preferences control`);
-    }
+    assert.equal(elements.filter(n => n.tagName === "footer").length, 1, `${path}: one shared footer`);
+    const footer = elements.find(n => n.tagName === "footer");
+    assert.equal(nodes(footer).filter(n => n.tagName === "button" && text(n).trim() === "Ustawienia cookies").length, 1, `${path}: persistent cookie preferences control in footer`);
     assert.equal(elements.filter(n => n.tagName === "h1").length, 1, `${path}: one H1`);
     assert.ok(text(elements.find(n => n.tagName === "title") || {}).trim(), `${path}: title`);
     assert.ok(elements.some(n => n.tagName === "meta" && attr(n, "name") === "description" && attr(n, "content")), `${path}: description`);

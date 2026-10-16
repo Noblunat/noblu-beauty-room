@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import ConversionEvents from "./components/ConversionEvents";
 import CookieBanner from "./components/CookieBanner";
+import SiteFooter from "./components/SiteFooter";
 import GoogleTag from "./components/GoogleTag";
 import "./globals.css";
 
@@ -206,6 +207,7 @@ export default function RootLayout({
           dangerouslySetInnerHTML={{ __html: JSON.stringify(salonJsonLd) }}
         />
         {children}
+        <SiteFooter />
         <GoogleTag />
         <ConversionEvents />
         <CookieBanner />

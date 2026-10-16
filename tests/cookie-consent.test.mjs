@@ -109,3 +109,34 @@ test("cookie preferences control supports a short label and only opens the panel
   assert.equal(h.readCookieConsent(), null, "opening preferences must not grant consent");
   assert.equal(m.exports.default({}).props.children, "Edytuj preferencje plików cookie");
 });
+
+test("accept and reject are equally prominent single-click choices on the first layer", () => {
+  const h = storageHarness();
+  const m = { exports: {} };
+  const jsx = (type, props) => ({ type, props });
+  vm.runInNewContext(ts.transpileModule(readFileSync(new URL("../app/components/CookieBanner.tsx", import.meta.url), "utf8"), {
+    compilerOptions: { module: ts.ModuleKind.CommonJS, jsx: ts.JsxEmit.ReactJSX },
+  }).outputText, {
+    module: m, exports: m.exports,
+    require: name => {
+      if (name === "react/jsx-runtime") return { jsx, jsxs: jsx };
+      if (name === "react") return { useState: initial => [initial, () => {}], useEffect() {}, useSyncExternalStore: () => true };
+      if (name === "../lib/cookieConsent") return h;
+      if (name === "next/link") return { default: "a" };
+      throw new Error(`Unexpected dependency ${name}`);
+    },
+  });
+  function nodes(node) {
+    if (!node || typeof node !== "object") return [];
+    return [node, ...[node.props?.children].flat(Infinity).flatMap(nodes)];
+  }
+  const buttons = nodes(m.exports.default()).filter(node => node.type === "button");
+  const accept = buttons.find(node => node.props.children === "Akceptuję wszystkie");
+  const reject = buttons.find(node => node.props.children === "Odrzucam opcjonalne");
+  assert.ok(accept && reject, "both choices are available without opening settings");
+  assert.equal(accept.props.className, reject.props.className, "same visual treatment and size");
+  accept.props.onClick();
+  assert.equal(h.readCookieConsent().analytics, true);
+  reject.props.onClick();
+  assert.equal(JSON.stringify(h.readCookieConsent()), JSON.stringify({ necessary: true, analytics: false, marketing: false, external: false }));
+});
