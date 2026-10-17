@@ -7,6 +7,7 @@ export const maxDuration = 20
 const maxBodyBytes = 8192
 
 type BookingRequest = {
+  requestId?: unknown
   name?: unknown
   telephone?: unknown
   service?: unknown
@@ -168,6 +169,14 @@ export async function POST(request: Request) {
     )
   }
 
+  if (typeof data.requestId !== "string" ||
+      !/^[0-9a-f]{8}-[0-9a-f]{4}-4[0-9a-f]{3}-[89ab][0-9a-f]{3}-[0-9a-f]{12}$/i.test(data.requestId)) {
+    return Response.json(
+      { error: "Odśwież formularz przed wysłaniem nowego zapytania." },
+      { status: 400 }
+    )
+  }
+
   const rateLimit = checkBookingRateLimit(getClientId(request))
 
   if (!rateLimit.allowed) {
@@ -237,6 +246,7 @@ export async function POST(request: Request) {
       headers: {
         Authorization: `Bearer ${apiKey}`,
         "Content-Type": "application/json",
+        "Idempotency-Key": `booking/${data.requestId.toLowerCase()}`,
       },
       signal: AbortSignal.timeout(10000),
       body: JSON.stringify({
@@ -250,6 +260,15 @@ export async function POST(request: Request) {
 
     if (!resendResponse.ok) {
       console.error("booking_delivery_failed", { provider: "resend", status: resendResponse.status })
+      if (resendResponse.status === 409) {
+        const result = await resendResponse.json().catch(() => null) as { name?: unknown } | null
+        const pending = result?.name === "concurrent_idempotent_requests"
+        return Response.json({
+          error: pending
+            ? "Zgłoszenie jest już przetwarzane. Poczekaj chwilę i ponów wysyłkę, jeśli nie zobaczysz potwierdzenia."
+            : "Nie można ponowić zgłoszenia ze zmienioną treścią. Odśwież formularz, aby wysłać nowe zapytanie.",
+        }, { status: 409, headers: { "Cache-Control": "no-store", ...(pending ? { "Retry-After": "2" } : {}) } })
+      }
       return Response.json({ error: "Nie udało się wysłać formularza. Spróbuj ponownie." }, { status: 502 })
     }
   } catch {

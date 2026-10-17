@@ -80,3 +80,29 @@ test("hero has only one eager responsive image for all breakpoints", () => {
   assert.equal(images[0].props.sizes, "(min-width: 1024px) 58vw, 100vw");
   assert.equal(images[0].props.loading, "eager");
 });
+
+test("homepage has one main landmark containing its hero but not the header", () => {
+  const tree = elements(harness().render());
+  const mains = tree.filter(n => n.type === "main");
+  assert.equal(mains.length, 1);
+  assert.ok(elements(mains[0]).some(n => n.type === "h1"));
+  assert.equal(elements(mains[0]).some(n => n.type === "header"), false);
+});
+
+test("every rotating gallery item has a unique descriptive alt", () => {
+  const source = readFileSync(new URL("../app/page.tsx", import.meta.url), "utf8");
+  const ast = ts.createSourceFile("page.tsx", source, ts.ScriptTarget.Latest, true, ts.ScriptKind.TSX);
+  let items;
+  function visit(node) {
+    if (ts.isVariableDeclaration(node) && node.name.getText(ast) === "galleryItems") {
+      const initializer = node.initializer.arguments[0].body;
+      items = (ts.isParenthesizedExpression(initializer) ? initializer.expression : initializer).elements;
+    }
+    ts.forEachChild(node, visit);
+  }
+  visit(ast);
+  assert.equal(items.length, 30);
+  const alts = items.map(item => item.properties.find(p => p.name?.getText(ast) === "alt")?.initializer?.text);
+  assert.ok(alts.every(alt => typeof alt === "string" && alt.length > 20));
+  assert.equal(new Set(alts).size, items.length);
+});
