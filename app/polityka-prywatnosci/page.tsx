@@ -46,11 +46,22 @@ const privacyTools = [
     source: "Prywatność i retencja Resend",
   },
   {
-    name: "Gmail",
+    name: "OVHcloud / Zimbra",
+    provider: "OVH sp. z o.o. (OVHcloud)",
+    purpose: "Odbiór zgłoszeń z formularza na salon@noblu.pl oraz bieżąca korespondencja z klientkami i dostawcami.",
+    data: "Treść wiadomości, dane kontaktowe, historia korespondencji i dane techniczne dostarczenia poczty.",
+    activation: "Po wysłaniu formularza lub wiadomości do salonu. Poczta jest obsługiwana także w Thunderbirdzie przez IMAP; nie ładuje na noblu.pl dodatkowego skryptu.",
+    basis: "Art. 6 ust. 1 lit. b lub f RODO, zależnie od celu kontaktu.",
+    storage: "Zgłoszenia co do zasady do 12 miesięcy od ostatniego kontaktu, z wyjątkami opisanymi w sekcji „Okres przechowywania”. Wiadomości są przechowywane w OVHcloud, a lokalne kopie mogą znajdować się na upoważnionych komputerach korzystających z Thunderbirda.",
+    href: "https://contract.eu.ovhapis.com/1.0/pdf/OVH_Data_Protection_Agreement-pl.pdf",
+    source: "Umowa powierzenia OVHcloud",
+  },
+  {
+    name: "Gmail (wcześniejsza korespondencja)",
     provider: "Google",
-    purpose: "Odbiór zgłoszeń i korespondencja z klientkami.",
-    data: "Treść otrzymanych wiadomości, dane kontaktowe i historia korespondencji.",
-    activation: "Po dostarczeniu zgłoszenia lub kontakcie e-mailowym; nie ładuje na noblu.pl dodatkowego skryptu Gmail.",
+    purpose: "Przechowywanie wcześniejszych zgłoszeń i historii korespondencji sprzed zmiany poczty salonu.",
+    data: "Wcześniej otrzymane wiadomości, dane kontaktowe i historia korespondencji.",
+    activation: "Nowe zgłoszenia z formularza nie trafiają na tę skrzynkę ani nie są do niej automatycznie kopiowane. Zmiana odbiorcy nie usuwa wcześniejszych wiadomości.",
     basis: "Art. 6 ust. 1 lit. b lub f RODO, zależnie od celu kontaktu.",
     storage: "Zgłoszenia w skrzynce: co do zasady do 12 miesięcy od ostatniego kontaktu, z wyjątkami opisanymi w sekcji „Okres przechowywania”.",
     href: "https://policies.google.com/privacy?hl=pl",
@@ -129,7 +140,7 @@ export default function PolitykaPrywatnosciPage() {
           Room dostępnej pod adresem https://noblu.pl.
         </p>
         <p className="mt-3 text-sm text-[#7A746D]">
-          Ostatnia aktualizacja: 16 października 2026 r.
+          Ostatnia aktualizacja: 17 października 2026 r.
         </p>
 
         <div className="mt-14 space-y-12 text-[#5F5B56]">
@@ -148,10 +159,10 @@ export default function PolitykaPrywatnosciPage() {
               <p>
                 Kontakt:{" "}
                 <a
-                  href="mailto:noblu.beautyroom@gmail.com"
+                  href="mailto:salon@noblu.pl"
                   className="text-[#7C6238]"
                 >
-                  noblu.beautyroom@gmail.com
+                  salon@noblu.pl
                 </a>
                 ,{" "}
                 <a href="tel:+48662989534" className="text-[#7C6238]">
@@ -194,6 +205,12 @@ export default function PolitykaPrywatnosciPage() {
                 usługa i preferowany dzień są niezbędne do obsługi zgłoszenia.
                 Prośba przesłana formularzem nie oznacza automatycznego
                 potwierdzenia terminu.
+              </p>
+              <p>
+                Wiadomość jest wysyłana przez Resend do skrzynki
+                salon@noblu.pl w OVHcloud (Zimbra), obsługiwanej przez
+                upoważnione osoby w salonie, także za pomocą Thunderbirda.
+                Nie wysyłamy automatycznej kopii zgłoszenia do Gmaila.
               </p>
             </div>
           </section>
@@ -249,6 +266,14 @@ export default function PolitykaPrywatnosciPage() {
                 roszczeń.
               </p>
               <p>
+                Od 17 października 2026 r. nowe zgłoszenia trafiają do
+                skrzynki salon@noblu.pl w OVHcloud. Wcześniejsza
+                korespondencja może pozostawać w Gmailu do upływu właściwego
+                okresu przechowywania. Zmiana skrzynki nie oznacza jej
+                automatycznej migracji ani usunięcia. Te same zasady dotyczą
+                lokalnych kopii poczty na upoważnionych komputerach.
+              </p>
+              <p>
                 Resend przechowuje dane wysłanych wiadomości standardowo przez
                 30 dni. Ochrona przed spamem korzysta z liczników działających
                 w oknach 10 minut w Vercel Firewall i pomocniczo w pamięci
@@ -266,8 +291,8 @@ export default function PolitykaPrywatnosciPage() {
                 Dane mogą być powierzane dostawcom niezbędnym do działania
                 strony i obsługi kontaktu, w szczególności Vercel
                 (hosting), Resend
-                (wysyłka formularza) oraz Google (poczta Gmail, Analytics,
-                Ads i usługi mapowe).
+                (wysyłka formularza), OVHcloud (poczta Zimbra) oraz Google
+                (wcześniejsza korespondencja w Gmailu, Analytics, Ads i usługi mapowe).
               </p>
               <p>
                 Korzystanie z infrastruktury Vercel, Resend i Google może
@@ -282,12 +307,13 @@ export default function PolitykaPrywatnosciPage() {
               <p>
                 Informacje o zabezpieczeniach i podwykonawcach znajdują się w{" "}
                 <a className="underline" href="https://vercel.com/legal/dpa">dokumentacji Vercel</a>,{" "}
-                <a className="underline" href="https://resend.com/legal/dpa">dokumentacji Resend</a>{" "}
+                <a className="underline" href="https://resend.com/legal/dpa">dokumentacji Resend</a>,{" "}
+                <a className="underline" href="https://contract.eu.ovhapis.com/1.0/pdf/OVH_Data_Protection_Agreement-pl.pdf">umowie powierzenia OVHcloud</a>{" "}
                 oraz{" "}
                 <a className="underline" href="https://policies.google.com/privacy/frameworks?hl=pl">zasadach transferów Google</a>.
                 O informacje dotyczące transferu Twoich danych oraz kopię
                 stosowanych zabezpieczeń możesz wystąpić do administratora
-                pod adresem noblu.beautyroom@gmail.com.
+                pod adresem salon@noblu.pl.
               </p>
             </div>
           </section>

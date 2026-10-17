@@ -32,7 +32,7 @@ function text(node) {
   return [node?.props?.children].flat(Infinity).map(text).join(" ");
 }
 
-test("privacy policy has an accessible table of the eight configured tools", () => {
+test("privacy policy has an accessible table of current tools and historical mail storage", () => {
   const tree = nodes(renderPolicy());
   const tables = tree.filter(node => node.type === "table");
   assert.equal(tables.length, 1);
@@ -41,8 +41,8 @@ test("privacy policy has an accessible table of the eight configured tools", () 
   assert.equal(columns.length, 4);
   const body = nodes(tables[0]).find(node => node.type === "tbody");
   const rows = nodes(body).filter(node => node.type === "tr");
-  assert.equal(rows.length, 8);
-  for (const expected of ["Zapis zgód", "Vercel", "Resend", "Gmail", "Google Analytics 4", "Google Ads", "Google Maps", "Booksy"]) {
+  assert.equal(rows.length, 9);
+  for (const expected of ["Zapis zgód", "Vercel", "Resend", "OVHcloud / Zimbra", "Gmail", "Google Analytics 4", "Google Ads", "Google Maps", "Booksy"]) {
     assert.ok(rows.some(row => nodes(row).some(node => node.type === "th" && node.props.scope === "row" && text(node).includes(expected))), expected);
   }
   for (const row of rows) assert.equal(nodes(row).filter(node => node.type === "td" || node.type === "th").length, 4);
@@ -62,7 +62,21 @@ test("table distinguishes consent gates, external navigation and retention limit
   assert.match(text(row("Google Analytics 4")), /odrębna/);
   assert.equal(rows.some(node => /Meta Pixel|Google Tag Manager/.test(text(node))), false, "inactive integrations are not listed as active tools");
   const links = nodes(table).filter(node => node.type === "a");
-  assert.equal(links.length, 7);
+  assert.equal(links.length, 8);
   assert.ok(links.every(node => node.props.href.startsWith("https://")));
   assert.equal(nodes(renderPolicy()).some(node => node.type === "script" || node.type === "iframe"), false, "policy must not activate optional tools");
+});
+
+test("policy identifies OVH as the current mailbox and Gmail only as historical storage", () => {
+  const policy = renderPolicy();
+  const rows = nodes(policy).filter(node => node.type === "tr");
+  const row = name => rows.find(node => nodes(node).some(cell => cell.type === "th" && cell.props.scope === "row" && text(cell).includes(name)));
+  assert.match(text(row("OVHcloud / Zimbra")), /salon@noblu\.pl/);
+  assert.match(text(row("OVHcloud / Zimbra")), /Thunderbird/);
+  assert.match(text(row("Gmail")), /wcześniejsz/);
+  assert.match(text(row("Gmail")), /nie trafiają/);
+  assert.match(text(policy), /17 października 2026/);
+  const contactLinks = nodes(policy).filter(node => node.type === "a" && node.props.href?.startsWith("mailto:"));
+  assert.ok(contactLinks.length > 0);
+  assert.ok(contactLinks.every(node => node.props.href === "mailto:salon@noblu.pl"));
 });

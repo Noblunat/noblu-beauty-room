@@ -90,10 +90,10 @@ export default function SiteFooter() {
           </a>
 
           <a
-            href="mailto:noblu.beautyroom@gmail.com"
+            href="mailto:salon@noblu.pl"
             className="block hover:text-[#7C6238] transition-colors"
           >
-            noblu.beautyroom@gmail.com
+            salon@noblu.pl
           </a>
         </div>
       </div>
