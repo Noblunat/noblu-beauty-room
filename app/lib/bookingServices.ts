@@ -29,7 +29,7 @@ export const serviceGroups: ServiceGroup[] = [
       {
         name: "Manicure",
         price: "100 zł",
-        duration: "ok. 1h",
+        duration: "50min",
         booksyVariantId: 5209054,
       },
       {
@@ -41,25 +41,25 @@ export const serviceGroups: ServiceGroup[] = [
       {
         name: "Stylizacja hybrydowa więcej niż 1 kolor",
         price: "170 zł",
-        duration: "1h 35min",
+        duration: "1h 30min",
         booksyVariantId: 6017045,
       },
       {
         name: "Żel na naturalnej płytce",
         price: "190 zł",
-        duration: "ok. 2h",
+        duration: "2h 10min",
         booksyVariantId: 17789240,
       },
       {
         name: "Przedłużenie żelowe",
         price: "220 zł",
-        duration: "ok. 2h 30min",
+        duration: "2h 30min",
         booksyVariantId: 6017205,
       },
       {
         name: "Uzupełnienie żelowe",
         price: "190 zł",
-        duration: "ok. 2h",
+        duration: "2h 10min",
         booksyVariantId: 22693891,
       },
       {
@@ -76,25 +76,25 @@ export const serviceGroups: ServiceGroup[] = [
       {
         name: "Pedicure same paznokcie",
         price: "110 zł",
-        duration: "ok. 1h",
+        duration: "40min",
         booksyVariantId: 14208964,
       },
       {
         name: "Pedicure same paznokcie z hybrydą",
         price: "160 zł",
-        duration: "ok. 1h 20min",
+        duration: "1h 20min",
         booksyVariantId: 14208784,
       },
       {
         name: "Pedicure kosmetyczny",
         price: "180 zł",
-        duration: "ok. 1h 30min",
+        duration: "1h 10min",
         booksyVariantId: 14208809,
       },
       {
         name: "Pedicure kosmetyczny z hybrydą",
         price: "200 zł",
-        duration: "ok. 1h 45min",
+        duration: "1h 40min",
         booksyVariantId: 14208789,
       },
     ],

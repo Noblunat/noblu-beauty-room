@@ -56,10 +56,34 @@ test("booking derives price and duration from the server catalog", async () => {
   assert.equal(email.cc, undefined);
   assert.equal(email.bcc, undefined);
   assert.match(email.text, /100 zł/);
-  assert.match(email.text, /ok\. 1h/);
+  assert.match(email.text, /50min/);
   assert.doesNotMatch(email.text, /1 zl|1 minute/);
   assert.ok(h.sent[0].options.signal, "provider call has a timeout");
 });
+
+// Public Booksy service list checked on 2026-10-17; lash services are not listed.
+const booksyDurations = [
+  ["Manicure", "50min"],
+  ["Stylizacja hybrydowa", "1h 30min"],
+  ["Stylizacja hybrydowa więcej niż 1 kolor", "1h 30min"],
+  ["Żel na naturalnej płytce", "2h 10min"],
+  ["Przedłużenie żelowe", "2h 30min"],
+  ["Uzupełnienie żelowe", "2h 10min"],
+  ["Naprawa jednego paznokcia", "20min"],
+  ["Pedicure same paznokcie", "40min"],
+  ["Pedicure same paznokcie z hybrydą", "1h 20min"],
+  ["Pedicure kosmetyczny", "1h 10min"],
+  ["Pedicure kosmetyczny z hybrydą", "1h 40min"],
+];
+
+for (const [service, duration] of booksyDurations) {
+  test(`booking uses the verified Booksy duration for ${service}`, async () => {
+    const h = harness();
+    assert.equal((await h.api.POST(request({ ...valid, service }))).status, 200);
+    const email = JSON.parse(h.sent[0].options.body);
+    assert.ok(email.text.includes(`Czas trwania: ${duration}`), email.text);
+  });
+}
 
 test("booking rejects missing or malformed request identities before delivery", async () => {
   for (const requestId of [undefined, "", 123, "bad\r\nheader", "x".repeat(1000)]) {
