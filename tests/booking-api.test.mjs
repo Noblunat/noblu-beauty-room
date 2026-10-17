@@ -14,7 +14,7 @@ const request = (data, headers = {}) => new Request("https://noblu.pl/api/rezerw
   body: typeof data === "string" ? data : JSON.stringify(data),
 });
 
-function harness({ failure, allowed = true } = {}) {
+function harness({ failure, allowed = true, env = {} } = {}) {
   const sent = [], logs = [];
   function load(filename) {
     const m = { exports: {} };
@@ -22,7 +22,7 @@ function harness({ failure, allowed = true } = {}) {
       compilerOptions: { module: ts.ModuleKind.CommonJS, target: ts.ScriptTarget.ES2022 },
     }).outputText, {
       module: m, exports: m.exports, Request, Response, URL, TextDecoder, AbortSignal,
-      process: { env: { RESEND_API_KEY: "test-only" } },
+      process: { env: { RESEND_API_KEY: "test-only", ...env } },
       console: { error: (...args) => logs.push(args) },
       fetch: async (url, options) => {
         sent.push({ url, options });
@@ -51,11 +51,22 @@ test("booking derives price and duration from the server catalog", async () => {
   assert.equal(res.status, 200);
   const email = JSON.parse(h.sent[0].options.body);
   assert.equal(email.from, "Noblu Beauty Room <salon@noblu.pl>");
-  assert.deepEqual(email.to, ["noblu.beautyroom@gmail.com"]);
+  assert.deepEqual(email.to, ["salon@noblu.pl"]);
+  assert.equal(email.cc, undefined);
+  assert.equal(email.bcc, undefined);
   assert.match(email.text, /100 zł/);
   assert.match(email.text, /ok\. 1h/);
   assert.doesNotMatch(email.text, /1 zl|1 minute/);
   assert.ok(h.sent[0].options.signal, "provider call has a timeout");
+});
+
+test("booking respects the configured recipient without copying the old mailbox", async () => {
+  const h = harness({ env: { BOOKING_RECIPIENT_EMAIL: "reception@example.com" } });
+  assert.equal((await h.api.POST(request(valid))).status, 200);
+  const email = JSON.parse(h.sent[0].options.body);
+  assert.deepEqual(email.to, ["reception@example.com"]);
+  assert.equal(email.cc, undefined);
+  assert.equal(email.bcc, undefined);
 });
 
 test("booking rejects unknown services, time values and oversized fields before delivery", async () => {

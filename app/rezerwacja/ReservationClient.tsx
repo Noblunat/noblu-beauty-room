@@ -10,7 +10,7 @@ import { serviceGroups, type Service } from "../lib/bookingServices"
 
 const booksyWidgetUrl = "https://booksy.com/widget/index.html"
 const reservationConversionId = "AW-10795260361/w2THCKCZ0LYcEMmzypso"
-const contactEmail = "noblu.beautyroom@gmail.com"
+const contactEmail = "salon@noblu.pl"
 const phone = "+48 662 989 534"
 const mapsDirectionsUrl =
   "https://www.google.com/maps/dir/?api=1&destination=Noblu%20Beauty%20Room%20Orzechowa%204%2Flok.1%2030-422%20Krak%C3%B3w"

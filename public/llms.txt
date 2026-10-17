@@ -11,7 +11,7 @@ This file provides a concise, AI-readable overview of the Noblu Beauty Room webs
 - Business type: beauty salon, manicure salon, pedicure salon, nail styling salon, eyelash styling salon
 - Address: Orzechowa 4/lok.1, 30-422 Kraków, małopolskie, Poland
 - Phone: +48 662 989 534
-- Email: noblu.beautyroom@gmail.com
+- Email: salon@noblu.pl
 - NIP: 6793222358
 - REGON: 389813411
 - Opening hours: Monday-Friday, 10:00-19:30

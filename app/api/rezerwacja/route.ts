@@ -19,7 +19,7 @@ type BookingRequest = {
 }
 
 const recipientEmail =
-  process.env.BOOKING_RECIPIENT_EMAIL || "noblu.beautyroom@gmail.com"
+  process.env.BOOKING_RECIPIENT_EMAIL || "salon@noblu.pl"
 
 function cleanText(value: unknown, maxLength: number) {
   return typeof value === "string" ? value.trim().slice(0, maxLength) : ""

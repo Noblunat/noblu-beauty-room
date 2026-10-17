@@ -1055,10 +1055,10 @@ useEffect(() => {
               <div>
                 <div className="text-[#1D1D1B] mb-2">E-mail</div>
                 <a
-                  href="mailto:noblu.beautyroom@gmail.com"
+                  href="mailto:salon@noblu.pl"
                   className="hover:text-[#7C6238] transition-colors"
                 >
-                  noblu.beautyroom@gmail.com
+                  salon@noblu.pl
                 </a>
               </div>
             </div>

@@ -31,7 +31,7 @@ const salonJsonLd = {
     `${siteUrl}/gallery/paznokcie/pedicure-hybrydowy-krakow-noblu.webp`,
   ],
   telephone: "+48662989534",
-  email: "noblu.beautyroom@gmail.com",
+  email: "salon@noblu.pl",
   priceRange: "$$",
   paymentAccepted: "Gotówka, karta płatnicza",
   currenciesAccepted: "PLN",

@@ -57,6 +57,8 @@ try {
     documents.set(path, elements);
     assert.equal(elements.filter(n => n.tagName === "footer").length, 1, `${path}: one shared footer`);
     const footer = elements.find(n => n.tagName === "footer");
+    assert.ok(nodes(footer).some(n => n.tagName === "a" && attr(n, "href") === "mailto:salon@noblu.pl"), `${path}: salon contact mailbox`);
+    assert.ok(!elements.some(n => n.tagName === "a" && attr(n, "href") === "mailto:noblu.beautyroom@gmail.com"), `${path}: no legacy public mailbox`);
     assert.equal(nodes(footer).filter(n => n.tagName === "button" && text(n).trim() === "Ustawienia cookies").length, 1, `${path}: persistent cookie preferences control in footer`);
     assert.equal(elements.filter(n => n.tagName === "h1").length, 1, `${path}: one H1`);
     assert.ok(text(elements.find(n => n.tagName === "title") || {}).trim(), `${path}: title`);
@@ -83,7 +85,8 @@ try {
 
   const privacyTable = documents.get("/polityka-prywatnosci").find(n => n.tagName === "table");
   assert.ok(privacyTable, "Privacy tools table");
-  assert.equal(nodes(privacyTable).filter(n => n.tagName === "th" && attr(n, "scope") === "row").length, 8, "Eight configured tools in privacy table");
+  assert.equal(nodes(privacyTable).filter(n => n.tagName === "th" && attr(n, "scope") === "row").length, 9, "Current tools and historical mail storage in privacy table");
+  assert.match(text(privacyTable), /OVHcloud \/ Zimbra/);
 
   const redirect = await get("/stylizacja-hybrydowa-krakow");
   assert.equal(redirect.status, 308);
