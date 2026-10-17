@@ -55,6 +55,7 @@ try {
       await delay(15000);
     }
     documents.set(path, elements);
+    assert.equal(elements.filter(n => n.tagName === "main").length, 1, `${path}: one main landmark`);
     assert.equal(elements.filter(n => n.tagName === "footer").length, 1, `${path}: one shared footer`);
     const footer = elements.find(n => n.tagName === "footer");
     assert.ok(nodes(footer).some(n => n.tagName === "a" && attr(n, "href") === "mailto:salon@noblu.pl"), `${path}: salon contact mailbox`);

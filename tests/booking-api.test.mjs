@@ -8,13 +8,13 @@ import test from "node:test";
 import ts from "typescript";
 
 const require = createRequire(import.meta.url);
-const valid = { name: "Test", telephone: "+48662989534", service: "Manicure", date: "2099-01-01", timePreference: "Dowolnie" };
+const valid = { requestId: "17000000-0000-4000-8000-000000000001", name: "Test", telephone: "+48662989534", service: "Manicure", date: "2099-01-01", timePreference: "Dowolnie" };
 const request = (data, headers = {}) => new Request("https://noblu.pl/api/rezerwacja", {
   method: "POST", headers: { "content-type": "application/json", origin: "https://noblu.pl", ...headers },
   body: typeof data === "string" ? data : JSON.stringify(data),
 });
 
-function harness({ failure, allowed = true, env = {} } = {}) {
+function harness({ failure, allowed = true, env = {}, provider } = {}) {
   const sent = [], logs = [];
   function load(filename) {
     const m = { exports: {} };
@@ -26,6 +26,7 @@ function harness({ failure, allowed = true, env = {} } = {}) {
       console: { error: (...args) => logs.push(args) },
       fetch: async (url, options) => {
         sent.push({ url, options });
+        if (provider) return provider(options);
         if (failure === "network") throw new Error("private@example.com secret provider error");
         return new Response(failure ? "private@example.com provider data" : '{"id":"test-id"}', { status: failure ? 500 : 200 });
       },
@@ -58,6 +59,51 @@ test("booking derives price and duration from the server catalog", async () => {
   assert.match(email.text, /ok\. 1h/);
   assert.doesNotMatch(email.text, /1 zl|1 minute/);
   assert.ok(h.sent[0].options.signal, "provider call has a timeout");
+});
+
+test("booking rejects missing or malformed request identities before delivery", async () => {
+  for (const requestId of [undefined, "", 123, "bad\r\nheader", "x".repeat(1000)]) {
+    const h = harness();
+    assert.equal((await h.api.POST(request({ ...valid, requestId }))).status, 400);
+    assert.equal(h.sent.length, 0);
+  }
+});
+
+test("retries across API instances share the provider idempotency key, including a lost response", async () => {
+  const accepted = new Map();
+  let deliveries = 0;
+  let loseFirstResponse = true;
+  const provider = async (options) => {
+    const key = options.headers["Idempotency-Key"];
+    if (!key || !accepted.has(key)) {
+      deliveries++;
+      if (key) accepted.set(key, options.body);
+    }
+    if (loseFirstResponse) {
+      loseFirstResponse = false;
+      throw new Error("accepted but response lost");
+    }
+    return Response.json({ id: "same-email-id" });
+  };
+  const first = harness({ provider });
+  assert.equal((await first.api.POST(request(valid))).status, 502);
+  const second = harness({ provider });
+  assert.equal((await second.api.POST(request(valid))).status, 200);
+  assert.equal(second.sent[0].options.headers["Idempotency-Key"], `booking/${valid.requestId}`);
+  assert.equal(first.sent[0].options.body, second.sent[0].options.body);
+  assert.equal(deliveries, 1, "a shared provider, not process memory, deduplicates deliveries");
+});
+
+test("provider conflicts and concurrent requests never become false successes", async () => {
+  for (const name of ["invalid_idempotent_request", "concurrent_idempotent_requests"]) {
+    const h = harness({ provider: async () => Response.json({ name, message: "private provider details" }, { status: 409 }) });
+    const response = await h.api.POST(request(valid));
+    assert.equal(response.status, 409);
+    const body = await response.json();
+    assert.equal(body.ok, undefined);
+    assert.match(body.error, name === "concurrent_idempotent_requests" ? /przetwarzane/ : /treści/);
+    assert.doesNotMatch(body.error, /private provider/);
+  }
 });
 
 test("booking respects the configured recipient without copying the old mailbox", async () => {

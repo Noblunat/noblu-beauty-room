@@ -6,12 +6,13 @@ import vm from "node:vm";
 import test from "node:test";
 import ts from "typescript";
 import { createRequire } from "node:module";
+import { randomUUID } from "node:crypto";
 
 const nodeRequire = createRequire(import.meta.url);
 
 const root = fileURLToPath(new URL("../", import.meta.url));
 
-function harness({ consent = { analytics: true, marketing: false }, ok = true, status, fetchFailure, jsonFailure, body } = {}) {
+function harness({ consent = { analytics: true, marketing: false }, ok = true, status, fetchFailure, jsonFailure, body, fetchImpl } = {}) {
   const events = [];
   const effects = [];
   const listeners = new Map();
@@ -20,6 +21,8 @@ function harness({ consent = { analytics: true, marketing: false }, ok = true, s
   const stateValues = [];
   const requests = [];
   let stateIndex = 0;
+  let refIndex = 0;
+  const refs = [];
   const window = {
     location: new URL("https://noblu.pl/manicure-krakow?email=private@example.com"),
     localStorage: { getItem: () => consent ? JSON.stringify({ necessary: true, external: false, ...consent }) : null },
@@ -28,7 +31,10 @@ function harness({ consent = { analytics: true, marketing: false }, ok = true, s
     removeEventListener: (name) => listeners.delete(name),
   };
   const react = {
-    useRef: (current) => ({ current }),
+    useRef: (current) => {
+      const index = refIndex++;
+      return refs[index] ??= { current };
+    },
     useMemo: (fn) => fn(),
     useEffect: (fn) => effects.push(fn),
     useState: (initial) => {
@@ -53,6 +59,7 @@ function harness({ consent = { analytics: true, marketing: false }, ok = true, s
     }).outputText;
     vm.runInNewContext(compiled, {
       module: testModule, exports: testModule.exports, window, URL, URLSearchParams, Element, AbortSignal,
+      crypto: { randomUUID },
       document: {
         addEventListener: (name, fn) => listeners.set(name, fn),
         removeEventListener: (name) => listeners.delete(name),
@@ -63,6 +70,7 @@ function harness({ consent = { analytics: true, marketing: false }, ok = true, s
       },
       fetch: async (url, options) => {
         requests.push({ url, options });
+        if (fetchImpl) return fetchImpl(url, options);
         if (fetchFailure) throw new Error("Technical network error");
         return { ok, status: status ?? (ok ? 200 : 400), json: async () => {
           if (jsonFailure) throw new SyntaxError("Unexpected token <");
@@ -86,7 +94,7 @@ function harness({ consent = { analytics: true, marketing: false }, ok = true, s
     return testModule.exports;
   }
   return { load, events, effects, listeners, window, states, scripts, Element, requests,
-    render(component, props) { stateIndex = 0; return component(props); } };
+    render(component, props) { stateIndex = 0; refIndex = 0; return component(props); } };
 }
 
 function findElement(node, type) {
@@ -109,6 +117,7 @@ function findWhere(node, predicate) {
 
 function elementText(node) {
   if (typeof node === "string") return node;
+  if (!node || typeof node !== "object") return "";
   return [node?.props?.children].flat(Infinity).map(elementText).join(" ");
 }
 
@@ -246,11 +255,69 @@ for (const ok of [false, true]) {
     await form.props.onSubmit({ preventDefault() {} });
     await form.props.onSubmit({ preventDefault() {} });
     assert.equal(h.events.filter((event) => event[1] === "booking_start").length, 1);
-    assert.equal(h.events.filter((event) => event[1] === "booking_complete").length, ok ? 2 : 0);
+    assert.equal(h.events.filter((event) => event[1] === "booking_complete").length, ok ? 1 : 0);
     assert.ok(h.states.includes(ok ? "success" : "error"));
     assert.equal(h.events.some((event) => event[1] === "conversion"), false);
   });
 }
+
+test("a successful inquiry clears input state and requires an explicit fresh inquiry", async () => {
+  const h = harness();
+  const component = h.load("app/rezerwacja/ReservationClient.tsx").default;
+  const props = { initialService: "Manicure" };
+  let tree = h.render(component, props);
+  findWhere(tree, n => n.props?.autoComplete === "name").props.onChange({ target: { value: "Private name" } });
+  findElement(tree, "textarea").props.onChange({ target: { value: "Private note" } });
+  tree = h.render(component, props);
+  const submit = findElement(tree, "form").props.onSubmit;
+  await submit({ preventDefault() {} });
+  await submit({ preventDefault() {} });
+  assert.equal(h.requests.length, 1);
+  tree = h.render(component, props);
+  assert.equal(findElement(tree, "form"), undefined);
+  assert.ok(findWhere(tree, n => n.props?.role === "status"));
+  assert.doesNotMatch(elementText(tree), /Private name|Private note/);
+  const restart = findWhere(tree, n => n.type === "button" && elementText(n) === "Wyślij kolejne zapytanie");
+  assert.ok(restart);
+  restart.props.onClick();
+  tree = h.render(component, props);
+  for (const predicate of [n => n.props?.autoComplete === "name", n => n.props?.type === "tel", n => n.props?.type === "date", n => n.type === "textarea", n => n.type === "select"]) {
+    assert.equal(findWhere(tree, predicate).props.value, "");
+  }
+  findWhere(tree, n => n.props?.type === "tel").props.onChange({ target: { value: "+48 662 989 534", setCustomValidity() {} } });
+  findElement(tree, "select").props.onChange({ target: { value: "Manicure" } });
+  tree = h.render(component, props);
+  await findElement(tree, "form").props.onSubmit({ preventDefault() {} });
+  assert.notEqual(JSON.parse(h.requests[0].options.body).requestId, JSON.parse(h.requests[1].options.body).requestId);
+  assert.equal(h.events.filter(e => e[1] === "booking_complete").length, 2);
+});
+
+test("rapid duplicate submits are guarded before React renders a disabled button", async () => {
+  let resolve;
+  const h = harness({ fetchImpl: () => new Promise(done => { resolve = done; }) });
+  const component = h.load("app/rezerwacja/ReservationClient.tsx").default;
+  const submit = findElement(h.render(component, { initialService: "Manicure" }), "form").props.onSubmit;
+  const first = submit({ preventDefault() {} });
+  const second = submit({ preventDefault() {} });
+  assert.equal(h.requests.length, 1);
+  resolve({ ok: true, json: async () => ({ ok: true }) });
+  await Promise.all([first, second]);
+  assert.equal(h.events.filter(e => e[1] === "booking_complete").length, 1);
+});
+
+test("an unchanged failed attempt keeps its UUID, edited data starts a new one", async () => {
+  const h = harness({ ok: false, status: 502 });
+  const component = h.load("app/rezerwacja/ReservationClient.tsx").default;
+  const props = { initialService: "Manicure" };
+  for (let i = 0; i < 2; i++) await findElement(h.render(component, props), "form").props.onSubmit({ preventDefault() {} });
+  const ids = () => h.requests.map(r => JSON.parse(r.options.body).requestId);
+  assert.match(ids()[0], /^[\da-f-]{36}$/);
+  assert.equal(ids()[0], ids()[1]);
+  const tree = h.render(component, props);
+  findElement(tree, "textarea").props.onChange({ target: { value: "Changed inquiry" } });
+  await findElement(h.render(component, props), "form").props.onSubmit({ preventDefault() {} });
+  assert.notEqual(ids()[0], ids()[2]);
+});
 
 test("marketing-only consent never configures GA4 and disables its collection", () => {
   const h = harness({ consent: { analytics: false, marketing: true } });

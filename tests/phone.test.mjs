@@ -51,7 +51,7 @@ test("API rejects invalid telephone before rate limiting or email delivery", asy
     "../../lib/bookingRateLimit": { checkBookingRateLimit() { throw new Error("Must not reach delivery"); } },
   });
   const response = await api.POST(new Request("https://noblu.pl/api/rezerwacja", { method: "POST", headers: { "content-type": "application/json" }, body: JSON.stringify({
-    name: "Test", telephone: "abc", service: "Manicure", date: "2099-01-01",
+    requestId: "17000000-0000-4000-8000-000000000001", name: "Test", telephone: "abc", service: "Manicure", date: "2099-01-01",
   }) }));
   assert.equal(response.status, 400);
   assert.equal((await response.json()).error, phone.phoneErrorMessage);

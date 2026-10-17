@@ -2,7 +2,7 @@
 
 import Image from "next/image"
 import Link from "next/link"
-import { FormEvent, useMemo, useRef, useState } from "react"
+import { FormEvent, useEffect, useMemo, useRef, useState } from "react"
 import BreadcrumbJsonLd from "../components/BreadcrumbJsonLd"
 import { trackAnalyticsEvent, trackGoogleAdsConversion } from "../lib/analytics"
 import { normalizePhoneNumber, phoneErrorMessage } from "../lib/phone"
@@ -65,6 +65,33 @@ export default function ReservationClient({ initialService }: { initialService: 
   const [submitMessage, setSubmitMessage] = useState("")
   const [deliveryFailed, setDeliveryFailed] = useState(false)
   const bookingStarted = useRef(false)
+  const submissionPhase = useRef<"idle" | "sending" | "success">("idle")
+  const requestId = useRef<string | null>(null)
+  const attemptedPayload = useRef<string | null>(null)
+  const panelRef = useRef<HTMLDivElement>(null)
+  const focusAfterReset = useRef(false)
+
+  useEffect(() => {
+    requestId.current ??= crypto.randomUUID()
+  }, [])
+
+  useEffect(() => {
+    if (submitStatus === "success" || focusAfterReset.current) {
+      panelRef.current?.focus()
+      focusAfterReset.current = false
+    }
+  }, [submitStatus])
+
+  function startNewInquiry() {
+    requestId.current = crypto.randomUUID()
+    attemptedPayload.current = null
+    submissionPhase.current = "idle"
+    bookingStarted.current = false
+    focusAfterReset.current = true
+    setSubmitMessage("")
+    setDeliveryFailed(false)
+    setSubmitStatus("idle")
+  }
 
   function trackBookingStart(serviceName = selectedService) {
     if (bookingStarted.current) return
@@ -97,6 +124,7 @@ export default function ReservationClient({ initialService }: { initialService: 
 
   async function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault()
+    if (submissionPhase.current !== "idle") return
     setDeliveryFailed(false)
     const normalizedTelephone = normalizePhoneNumber(telephone)
     if (!normalizedTelephone) {
@@ -104,6 +132,23 @@ export default function ReservationClient({ initialService }: { initialService: 
       setSubmitMessage(phoneErrorMessage)
       return
     }
+    const payload = {
+      name,
+      telephone: normalizedTelephone,
+      service: selectedService,
+      date,
+      timePreference,
+      notes,
+      website,
+    }
+    const serializedPayload = JSON.stringify(payload)
+    // A retry must reuse the identity; editing a failed inquiry starts another one.
+    if (attemptedPayload.current !== null && attemptedPayload.current !== serializedPayload) {
+      requestId.current = crypto.randomUUID()
+    }
+    requestId.current ??= crypto.randomUUID()
+    attemptedPayload.current = serializedPayload
+    submissionPhase.current = "sending"
     trackBookingStart()
     setSubmitStatus("sending")
     setSubmitMessage("")
@@ -114,15 +159,7 @@ export default function ReservationClient({ initialService }: { initialService: 
         method: "POST",
         signal: AbortSignal.timeout(15000),
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          name,
-          telephone: normalizedTelephone,
-          service: selectedService,
-          date,
-          timePreference,
-          notes,
-          website,
-        }),
+        body: JSON.stringify({ ...payload, requestId: requestId.current }),
       })
 
       const result = (await response.json().catch(() => null)) as {
@@ -142,12 +179,21 @@ export default function ReservationClient({ initialService }: { initialService: 
 
       if (result?.ok !== true) throw new Error("booking_unconfirmed")
     } catch {
+      submissionPhase.current = "idle"
       setSubmitStatus("error")
       setDeliveryFailed(true)
       setSubmitMessage(failureMessage)
       return
     }
 
+    submissionPhase.current = "success"
+    setName("")
+    setTelephone("")
+    setSelectedService("")
+    setDate("")
+    setTimePreference("Dowolnie")
+    setNotes("")
+    setWebsite("")
     setSubmitStatus("success")
     setSubmitMessage(
       "Dziękujemy. Otrzymaliśmy prośbę o termin i skontaktujemy się telefonicznie."
@@ -236,9 +282,34 @@ export default function ReservationClient({ initialService }: { initialService: 
 
       <section className="px-6 pb-16 sm:px-10 lg:px-16">
         <div className="mx-auto grid max-w-7xl gap-8 lg:grid-cols-[0.95fr_1.05fr]">
-          <form
+          <div
             id="formularz"
             tabIndex={-1}
+            ref={panelRef}
+            aria-labelledby="reservation-panel-title"
+            className="min-w-0 rounded-[2rem] border border-[#E8DED2] bg-white/75 p-6 shadow-[0_24px_70px_rgba(80,55,25,0.08)] backdrop-blur-sm focus:outline-2 focus:outline-offset-4 focus:outline-[#7C6238] sm:p-8"
+          >
+            {submitStatus === "success" ? (
+              <div>
+                <div role="status">
+                  <h2 id="reservation-panel-title" className="text-3xl font-light">Prośba o termin została wysłana</h2>
+                  <p className="mt-5 leading-relaxed text-[#625b53]">{submitMessage}</p>
+                  <p className="mt-3 leading-relaxed text-[#625b53]">
+                    Termin nie jest jeszcze potwierdzony. Salon potwierdzi dostępność SMS-em lub telefonicznie.
+                  </p>
+                </div>
+                <button
+                  type="button"
+                  onClick={startNewInquiry}
+                  className="mt-8 min-h-12 w-full rounded-full border border-[#7C6238] px-5 py-3 font-medium text-[#7C6238] transition-colors hover:bg-[#F8F5F2] focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#7C6238]"
+                >
+                  Wyślij kolejne zapytanie
+                </button>
+                <Link href="/" className="mt-5 block text-center text-sm font-medium text-[#7C6238] underline underline-offset-4">
+                  Wróć na stronę główną
+                </Link>
+              </div>
+            ) : <form
             onSubmit={handleSubmit}
             onChange={(event) => {
               if (!(event.target instanceof Element)) return
@@ -248,10 +319,10 @@ export default function ReservationClient({ initialService }: { initialService: 
                 : selectedService
               trackBookingStart(serviceName)
             }}
-            className="min-w-0 rounded-[2rem] border border-[#E8DED2] bg-white/75 p-6 shadow-[0_24px_70px_rgba(80,55,25,0.08)] backdrop-blur-sm sm:p-8"
           >
-            <h2 className="text-3xl font-light">Dane wizyty</h2>
+            <h2 id="reservation-panel-title" className="text-3xl font-light">Dane wizyty</h2>
 
+            <fieldset disabled={submitStatus === "sending"} className="min-w-0">
             <label aria-hidden="true" className="absolute left-[-9999px] top-auto h-px w-px overflow-hidden">
               Strona internetowa
               <input
@@ -356,32 +427,35 @@ export default function ReservationClient({ initialService }: { initialService: 
                 />
               </label>
             </div>
+            </fieldset>
 
-            <div className="mt-8 flex flex-col justify-center gap-3 sm:flex-row">
+            <div className="mt-8 grid gap-3">
               <button
                 type="submit"
                 disabled={submitStatus === "sending"}
-                className="rounded-full bg-[#D4B483] px-7 py-4 font-medium text-black shadow-[0_20px_60px_rgba(212,180,131,0.35)] transition-transform hover:scale-[1.02] disabled:cursor-wait disabled:opacity-60"
+                className="min-h-14 w-full rounded-full bg-[#D4B483] px-5 py-4 font-medium text-black shadow-[0_20px_60px_rgba(212,180,131,0.35)] transition-colors hover:bg-[#C9A571] focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#7C6238] disabled:cursor-wait disabled:opacity-60"
               >
                 {submitStatus === "sending" ? "Wysyłanie..." : "Wyślij prośbę o termin"}
               </button>
 
+              <div className="grid gap-3 xl:grid-cols-2">
                 <a
                   href={selectedBooksyUrl ?? "https://noblubeautyroom.booksy.com/"}
                   data-service-name={selected?.name}
                   target="_blank"
                   rel="noopener noreferrer"
-                  className="rounded-full bg-[#D4B483] px-7 py-4 text-center font-medium text-black shadow-[0_20px_60px_rgba(212,180,131,0.35)] transition-transform hover:scale-[1.02]"
+                  className="flex min-h-12 items-center justify-center rounded-full bg-[#D4B483] px-4 py-3 text-center text-sm font-medium text-black transition-colors hover:bg-[#C9A571] focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#7C6238]"
                 >
-                  {selectedBooksyUrl ? "Zarezerwuj tę usługę przez Booksy" : "Zarezerwuj przez Booksy"}
+                  Zarezerwuj przez Booksy
                 </a>
 
               <Link
                 href="/cennik"
-                className="rounded-full border border-[#D4B483] px-7 py-4 text-center font-medium text-[#876536] transition-colors hover:bg-[#D4B483] hover:text-black"
+                className="flex min-h-12 items-center justify-center rounded-full border border-[#D4B483] px-4 py-3 text-center text-sm font-medium text-[#876536] transition-colors hover:bg-[#D4B483] hover:text-black focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#7C6238]"
               >
                 Zobacz cennik usług
               </Link>
+              </div>
             </div>
 
             {!selectedBooksyUrl && (
@@ -392,10 +466,8 @@ export default function ReservationClient({ initialService }: { initialService: 
 
             {submitMessage && (
               <div
-                role={submitStatus === "error" ? "alert" : "status"}
-                className={`mt-5 text-center text-sm font-medium ${
-                  submitStatus === "success" ? "text-emerald-700" : "text-red-700"
-                }`}
+                role="alert"
+                className="mt-5 text-center text-sm font-medium text-red-700"
               >
                 <p>{submitMessage}</p>
                 {deliveryFailed && (
@@ -433,10 +505,11 @@ export default function ReservationClient({ initialService }: { initialService: 
               </Link>
               .
             </p>
-          </form>
+          </form>}
+          </div>
 
           <div className="grid gap-6">
-            <div className="rounded-[2rem] border border-[#E8DED2] bg-white/70 p-6 shadow-[0_24px_70px_rgba(80,55,25,0.08)] sm:p-8">
+            {submitStatus !== "success" && <div className="rounded-[2rem] border border-[#E8DED2] bg-white/70 p-6 shadow-[0_24px_70px_rgba(80,55,25,0.08)] sm:p-8">
               <h2 className="text-3xl font-light">Wybrana usługa</h2>
               <div className="mt-6 rounded-3xl bg-[#F8F5F2] p-6">
                 <div className="text-2xl font-medium">{selected?.name ?? "Wybierz usługę w formularzu"}</div>
@@ -473,7 +546,7 @@ export default function ReservationClient({ initialService }: { initialService: 
                   </Link>
                 ))}
               </nav>
-            </div>
+            </div>}
 
             <div className="rounded-[2rem] border border-[#E8DED2] bg-white/70 p-6 shadow-[0_24px_70px_rgba(80,55,25,0.08)] sm:p-8">
               <h2 className="text-3xl font-light">Kontakt</h2>
