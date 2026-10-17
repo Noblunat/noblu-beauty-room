@@ -188,7 +188,7 @@ export async function POST(request: Request) {
 
   const apiKey = process.env.RESEND_API_KEY
   const fromEmail =
-    process.env.RESEND_FROM_EMAIL || "Noblu Beauty Room <rezerwacje@noblu.pl>"
+    process.env.RESEND_FROM_EMAIL || "Noblu Beauty Room <salon@noblu.pl>"
 
   if (!apiKey) {
     console.error("Missing RESEND_API_KEY")

@@ -50,6 +50,8 @@ test("booking derives price and duration from the server catalog", async () => {
   const res = await h.api.POST(request({ ...valid, price: "1 zl", duration: "1 minute" }));
   assert.equal(res.status, 200);
   const email = JSON.parse(h.sent[0].options.body);
+  assert.equal(email.from, "Noblu Beauty Room <salon@noblu.pl>");
+  assert.deepEqual(email.to, ["noblu.beautyroom@gmail.com"]);
   assert.match(email.text, /100 zł/);
   assert.match(email.text, /ok\. 1h/);
   assert.doesNotMatch(email.text, /1 zl|1 minute/);
