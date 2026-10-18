@@ -75,7 +75,7 @@ export const serviceGroups: ServiceGroup[] = [
     services: [
       {
         name: "Pedicure same paznokcie",
-        price: "110 zł",
+        price: "100 zł",
         duration: "40min",
         booksyVariantId: 14208964,
       },

@@ -186,7 +186,7 @@ export default function NobluBeautyRoomWebsite() {
     },
     {
       service: "Pedicure",
-      price: "od 110 zł",
+      price: "od 100 zł",
       description:
         "Pedicure samych paznokci, pedicure hybrydowy oraz pełny pedicure kosmetyczny.",
       href: "/pedicure-krakow",

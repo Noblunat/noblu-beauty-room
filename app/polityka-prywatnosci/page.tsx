@@ -9,6 +9,21 @@ export const metadata: Metadata = {
   alternates: {
     canonical: "https://noblu.pl/polityka-prywatnosci",
   },
+  openGraph: {
+    title: "Polityka prywatności | Noblu Beauty Room",
+    description: "Polityka prywatności i informacje o plikach cookies na stronie Noblu Beauty Room.",
+    url: "https://noblu.pl/polityka-prywatnosci",
+    siteName: "Noblu Beauty Room",
+    locale: "pl_PL",
+    type: "website",
+    images: [{ url: "https://noblu.pl/og-noblu.jpg", width: 1200, height: 630, alt: "Noblu Beauty Room w Krakowie" }],
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Polityka prywatności | Noblu Beauty Room",
+    description: "Polityka prywatności i informacje o plikach cookies na stronie Noblu Beauty Room.",
+    images: ["https://noblu.pl/og-noblu.jpg"],
+  },
 };
 
 const privacyTools = [
