@@ -56,3 +56,8 @@ test("pedicure copy, FAQ and schema do not retain the old 110 PLN price", () => 
     assert.doesNotMatch(source, /110/);
   }
 });
+
+test("gel refill has the single 190 PLN Booksy price approved by the owner", () => {
+  const rows = literalRows("app/cennik/page.tsx", "nailPrices").filter(row => row.name.startsWith("Uzupełnienie żelowe"));
+  assert.deepEqual(rows, [{ name: "Uzupełnienie żelowe", price: "190 zł" }]);
+});
