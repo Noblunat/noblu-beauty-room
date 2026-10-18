@@ -9,7 +9,7 @@ import { normalizePhoneNumber, phoneErrorMessage } from "../lib/phone"
 import { serviceGroups, type Service } from "../lib/bookingServices"
 
 const booksyWidgetUrl = "https://booksy.com/widget/index.html"
-const reservationConversionId = "AW-10795260361/w2THCKCZ0LYcEMmzypso"
+const reservationConversionId = "AW-10795260361/ZeoSCKvShaEdEMmzypso"
 const contactEmail = "salon@noblu.pl"
 const phone = "+48 662 989 534"
 const mapsDirectionsUrl =
@@ -36,10 +36,8 @@ const highlights = [
 
 const allServices = serviceGroups.flatMap((group) => group.services)
 
-function trackReservationLead(service: Service) {
+function trackReservationLead(service: Service, submissionId: string) {
   trackAnalyticsEvent("generate_lead", {
-      currency: "PLN",
-      value: 1,
       lead_source: "reservation_form",
       service_name: service.name,
   })
@@ -47,6 +45,7 @@ function trackReservationLead(service: Service) {
   trackGoogleAdsConversion(reservationConversionId, {
       lead_source: "reservation_form",
       service_name: service.name,
+      transaction_id: submissionId,
   })
 }
 
@@ -203,7 +202,7 @@ export default function ReservationClient({ initialService }: { initialService: 
         service_name: selected.name,
         booking_channel: "reservation_form",
       })
-      trackReservationLead(selected)
+      trackReservationLead(selected, requestId.current)
     }
   }
 

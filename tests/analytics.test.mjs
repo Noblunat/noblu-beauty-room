@@ -196,6 +196,37 @@ test("analytics-only consent sends to GA4 with clean URL, without form fields", 
   assert.equal(h.events.some((event) => event[1] === "conversion"), false);
 });
 
+for (const analytics of [false, true]) {
+  test(`form and Booksy use separate Ads actions, including analytics=${analytics}`, async () => {
+    const h = harness({ consent: { analytics, marketing: true } });
+    h.load("app/components/ConversionEvents.tsx").default();
+    h.effects.forEach(effect => effect());
+    h.listeners.get("click")({ target: new h.Element({
+      href: "https://noblubeautyroom.booksy.com/", dataset: {},
+    }) });
+    const form = findElement(h.load("app/rezerwacja/ReservationClient.tsx").default({ initialService: "Manicure" }), "form");
+    await form.props.onSubmit({ preventDefault() {} });
+    await form.props.onSubmit({ preventDefault() {} });
+    const conversions = h.events.filter(event => event[1] === "conversion");
+    assert.equal(conversions.length, 2);
+    assert.equal(conversions[0][2].send_to, "AW-10795260361/w2THCKCZ0LYcEMmzypso");
+    assert.equal(conversions[1][2].send_to, "AW-10795260361/ZeoSCKvShaEdEMmzypso");
+    assert.equal(conversions[1][2].transaction_id, JSON.parse(h.requests[0].options.body).requestId);
+    assert.equal(conversions[1][2].value, undefined, "an inquiry is not revenue");
+    assert.equal(h.events.filter(event => event[1] === "generate_lead").length, analytics ? 1 : 0);
+    const lead = h.events.find(event => event[1] === "generate_lead");
+    if (lead) assert.equal(lead[2].value, undefined);
+    assert.doesNotMatch(JSON.stringify(h.events), /private@example.com|662989534/);
+  });
+}
+
+test("a rejected form never emits the new Ads lead action", async () => {
+  const h = harness({ ok: false, consent: { analytics: true, marketing: true } });
+  const form = findElement(h.load("app/rezerwacja/ReservationClient.tsx").default({ initialService: "Manicure" }), "form");
+  await form.props.onSubmit({ preventDefault() {} });
+  assert.equal(h.events.some(event => event[1] === "conversion" || event[1] === "generate_lead"), false);
+});
+
 test("storage or tag failures cannot break the user action", () => {
   const h = harness();
   const { trackAnalyticsEvent } = h.load("app/lib/analytics.ts");

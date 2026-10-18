@@ -62,7 +62,7 @@ export function trackAnalyticsEvent(
 
 export function trackGoogleAdsConversion(
   conversionId: string,
-  parameters: { lead_source?: string; service_name?: string } = {},
+  parameters: { lead_source?: string; service_name?: string; transaction_id?: string } = {},
 ) {
   if (typeof window === "undefined") return false;
   try {
@@ -70,8 +70,6 @@ export function trackGoogleAdsConversion(
     window.gtag("event", "conversion", {
       ...parameters,
       send_to: conversionId,
-      value: 1,
-      currency: "PLN",
       page_location: `${window.location.origin}${window.location.pathname}`,
       transport_type: "beacon",
     });
