@@ -12,6 +12,11 @@ const nodeRequire = createRequire(import.meta.url);
 
 const root = fileURLToPath(new URL("../", import.meta.url));
 
+const storedConsent = (choice) => JSON.stringify({
+  necessary: true, external: false, version: 1,
+  decidedAt: "2026-10-18T10:00:00.000Z", ...choice,
+});
+
 function harness({ consent = { analytics: true, marketing: false }, ok = true, status, fetchFailure, jsonFailure, body, fetchImpl } = {}) {
   const events = [];
   const effects = [];
@@ -25,7 +30,7 @@ function harness({ consent = { analytics: true, marketing: false }, ok = true, s
   const refs = [];
   const window = {
     location: new URL("https://noblu.pl/manicure-krakow?email=private@example.com"),
-    localStorage: { getItem: () => consent ? JSON.stringify({ necessary: true, external: false, ...consent }) : null },
+    localStorage: { getItem: () => consent ? storedConsent(consent) : null },
     gtag: (...args) => events.push(args),
     addEventListener: (name, fn) => listeners.set(name, fn),
     removeEventListener: (name) => listeners.delete(name),
@@ -227,7 +232,7 @@ test("Google Tag applies withdrawal from another tab and storage clearing", () =
   h.window.gtag = undefined;
   h.load("app/components/GoogleTag.tsx").default();
   const cleanup = h.effects[0]();
-  h.window.localStorage.getItem = () => JSON.stringify({
+  h.window.localStorage.getItem = () => storedConsent({
     necessary: true, analytics: false, marketing: false, external: false,
   });
   h.listeners.get("storage")({
@@ -244,6 +249,37 @@ test("Google Tag applies withdrawal from another tab and storage clearing", () =
   assert.equal(command[2].ad_personalization, "denied");
   cleanup();
   assert.equal(h.listeners.size, 0);
+});
+
+for (const metadata of [{ version: undefined }, { version: 0 }, { decidedAt: "invalid" }]) {
+  test(`invalid consent metadata blocks Google loaders and events: ${JSON.stringify(metadata)}`, () => {
+    const h = harness({ consent: { analytics: true, marketing: true, ...metadata } });
+    h.window.gtag = undefined;
+    h.load("app/components/GoogleTag.tsx").default();
+    h.effects[0]();
+    assert.equal(h.scripts.length, 0);
+    assert.equal(h.window.gtag, undefined);
+    const analytics = h.load("app/lib/analytics.ts");
+    h.window.gtag = (...args) => h.events.push(args);
+    assert.equal(analytics.trackAnalyticsEvent("booking_complete", { service_name: "Manicure" }), false);
+    assert.equal(analytics.trackGoogleAdsConversion("AW-test/test"), false);
+    assert.equal(h.events.length, 0);
+  });
+}
+
+test("a version change in another tab withdraws Google permissions immediately", () => {
+  const h = harness({ consent: { analytics: true, marketing: true } });
+  h.window.gtag = undefined;
+  h.load("app/components/GoogleTag.tsx").default();
+  h.effects[0]();
+  h.window.localStorage.getItem = () => storedConsent({
+    necessary: true, analytics: true, marketing: true, external: true, version: 0,
+  });
+  h.listeners.get("storage")({ key: "noblu-cookie-consent", storageArea: h.window.localStorage });
+  const command = h.window.dataLayer.at(-1);
+  assert.equal(command[0], "consent");
+  for (const value of Object.values(command[2])) assert.equal(value, "denied");
+  assert.equal(h.window["ga-disable-G-BD9VRN0W6Q"], true);
 });
 
 for (const ok of [false, true]) {
@@ -355,7 +391,7 @@ test("granting and revoking categories configures each destination once with a s
   const h = harness({ consent: { analytics: false, marketing: true } });
   h.load("app/components/GoogleTag.tsx").default();
   h.effects[0]();
-  h.window.localStorage.getItem = () => JSON.stringify({ necessary: true, analytics: true, marketing: true, external: false });
+  h.window.localStorage.getItem = () => storedConsent({ necessary: true, analytics: true, marketing: true, external: false });
   h.listeners.get("storage")({ key: "noblu-cookie-consent", storageArea: h.window.localStorage });
   assert.equal(h.window["ga-disable-G-BD9VRN0W6Q"], false);
   assert.equal(h.events.filter((event) => event[0] === "config" && event[1] === "G-BD9VRN0W6Q").length, 1);
@@ -371,7 +407,7 @@ test("service view starts when analytics consent arrives from another tab", () =
   h.load("app/components/ConversionEvents.tsx").default();
   h.effects[0]();
   assert.equal(typeof h.listeners.get("storage"), "function");
-  h.window.localStorage.getItem = () => JSON.stringify({ necessary: true, analytics: true, marketing: false, external: false });
+  h.window.localStorage.getItem = () => storedConsent({ necessary: true, analytics: true, marketing: false, external: false });
   h.listeners.get("storage")({ key: "noblu-cookie-consent", storageArea: h.window.localStorage });
   assert.equal(h.events.filter((event) => event[1] === "view_service").length, 1);
 });

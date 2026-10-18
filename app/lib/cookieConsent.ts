@@ -1,6 +1,8 @@
 export const COOKIE_CONSENT_STORAGE_KEY = "noblu-cookie-consent";
 export const COOKIE_CONSENT_CHANGE_EVENT = "noblu-cookie-consent-change";
 export const COOKIE_CONSENT_OPEN_EVENT = "noblu-cookie-consent-open";
+// Bump only when consent purposes, tools or disclosed processing materially change.
+export const COOKIE_CONSENT_VERSION = 1;
 
 export type CookieConsent = {
   necessary: true;
@@ -33,7 +35,14 @@ export function saveCookieConsent(consent: CookieConsent) {
   try {
     window.localStorage.setItem(
       COOKIE_CONSENT_STORAGE_KEY,
-      JSON.stringify(consent)
+      JSON.stringify({
+        necessary: consent.necessary,
+        analytics: consent.analytics,
+        marketing: consent.marketing,
+        external: consent.external,
+        version: COOKIE_CONSENT_VERSION,
+        decidedAt: new Date().toISOString(),
+      })
     );
     storageWriteFailed = false;
   } catch {
@@ -59,23 +68,33 @@ export function readCookieConsent(): CookieConsent | null {
   if (!storedConsent) return null;
 
   try {
-    const consent = JSON.parse(storedConsent) as Partial<CookieConsent>;
+    const consent = JSON.parse(storedConsent) as Partial<CookieConsent> & {
+      version?: unknown;
+      decidedAt?: unknown;
+    };
 
     if (
+      !consent ||
+      typeof consent !== "object" ||
+      consent.version !== COOKIE_CONSENT_VERSION ||
+      typeof consent.decidedAt !== "string" ||
       consent.necessary !== true ||
       typeof consent.analytics !== "boolean" ||
       typeof consent.marketing !== "boolean" ||
-      (consent.external !== undefined &&
-        typeof consent.external !== "boolean")
+      typeof consent.external !== "boolean"
     ) {
       return null;
     }
+
+    const decidedAt = new Date(consent.decidedAt);
+    if (!Number.isFinite(decidedAt.getTime()) ||
+        decidedAt.toISOString() !== consent.decidedAt) return null;
 
     return {
       necessary: true,
       analytics: consent.analytics,
       marketing: consent.marketing,
-      external: consent.external ?? consent.marketing,
+      external: consent.external,
     };
   } catch {
     return null;
