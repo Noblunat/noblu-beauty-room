@@ -22,6 +22,13 @@ export const metadata: Metadata = {
     locale: "pl_PL",
     type: "website",
   },
+  twitter: {
+    card: "summary_large_image",
+    title: "Przedłużanie rzęs Kraków | Noblu Beauty Room",
+    description:
+      "Rzęsy 1:1, 2D, 3D i naturalne przedłużanie rzęs w Krakowie, blisko Borku Fałęckiego, Łagiewnik i Ruczaju.",
+    images: ["https://noblu.pl/gallery/rzesy/rzesy-objetosciowe-krakow-noblu.webp"],
+  },
 };
 
 const faq = [

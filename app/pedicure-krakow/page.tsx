@@ -24,6 +24,13 @@ export const metadata: Metadata = {
     locale: "pl_PL",
     type: "website",
   },
+  twitter: {
+    card: "summary_large_image",
+    title: "Pedicure Kraków Borek Fałęcki | Hybrydowy i SPA | Noblu",
+    description:
+      "Pedicure kosmetyczny, hybrydowy i SPA w Noblu Beauty Room w Krakowie, Borek Fałęcki. Zobacz cennik i zapytaj o termin online.",
+    images: ["https://noblu.pl/gallery/paznokcie/pedicure-hybrydowy-krakow-noblu.webp"],
+  },
 };
 
 const faq = [
@@ -41,7 +48,7 @@ const faq = [
   },
   {
     q: "Ile kosztuje pedicure w Krakowie?",
-    a: "Pedicure samych paznokci kosztuje od 110 zł, pedicure z hybrydą od 160 zł, a pełny pedicure kosmetyczny od 180 zł.",
+    a: "Pedicure samych paznokci kosztuje od 100 zł, pedicure z hybrydą od 160 zł, a pełny pedicure kosmetyczny od 180 zł.",
   },
   {
     q: "Czy Noblu przyjmuje nowe klientki na pedicure?",
@@ -66,7 +73,7 @@ export default function PedicureKrakowPage() {
         serviceType="Pedicure"
         url="https://noblu.pl/pedicure-krakow"
         offers={[
-          { name: "Pedicure same paznokcie", price: "110" },
+          { name: "Pedicure same paznokcie", price: "100" },
           { name: "Pedicure same paznokcie z hybrydą", price: "160" },
           { name: "Pedicure kosmetyczny", price: "180" },
           { name: "Pedicure kosmetyczny z hybrydą", price: "200" },
@@ -151,7 +158,7 @@ export default function PedicureKrakowPage() {
               higienę, dokładność i komfort wizyty.
             </p>
             <p className="mt-4">
-              Ceny zaczynają się od 110 zł za pedicure samych paznokci i od
+              Ceny zaczynają się od 100 zł za pedicure samych paznokci i od
               160 zł za wariant z hybrydą. Wszystkie opcje są opisane w <Link href="/cennik" className="font-medium text-[#876536] underline underline-offset-4">cenniku pedicure</Link>.
             </p>
             <p className="mt-4">

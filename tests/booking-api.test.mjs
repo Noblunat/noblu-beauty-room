@@ -85,6 +85,22 @@ for (const [service, duration] of booksyDurations) {
   });
 }
 
+for (const [service, price] of [
+  ["Manicure", "100 zł"], ["Stylizacja hybrydowa", "160 zł"],
+  ["Stylizacja hybrydowa więcej niż 1 kolor", "170 zł"],
+  ["Żel na naturalnej płytce", "190 zł"], ["Przedłużenie żelowe", "220 zł"],
+  ["Uzupełnienie żelowe", "190 zł"], ["Naprawa jednego paznokcia", "30 zł"],
+  ["Pedicure same paznokcie", "100 zł"], ["Pedicure same paznokcie z hybrydą", "160 zł"],
+  ["Pedicure kosmetyczny", "180 zł"], ["Pedicure kosmetyczny z hybrydą", "200 zł"],
+]) {
+  test(`booking uses the verified Booksy price for ${service}`, async () => {
+    const h = harness();
+    assert.equal((await h.api.POST(request({ ...valid, service }))).status, 200);
+    const email = JSON.parse(h.sent[0].options.body);
+    assert.ok(email.text.includes(`Cena orientacyjna: ${price}`), email.text);
+  });
+}
+
 test("booking rejects missing or malformed request identities before delivery", async () => {
   for (const requestId of [undefined, "", 123, "bad\r\nheader", "x".repeat(1000)]) {
     const h = harness();

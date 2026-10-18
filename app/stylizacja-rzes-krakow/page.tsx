@@ -24,6 +24,13 @@ export const metadata: Metadata = {
     locale: "pl_PL",
     type: "website",
   },
+  twitter: {
+    card: "summary_large_image",
+    title: "Stylizacja rzęs Kraków | Rzęsy 1:1, 2D i 3D | Noblu",
+    description:
+      "Stylizacja rzęs 1:1, 2D i 3D w Krakowie, Borek Fałęcki. Zapytaj o termin online.",
+    images: ["https://noblu.pl/gallery/rzesy/stylizacja-rzes-krakow-noblu.webp"],
+  },
 };
 
 const faq = [

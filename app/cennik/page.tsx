@@ -17,12 +17,21 @@ export const metadata: Metadata = {
     siteName: "Noblu Beauty Room",
     images: [
       {
-        url: "https://noblu.pl/gallery/salon/salon-beauty-krakow-noblu.webp",
-        alt: "Cennik manicure pedicure i rzęs Noblu Beauty Room Kraków",
+        url: "https://noblu.pl/og-noblu.jpg",
+        width: 1200,
+        height: 630,
+        alt: "Noblu Beauty Room w Krakowie - cennik manicure, pedicure i rzęs",
       },
     ],
     locale: "pl_PL",
     type: "website",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Cennik Noblu Kraków | Manicure, pedicure i rzęsy",
+    description:
+      "Sprawdź ceny manicure, pedicure, paznokci hybrydowych i stylizacji rzęs w Noblu Beauty Room w Krakowie.",
+    images: ["https://noblu.pl/og-noblu.jpg"],
   },
 };
 
@@ -53,16 +62,16 @@ const nailPrices = [
   { name: "Zdobienia", price: "od 10 zł" },
   { name: "Pyłek", price: "5 zł" },
   { name: "French / ombre / babyboomer", price: "20 zł" },
-  { name: "Usunięcie stylizacji z innego salonu do usługi", price: "20 zł" },
+  { name: "Usunięcie stylizacji z innego salonu do uzupełnienia żelowego", price: "0 zł" },
   { name: "Naprawa jednego paznokcia", price: "30 zł" },
 ];
 
 const pedicurePrices = [
-  { name: "Pedicure same paznokcie", price: "110 zł" },
+  { name: "Pedicure same paznokcie", price: "100 zł" },
   { name: "Pedicure same paznokcie z hybrydą", price: "160 zł" },
   { name: "Pedicure kosmetyczny", price: "180 zł" },
   { name: "Pedicure kosmetyczny z hybrydą", price: "200 zł" },
-  { name: "Usunięcie hybrydy z pedicure same paznokcie", price: "130 zł" },
+  { name: "Usunięcie hybrydy z pedicure same paznokcie", price: "120 zł" },
   { name: "Usunięcie hybrydy z pełnym pedicure", price: "190 zł" },
 ];
 
@@ -271,7 +280,7 @@ export default function CennikPage() {
               Ile kosztuje pedicure?
             </h2>
             <p className="mt-4 leading-relaxed text-[#5F5B56]">
-              Pedicure samych paznokci kosztuje od 110 zł, pedicure z hybrydą
+              Pedicure samych paznokci kosztuje od 100 zł, pedicure z hybrydą
               od 160 zł, a pełny pedicure kosmetyczny od 180 zł. Salon znajduje
               się na Borku Fałęckim, z wygodnym dojazdem z południa Krakowa.
             </p>

@@ -24,6 +24,13 @@ export const metadata: Metadata = {
     locale: "pl_PL",
     type: "website",
   },
+  twitter: {
+    card: "summary_large_image",
+    title: "Manicure Kraków | Paznokcie hybrydowe Borek Fałęcki | Noblu",
+    description:
+      "Manicure, paznokcie hybrydowe i stylizacja paznokci w Krakowie, Borek Fałęcki. Sprawdź ceny i zapytaj o termin online.",
+    images: ["https://noblu.pl/gallery/paznokcie/manicure-hybrydowy-nude-krakow-noblu.webp"],
+  },
 };
 
 const manicureGallery = [
