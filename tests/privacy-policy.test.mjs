@@ -50,7 +50,8 @@ test("privacy policy has an accessible table of current tools and historical mai
 });
 
 test("table distinguishes consent gates, external navigation and retention limits", () => {
-  const table = nodes(renderPolicy()).find(node => node.type === "table");
+  const policy = renderPolicy();
+  const table = nodes(policy).find(node => node.type === "table");
   const rows = nodes(table).filter(node => node.type === "tr");
   const row = name => rows.find(node => nodes(node).some(cell => cell.type === "th" && cell.props.scope === "row" && text(cell).includes(name)));
   assert.match(text(row("Google Analytics 4")), /zgodzie analitycznej/);
@@ -58,7 +59,10 @@ test("table distinguishes consent gates, external navigation and retention limit
   assert.match(text(row("Google Maps")), /treści zewnętrzne/);
   assert.match(text(row("Booksy")), /przejściu do Booksy/);
   assert.match(text(row("Resend")), /30 dni/);
-  assert.match(text(row("Zapis zgód")), /bez automatycznego/);
+  assert.match(text(row("Zapis zgód")), /bez automatycznego/i);
+  assert.match(text(row("Zapis zgód")), /wersja komunikatu i data decyzji/);
+  assert.match(text(policy), /Stary lub niepełny zapis nie włącza opcjonalnych technologii/);
+  assert.match(text(policy), /18 października 2026/);
   assert.match(text(row("Google Analytics 4")), /odrębna/);
   assert.equal(rows.some(node => /Meta Pixel|Google Tag Manager/.test(text(node))), false, "inactive integrations are not listed as active tools");
   const links = nodes(table).filter(node => node.type === "a");

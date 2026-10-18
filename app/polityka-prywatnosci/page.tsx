@@ -16,10 +16,10 @@ const privacyTools = [
     name: "Zapis zgód",
     provider: "Noblu Beauty Room",
     purpose: "Zapamiętanie wybranych kategorii cookies i ich zmiany.",
-    data: "Wyłącznie ustawienia: niezbędne, analityka, marketing i treści zewnętrzne; bez danych formularza.",
+    data: "Ustawienia: niezbędne, analityka, marketing i treści zewnętrzne oraz wersja komunikatu i data decyzji; bez danych formularza.",
     activation: "Po zapisaniu wyboru w banerze. Zapis niezbędny do obsługi preferencji, niezależny od zgód opcjonalnych.",
     basis: "Art. 6 ust. 1 lit. f RODO.",
-    storage: "localStorage: noblu-cookie-consent; bez automatycznego wygaśnięcia, do zmiany wyboru lub usunięcia danych witryny.",
+    storage: "localStorage: noblu-cookie-consent; kategorie, wersja i data decyzji. Bez automatycznego wygaśnięcia, do zmiany wyboru lub usunięcia danych witryny; zmiana wymaganej wersji oznacza ponowne pytanie.",
     href: null,
     source: "",
   },
@@ -140,7 +140,7 @@ export default function PolitykaPrywatnosciPage() {
           Room dostępnej pod adresem https://noblu.pl.
         </p>
         <p className="mt-3 text-sm text-[#7A746D]">
-          Ostatnia aktualizacja: 17 października 2026 r.
+          Ostatnia aktualizacja: 18 października 2026 r.
         </p>
 
         <div className="mt-14 space-y-12 text-[#5F5B56]">
@@ -334,9 +334,14 @@ export default function PolitykaPrywatnosciPage() {
             <ul className="mt-5 list-disc space-y-3 pl-6 leading-relaxed">
               <li>
                 Niezbędne: zapis „noblu-cookie-consent” w pamięci lokalnej
-                przeglądarki (localStorage) przechowuje wybrane kategorie zgód.
+                przeglądarki (localStorage) przechowuje wybrane kategorie zgód,
+                wersję komunikatu oraz datę ostatniej decyzji. Zapis pozostaje
+                w Twojej przeglądarce i nie jest wysyłany do salonu jako rejestr zgód.
                 Nie ma automatycznego terminu wygaśnięcia; pozostaje do zmiany
-                wyboru lub usunięcia danych witryny w przeglądarce.
+                wyboru lub usunięcia danych witryny w przeglądarce. Po istotnej
+                zmianie celów, narzędzi lub zakresu przetwarzania zmieniamy
+                wymaganą wersję i ponownie pytamy o zgodę. Stary lub niepełny
+                zapis nie włącza opcjonalnych technologii przed nową decyzją.
               </li>
               <li>
                 Analityczne: Google Analytics 4 może zapisywać identyfikatory
