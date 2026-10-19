@@ -71,6 +71,12 @@ try {
     assert.equal(message, cookieMessage, `${path}: same consent disclosure as homepage`);
     assert.equal(elements.filter(n => n.tagName === "h1").length, 1, `${path}: one H1`);
     assert.ok(text(elements.find(n => n.tagName === "title") || {}).trim(), `${path}: title`);
+    const meta = (key, value) => attr(elements.find(n => n.tagName === "meta" && attr(n, key) === value) || {}, "content");
+    assert.ok(meta("property", "og:description"), `${path}: Open Graph description`);
+    assert.equal(meta("name", "twitter:description"), meta("property", "og:description"), `${path}: Twitter description matches Open Graph`);
+    assert.equal(meta("name", "twitter:title"), meta("property", "og:title"), `${path}: Twitter title matches Open Graph`);
+    if (path === "/") assert.equal(meta("property", "og:title"), text(elements.find(n => n.tagName === "title")), "Homepage title matches Open Graph");
+    assert.doesNotMatch(text(elements[0]), /premium/i, `${path}: no premium claims in rendered copy or structured data`);
     assert.ok(elements.some(n => n.tagName === "meta" && attr(n, "name") === "description" && attr(n, "content")), `${path}: description`);
     assert.ok(elements.some(n => n.tagName === "link" && attr(n, "rel") === "canonical" && attr(n, "href") === (path === "/" ? "https://noblu.pl" : `https://noblu.pl${path}`)), `${path}: canonical`);
     assert.ok(!elements.some(n => n.tagName === "meta" && attr(n, "name") === "robots" && attr(n, "content")?.includes("noindex")), `${path}: indexable`);
@@ -82,6 +88,8 @@ try {
     }
     console.log(`PASS ${path}: status, metadata, H1, schema, links`);
   }
+
+  assert.equal(new Set([...documents.values()].map(elements => attr(elements.find(n => n.tagName === "meta" && attr(n, "name") === "twitter:description") || {}, "content"))).size, pages.length, "Twitter descriptions are specific to all eight pages");
 
   for (const path of ["/", "/rezerwacja"]) {
     assert.ok(documents.get(path).some(n => n.tagName === "a" && attr(n, "href") === "https://noblubeautyroom.booksy.com/"), `${path}: Booksy fallback`);
