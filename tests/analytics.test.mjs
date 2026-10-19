@@ -418,6 +418,58 @@ test("analytics config has clean URLs and does not initialize advertising", () =
   assert.equal(h.window["ga-disable-G-BD9VRN0W6Q"], false);
 });
 
+test("landing campaign survives navigation before analytics consent without browser storage", () => {
+  const h = harness({ consent: null });
+  h.window.location = new URL("https://noblu.pl/pedicure-krakow?utm_source=google&utm_medium=cpc&utm_campaign=pedicure_krakow&utm_content=tekst_1&email=private@example.com#kontakt");
+  h.load("app/components/GoogleTag.tsx").default();
+  h.effects[0]();
+  assert.equal(h.events.some(e => e[0] === "config" || e[0] === "event"), false);
+  h.window.location = new URL("https://noblu.pl/rezerwacja?usluga=pedicure");
+  h.window.localStorage.getItem = () => storedConsent({ analytics: true, marketing: false });
+  h.listeners.get("storage")({ key: "noblu-cookie-consent", storageArea: h.window.localStorage });
+  const config = h.events.find(e => e[0] === "config" && e[1] === "G-BD9VRN0W6Q")[2];
+  assert.equal(config.campaign_source, "google");
+  assert.equal(config.campaign_medium, "cpc");
+  assert.equal(config.campaign_name, "pedicure_krakow");
+  assert.equal(config.campaign_content, "tekst_1");
+  assert.equal(config.page_location, "https://noblu.pl/rezerwacja");
+  assert.doesNotMatch(JSON.stringify(h.events), /private@example.com|usluga=|#kontakt/);
+});
+
+test("campaign fields are GA4-only and never sent with marketing-only consent", () => {
+  for (const analytics of [false, true]) {
+    const h = harness({ consent: { analytics, marketing: true } });
+    h.window.location = new URL("https://noblu.pl/?utm_source=instagram&utm_medium=social&utm_campaign=manicure");
+    h.load("app/components/GoogleTag.tsx").default();
+    h.effects[0]();
+    for (const event of h.events.filter(e => e[0] !== "config" || e[1] !== "G-BD9VRN0W6Q")) {
+      assert.doesNotMatch(JSON.stringify(event), /campaign_source|campaign_medium|campaign_name/);
+    }
+    assert.equal(h.events.some(e => e[0] === "config" && e[1] === "G-BD9VRN0W6Q"), analytics);
+  }
+});
+
+test("campaign parsing rejects duplicates, contacts, free text and incomplete source/medium pairs", () => {
+  const h = harness();
+  const { readLandingCampaign } = h.load("app/lib/campaignAttribution.ts");
+  for (const query of [
+    "utm_source=google", "utm_source=google&utm_medium=cpc&utm_source=meta",
+    "utm_source=private%40example.com&utm_medium=email",
+    "utm_source=662989534&utm_medium=cpc",
+    "utm_source=google&utm_medium=cpc&utm_campaign=662989534",
+    "utm_source=google&utm_medium=cpc&utm_campaign=Jan%20Kowalski",
+    "utm_source=google&utm_medium=cpc&utm_term=private%40example.com",
+    `utm_source=${"x".repeat(101)}&utm_medium=cpc`,
+  ]) {
+    const fields = readLandingCampaign(`https://noblu.pl/?${query}`);
+    assert.doesNotMatch(JSON.stringify(fields), /private|662989534|Kowalski|xxxxx/);
+    if (!query.includes("utm_campaign=") && !query.includes("utm_term=")) assert.equal(Object.keys(fields).length, 0);
+  }
+  const valid = readLandingCampaign("https://noblu.pl/?utm_source=google&utm_medium=organic&utm_campaign=profil_firmy&utm_id=2026_10&utm_content=pedicure&utm_term=pedicure_krakow");
+  assert.equal(valid.campaign_id, "2026_10");
+  assert.equal(valid.campaign_term, "pedicure_krakow");
+});
+
 test("granting and revoking categories configures each destination once with a single loader", () => {
   const h = harness({ consent: { analytics: false, marketing: true } });
   h.load("app/components/GoogleTag.tsx").default();
