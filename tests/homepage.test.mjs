@@ -79,6 +79,7 @@ test("brand intro restores the original logo without blocking the page or waitin
   assert.ok(intro);
   assert.equal(intro.props["aria-hidden"], "true");
   assert.ok(intro.props.className.includes("pointer-events-none"));
+  assert.ok(intro.props.className.split(" ").includes("bg-[#FFFDFB]"), "the page is fully covered while the logo is visible");
   assert.ok(!elements(intro).some(n => ["a", "button", "main"].includes(n.type)));
   const logo = elements(intro).find(n => n.type === "image");
   assert.equal(logo.props.src, "/logo-footer.webp");
@@ -87,6 +88,9 @@ test("brand intro restores the original logo without blocking the page or waitin
   assert.equal(logo.props.height, 226);
   const css = readFileSync(new URL("../app/globals.css", import.meta.url), "utf8");
   assert.match(css, /animation: noblu-brand-intro 900ms ease-out both/);
+  assert.match(css, /@keyframes noblu-brand-intro\s*\{\s*0%, 70%\s*\{\s*opacity: 1;/);
+  assert.match(css, /animation: noblu-logo-fade 900ms ease-out both/);
+  assert.match(css, /@keyframes noblu-logo-fade\s*\{[\s\S]*?60%, 100%\s*\{\s*opacity: 0;/);
   assert.match(css, /100%\s*\{\s*opacity: 0;\s*visibility: hidden;/);
   assert.match(css, /@media \(prefers-reduced-motion: reduce\)\s*\{\s*\.noblu-brand-intro\s*\{\s*display: none;\s*animation: none;/);
 });

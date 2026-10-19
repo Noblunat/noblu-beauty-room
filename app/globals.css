@@ -30,8 +30,12 @@ body {
   animation: noblu-brand-intro 900ms ease-out both;
 }
 
+.noblu-brand-intro img {
+  animation: noblu-logo-fade 900ms ease-out both;
+}
+
 @keyframes noblu-brand-intro {
-  0%, 35% {
+  0%, 70% {
     opacity: 1;
     visibility: visible;
   }
@@ -41,9 +45,21 @@ body {
   }
 }
 
+@keyframes noblu-logo-fade {
+  0%, 35% {
+    opacity: 1;
+  }
+  60%, 100% {
+    opacity: 0;
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
   .noblu-brand-intro {
     display: none;
+    animation: none;
+  }
+  .noblu-brand-intro img {
     animation: none;
   }
 }
