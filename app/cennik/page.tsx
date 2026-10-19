@@ -64,7 +64,7 @@ const nailPrices: PriceItem[] = [
   { name: "Usunięcie stylizacji żelowej z manicure", price: "140 zł", duration: "1h 10min" },
   { name: "Zdobienia", price: "od 10 zł" },
   { name: "Pyłek", price: "5 zł" },
-  { name: "French / ombre / babyboomer", price: "20 zł" },
+  { name: "French / ombre / babyboomer", price: "0 zł" },
   { name: "Usunięcie stylizacji z innego salonu do uzupełnienia żelowego", price: "0 zł" },
   { name: "Naprawa jednego paznokcia", price: "30 zł" },
 ];

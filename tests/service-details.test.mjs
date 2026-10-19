@@ -36,6 +36,17 @@ test("every price-list row exposes a duration or an explicit unconfirmed add-on 
   for (const row of rows) assert.match(text(row), /Czas:/, text(row));
 });
 
+test("french, ombre and babyboomer have no surcharge in rendered prices or the offer catalog", () => {
+  const rendered = nodes(load("app/cennik/page.tsx").default());
+  const row = rendered.find(n => n.props?.className?.includes("grid-cols-[1fr_auto]") && text(n).startsWith("French / ombre / babyboomer "));
+  assert.equal(text(row.props.children[1]), "0 zł");
+  const catalog = rendered.filter(n => n.type === "script" && n.props.type === "application/ld+json")
+    .map(n => JSON.parse(n.props.dangerouslySetInnerHTML.__html)).find(schema => schema["@type"] === "OfferCatalog");
+  const offer = catalog.itemListElement.flatMap(group => group.itemListElement).find(item => item.name === "French / ombre / babyboomer");
+  assert.equal(offer.price, "0");
+  assert.equal(offer.priceCurrency, "PLN");
+});
+
 test("price-list duration follows the reservation catalog for every bookable service", () => {
   const rows = nodes(load("app/cennik/page.tsx").default()).filter(n => n.props?.className?.includes("grid-cols-[1fr_auto]"));
   for (const service of load("app/lib/bookingServices.ts").serviceGroups.flatMap(g => g.services)) {

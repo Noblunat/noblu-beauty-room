@@ -77,6 +77,7 @@ try {
     assert.equal(meta("name", "twitter:title"), meta("property", "og:title"), `${path}: Twitter title matches Open Graph`);
     if (path === "/") assert.equal(meta("property", "og:title"), text(elements.find(n => n.tagName === "title")), "Homepage title matches Open Graph");
     assert.doesNotMatch(text(elements[0]), /premium/i, `${path}: no premium claims in rendered copy or structured data`);
+    assert.doesNotMatch(text(elements[0]), /(?<!\d)20(?:[.,]00)?\s*(?:zł|PLN)/i, `${path}: no retired twenty-zloty surcharge`);
     assert.ok(elements.some(n => n.tagName === "meta" && attr(n, "name") === "description" && attr(n, "content")), `${path}: description`);
     assert.ok(elements.some(n => n.tagName === "link" && attr(n, "rel") === "canonical" && attr(n, "href") === (path === "/" ? "https://noblu.pl" : `https://noblu.pl${path}`)), `${path}: canonical`);
     assert.ok(!elements.some(n => n.tagName === "meta" && attr(n, "name") === "robots" && attr(n, "content")?.includes("noindex")), `${path}: indexable`);
@@ -100,6 +101,9 @@ try {
   assert.ok(reservation.some(n => n.tagName === "input" && attr(n, "type") === "date" && /^\d{4}-\d{2}-\d{2}$/.test(attr(n, "min") || "")), "Minimum booking date");
   assert.ok(reservation.some(n => n.tagName === "input" && attr(n, "type") === "tel" && attr(n, "autocomplete") === "tel"), "Telephone input");
   const prices = documents.get("/cennik");
+  const frenchPrice = prices.find(n => n.tagName === "div" && attr(n, "class")?.includes("grid-cols-[1fr_auto]") && text(n).startsWith("French / ombre / babyboomer"));
+  assert.ok(frenchPrice, "French / ombre / babyboomer price row");
+  assert.equal(text(frenchPrice.childNodes.filter(n => n.tagName === "span").at(-1)), "0 zł", "French / ombre / babyboomer included without a surcharge");
   for (const service of ["manicure", "pedicure", "rzesy"]) {
     assert.ok(prices.some(n => n.tagName === "a" && attr(n, "href") === `/rezerwacja?usluga=${service}`), `Price-list booking link: ${service}`);
   }
