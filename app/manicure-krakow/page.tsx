@@ -7,7 +7,7 @@ import ServiceJsonLd from "../components/ServiceJsonLd";
 export const metadata: Metadata = {
   title: "Manicure Kraków | Paznokcie hybrydowe Borek Fałęcki | Noblu",
   description:
-    "Manicure i paznokcie hybrydowe w Krakowie na Borku Fałęckim. Przyjmujemy nowe klientki. Sprawdź cennik i zapytaj o termin online.",
+    "Manicure hybrydowy i żelowy w Krakowie na Borku Fałęckim. Zobacz realizacje, ceny i czasy wizyt. Darmowy parking przy Orzechowej 4/lok.1.",
   alternates: {
     canonical: "https://noblu.pl/manicure-krakow",
   },
@@ -71,11 +71,11 @@ const manicureGallery = [
 const faq = [
   {
     q: "Gdzie znajduje się salon Noblu Beauty Room?",
-    a: "Salon znajduje się przy ul. Orzechowej 4/lok.1 w Krakowie, na Borku Fałęckim. To wygodna lokalizacja także dla klientek z Łagiewnik, Ruczaju, Kurdwanowa, Swoszowic i Podgórza.",
+    a: "Przy ul. Orzechowej 4/lok.1 w Krakowie, na Borku Fałęckim. Przy salonie jest darmowy parking.",
   },
   {
     q: "Czy można zarezerwować manicure online?",
-    a: "Tak. Możesz wysłać prośbę o termin przez formularz Noblu, a salon potwierdzi dostępność SMS-em lub telefonicznie. Przyjmujemy także nowe klientki na manicure i paznokcie hybrydowe.",
+    a: "Tak. Wyślij prośbę o termin przez formularz Noblu. Dostępność potwierdzimy SMS-em lub telefonicznie; samo wysłanie formularza nie rezerwuje godziny.",
   },
   {
     q: "Jakie stylizacje paznokci wykonuje salon?",
@@ -86,8 +86,8 @@ const faq = [
     a: "Manicure w Noblu Beauty Room kosztuje 100 zł, a stylizacja hybrydowa od 160 zł. Aktualne ceny wszystkich wariantów znajdują się w cenniku salonu.",
   },
   {
-    q: "Czy Noblu przyjmuje nowe klientki na paznokcie?",
-    a: "Tak. Przyjmujemy nowe klientki na manicure i stylizację paznokci. Prośbę o termin możesz wysłać przez formularz online.",
+    q: "Jak przygotować się do wizyty?",
+    a: "Przy wyborze usługi zaznacz, czy masz poprzednią hybrydę lub żel, i uprzedź o planowanych zdobieniach. Nie usuwaj stylizacji samodzielnie. Czas wybranej usługi sprawdzisz w cenniku.",
   },
 ];
 
@@ -140,12 +140,10 @@ export default function ManicureKrakowPage() {
           </h1>
 
           <p className="mt-10 text-lg text-[#6D6B68] leading-relaxed max-w-3xl">
-            Noblu Beauty Room to kameralny salon manicure w Krakowie, na Borku
-            Fałęckim, oferujący manicure, stylizację paznokci i manicure
-            hybrydowy. Pracujemy z dbałością o estetykę, higienę i naturalny
-            efekt. Salon znajduje się przy ul. Orzechowej 4, z darmowym
-            parkingiem. Przyjmujemy nowe klientki na manicure i paznokcie
-            hybrydowe.
+            Manicure klasyczny, hybryda i stylizacja żelowa przy ul. Orzechowej
+            4/lok.1. Wspólnie dobieramy długość, kształt i kolor do Twoich dłoni
+            oraz codziennych zajęć. Przy salonie jest darmowy parking.
+            Przyjmujemy nowe klientki.
           </p>
 
           <div className="mt-12 flex flex-wrap gap-4">
@@ -197,60 +195,55 @@ export default function ManicureKrakowPage() {
         <div className="max-w-5xl mx-auto grid gap-10 text-lg leading-relaxed text-[#5F5B56]">
           <div>
             <h2 className="text-3xl lg:text-4xl font-light text-[#1D1D1B] mb-6">
-              Paznokcie w Krakowie dla kobiet ceniących dokładność
+              Jak wygląda wizyta?
             </h2>
             <p>
-              Jeśli szukasz miejsca na manicure w Krakowie, paznokcie hybrydowe
-              lub estetyczną stylizację paznokci, Noblu Beauty Room łączy
-              precyzyjne wykonanie z elegancką atmosferą. Stawiamy na czystą,
-              dopracowaną stylizację: od naturalnych odcieni nude po bardziej
-              wyraziste kolory i minimalistyczne zdobienia.
+              Zaczynamy od obejrzenia naturalnej płytki i ustalenia efektu.
+              Następnie, zależnie od wybranej usługi, usuwamy poprzednią
+              stylizację, opracowujemy skórki i kształt paznokci. Na koniec
+              nakładamy kolor lub wykonujemy ustalone zdobienie. Jeśli masz
+              inspirację, pokaż ją przed rozpoczęciem pracy.
             </p>
             <p className="mt-4">
               Manicure kosztuje 100 zł, a stylizacja hybrydowa od 160 zł.
               Szczegółowe ceny znajdziesz w <Link href="/cennik" className="font-medium text-[#876536] underline underline-offset-4">cenniku manicure i paznokci</Link>.
             </p>
-            <p className="mt-4">
-              To dobra propozycja, jeśli szukasz manicure w Krakowie z dokładnym
-              opracowaniem skórek, estetycznym kształtem paznokci i trwałym
-              wykończeniem. Wykonujemy również manicure hybrydowy dla klientek,
-              które chcą zadbanych dłoni na co dzień.
+          </div>
+
+          <div>
+            <h2 className="text-3xl lg:text-4xl font-light text-[#1D1D1B] mb-6">
+              Hybryda czy żel?
+            </h2>
+            <p>
+              Hybryda sprawdzi się, gdy chcesz kolor na naturalnych paznokciach
+              bez ich przedłużania. Żel pozwala zbudować kształt, wzmocnić
+              naturalną płytkę lub przedłużyć paznokcie. Metodę dobieramy do
+              stanu płytki i planowanej długości, a nie tylko do zdjęcia inspiracji.
             </p>
           </div>
 
           <div>
             <h2 className="text-3xl lg:text-4xl font-light text-[#1D1D1B] mb-6">
-              Manicure na Borku Fałęckim - dobry dojazd z południa Krakowa
+              Jak długo utrzymuje się hybryda?
             </h2>
             <p>
-              Salon znajduje się przy ul. Orzechowej 4/lok.1 w Krakowie. To
-              wygodna lokalizacja na Borku Fałęckim dla klientek z Łagiewnik,
-              Ruczaju, Kurdwanowa, Swoszowic, Woli Duchackiej oraz osób
-              dojeżdżających z Podgórza.
+              Orientacyjnie około 2 tygodni. Trwałość zależy od naturalnej
+              płytki, tempa jej wzrostu, obciążeń podczas codziennych zajęć
+              i pielęgnacji. To nie gwarancja identycznego czasu u każdej osoby.
+              Gdy pojawi się odprysk lub odklejenie, umów poprawkę zamiast
+              samodzielnie odrywać produkt.
             </p>
           </div>
 
           <div>
             <h2 className="text-3xl lg:text-4xl font-light text-[#1D1D1B] mb-6">
-              Nowe klientki na manicure i paznokcie hybrydowe
+              Jak dbać o stylizację po wizycie?
             </h2>
             <p>
-              Dzięki większej dostępności zespołu możesz wysłać zapytanie o
-              termin na manicure klasyczny, manicure hybrydowy albo stylizację
-              paznokci. Formularz online działa całą dobę, a salon potwierdza
-              wizytę SMS-em lub telefonicznie po sprawdzeniu grafiku.
-            </p>
-          </div>
-
-          <div>
-            <h2 className="text-3xl lg:text-4xl font-light text-[#1D1D1B] mb-6">
-              Jak wygląda wizyta?
-            </h2>
-            <p>
-              Podczas wizyty dobieramy kształt, kolor i wykończenie stylizacji
-              do naturalnej płytki oraz oczekiwanego efektu. Dbamy o komfort,
-              sterylność narzędzi i spokojne tempo pracy, aby manicure był nie
-              tylko estetyczny, ale też trwały i dopracowany w detalu.
+              Regularnie nawilżaj dłonie i skórki. Do sprzątania i dłuższego
+              kontaktu z detergentami zakładaj rękawiczki. Nie używaj paznokci
+              do podważania opakowań i nie zrywaj hybrydy ani żelu. Usunięcie
+              lub zmianę stylizacji zaplanuj w salonie.
             </p>
           </div>
 
@@ -271,8 +264,8 @@ export default function ManicureKrakowPage() {
               Umów manicure w Noblu Beauty Room
             </h2>
             <p className="max-w-3xl">
-              Wybierz dogodny termin online i zarezerwuj manicure w kameralnym
-              salonie beauty przy ul. Orzechowej 4/lok.1 w Krakowie.
+              Wybierz usługę i zgłoś preferowany dzień wizyty. Sprawdzimy grafik
+              i potwierdzimy dostępność SMS-em lub telefonicznie.
             </p>
             <div className="mt-8 flex flex-wrap gap-4">
               <Link

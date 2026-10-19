@@ -479,7 +479,7 @@ useEffect(() => {
             </div>
 
             <h2 className="text-4xl lg:text-6xl font-light leading-tight">
-              Najbardziej pożądane zabiegi beauty w Krakowie
+              Nasze usługi
             </h2>
           </div>
 <div className="grid md:grid-cols-2 xl:grid-cols-4 gap-6">
@@ -851,6 +851,16 @@ useEffect(() => {
         </motion.div>
       ))}
 
+    </div>
+    <div className="mt-10 flex justify-center">
+      <a
+        href="https://g.page/r/CWOsZkWYFdZbEBM/review"
+        target="_blank"
+        rel="noopener noreferrer"
+        className="inline-flex min-h-11 items-center justify-center rounded-full border border-[#D4B483] bg-white/80 px-6 py-3 font-medium text-[#1D1D1B] transition-colors hover:bg-[#D4B483] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#7C6238]"
+      >
+        Dodaj opinię w Google
+      </a>
     </div>
   </div>
 </section>

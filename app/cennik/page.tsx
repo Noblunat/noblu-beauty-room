@@ -1,6 +1,7 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import BreadcrumbJsonLd from "../components/BreadcrumbJsonLd";
+import { findBookingService } from "../lib/bookingServices";
 
 export const metadata: Metadata = {
   title: "Cennik Noblu Kraków | Manicure, pedicure i rzęsy",
@@ -35,7 +36,9 @@ export const metadata: Metadata = {
   },
 };
 
-const lashPrices = [
+type PriceItem = { name: string; price: string; duration?: string; bookingService?: string };
+
+const lashPrices: PriceItem[] = [
   { name: "Aplikacja rzęs 1:1", price: "190 zł" },
   { name: "Uzupełnienie rzęs 1:1", price: "160 zł" },
   { name: "Aplikacja rzęs 2D", price: "210 zł" },
@@ -45,19 +48,20 @@ const lashPrices = [
   { name: "Ściągnięcie rzęs", price: "40 zł" },
 ];
 
-const nailPrices = [
+const nailPrices: PriceItem[] = [
   { name: "Manicure", price: "100 zł" },
   { name: "Stylizacja hybrydowa", price: "160 zł" },
-  { name: "Stylizacja hybrydowa - więcej niż 1 kolor", price: "170 zł" },
-  { name: "Usunięcie hybrydy z manicure", price: "120 zł" },
+  { name: "Stylizacja hybrydowa - więcej niż 1 kolor", price: "170 zł", bookingService: "Stylizacja hybrydowa więcej niż 1 kolor" },
+  { name: "Usunięcie hybrydy z manicure", price: "120 zł", duration: "1h" },
   {
     name: "Żel na naturalnej płytce - paznokcie krótkie, max do opuszka",
     price: "180 zł",
+    duration: "1h 55min",
   },
   { name: "Żel na naturalnej płytce", price: "190 zł" },
   { name: "Uzupełnienie żelowe", price: "190 zł" },
   { name: "Przedłużenie żelowe", price: "220 zł" },
-  { name: "Usunięcie stylizacji żelowej z manicure", price: "140 zł" },
+  { name: "Usunięcie stylizacji żelowej z manicure", price: "140 zł", duration: "1h 10min" },
   { name: "Zdobienia", price: "od 10 zł" },
   { name: "Pyłek", price: "5 zł" },
   { name: "French / ombre / babyboomer", price: "20 zł" },
@@ -65,13 +69,13 @@ const nailPrices = [
   { name: "Naprawa jednego paznokcia", price: "30 zł" },
 ];
 
-const pedicurePrices = [
+const pedicurePrices: PriceItem[] = [
   { name: "Pedicure same paznokcie", price: "100 zł" },
   { name: "Pedicure same paznokcie z hybrydą", price: "160 zł" },
   { name: "Pedicure kosmetyczny", price: "180 zł" },
   { name: "Pedicure kosmetyczny z hybrydą", price: "200 zł" },
-  { name: "Usunięcie hybrydy z pedicure same paznokcie", price: "120 zł" },
-  { name: "Usunięcie hybrydy z pełnym pedicure", price: "190 zł" },
+  { name: "Usunięcie hybrydy z pedicure same paznokcie", price: "120 zł", duration: "50min" },
+  { name: "Usunięcie hybrydy z pełnym pedicure", price: "190 zł", duration: "1h 15min" },
 ];
 
 const priceToNumber = (price: string) => price.replace(/[^0-9]/g, "");
@@ -139,7 +143,7 @@ function PriceList({
 }: {
   title: string;
   description: string;
-  items: { name: string; price: string }[];
+  items: PriceItem[];
   note?: string;
   links: { href: string; label: string }[];
 }) {
@@ -167,7 +171,12 @@ function PriceList({
             key={item.name}
             className="grid grid-cols-[1fr_auto] gap-6 border-b border-[#E8DED2]/70 pb-3 text-[#4F463F]"
           >
-            <span>{item.name}</span>
+            <span className="min-w-0">
+              <span className="block">{item.name}</span>
+              <span className="mt-1 block text-sm leading-relaxed text-[#5F5B56]">
+                Czas: {findBookingService(item.bookingService ?? item.name)?.duration ?? item.duration ?? "do potwierdzenia przy wyborze stylizacji"}
+              </span>
+            </span>
             <span className="text-right font-medium text-[#3A2F26]">
               {item.price}
             </span>
@@ -232,10 +241,11 @@ export default function CennikPage() {
             title="Stylizacja rzęs"
             description="Cennik stylizacji rzęs obejmuje pierwsze aplikacje, uzupełnienia oraz zdjęcie stylizacji. Dobieramy objętość do naturalnych rzęs, kształtu oka i oczekiwanego efektu."
             items={lashPrices}
-            note="Do wybranej objętości istnieje możliwość dopasowania metody wispy lub wet look. Uzupełnienie liczone jest do maksymalnie 4 tygodni od założenia stylizacji."
+            note="Czasy stylizacji rzęs są orientacyjne i potwierdzamy je przy umawianiu wizyty. Do wybranej objętości można dopasować metodę wispy lub wet look. Uzupełnienie liczone jest do maksymalnie 4 tygodni od założenia stylizacji."
             links={[
               { href: "/stylizacja-rzes-krakow", label: "Stylizacja rzęs Kraków" },
               { href: "/przedluzanie-rzes-krakow", label: "Przedłużanie rzęs Kraków" },
+              { href: "/rezerwacja?usluga=rzesy", label: "Zapytaj o termin" },
             ]}
           />
 

@@ -9,7 +9,7 @@ function literalRows(filename, variable) {
   function visit(node) {
     if (ts.isVariableDeclaration(node) && node.name.getText(source) === variable && ts.isArrayLiteralExpression(node.initializer)) {
       rows = node.initializer.elements.map(item => Object.fromEntries(item.properties
-        .filter(property => ts.isPropertyAssignment(property) && ts.isStringLiteral(property.initializer))
+        .filter(property => ts.isPropertyAssignment(property) && ["name", "price", "href"].includes(property.name.getText(source)) && ts.isStringLiteral(property.initializer))
         .map(property => [property.name.getText(source), property.initializer.text])));
     }
     ts.forEachChild(node, visit);
