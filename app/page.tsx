@@ -374,7 +374,7 @@ useEffect(() => {
       <a
         href="tel:+48662989534"
         aria-label="Zadzwoń do salonu: 662 989 534"
-        className="inline-flex min-h-11 items-center gap-2 whitespace-nowrap text-xs font-medium text-[#1D1D1B] transition-colors hover:text-[#7C6238] focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#7C6238] sm:text-sm"
+        className="inline-flex min-h-11 items-center justify-center gap-2 whitespace-nowrap rounded-full border border-[#D4B483] bg-transparent px-4 text-xs font-medium text-[#1D1D1B] transition-colors hover:text-[#7C6238] focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#7C6238] sm:px-6 sm:text-sm"
       >
         <Phone aria-hidden="true" className="h-4 w-4 shrink-0" />
         <span>662 989 534</span>
