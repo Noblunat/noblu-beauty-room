@@ -73,6 +73,24 @@ test("homepage is immediately usable without a timed fullscreen loader", () => {
   assert.equal(tree.some((node) => node.props?.className?.includes("fixed inset-0 z-[99999]")), false);
 });
 
+test("brand intro restores the original logo without blocking the page or waiting for JavaScript", () => {
+  const tree = elements(harness().render());
+  const intro = tree.find(n => n.props?.className?.includes("noblu-brand-intro"));
+  assert.ok(intro);
+  assert.equal(intro.props["aria-hidden"], "true");
+  assert.ok(intro.props.className.includes("pointer-events-none"));
+  assert.ok(!elements(intro).some(n => ["a", "button", "main"].includes(n.type)));
+  const logo = elements(intro).find(n => n.type === "image");
+  assert.equal(logo.props.src, "/logo-footer.webp");
+  assert.equal(logo.props.alt, "");
+  assert.equal(logo.props.width, 226);
+  assert.equal(logo.props.height, 226);
+  const css = readFileSync(new URL("../app/globals.css", import.meta.url), "utf8");
+  assert.match(css, /animation: noblu-brand-intro 900ms ease-out both/);
+  assert.match(css, /100%\s*\{\s*opacity: 0;\s*visibility: hidden;/);
+  assert.match(css, /@media \(prefers-reduced-motion: reduce\)\s*\{\s*\.noblu-brand-intro\s*\{\s*display: none;\s*animation: none;/);
+});
+
 test("hero has only one eager responsive image for all breakpoints", () => {
   const images = elements(harness().render()).filter((node) =>
     node.type === "image" && node.props.src === "/gallery/salon/salon-beauty-krakow-noblu.webp");

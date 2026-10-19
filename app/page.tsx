@@ -324,6 +324,21 @@ useEffect(() => {
     dangerouslySetInnerHTML={{ __html: JSON.stringify(faqJsonLd) }}
   />
 
+  <div
+    aria-hidden="true"
+    className="noblu-brand-intro pointer-events-none fixed inset-0 z-[60] flex items-center justify-center bg-[#FFFDFB]/85"
+  >
+    <Image
+      src="/logo-footer.webp"
+      alt=""
+      width={226}
+      height={226}
+      loading="eager"
+      unoptimized
+      className="h-[226px] w-[226px] max-w-[70vw] object-contain"
+    />
+  </div>
+
   <motion.div
     className="fixed left-0 right-0 top-0 z-[99999] h-[3px] origin-left bg-[#D4B483]"
   />

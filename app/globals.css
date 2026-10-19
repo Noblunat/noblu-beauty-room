@@ -24,3 +24,32 @@ body {
   color: var(--foreground);
   font-family: Arial, Helvetica, sans-serif;
 }
+
+.noblu-brand-intro {
+  visibility: hidden;
+  animation: noblu-brand-intro 900ms ease-out both;
+}
+
+@keyframes noblu-brand-intro {
+  0%, 35% {
+    opacity: 1;
+    visibility: visible;
+  }
+  100% {
+    opacity: 0;
+    visibility: hidden;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .noblu-brand-intro {
+    display: none;
+    animation: none;
+  }
+}
+
+@media print {
+  .noblu-brand-intro {
+    display: none;
+  }
+}
