@@ -95,6 +95,8 @@ try {
     assert.ok(documents.get(path).some(n => n.tagName === "a" && attr(n, "href") === "https://noblubeautyroom.booksy.com/"), `${path}: Booksy fallback`);
     assert.ok(documents.get(path).some(n => n.tagName === "a" && attr(n, "href")?.startsWith("tel:")), `${path}: telephone`);
   }
+  const homeHeader = documents.get("/").find(n => n.tagName === "header");
+  assert.ok(nodes(homeHeader).some(n => n.tagName === "a" && attr(n, "href") === "tel:+48662989534" && text(n).trim() === "662 989 534"), "Visible callable telephone in homepage header");
   assert.equal(documents.get("/").filter(n => n.tagName === "link" && attr(n, "as") === "font").length, 0, "No unused font preloads");
   const reservation = documents.get("/rezerwacja");
   assert.ok(reservation.some(n => n.tagName === "input" && attr(n, "type") === "date" && /^\d{4}-\d{2}-\d{2}$/.test(attr(n, "min") || "")), "Minimum booking date");

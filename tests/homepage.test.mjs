@@ -89,6 +89,16 @@ test("homepage has one main landmark containing its hero but not the header", ()
   assert.equal(elements(mains[0]).some(n => n.type === "header"), false);
 });
 
+test("homepage header exposes the salon telephone alongside the booking link", () => {
+  const header = elements(harness().render()).find(n => n.type === "header");
+  const links = elements(header).filter(n => n.type === "a");
+  const phone = links.find(n => n.props.href === "tel:+48662989534");
+  assert.ok(phone, "a callable salon number is present in the header");
+  assert.ok(elements(phone).some(n => n.type === "span" && n.props.children === "662 989 534"));
+  assert.equal(phone.props["aria-label"], "Zadzwoń do salonu: 662 989 534");
+  assert.ok(links.some(n => n.props.href === "/rezerwacja" && n.props.children.trim() === "Zapytaj o termin"));
+});
+
 test("every rotating gallery item has a unique descriptive alt", () => {
   const source = readFileSync(new URL("../app/page.tsx", import.meta.url), "utf8");
   const ast = ts.createSourceFile("page.tsx", source, ts.ScriptTarget.Latest, true, ts.ScriptKind.TSX);
