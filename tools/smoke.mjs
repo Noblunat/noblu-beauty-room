@@ -41,6 +41,7 @@ try {
   }
 
   const documents = new Map();
+  let cookieMessage;
   for (const path of pages) {
     let elements;
     while (true) {
@@ -61,6 +62,13 @@ try {
     assert.ok(nodes(footer).some(n => n.tagName === "a" && attr(n, "href") === "mailto:salon@noblu.pl"), `${path}: salon contact mailbox`);
     assert.ok(!elements.some(n => n.tagName === "a" && attr(n, "href") === "mailto:noblu.beautyroom@gmail.com"), `${path}: no legacy public mailbox`);
     assert.equal(nodes(footer).filter(n => n.tagName === "button" && text(n).trim() === "Ustawienia cookies").length, 1, `${path}: persistent cookie preferences control in footer`);
+    const banner = elements.find(n => n.attrs?.some(a => a.name === "data-cookie-banner"));
+    assert.ok(banner, `${path}: shared first-visit cookie banner`);
+    const message = text(nodes(banner).find(n => n.tagName === "p") || {}).replace(/\s+/g, " ").trim();
+    assert.match(message, /analityki, marketingu .*Google Ads/);
+    assert.match(message, /mapa Google/);
+    cookieMessage ??= message;
+    assert.equal(message, cookieMessage, `${path}: same consent disclosure as homepage`);
     assert.equal(elements.filter(n => n.tagName === "h1").length, 1, `${path}: one H1`);
     assert.ok(text(elements.find(n => n.tagName === "title") || {}).trim(), `${path}: title`);
     assert.ok(elements.some(n => n.tagName === "meta" && attr(n, "name") === "description" && attr(n, "content")), `${path}: description`);
@@ -83,6 +91,12 @@ try {
   const reservation = documents.get("/rezerwacja");
   assert.ok(reservation.some(n => n.tagName === "input" && attr(n, "type") === "date" && /^\d{4}-\d{2}-\d{2}$/.test(attr(n, "min") || "")), "Minimum booking date");
   assert.ok(reservation.some(n => n.tagName === "input" && attr(n, "type") === "tel" && attr(n, "autocomplete") === "tel"), "Telephone input");
+  const prices = documents.get("/cennik");
+  for (const service of ["manicure", "pedicure", "rzesy"]) {
+    assert.ok(prices.some(n => n.tagName === "a" && attr(n, "href") === `/rezerwacja?usluga=${service}`), `Price-list booking link: ${service}`);
+  }
+  assert.equal(prices.filter(n => n.tagName === "span" && text(n).trim().startsWith("Czas:")).length, 27, "Duration or unconfirmed-time disclosure on all price rows");
+  assert.ok(documents.get("/").some(n => n.tagName === "a" && attr(n, "href") === "https://g.page/r/CWOsZkWYFdZbEBM/review"), "Official Google review invitation");
 
   const privacyTable = documents.get("/polityka-prywatnosci").find(n => n.tagName === "table");
   assert.ok(privacyTable, "Privacy tools table");
