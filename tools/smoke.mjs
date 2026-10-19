@@ -100,6 +100,7 @@ try {
   const brandIntro = documents.get("/").find(n => attr(n, "class")?.includes("noblu-brand-intro"));
   assert.equal(attr(brandIntro || {}, "aria-hidden"), "true", "Decorative homepage brand intro");
   assert.ok(attr(brandIntro, "class").includes("pointer-events-none"), "Brand intro cannot intercept clicks");
+  assert.ok(attr(brandIntro, "class").split(" ").includes("bg-[#FFFDFB]"), "Brand intro shows an opaque background before revealing the page");
   assert.ok(nodes(brandIntro).some(n => n.tagName === "img" && attr(n, "src") === "/logo-footer.webp" && attr(n, "alt") === ""), "Original brand intro logo");
   assert.equal(documents.get("/").filter(n => n.tagName === "link" && attr(n, "as") === "font").length, 0, "No unused font preloads");
   const reservation = documents.get("/rezerwacja");
