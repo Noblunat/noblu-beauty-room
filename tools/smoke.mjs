@@ -97,6 +97,10 @@ try {
   }
   const homeHeader = documents.get("/").find(n => n.tagName === "header");
   assert.ok(nodes(homeHeader).some(n => n.tagName === "a" && attr(n, "href") === "tel:+48662989534" && text(n).trim() === "662 989 534"), "Visible callable telephone in homepage header");
+  const brandIntro = documents.get("/").find(n => attr(n, "class")?.includes("noblu-brand-intro"));
+  assert.equal(attr(brandIntro || {}, "aria-hidden"), "true", "Decorative homepage brand intro");
+  assert.ok(attr(brandIntro, "class").includes("pointer-events-none"), "Brand intro cannot intercept clicks");
+  assert.ok(nodes(brandIntro).some(n => n.tagName === "img" && attr(n, "src") === "/logo-footer.webp" && attr(n, "alt") === ""), "Original brand intro logo");
   assert.equal(documents.get("/").filter(n => n.tagName === "link" && attr(n, "as") === "font").length, 0, "No unused font preloads");
   const reservation = documents.get("/rezerwacja");
   assert.ok(reservation.some(n => n.tagName === "input" && attr(n, "type") === "date" && /^\d{4}-\d{2}-\d{2}$/.test(attr(n, "min") || "")), "Minimum booking date");
