@@ -2,6 +2,7 @@
 
 import { useEffect, useRef } from "react";
 import { googleAnalyticsId } from "../lib/analytics";
+import { readLandingCampaign, type LandingCampaign } from "../lib/campaignAttribution";
 import {
   subscribeToCookieConsent,
   type CookieConsent,
@@ -39,7 +40,7 @@ function initializeGtag() {
     };
 }
 
-function applyGoogleConsent(consent: CookieConsent, configuredTags: Set<string>) {
+function applyGoogleConsent(consent: CookieConsent, configuredTags: Set<string>, campaign: LandingCampaign) {
   // Consent Mode alone can allow cookieless GA4 pings; opt out of collection too.
   window[`ga-disable-${googleAnalyticsId}`] = !consent.analytics;
   const googleTagLoaded = Boolean(
@@ -85,7 +86,10 @@ function applyGoogleConsent(consent: CookieConsent, configuredTags: Set<string>)
     [googleAdsId, consent.marketing],
   ] as const) {
     if (!allowed || configuredTags.has(id)) continue;
-    window.gtag?.("config", id, page);
+    window.gtag?.("config", id, {
+      ...page,
+      ...(id === googleAnalyticsId ? campaign : {}),
+    });
     configuredTags.add(id);
   }
 
@@ -101,7 +105,11 @@ function applyGoogleConsent(consent: CookieConsent, configuredTags: Set<string>)
 
 export default function GoogleTag() {
   const configuredTags = useRef(new Set<string>());
+  const landingCampaign = useRef<LandingCampaign | null>(null);
   useEffect(() => {
+    // Keep only this landing's safe campaign labels in memory across client navigation.
+    // No cookie/storage is created, and GA4 receives them only after analytics consent.
+    landingCampaign.current ??= readLandingCampaign(window.location.href);
     const handleConsentChange = () => {
       const consent = readCookieConsent() ?? {
         necessary: true,
@@ -110,7 +118,7 @@ export default function GoogleTag() {
         external: false,
       } as const;
       try {
-        applyGoogleConsent(consent, configuredTags.current);
+        applyGoogleConsent(consent, configuredTags.current, landingCampaign.current ?? {});
       } catch {
         // A blocked third-party tag must not interrupt consent controls.
       }
