@@ -148,7 +148,7 @@ for (const scenario of [
     const alert = findWhere(tree, node => node.props?.role === "alert");
     assert.ok(alert, "failure has an accessible alert");
     assert.ok(findWhere(alert, node => node.props?.href === "tel:+48662989534"));
-    assert.ok(findWhere(alert, node => node.props?.href?.startsWith("https://booksy.com/widget/")));
+    assert.ok(findWhere(alert, node => node.props?.href === "https://noblubeautyroom.booksy.com/h"));
     assert.doesNotMatch(elementText(alert), /Technical network error|Unexpected token/);
     assert.equal(findWhere(tree, node => node.props?.autoComplete === "name").props.value, "Testowa klientka");
     assert.equal(findWhere(tree, node => node.props?.type === "tel").props.value, "+48 662 989 534");

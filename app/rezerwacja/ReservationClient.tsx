@@ -8,7 +8,7 @@ import { trackAnalyticsEvent, trackGoogleAdsConversion } from "../lib/analytics"
 import { normalizePhoneNumber, phoneErrorMessage } from "../lib/phone"
 import { serviceGroups, type Service } from "../lib/bookingServices"
 
-const booksyWidgetUrl = "https://booksy.com/widget/index.html"
+const booksyProfileUrl = "https://noblubeautyroom.booksy.com/h"
 const reservationConversionId = "AW-10795260361/ZeoSCKvShaEdEMmzypso"
 const contactEmail = "salon@noblu.pl"
 const phone = "+48 662 989 534"
@@ -104,23 +104,6 @@ export default function ReservationClient({ initialService }: { initialService: 
     () => allServices.find((service) => service.name === selectedService),
     [selectedService]
   )
-  const selectedBooksyUrl = useMemo(() => {
-    if (!selected?.booksyVariantId) {
-      return null
-    }
-
-    const params = new URLSearchParams({
-      id: "105150",
-      country: "pl",
-      lang: "pl",
-      mode: "dialog",
-      theme: "default",
-      variantId: String(selected.booksyVariantId),
-    })
-
-    return `${booksyWidgetUrl}?${params.toString()}`
-  }, [selected])
-
   async function handleSubmit(event: FormEvent<HTMLFormElement>) {
     event.preventDefault()
     if (submissionPhase.current !== "idle") return
@@ -439,7 +422,7 @@ export default function ReservationClient({ initialService }: { initialService: 
 
               <div className="grid gap-3 xl:grid-cols-2">
                 <a
-                  href={selectedBooksyUrl ?? "https://noblubeautyroom.booksy.com/"}
+                  href={booksyProfileUrl}
                   data-service-name={selected?.name}
                   target="_blank"
                   rel="noopener noreferrer"
@@ -457,11 +440,9 @@ export default function ReservationClient({ initialService }: { initialService: 
               </div>
             </div>
 
-            {!selectedBooksyUrl && (
-              <p className="mt-4 text-center text-xs leading-relaxed text-[#7A746D]">
-                Możesz wysłać prośbę o termin przez formularz lub wybrać usługę i termin na naszym profilu Booksy.
-              </p>
-            )}
+            <p className="mt-4 text-center text-xs leading-relaxed text-[#7A746D]">
+              Możesz wysłać prośbę o termin przez formularz lub wybrać usługę i termin na naszym profilu Booksy.
+            </p>
 
             {submitMessage && (
               <div
@@ -480,7 +461,7 @@ export default function ReservationClient({ initialService }: { initialService: 
                         Zadzwoń: {phone}
                       </a>
                       <a
-                        href={selectedBooksyUrl ?? "https://noblubeautyroom.booksy.com/"}
+                        href={booksyProfileUrl}
                         data-service-name={selected?.name}
                         target="_blank"
                         rel="noopener noreferrer"

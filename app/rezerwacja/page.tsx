@@ -4,6 +4,8 @@ const servicesFromLinks = new Map([
   ["manicure", "Manicure"],
   ["hybryda", "Stylizacja hybrydowa"],
   ["pedicure", "Pedicure kosmetyczny"],
+  ["pedicure-paznokcie-hybryda", "Pedicure same paznokcie z hybrydą"],
+  ["pedicure-kosmetyczny-hybryda", "Pedicure kosmetyczny z hybrydą"],
   ["rzesy", "Aplikacja rzęs 1:1"],
 ])
 
