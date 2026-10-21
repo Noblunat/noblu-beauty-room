@@ -148,11 +148,17 @@ export default function ManicureKrakowPage() {
 
           <div className="mt-12 flex flex-wrap gap-4">
             <a
-              href="/rezerwacja?usluga=manicure"
+              href="/rezerwacja?usluga=hybryda"
               className="inline-flex items-center justify-center px-10 py-5 rounded-full bg-[#D4B483] text-black font-medium hover:scale-105 transition-transform shadow-[0_20px_60px_rgba(212,180,131,0.35)]"
             >
-              Zapytaj o termin
+              Hybryda od 160 zł — zapytaj
             </a>
+            <Link
+              href="/rezerwacja?usluga=manicure"
+              className="inline-flex items-center justify-center rounded-full border border-[#D4B483] px-10 py-5 font-medium text-[#876536] transition-colors hover:bg-[#D4B483] hover:text-black"
+            >
+              Manicure klasyczny — 100 zł
+            </Link>
             <Link
               href="/cennik"
               className="inline-flex items-center justify-center rounded-full border border-[#D4B483] px-10 py-5 font-medium text-[#876536] transition-colors hover:bg-[#D4B483] hover:text-black"
@@ -269,10 +275,16 @@ export default function ManicureKrakowPage() {
             </p>
             <div className="mt-8 flex flex-wrap gap-4">
               <Link
-                href="/rezerwacja?usluga=manicure"
+                href="/rezerwacja?usluga=hybryda"
                 className="inline-flex items-center justify-center px-8 py-4 rounded-full bg-[#D4B483] text-black font-medium hover:scale-105 transition-transform shadow-[0_20px_60px_rgba(212,180,131,0.35)]"
               >
-                Zapytaj o termin
+                Hybryda od 160 zł — zapytaj
+              </Link>
+              <Link
+                href="/rezerwacja?usluga=manicure"
+                className="inline-flex items-center justify-center px-8 py-4 rounded-full border border-[#E8DED2] text-[#1D1D1B] hover:border-[#D4B483] transition-colors"
+              >
+                Manicure klasyczny — 100 zł
               </Link>
               <Link
                 href="/cennik"

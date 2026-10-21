@@ -122,7 +122,19 @@ export default function PedicureKrakowPage() {
               href="/rezerwacja?usluga=pedicure"
               className="inline-flex items-center justify-center px-10 py-5 rounded-full bg-[#D4B483] text-black font-medium hover:scale-105 transition-transform shadow-[0_20px_60px_rgba(212,180,131,0.35)]"
             >
-              Zapytaj o termin
+              Kosmetyczny — 180 zł
+            </Link>
+            <Link
+              href="/rezerwacja?usluga=pedicure-kosmetyczny-hybryda"
+              className="inline-flex items-center justify-center rounded-full border border-[#D4B483] px-10 py-5 font-medium text-[#876536] transition-colors hover:bg-[#D4B483] hover:text-black"
+            >
+              Pełny z hybrydą — 200 zł
+            </Link>
+            <Link
+              href="/rezerwacja?usluga=pedicure-paznokcie-hybryda"
+              className="inline-flex items-center justify-center rounded-full border border-[#D4B483] px-10 py-5 font-medium text-[#876536] transition-colors hover:bg-[#D4B483] hover:text-black"
+            >
+              Same paznokcie z hybrydą — 160 zł
             </Link>
             <Link
               href="/cennik"
@@ -229,7 +241,19 @@ export default function PedicureKrakowPage() {
                 href="/rezerwacja?usluga=pedicure"
                 className="inline-flex items-center justify-center px-8 py-4 rounded-full bg-[#D4B483] text-black font-medium hover:scale-105 transition-transform shadow-[0_20px_60px_rgba(212,180,131,0.35)]"
               >
-                Zapytaj o termin
+                Kosmetyczny — 180 zł
+              </Link>
+              <Link
+                href="/rezerwacja?usluga=pedicure-kosmetyczny-hybryda"
+                className="inline-flex items-center justify-center px-8 py-4 rounded-full border border-[#E8DED2] text-[#1D1D1B] hover:border-[#D4B483] transition-colors"
+              >
+                Pełny z hybrydą — 200 zł
+              </Link>
+              <Link
+                href="/rezerwacja?usluga=pedicure-paznokcie-hybryda"
+                className="inline-flex items-center justify-center px-8 py-4 rounded-full border border-[#E8DED2] text-[#1D1D1B] hover:border-[#D4B483] transition-colors"
+              >
+                Same paznokcie z hybrydą — 160 zł
               </Link>
               <Link
                 href="/cennik"

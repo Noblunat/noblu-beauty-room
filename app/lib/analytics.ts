@@ -12,6 +12,8 @@ const servicePages = new Map([
 const bookingServices = new Map([
   ["manicure", "Manicure"],
   ["pedicure", "Pedicure"],
+  ["pedicure-paznokcie-hybryda", "Pedicure same paznokcie z hybrydą"],
+  ["pedicure-kosmetyczny-hybryda", "Pedicure kosmetyczny z hybrydą"],
   ["hybryda", "Stylizacja hybrydowa"],
   ["rzesy", "Stylizacja rzęs"],
 ]);

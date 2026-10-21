@@ -92,7 +92,7 @@ try {
   assert.equal(new Set([...documents.values()].map(elements => attr(elements.find(n => n.tagName === "meta" && attr(n, "name") === "twitter:description") || {}, "content"))).size, pages.length, "Twitter descriptions are specific to all eight pages");
 
   for (const path of ["/", "/rezerwacja"]) {
-    assert.ok(documents.get(path).some(n => n.tagName === "a" && attr(n, "href") === "https://noblubeautyroom.booksy.com/"), `${path}: Booksy fallback`);
+    assert.ok(documents.get(path).some(n => n.tagName === "a" && attr(n, "href") === "https://noblubeautyroom.booksy.com/h"), `${path}: commission-free Booksy link`);
     assert.ok(documents.get(path).some(n => n.tagName === "a" && attr(n, "href")?.startsWith("tel:")), `${path}: telephone`);
   }
   const homeHeader = documents.get("/").find(n => n.tagName === "header");
