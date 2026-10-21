@@ -118,6 +118,10 @@ test("homepage header exposes the salon telephone alongside the booking link", (
   assert.ok(phone, "a callable salon number is present in the header");
   assert.ok(elements(phone).some(n => n.type === "span" && n.props.children === "662 989 534"));
   assert.equal(phone.props["aria-label"], "Zadzwoń do salonu: 662 989 534");
+  const phoneClasses = phone.props.className.split(" ");
+  for (const required of ["rounded-full", "border", "border-[#D4B483]", "bg-transparent"]) {
+    assert.ok(phoneClasses.includes(required), `telephone has outline-only styling: ${required}`);
+  }
   assert.ok(links.some(n => n.props.href === "/rezerwacja" && n.props.children.trim() === "Zapytaj o termin"));
 });
 
