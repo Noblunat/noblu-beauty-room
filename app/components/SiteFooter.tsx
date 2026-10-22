@@ -23,7 +23,7 @@ export default function SiteFooter() {
 
         <p className="text-[#1D1D1B] leading-relaxed max-w-sm">
           Manicure, pedicure i stylizacja rzęs w Krakowie. Darmowy parking,
-          rezerwacja online, ponad 220 opinii klientek.
+          rezerwacja online, ponad 240 opinii klientek.
         </p>
       </div>
 

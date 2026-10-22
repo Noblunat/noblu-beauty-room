@@ -29,7 +29,7 @@ function getTodayInWarsaw() {
 
 
 const highlights = [
-  { value: "★★★★★ 5,0 w Booksy", label: "Ponad 220 opinii" },
+  { value: "★★★★★ 5,0 w Booksy", label: "Ponad 240 opinii" },
   { value: "24/7", label: "Formularz online" },
   { value: "Darmowy", label: "parking pod salonem" },
 ] as const
