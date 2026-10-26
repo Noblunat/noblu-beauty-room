@@ -1,6 +1,6 @@
 # Development dependency override
 
-The npm override replaces `fast-glob` with maintained `tinyglobby@0.2.17`. The only fast-glob consumer in this repository is `@next/eslint-plugin-next` (16.3.8). Its get-root-dirs helper imports globSync; this application's default root uses context.cwd directly. Tinyglobby supplies the import without braces/micromatch. All Next/React rules remain enabled.
+The npm override replaces `fast-glob` with maintained `tinyglobby@0.2.17`. The only fast-glob consumer in this repository is `@next/eslint-plugin-next` (16.4.3). Its get-root-dirs helper imports globSync; this application's default root uses context.cwd directly. Tinyglobby supplies the import without braces/micromatch. All Next/React rules remain enabled.
 
 Compatibility is deliberately limited to this single-application setup. Tinyglobby expands explicit rootDir directory patterns differently from fast-glob. A test rejects an explicit settings.next.rootDir configuration; reassess or remove the override before adding a monorepo/rootDir glob. This avoids silently changing rule behavior in a future reconfiguration.
 

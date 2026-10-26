@@ -46,11 +46,11 @@ const salonJsonLd = {
   },
   geo: {
     "@type": "GeoCoordinates",
-    latitude: 50.0059,
-    longitude: 19.9367,
+    latitude: 50.0118355,
+    longitude: 19.9252253,
   },
   hasMap:
-    "https://maps.google.com/maps?q=Noblu%20Beauty%20Room%20Krak%C3%B3w",
+    "https://www.google.com/maps?cid=6617500446211091555",
   publicAccess: true,
   openingHoursSpecification: [
     {
