@@ -2,6 +2,8 @@ import assert from "node:assert/strict";
 import { readFileSync } from "node:fs";
 import test from "node:test";
 import ts from "typescript";
+import { loadDataModule } from "./helpers/load-data.mjs";
+import { renderPage, nodes, nodeText } from "./helpers/render-page.mjs";
 
 function literalRows(filename, variable) {
   const source = ts.createSourceFile(filename, readFileSync(new URL(`../${filename}`, import.meta.url), "utf8"), ts.ScriptTarget.Latest, true, ts.ScriptKind.TSX);
@@ -19,15 +21,24 @@ function literalRows(filename, variable) {
   return rows;
 }
 
-test("all public pedicure price rows match the Booksy offer checked on 2026-10-18", () => {
-  assert.deepEqual(literalRows("app/cennik/page.tsx", "pedicurePrices"), [
-    { name: "Pedicure same paznokcie", price: "100 zł" },
-    { name: "Pedicure same paznokcie z hybrydą", price: "160 zł" },
-    { name: "Pedicure kosmetyczny", price: "180 zł" },
-    { name: "Pedicure kosmetyczny z hybrydą", price: "200 zł" },
-    { name: "Usunięcie hybrydy z pedicure same paznokcie", price: "120 zł" },
-    { name: "Usunięcie hybrydy z pełnym pedicure", price: "190 zł" },
-  ]);
+test("each Booksy variant has the same price and employee on the visible price list and in structured offers", () => {
+  const allNodes = nodes(renderPage(new URL("../app/cennik/page.tsx", import.meta.url)));
+  const schema = JSON.parse(allNodes.find(n => n.type === "script").props.dangerouslySetInnerHTML.__html);
+  const offers = schema.itemListElement.flatMap(group => group.itemListElement);
+  const { nailPrices, pedicurePrices } = loadDataModule("../app/lib/priceCatalog", import.meta.url);
+  for (const item of [...nailPrices, ...pedicurePrices]) {
+    const row = allNodes.find(n => n.props?.["data-booking-service"] === item.bookingService);
+    assert.ok(row, item.bookingService);
+    const visible = nodeText(row);
+    assert.ok(visible.includes(item.name), item.name);
+    assert.ok(visible.includes(item.price), item.bookingService);
+    assert.ok(visible.includes(item.staff), item.bookingService);
+    const offer = offers.find(offer => offer.name === `${item.name} — ${item.staff}`);
+    assert.equal(offer?.price, item.price.replace(/[^0-9]/g, ""), item.bookingService);
+  }
+  const decoration = offers.find(offer => offer.name === "Zdobienie");
+  assert.equal(decoration.price, undefined, "a minimum price is not a fixed price");
+  assert.equal(decoration.priceSpecification.minPrice, "10");
 });
 
 test("homepage uses the verified starting pedicure price", () => {
@@ -35,19 +46,12 @@ test("homepage uses the verified starting pedicure price", () => {
   assert.equal(highlight.price, "od 100 zł");
 });
 
-test("verified manicure services and add-ons retain their Booksy prices", () => {
-  const rows = literalRows("app/cennik/page.tsx", "nailPrices");
-  for (const [name, price] of [
-    ["Manicure", "100 zł"], ["Stylizacja hybrydowa", "160 zł"],
-    ["Stylizacja hybrydowa - więcej niż 1 kolor", "170 zł"],
-    ["Usunięcie hybrydy z manicure", "120 zł"],
-    ["Żel na naturalnej płytce - paznokcie krótkie, max do opuszka", "180 zł"],
-    ["Żel na naturalnej płytce", "190 zł"], ["Przedłużenie żelowe", "220 zł"],
-    ["Usunięcie stylizacji żelowej z manicure", "140 zł"],
-    ["Zdobienia", "od 10 zł"], ["Pyłek", "5 zł"], ["French / ombre / babyboomer", "20 zł"],
-    ["Usunięcie stylizacji z innego salonu do uzupełnienia żelowego", "0 zł"],
-    ["Naprawa jednego paznokcia", "30 zł"],
-  ]) assert.equal(rows.find(row => row.name === name)?.price, price, name);
+test("the model appointment is separate from regular hybrid manicure in the public price list", () => {
+  const rows = nodes(renderPage(new URL("../app/cennik/page.tsx", import.meta.url)));
+  const model = rows.find(n => n.props?.["data-booking-service"] === "MODELKA hybryda na naturalnej płytce");
+  assert.ok(nodeText(model).includes("80 zł"));
+  assert.ok(nodeText(model).includes("2h 30min"));
+  assert.ok(nodeText(model).includes("Osobna usługa modelkowa"));
 });
 
 test("pedicure copy, FAQ and schema do not retain the old 110 PLN price", () => {
@@ -58,6 +62,8 @@ test("pedicure copy, FAQ and schema do not retain the old 110 PLN price", () => 
 });
 
 test("gel refill has the single 190 PLN Booksy price approved by the owner", () => {
-  const rows = literalRows("app/cennik/page.tsx", "nailPrices").filter(row => row.name.startsWith("Uzupełnienie żelowe"));
-  assert.deepEqual(rows, [{ name: "Uzupełnienie żelowe", price: "190 zł" }]);
+  const { nailPrices } = loadDataModule("../app/lib/priceCatalog", import.meta.url);
+  const rows = nailPrices.filter(row => row.name === "Uzupełnienie żelowe");
+  assert.equal(rows.length, 1);
+  assert.equal(rows[0].price, "190 zł");
 });

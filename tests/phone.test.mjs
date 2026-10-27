@@ -1,3 +1,4 @@
+import { loadDataModule } from "./helpers/load-data.mjs";
 import assert from "node:assert/strict";
 import { readFileSync } from "node:fs";
 import { createRequire } from "node:module";
@@ -14,7 +15,7 @@ function load(file, dependencies = {}) {
   ).outputText, {
     module: testModule, exports: testModule.exports, Response, URL, TextDecoder, AbortSignal, process: { env: {} },
     require: name => {
-      if (name.endsWith("/bookingServices")) return load("../app/lib/bookingServices.ts");
+      if (/(bookingServices|booksyCatalog|priceCatalog|contentRevisions)$/.test(name)) return loadDataModule(name, new URL(file, import.meta.url));
       if (name === "libphonenumber-js/min") {
         const library = require(name);
         return { parsePhoneNumberFromString: (value, options) =>

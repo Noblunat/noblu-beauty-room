@@ -1,10 +1,11 @@
 import type { MetadataRoute } from "next"
+import { contentRevisions } from "./lib/contentRevisions"
 
 export default function sitemap(): MetadataRoute.Sitemap {
   const baseUrl = "https://noblu.pl"
 
-  // Omit optional lastmod until content revisions have a reliable date source.
-  return [
+  // Explicit content revisions remain stable across builds and requests.
+  const pages: MetadataRoute.Sitemap = [
     {
       url: baseUrl,
       changeFrequency: "weekly",
@@ -46,4 +47,5 @@ export default function sitemap(): MetadataRoute.Sitemap {
       priority: 0.3,
     },
   ]
+  return pages.map(entry => ({ ...entry, lastModified: contentRevisions[entry.url.slice(baseUrl.length) || "/"].date }))
 }

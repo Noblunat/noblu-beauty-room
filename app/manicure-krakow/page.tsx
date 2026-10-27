@@ -3,6 +3,10 @@ import Image from "next/image";
 import Link from "next/link";
 import BreadcrumbJsonLd from "../components/BreadcrumbJsonLd";
 import ServiceJsonLd from "../components/ServiceJsonLd";
+import SalonHygiene from "../components/SalonHygiene";
+import SalonTeam from "../components/SalonTeam";
+import ServiceVariants from "../components/ServiceVariants";
+import { nailPrices, serviceOffers, servicePrice } from "../lib/priceCatalog";
 
 export const metadata: Metadata = {
   title: "Manicure Kraków | Paznokcie hybrydowe Borek Fałęcki | Noblu",
@@ -83,7 +87,7 @@ const faq = [
   },
   {
     q: "Ile kosztuje manicure w Krakowie?",
-    a: "Manicure w Noblu Beauty Room kosztuje 100 zł, a stylizacja hybrydowa od 160 zł. Aktualne ceny wszystkich wariantów znajdują się w cenniku salonu.",
+    a: `Manicure kosztuje ${servicePrice("Manicure")}. Stylizacja hybrydowa u Julii (stylistki junior) kosztuje ${servicePrice("Stylizacja hybrydowa — Julia (stylistka junior)")}, a u Natalii ${servicePrice("Stylizacja hybrydowa")}. Każda stylistka ma osobny wariant i czas wizyty w cenniku.`,
   },
   {
     q: "Jak przygotować się do wizyty?",
@@ -107,7 +111,7 @@ export default function ManicureKrakowPage() {
         description="Manicure i stylizacja paznokci w Noblu Beauty Room w Krakowie, w tym manicure hybrydowy i stylizacje żelowe."
         serviceType="Manicure"
         url="https://noblu.pl/manicure-krakow"
-        offers={[{ name: "Manicure", price: "100" }]}
+        offers={serviceOffers(nailPrices)}
       />
 
       <script
@@ -151,7 +155,7 @@ export default function ManicureKrakowPage() {
               href="/rezerwacja?usluga=hybryda"
               className="inline-flex items-center justify-center px-10 py-5 rounded-full bg-[#D4B483] text-black font-medium hover:scale-105 transition-transform shadow-[0_20px_60px_rgba(212,180,131,0.35)]"
             >
-              Hybryda od 160 zł — zapytaj
+              Hybryda u Natalii — {servicePrice("Stylizacja hybrydowa")}
             </a>
             <Link
               href="/rezerwacja?usluga=manicure"
@@ -182,8 +186,9 @@ export default function ManicureKrakowPage() {
             {manicureGallery.map((image) => (
               <figure
                 key={image.src}
-                className="relative aspect-[3/4] overflow-hidden rounded-[1.2rem] bg-[#E8DED2]"
+                className="min-w-0"
               >
+                <div className="relative aspect-[3/4] overflow-hidden rounded-[1.2rem] bg-[#E8DED2]">
                 <Image
                   src={image.src}
                   alt={image.alt}
@@ -191,11 +196,17 @@ export default function ManicureKrakowPage() {
                   sizes="(min-width: 1280px) 276px, (min-width: 768px) 22vw, calc(50vw - 2rem)"
                   className="object-cover"
                 />
+                </div>
+                <figcaption className="mt-3 text-sm leading-relaxed text-[#5F5B56]">{image.alt.replace(" wykonany w Noblu Beauty Room Kraków", "").replace(" wykonane w Noblu Beauty Room Kraków", "")}</figcaption>
               </figure>
             ))}
           </div>
         </div>
       </section>
+
+      <SalonTeam />
+      <ServiceVariants />
+      <SalonHygiene />
 
       <section className="pb-24 px-6 lg:px-12">
         <div className="max-w-5xl mx-auto grid gap-10 text-lg leading-relaxed text-[#5F5B56]">
@@ -211,7 +222,8 @@ export default function ManicureKrakowPage() {
               inspirację, pokaż ją przed rozpoczęciem pracy.
             </p>
             <p className="mt-4">
-              Manicure kosztuje 100 zł, a stylizacja hybrydowa od 160 zł.
+              Manicure kosztuje {servicePrice("Manicure")}, a hybryda u Julii (stylistki junior) {servicePrice("Stylizacja hybrydowa — Julia (stylistka junior)")}.
+              Wariant u Natalii kosztuje {servicePrice("Stylizacja hybrydowa")}.
               Szczegółowe ceny znajdziesz w <Link href="/cennik" className="font-medium text-[#876536] underline underline-offset-4">cenniku manicure i paznokci</Link>.
             </p>
           </div>
@@ -278,7 +290,7 @@ export default function ManicureKrakowPage() {
                 href="/rezerwacja?usluga=hybryda"
                 className="inline-flex items-center justify-center px-8 py-4 rounded-full bg-[#D4B483] text-black font-medium hover:scale-105 transition-transform shadow-[0_20px_60px_rgba(212,180,131,0.35)]"
               >
-                Hybryda od 160 zł — zapytaj
+                Hybryda u Natalii — {servicePrice("Stylizacja hybrydowa")}
               </Link>
               <Link
                 href="/rezerwacja?usluga=manicure"

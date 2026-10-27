@@ -1,3 +1,4 @@
+import { loadDataModule } from "./helpers/load-data.mjs";
 import assert from "node:assert/strict";
 import { readFileSync, readdirSync } from "node:fs";
 import test from "node:test";
@@ -22,7 +23,7 @@ function metadata(file) {
     compilerOptions: { module: ts.ModuleKind.CommonJS, jsx: ts.JsxEmit.ReactJSX },
   }).outputText, {
     module: testModule, exports: testModule.exports, URL, process: { env: {} },
-    require: () => ({ default: () => null }),
+    require: name => /(?:bookingServices|booksyCatalog|priceCatalog|contentRevisions)$/.test(name) ? loadDataModule(name, new URL(file, root)) : ({ default: () => null }),
   });
   return testModule.exports.metadata;
 }

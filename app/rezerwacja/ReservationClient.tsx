@@ -362,7 +362,7 @@ export default function ReservationClient({ initialService }: { initialService: 
                     <optgroup key={group.title} label={group.title}>
                       {group.services.map((service) => (
                         <option key={service.name} value={service.name}>
-                          {service.name}
+                          {service.name}{service.staff && !service.name.includes(service.staff) ? ` — ${service.staff}` : ""}
                         </option>
                       ))}
                     </optgroup>
@@ -558,8 +558,9 @@ export default function ReservationClient({ initialService }: { initialService: 
             <div className="rounded-[2rem] border border-[#E8DED2] bg-white/70 p-6 shadow-[0_24px_70px_rgba(80,55,25,0.08)] sm:p-8">
               <h2 className="text-3xl font-light">Godziny salonu</h2>
               <p className="mt-5 text-[#625b53]">
-                Poniedziałek - piątek: 10:00 - 19:30
+                Poniedziałek - piątek: 10:00 - 19:00
               </p>
+              <p className="mt-2 text-[#625b53]">Sobota i niedziela: zamknięte</p>
               <p className="mt-2 text-[#625b53]">
                 Prośbę o termin możesz wysłać online 24/7.
               </p>

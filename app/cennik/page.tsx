@@ -1,7 +1,8 @@
 import type { Metadata } from "next";
 import Link from "next/link";
 import BreadcrumbJsonLd from "../components/BreadcrumbJsonLd";
-import { findBookingService } from "../lib/bookingServices";
+import { addonPrices, lashPrices, nailPrices, pedicurePrices, priceItemDuration, servicePrice, type PriceItem } from "../lib/priceCatalog";
+import { contentRevisions, revisionLabel } from "../lib/contentRevisions";
 
 export const metadata: Metadata = {
   title: "Cennik Noblu Kraków | Manicure, pedicure i rzęsy",
@@ -36,48 +37,6 @@ export const metadata: Metadata = {
   },
 };
 
-type PriceItem = { name: string; price: string; duration?: string; bookingService?: string };
-
-const lashPrices: PriceItem[] = [
-  { name: "Aplikacja rzęs 1:1", price: "190 zł" },
-  { name: "Uzupełnienie rzęs 1:1", price: "160 zł" },
-  { name: "Aplikacja rzęs 2D", price: "210 zł" },
-  { name: "Uzupełnienie rzęs 2D", price: "180 zł" },
-  { name: "Aplikacja rzęs 3D", price: "220 zł" },
-  { name: "Uzupełnienie rzęs 3D", price: "190 zł" },
-  { name: "Ściągnięcie rzęs", price: "40 zł" },
-];
-
-const nailPrices: PriceItem[] = [
-  { name: "Manicure", price: "100 zł" },
-  { name: "Stylizacja hybrydowa", price: "160 zł" },
-  { name: "Stylizacja hybrydowa - więcej niż 1 kolor", price: "170 zł", bookingService: "Stylizacja hybrydowa więcej niż 1 kolor" },
-  { name: "Usunięcie hybrydy z manicure", price: "120 zł", duration: "1h" },
-  {
-    name: "Żel na naturalnej płytce - paznokcie krótkie, max do opuszka",
-    price: "180 zł",
-    duration: "1h 55min",
-  },
-  { name: "Żel na naturalnej płytce", price: "190 zł" },
-  { name: "Uzupełnienie żelowe", price: "190 zł" },
-  { name: "Przedłużenie żelowe", price: "220 zł" },
-  { name: "Usunięcie stylizacji żelowej z manicure", price: "140 zł", duration: "1h 10min" },
-  { name: "Zdobienia", price: "od 10 zł" },
-  { name: "Pyłek", price: "5 zł" },
-  { name: "French / ombre / babyboomer", price: "20 zł" },
-  { name: "Usunięcie stylizacji z innego salonu do uzupełnienia żelowego", price: "0 zł" },
-  { name: "Naprawa jednego paznokcia", price: "30 zł" },
-];
-
-const pedicurePrices: PriceItem[] = [
-  { name: "Pedicure same paznokcie", price: "100 zł" },
-  { name: "Pedicure same paznokcie z hybrydą", price: "160 zł" },
-  { name: "Pedicure kosmetyczny", price: "180 zł" },
-  { name: "Pedicure kosmetyczny z hybrydą", price: "200 zł" },
-  { name: "Usunięcie hybrydy z pedicure same paznokcie", price: "120 zł", duration: "50min" },
-  { name: "Usunięcie hybrydy z pełnym pedicure", price: "190 zł", duration: "1h 15min" },
-];
-
 const priceToNumber = (price: string) => price.replace(/[^0-9]/g, "");
 
 const offerCatalogJsonLd = {
@@ -86,52 +45,23 @@ const offerCatalogJsonLd = {
   name: "Cennik Noblu Beauty Room",
   url: "https://noblu.pl/cennik",
   itemListElement: [
-    {
-      "@type": "OfferCatalog",
-      name: "Stylizacja rzęs",
-      itemListElement: lashPrices.map((item) => ({
-        "@type": "Offer",
-        name: item.name,
-        price: priceToNumber(item.price),
-        priceCurrency: "PLN",
-        itemOffered: {
-          "@type": "Service",
-          name: item.name,
-          provider: { "@id": "https://noblu.pl/#salon" },
-        },
-      })),
-    },
-    {
-      "@type": "OfferCatalog",
-      name: "Stylizacja paznokci",
-      itemListElement: nailPrices.map((item) => ({
-        "@type": "Offer",
-        name: item.name,
-        price: priceToNumber(item.price),
-        priceCurrency: "PLN",
-        itemOffered: {
-          "@type": "Service",
-          name: item.name,
-          provider: { "@id": "https://noblu.pl/#salon" },
-        },
-      })),
-    },
-    {
-      "@type": "OfferCatalog",
-      name: "Pedicure",
-      itemListElement: pedicurePrices.map((item) => ({
-        "@type": "Offer",
-        name: item.name,
-        price: priceToNumber(item.price),
-        priceCurrency: "PLN",
-        itemOffered: {
-          "@type": "Service",
-          name: item.name,
-          provider: { "@id": "https://noblu.pl/#salon" },
-        },
-      })),
-    },
-  ],
+    ["Stylizacja rzęs", lashPrices],
+    ["Stylizacja paznokci", nailPrices],
+    ["Pedicure", pedicurePrices],
+    ["Dodatki do usług", addonPrices],
+  ].map(([name, items]) => ({
+    "@type": "OfferCatalog",
+    name,
+    itemListElement: (items as PriceItem[]).map(item => ({
+      "@type": "Offer",
+      name: item.name + (item.staff ? " — " + item.staff : ""),
+      ...(item.price.startsWith("od ")
+        ? {priceSpecification: {"@type": "UnitPriceSpecification", minPrice: priceToNumber(item.price), priceCurrency: "PLN"}}
+        : {price: priceToNumber(item.price), priceCurrency: "PLN"}),
+      ...(item.note ? {description: item.note} : {}),
+      itemOffered: {"@type": "Service", name: item.name, provider: {"@id": "https://noblu.pl/#salon"}},
+    })),
+  })),
 };
 
 function PriceList({
@@ -168,13 +98,16 @@ function PriceList({
       <div className="mt-10 space-y-4">
         {items.map((item) => (
           <div
-            key={item.name}
+            key={item.bookingService ?? item.name}
+            data-booking-service={item.bookingService}
             className="grid grid-cols-[1fr_auto] gap-6 border-b border-[#E8DED2]/70 pb-3 text-[#4F463F]"
           >
             <span className="min-w-0">
               <span className="block">{item.name}</span>
+              {item.staff && <span className="mt-1 block text-sm font-medium">{item.staff}</span>}
+              {item.note && <span className="mt-1 block text-sm leading-relaxed">{item.note}</span>}
               <span className="mt-1 block text-sm leading-relaxed text-[#5F5B56]">
-                Czas: {findBookingService(item.bookingService ?? item.name)?.duration ?? item.duration ?? "do potwierdzenia przy wyborze stylizacji"}
+                Czas: {priceItemDuration(item) ?? "do potwierdzenia przy wyborze stylizacji"}
               </span>
             </span>
             <span className="text-right font-medium text-[#3A2F26]">
@@ -229,7 +162,10 @@ export default function CennikPage() {
               Sprawdź ceny manicure, paznokci hybrydowych, pedicure oraz
               stylizacji rzęs w kameralnym salonie beauty w Krakowie przy ul.
               Orzechowej 4/lok.1. Jeśli pasuje Ci usługa, możesz od razu
-              wysłać prośbę o termin online.
+              wysłać prośbę o termin online. Ceny i czasy mogą różnić się w zależności od stylistki.
+            </p>
+            <p className="mt-4 text-sm text-[#5F5B56]">
+              Aktualizacja informacji: <time dateTime={contentRevisions["/cennik"].date}>{revisionLabel("/cennik")}</time>.
             </p>
           </div>
         </div>
@@ -259,6 +195,13 @@ export default function CennikPage() {
             ]}
           />
 
+          <PriceList
+            title="Dodatki do usług"
+            description="Dodatki łączymy z przypisanymi do nich usługami. Zdobienia wyceniamy zależnie od zakresu; podany czas wydłuża wizytę."
+            items={addonPrices}
+            links={[{ href: "/rezerwacja", label: "Zapytaj o usługę i dodatki" }]}
+          />
+
           <div className="lg:col-span-2">
             <PriceList
               title="Pedicure"
@@ -278,8 +221,9 @@ export default function CennikPage() {
               Ile kosztuje manicure w Krakowie?
             </h2>
             <p className="mt-4 leading-relaxed text-[#5F5B56]">
-              Manicure w Noblu Beauty Room zaczyna się od 100 zł, a stylizacja
-              hybrydowa od 160 zł. Jeśli chcesz dobrać odpowiednią usługę,
+              Manicure w Noblu Beauty Room kosztuje {servicePrice("Manicure")}. Stylizacja
+              hybrydowa u Julii (stylistki junior) kosztuje {servicePrice("Stylizacja hybrydowa — Julia (stylistka junior)")},
+              a u Natalii {servicePrice("Stylizacja hybrydowa")}. Jeśli chcesz dobrać odpowiednią usługę,
               sprawdź warianty stylizacji paznokci albo wyślij zapytanie o termin.
             </p>
           </div>
@@ -289,8 +233,10 @@ export default function CennikPage() {
               Ile kosztuje pedicure?
             </h2>
             <p className="mt-4 leading-relaxed text-[#5F5B56]">
-              Pedicure samych paznokci kosztuje od 100 zł, pedicure z hybrydą
-              od 160 zł, a pełny pedicure kosmetyczny od 180 zł. Salon znajduje
+              Pedicure samych paznokci bez hybrydy kosztuje {servicePrice("Pedicure same paznokcie")},
+              a z hybrydą u Julii (stylistki junior) {servicePrice("Pedicure same paznokcie z hybrydą — Julia (stylistka junior)")}.
+              Wariant z hybrydą u Natalii kosztuje {servicePrice("Pedicure same paznokcie z hybrydą")},
+              a pełny pedicure SPA bez hybrydy {servicePrice("Pedicure kosmetyczny")}. Salon znajduje
               się na Borku Fałęckim, z wygodnym dojazdem z południa Krakowa.
             </p>
           </div>

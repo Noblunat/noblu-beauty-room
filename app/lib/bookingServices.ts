@@ -1,13 +1,56 @@
+import { booksyServices, serviceDuration } from "./booksyCatalog";
+
 export type Service = {
-  name: string
-  price: string
-  duration: string
-  booksyVariantId?: number
+  name: string;
+  price: string;
+  duration: string;
+  booksyVariantId?: number;
+  staff?: string;
+};
+
+type ServiceGroup = {title: string; services: Service[]};
+
+// Preserve names and variant IDs already used by campaign links and existing inquiries.
+const legacyNames: Record<string, string> = {
+  "Stylizacja hybrydowa - więcej niż 1 kolor": "Stylizacja hybrydowa więcej niż 1 kolor",
+  "Żel na naturalnej płytce - paznokcie za opuszek": "Żel na naturalnej płytce",
+  "Przedłużenie żelowe na szablonie": "Przedłużenie żelowe",
+  "Pedicure same paznokcie bez hybrydy": "Pedicure same paznokcie",
+  "Pedicure hybrydowy same paznokcie": "Pedicure same paznokcie z hybrydą",
+  "Pedicure SPA bez hybrydy": "Pedicure kosmetyczny",
+  "Pedicure SPA z hybrydą": "Pedicure kosmetyczny z hybrydą"
+};
+const legacyVariantIds: Record<string, number> = {
+  "Manicure": 5209054,
+  "Stylizacja hybrydowa": 6017028,
+  "Stylizacja hybrydowa więcej niż 1 kolor": 6017045,
+  "Żel na naturalnej płytce": 17789240,
+  "Przedłużenie żelowe": 6017205,
+  "Uzupełnienie żelowe": 22693891,
+  "Naprawa jednego paznokcia": 5208812,
+  "Pedicure same paznokcie": 14208964,
+  "Pedicure same paznokcie z hybrydą": 14208784,
+  "Pedicure kosmetyczny": 14208809,
+  "Pedicure kosmetyczny z hybrydą": 14208789
+};
+
+export function bookingServiceName(name: string, variantIndex: number) {
+  const base = legacyNames[name] ?? name;
+  return variantIndex === 0 ? base : base + " — Julia (stylistka junior)";
 }
 
-type ServiceGroup = {
-  title: string
-  services: Service[]
+function booksyGroup(pedicure: boolean): Service[] {
+  return booksyServices.filter(service => (service.category === "Pedicure") === pedicure)
+    .flatMap(service => service.variants.map((variant, index) => {
+      const name = bookingServiceName(service.name, index);
+      return {
+        name,
+        price: variant.pricePLN + " zł",
+        duration: serviceDuration(variant.durationMinutes),
+        staff: variant.staff.join(", "),
+        booksyVariantId: variant.booksyVariantId ?? legacyVariantIds[name],
+      };
+    }));
 }
 
 export const serviceGroups: ServiceGroup[] = [
@@ -23,86 +66,12 @@ export const serviceGroups: ServiceGroup[] = [
       { name: "Ściągnięcie rzęs", price: "40 zł", duration: "40min" },
     ],
   },
-  {
-    title: "Manicure i stylizacja paznokci",
-    services: [
-      {
-        name: "Manicure",
-        price: "100 zł",
-        duration: "50min",
-        booksyVariantId: 5209054,
-      },
-      {
-        name: "Stylizacja hybrydowa",
-        price: "160 zł",
-        duration: "1h 30min",
-        booksyVariantId: 6017028,
-      },
-      {
-        name: "Stylizacja hybrydowa więcej niż 1 kolor",
-        price: "170 zł",
-        duration: "1h 30min",
-        booksyVariantId: 6017045,
-      },
-      {
-        name: "Żel na naturalnej płytce",
-        price: "190 zł",
-        duration: "2h 10min",
-        booksyVariantId: 17789240,
-      },
-      {
-        name: "Przedłużenie żelowe",
-        price: "220 zł",
-        duration: "2h 30min",
-        booksyVariantId: 6017205,
-      },
-      {
-        name: "Uzupełnienie żelowe",
-        price: "190 zł",
-        duration: "2h 10min",
-        booksyVariantId: 22693891,
-      },
-      {
-        name: "Naprawa jednego paznokcia",
-        price: "30 zł",
-        duration: "20min",
-        booksyVariantId: 5208812,
-      },
-    ],
-  },
-  {
-    title: "Pedicure",
-    services: [
-      {
-        name: "Pedicure same paznokcie",
-        price: "100 zł",
-        duration: "40min",
-        booksyVariantId: 14208964,
-      },
-      {
-        name: "Pedicure same paznokcie z hybrydą",
-        price: "160 zł",
-        duration: "1h 20min",
-        booksyVariantId: 14208784,
-      },
-      {
-        name: "Pedicure kosmetyczny",
-        price: "180 zł",
-        duration: "1h 10min",
-        booksyVariantId: 14208809,
-      },
-      {
-        name: "Pedicure kosmetyczny z hybrydą",
-        price: "200 zł",
-        duration: "1h 40min",
-        booksyVariantId: 14208789,
-      },
-    ],
-  },
-]
+  {title: "Manicure i stylizacja paznokci", services: booksyGroup(false)},
+  {title: "Pedicure", services: booksyGroup(true)},
+];
 
-export const timePreferences = ["Dowolnie", "Rano", "Po południu", "Wieczorem"] as const
+export const timePreferences = ["Dowolnie", "Rano", "Po południu", "Wieczorem"] as const;
 
 export function findBookingService(name: string) {
-  return serviceGroups.flatMap(group => group.services).find(service => service.name === name)
+  return serviceGroups.flatMap(group => group.services).find(service => service.name === name);
 }

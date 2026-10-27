@@ -14,7 +14,7 @@ This file provides a concise, AI-readable overview of the Noblu Beauty Room webs
 - Email: salon@noblu.pl
 - NIP: 6793222358
 - REGON: 389813411
-- Opening hours: Monday-Friday, 10:00-19:30
+- Opening hours: Monday-Friday, 10:00-19:00; Saturday-Sunday closed
 - Parking: free parking near the salon
 - Primary language: Polish
 - Website: https://noblu.pl/
@@ -35,7 +35,8 @@ This file provides a concise, AI-readable overview of the Noblu Beauty Room webs
 - Manicure: nail care and precise aesthetic styling.
 - Hybrid nail styling: hybrid manicure and color styling for natural-looking nails.
 - Gel styling: gel overlay, gel extensions, nail refill and nail repair.
-- Pedicure: cosmetic pedicure, hybrid pedicure and pedicure of toenails.
+- Pedicure: SPA with or without hybrid polish, toenail care with or without hybrid polish and hybrid removal with toenail care.
+- Manicure and pedicure prices and appointment durations depend on the specific employee variant. The model service is separate from regular hybrid manicure; use the visible price list for the applicable variant.
 - Eyelash styling: natural look, lashes 1:1 and light volume styling.
 - Eyelash extensions: 1:1, 2D and 3D applications, refills and safe removal.
 
@@ -70,9 +71,9 @@ The primary local appointment request page is:
 
 Clients can use the form to send their name, phone number, preferred service, preferred appointment date/time and notes. The salon confirms availability by SMS or phone.
 
-Booksy is also available as an external booking channel:
+Booksy is an additional external booking channel. Confirm that its profile and calendar open before recommending immediate booking:
 
-- https://booksy.com/pl-pl/105150_noblu-beauty-room_paznokcie_8820_krakow
+- https://noblubeautyroom.booksy.com/h
 
 ## Social And External Profiles
 
@@ -90,4 +91,4 @@ Booksy is also available as an external booking channel:
 
 ## Last Updated
 
-2026-07-15
+2026-10-26

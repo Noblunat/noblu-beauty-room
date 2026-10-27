@@ -1,3 +1,4 @@
+import { loadDataModule } from "./helpers/load-data.mjs";
 import assert from "node:assert/strict";
 import { readFileSync, existsSync } from "node:fs";
 import path from "node:path";
@@ -13,7 +14,7 @@ function metadataFor(route) {
     compilerOptions: { module: ts.ModuleKind.CommonJS, jsx: ts.JsxEmit.ReactJSX },
   }).outputText, {
     module: m, exports: m.exports,
-    require: () => ({ default: () => null }),
+    require: name => /(?:bookingServices|booksyCatalog|priceCatalog|contentRevisions)$/.test(name) ? loadDataModule(name, new URL(`../app/${route}/${filename}`, import.meta.url)) : ({ default: () => null }),
   });
   return m.exports.metadata;
 }
