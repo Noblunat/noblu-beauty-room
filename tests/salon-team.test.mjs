@@ -9,7 +9,7 @@ function elements(tree) {
   return [tree, ...[tree.props?.children].flat(Infinity).flatMap(elements)];
 }
 
-test("team cards show only the original portraits and names, without descriptions", () => {
+test("team cards preserve portraits and names and show each approved personal description", () => {
   const jsx = (type, props) => ({ type, props });
   const compiled = ts.transpileModule(readFileSync(new URL("../app/components/SalonTeam.tsx", import.meta.url), "utf8"), {
     compilerOptions: { module: ts.ModuleKind.CommonJS, jsx: ts.JsxEmit.ReactJSX },
@@ -32,6 +32,13 @@ test("team cards show only the original portraits and names, without description
     const image = children.find(node => node.type === "image");
     assert.equal(image?.props.src, `/team/${name.toLowerCase()}-noblu.jpg`);
     assert.ok(image.props.alt.length > 20);
-    assert.equal(children.filter(node => node.type === "p").length, 0);
+    const paragraphs = children.filter(node => node.type === "p").map(node => node.props.children);
+    assert.deepEqual(paragraphs, index === 0 ? [
+      "Właścicielka salonu",
+      "Moim celem jest tworzenie trwałych i estetycznych stylizacji paznokci. Szczególną uwagę poświęcam skórze, ponieważ bez bezpiecznego opracowania manicure czy pedicure, żaden kolor nie będzie robił wrażenia.",
+    ] : [
+      "Stylistka paznokci z zamiłowaniem do szalonych stylizacji oraz zdobień 3D. Kreatywność to moje drugie imię.",
+      "Zmalujmy razem coś wyjątkowego!",
+    ]);
   }
 });

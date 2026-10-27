@@ -5,10 +5,18 @@ const team = [
   {
     name: "Natalia",
     image: "/team/natalia-noblu.jpg",
+    role: "Właścicielka salonu",
+    description: [
+      "Moim celem jest tworzenie trwałych i estetycznych stylizacji paznokci. Szczególną uwagę poświęcam skórze, ponieważ bez bezpiecznego opracowania manicure czy pedicure, żaden kolor nie będzie robił wrażenia.",
+    ],
   },
   {
     name: "Julia",
     image: "/team/julia-noblu.jpg",
+    description: [
+      "Stylistka paznokci z zamiłowaniem do szalonych stylizacji oraz zdobień 3D. Kreatywność to moje drugie imię.",
+      "Zmalujmy razem coś wyjątkowego!",
+    ],
   },
 ];
 
@@ -30,6 +38,10 @@ export default function SalonTeam() {
               />
               <div className="min-w-0">
                 <h3 className="text-2xl font-medium">{person.name}</h3>
+                {person.role && <p className="mt-2 font-medium text-[#7C6238]">{person.role}</p>}
+                {person.description.map(paragraph => (
+                  <p key={paragraph} className="mt-3 leading-relaxed text-[#5F5B56]">{paragraph}</p>
+                ))}
               </div>
             </article>
           ))}
