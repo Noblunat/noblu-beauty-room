@@ -23,7 +23,7 @@ export default function SiteFooter() {
 
         <p className="text-[#1D1D1B] leading-relaxed max-w-sm">
           Manicure, pedicure i stylizacja rzęs w Krakowie. Darmowy parking,
-          rezerwacja online, ponad 240 opinii klientek.
+          rezerwacja online, ponad 240 opinii klientek w Booksy.
         </p>
       </div>
 
@@ -78,7 +78,8 @@ export default function SiteFooter() {
           <div>Orzechowa 4/lok.1</div>
           <div>30-422 Kraków</div>
           <div>Darmowy parking pod salonem</div>
-          <div>Poniedziałek - piątek: 10:00-19:30</div>
+          <div>Poniedziałek - piątek: 10:00-19:00</div>
+          <div>Sobota i niedziela: zamknięte</div>
           <div>Zapytanie o termin online: 24/7</div>
           <div>Dogodny dojazd: Podgórze, Łagiewniki, Borek Fałęcki, Ruczaj, Kurdwanów</div>
 

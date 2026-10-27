@@ -1,3 +1,4 @@
+import { loadDataModule } from "./helpers/load-data.mjs";
 import assert from "node:assert/strict";
 import { readFileSync } from "node:fs";
 import test from "node:test";
@@ -14,6 +15,7 @@ function load(relative) {
     require(name) {
       if (name === "react/jsx-runtime") return { jsx: (type, props) => ({ type, props }), jsxs: (type, props) => ({ type, props }) };
       if (name === "next/link") return { default: "a" };
+      if (/(bookingServices|booksyCatalog|priceCatalog|contentRevisions)$/.test(name)) return loadDataModule(name, new URL(relative, root));
       return { default: () => null };
     },
   });

@@ -3,6 +3,8 @@ import { Fragment, type HTMLAttributes, type ReactNode, useEffect, useMemo, useR
 import Image from "next/image"
 import ExternalContentConsent from "./components/ExternalContentConsent"
 import GalleryLightbox from "./components/GalleryLightbox"
+import SalonTeam from "./components/SalonTeam"
+import SalonHygiene from "./components/SalonHygiene"
 import { Pause, Phone, Play } from "lucide-react"
 
 type GalleryItem = {
@@ -820,6 +822,8 @@ useEffect(() => {
 </div>
     </div>
 </section>
+<SalonTeam />
+<SalonHygiene />
 {/* REVIEWS */}
 <section className="relative py-28 overflow-hidden bg-transparent text-[#1D1D1B]">
   <div className="max-w-7xl mx-auto px-6 lg:px-12">
@@ -1084,7 +1088,8 @@ useEffect(() => {
 
               <div>
                 <div className="text-[#1D1D1B] mb-2">Godziny otwarcia</div>
-                <p>Poniedziałek - piątek: 10:00-19:30</p>
+                <p>Poniedziałek - piątek: 10:00-19:00</p>
+                <p>Sobota i niedziela: zamknięte</p>
                 <p>Zapytanie o termin online: 24/7</p>
               </div>
 

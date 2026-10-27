@@ -1,6 +1,6 @@
+import { loadDataModule } from "./helpers/load-data.mjs";
 import assert from "node:assert/strict";
 import { readFileSync } from "node:fs";
-import path from "node:path";
 import test from "node:test";
 import vm from "node:vm";
 import ts from "typescript";
@@ -14,7 +14,7 @@ function load(relative) {
     module: testModule, exports: testModule.exports,
     require(name) {
       if (name === "react/jsx-runtime") return { jsx: (type, props) => ({ type, props }), jsxs: (type, props) => ({ type, props }) };
-      if (name.includes("bookingServices")) return load(path.posix.join(path.posix.dirname(relative), name + ".ts"));
+      if (/(bookingServices|booksyCatalog|priceCatalog|contentRevisions)$/.test(name)) return loadDataModule(name, new URL(relative, root));
       return { default: () => null };
     },
   });
@@ -32,7 +32,7 @@ function text(node) {
 
 test("every price-list row exposes a duration or an explicit unconfirmed add-on time", () => {
   const rows = nodes(load("app/cennik/page.tsx").default()).filter(n => n.props?.className?.includes("grid-cols-[1fr_auto]"));
-  assert.equal(rows.length, 27);
+  assert.equal(rows.length, 39);
   for (const row of rows) assert.match(text(row), /Czas:/, text(row));
 });
 
@@ -40,7 +40,7 @@ test("price-list duration follows the reservation catalog for every bookable ser
   const rows = nodes(load("app/cennik/page.tsx").default()).filter(n => n.props?.className?.includes("grid-cols-[1fr_auto]"));
   for (const service of load("app/lib/bookingServices.ts").serviceGroups.flatMap(g => g.services)) {
     const name = service.name === "Stylizacja hybrydowa więcej niż 1 kolor" ? "Stylizacja hybrydowa - więcej niż 1 kolor" : service.name;
-    const row = rows.find(r => text(r.props.children[0].props.children[0]) === name);
+    const row = rows.find(r => r.props["data-booking-service"] === service.name);
     assert.ok(row, name);
     assert.ok(text(row).includes(service.duration), `${name}: ${service.duration}`);
   }
@@ -54,7 +54,7 @@ test("verified additional Booksy services have their actual durations", () => {
     ["Usunięcie stylizacji żelowej z manicure", "1h 10min"],
     ["Usunięcie hybrydy z pedicure same paznokcie", "50min"],
     ["Usunięcie hybrydy z pełnym pedicure", "1h 15min"],
-  ]) assert.ok(text(rows.find(r => text(r).startsWith(name + " "))).includes(duration), name);
+  ]) assert.ok(text(rows.find(r => r.props["data-booking-service"] === ({"Usunięcie hybrydy z manicure": "Usunięcie stylizacji hybrydowej z manicure", "Żel na naturalnej płytce - paznokcie krótkie, max do opuszka": "Żel na naturalnej płytce - paznokcie przed opuszek", "Usunięcie hybrydy z pełnym pedicure": "Usunięcie hybrydy z pedicure SPA"}[name] ?? name))).includes(duration), name);
 });
 
 test("lash section links to the correctly selected reservation service", () => {

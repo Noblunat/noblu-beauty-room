@@ -2,6 +2,10 @@ import type { Metadata } from "next";
 import Link from "next/link";
 import BreadcrumbJsonLd from "../components/BreadcrumbJsonLd";
 import ServiceJsonLd from "../components/ServiceJsonLd";
+import SalonHygiene from "../components/SalonHygiene";
+import SalonTeam from "../components/SalonTeam";
+import ServiceVariants from "../components/ServiceVariants";
+import { pedicurePrices, serviceOffers, servicePrice } from "../lib/priceCatalog";
 import ServiceGallery from "../components/ServiceGallery";
 
 export const metadata: Metadata = {
@@ -48,7 +52,7 @@ const faq = [
   },
   {
     q: "Ile kosztuje pedicure w Krakowie?",
-    a: "Pedicure samych paznokci kosztuje od 100 zł, pedicure z hybrydą od 160 zł, a pełny pedicure kosmetyczny od 180 zł.",
+    a: `Pedicure samych paznokci bez hybrydy kosztuje ${servicePrice("Pedicure same paznokcie")}. Hybryda samych paznokci u Julii (stylistki junior) kosztuje ${servicePrice("Pedicure same paznokcie z hybrydą — Julia (stylistka junior)")}, a u Natalii ${servicePrice("Pedicure same paznokcie z hybrydą")}. Pełny pedicure SPA bez hybrydy kosztuje ${servicePrice("Pedicure kosmetyczny")}, a z hybrydą ${servicePrice("Pedicure kosmetyczny z hybrydą")}.`,
   },
   {
     q: "Czy Noblu przyjmuje nowe klientki na pedicure?",
@@ -72,12 +76,7 @@ export default function PedicureKrakowPage() {
         description="Pedicure kosmetyczny, pedicure hybrydowy i estetyczna pielęgnacja stóp w Noblu Beauty Room w Krakowie, na Borku Fałęckim."
         serviceType="Pedicure"
         url="https://noblu.pl/pedicure-krakow"
-        offers={[
-          { name: "Pedicure same paznokcie", price: "100" },
-          { name: "Pedicure same paznokcie z hybrydą", price: "160" },
-          { name: "Pedicure kosmetyczny", price: "180" },
-          { name: "Pedicure kosmetyczny z hybrydą", price: "200" },
-        ]}
+        offers={serviceOffers(pedicurePrices)}
       />
 
       <script
@@ -122,19 +121,19 @@ export default function PedicureKrakowPage() {
               href="/rezerwacja?usluga=pedicure"
               className="inline-flex items-center justify-center px-10 py-5 rounded-full bg-[#D4B483] text-black font-medium hover:scale-105 transition-transform shadow-[0_20px_60px_rgba(212,180,131,0.35)]"
             >
-              Kosmetyczny — 180 zł
+              SPA bez hybrydy — {servicePrice("Pedicure kosmetyczny")}
             </Link>
             <Link
               href="/rezerwacja?usluga=pedicure-kosmetyczny-hybryda"
               className="inline-flex items-center justify-center rounded-full border border-[#D4B483] px-10 py-5 font-medium text-[#876536] transition-colors hover:bg-[#D4B483] hover:text-black"
             >
-              Pełny z hybrydą — 200 zł
+              SPA z hybrydą — {servicePrice("Pedicure kosmetyczny z hybrydą")}
             </Link>
             <Link
               href="/rezerwacja?usluga=pedicure-paznokcie-hybryda"
               className="inline-flex items-center justify-center rounded-full border border-[#D4B483] px-10 py-5 font-medium text-[#876536] transition-colors hover:bg-[#D4B483] hover:text-black"
             >
-              Same paznokcie z hybrydą — 160 zł
+              Same paznokcie z hybrydą u Natalii — {servicePrice("Pedicure same paznokcie z hybrydą")}
             </Link>
             <Link
               href="/cennik"
@@ -153,9 +152,19 @@ export default function PedicureKrakowPage() {
           {
             src: "/gallery/paznokcie/pedicure-hybrydowy-krakow-noblu.webp",
             alt: "Pedicure z bordowym lakierem na paznokciach stóp w Noblu Beauty Room",
+            caption: "Pedicure z bordowym lakierem — realizacja Noblu Beauty Room.",
+          },
+          {
+            src: "/gallery/paznokcie/pedicure-kobaltowy-noblu.jpg",
+            alt: "Paznokcie stóp z połyskującą kobaltową hybrydą",
+            caption: "Pedicure hybrydowy w kolorze kobaltowym — realizacja Noblu Beauty Room.",
           },
         ]}
       />
+
+      <SalonTeam />
+      <ServiceVariants pedicure />
+      <SalonHygiene />
 
       <section className="pb-24 px-6 lg:px-12">
         <div className="max-w-5xl mx-auto grid gap-10 text-lg leading-relaxed text-[#5F5B56]">
@@ -170,8 +179,9 @@ export default function PedicureKrakowPage() {
               higienę, dokładność i komfort wizyty.
             </p>
             <p className="mt-4">
-              Ceny zaczynają się od 100 zł za pedicure samych paznokci i od
-              160 zł za wariant z hybrydą. Wszystkie opcje są opisane w <Link href="/cennik" className="font-medium text-[#876536] underline underline-offset-4">cenniku pedicure</Link>.
+              Pedicure samych paznokci bez hybrydy kosztuje {servicePrice("Pedicure same paznokcie")}.
+              Wariant z hybrydą u Julii (stylistki junior) kosztuje {servicePrice("Pedicure same paznokcie z hybrydą — Julia (stylistka junior)")},
+              a u Natalii {servicePrice("Pedicure same paznokcie z hybrydą")}. Wszystkie opcje są opisane w <Link href="/cennik" className="font-medium text-[#876536] underline underline-offset-4">cenniku pedicure</Link>.
             </p>
             <p className="mt-4">
               Jeśli szukasz pedicure w Krakowie, możesz wybrać wariant
@@ -200,8 +210,8 @@ export default function PedicureKrakowPage() {
             <p>
               Jeśli szukasz pedicure w Krakowie i zależy Ci na spokojnej,
               dokładnej wizycie, możesz wysłać zapytanie przez formularz Noblu.
-              Większa dostępność zespołu pomaga lepiej dopasować termin na
-              pedicure hybrydowy, kosmetyczny lub pielęgnację samych paznokci.
+              Natalia wykonuje warianty SPA i pielęgnację samych paznokci.
+              U Julii możesz umówić hybrydę samych paznokci albo jej usunięcie z opracowaniem paznokci.
             </p>
           </div>
 

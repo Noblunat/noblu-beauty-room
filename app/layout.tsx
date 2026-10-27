@@ -63,7 +63,7 @@ const salonJsonLd = {
         "Friday",
       ],
       opens: "10:00",
-      closes: "19:30",
+      closes: "19:00",
     },
   ],
   areaServed: [
@@ -155,7 +155,7 @@ export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
   title: homeTitle,
   description:
-    "Manicure, pedicure i stylizacja rzęs w Krakowie na Borku Fałęckim. Rezerwacja online 24/7, darmowy parking, ponad 240 opinii klientek.",
+    "Manicure, pedicure i stylizacja rzęs w Krakowie na Borku Fałęckim. Rezerwacja online 24/7, darmowy parking, ponad 240 opinii klientek w Booksy.",
   alternates: {
   canonical: siteUrl,
 },
@@ -169,7 +169,7 @@ export const metadata: Metadata = {
   openGraph: {
     title: homeTitle,
     description:
-      "Manicure, pedicure i stylizacja rzęs w Krakowie na Borku Fałęckim. Rezerwacja online 24/7, darmowy parking i ponad 240 opinii.",
+      "Manicure, pedicure i stylizacja rzęs w Krakowie na Borku Fałęckim. Rezerwacja online 24/7, darmowy parking i ponad 240 opinii w Booksy.",
     url: siteUrl,
     siteName: "Noblu Beauty Room",
      images: [
@@ -187,7 +187,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: homeTitle,
     description:
-      "Manicure, pedicure i stylizacja rzęs w Krakowie na Borku Fałęckim. Rezerwacja online 24/7, darmowy parking i ponad 240 opinii.",
+      "Manicure, pedicure i stylizacja rzęs w Krakowie na Borku Fałęckim. Rezerwacja online 24/7, darmowy parking i ponad 240 opinii w Booksy.",
     images: ["https://noblu.pl/og-noblu.jpg"],
   },
 };

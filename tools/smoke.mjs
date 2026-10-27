@@ -110,7 +110,7 @@ try {
   for (const service of ["manicure", "pedicure", "rzesy"]) {
     assert.ok(prices.some(n => n.tagName === "a" && attr(n, "href") === `/rezerwacja?usluga=${service}`), `Price-list booking link: ${service}`);
   }
-  assert.equal(prices.filter(n => n.tagName === "span" && text(n).trim().startsWith("Czas:")).length, 27, "Duration or unconfirmed-time disclosure on all price rows");
+  assert.equal(prices.filter(n => n.tagName === "span" && text(n).trim().startsWith("Czas:")).length, 39, "Duration or unconfirmed-time disclosure on all price rows");
   assert.ok(documents.get("/").some(n => n.tagName === "a" && attr(n, "href") === "https://g.page/r/CWOsZkWYFdZbEBM/review"), "Official Google review invitation");
 
   const privacyTable = documents.get("/polityka-prywatnosci").find(n => n.tagName === "table");
