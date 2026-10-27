@@ -5,14 +5,10 @@ const team = [
   {
     name: "Natalia",
     image: "/team/natalia-noblu.jpg",
-    role: "Manicure, stylizacja żelowa i pedicure SPA",
-    description: "Wykonuje manicure klasyczny i hybrydowy, stylizacje żelowe, przedłużanie na szablonie oraz warianty pedicure SPA i pielęgnację paznokci stóp.",
   },
   {
     name: "Julia",
     image: "/team/julia-noblu.jpg",
-    role: "Stylistka junior",
-    description: "Wykonuje manicure hybrydowy, przedłużanie żelowe na tipsie oraz hybrydę paznokci stóp. Jej warianty mają osobne ceny i czasy wizyt, opisane w cenniku.",
   },
 ];
 
@@ -34,8 +30,6 @@ export default function SalonTeam() {
               />
               <div className="min-w-0">
                 <h3 className="text-2xl font-medium">{person.name}</h3>
-                <p className="mt-2 font-medium text-[#7C6238]">{person.role}</p>
-                <p className="mt-3 leading-relaxed text-[#5F5B56]">{person.description}</p>
               </div>
             </article>
           ))}
