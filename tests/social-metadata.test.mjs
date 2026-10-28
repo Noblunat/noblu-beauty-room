@@ -14,7 +14,7 @@ function metadataFor(route) {
     compilerOptions: { module: ts.ModuleKind.CommonJS, jsx: ts.JsxEmit.ReactJSX },
   }).outputText, {
     module: m, exports: m.exports,
-    require: name => /(?:bookingServices|booksyCatalog|priceCatalog|contentRevisions)$/.test(name) ? loadDataModule(name, new URL(`../app/${route}/${filename}`, import.meta.url)) : ({ default: () => null }),
+    require: name => /\/lib\//.test(name) ? loadDataModule(name, new URL(`../app/${route}/${filename}`, import.meta.url)) : ({ default: () => null }),
   });
   return m.exports.metadata;
 }

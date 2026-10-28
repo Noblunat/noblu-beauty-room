@@ -32,6 +32,7 @@ for (const path of pages) {
     await expect(footer).toContainText("10:00-19:00");
     await expect(footer).toContainText("ponad 240 opinii");
     const visibleText = await page.locator("body").innerText();
+    expect(visibleText).not.toMatch(/ul\.Orzechowej/);
     const closingTimes = visibleText.match(/\b19:[0-5][0-9]\b/g) || [];
     expect(closingTimes.length).toBeGreaterThan(0);
     expect([...new Set(closingTimes)]).toEqual(["19:00"]);

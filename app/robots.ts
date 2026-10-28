@@ -1,3 +1,5 @@
+
+import { business } from "./lib/business";
 import type { MetadataRoute } from "next"
 
 export default function robots() {
@@ -24,6 +26,6 @@ export default function robots() {
         ...allowSite,
       },
     ],
-    sitemap: "https://noblu.pl/sitemap.xml",
+    sitemap: `${business.url}/sitemap.xml`,
   } satisfies MetadataRoute.Robots
 }

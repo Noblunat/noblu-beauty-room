@@ -1,24 +1,8 @@
 import Image from "next/image";
 import Link from "next/link";
-
-const team = [
-  {
-    name: "Natalia",
-    image: "/team/natalia-noblu.jpg",
-    role: "Właścicielka salonu",
-    description: [
-      "Moim celem jest tworzenie trwałych i estetycznych stylizacji paznokci. Szczególną uwagę poświęcam skórze, ponieważ bez bezpiecznego opracowania manicure czy pedicure, żaden kolor nie będzie robił wrażenia.",
-    ],
-  },
-  {
-    name: "Julia",
-    image: "/team/julia-noblu.jpg",
-    description: [
-      "Stylistka paznokci z zamiłowaniem do szalonych stylizacji oraz zdobień 3D. Kreatywność to moje drugie imię.",
-      "Zmalujmy razem coś wyjątkowego!",
-    ],
-  },
-];
+import { staff } from "../lib/team";
+import { business } from "../lib/business";
+const team = Object.values(staff);
 
 export default function SalonTeam() {
   return (
@@ -30,7 +14,7 @@ export default function SalonTeam() {
             <article key={person.name} className="flex min-w-0 flex-col gap-5 rounded-[1.5rem] border border-[#E8DED2] bg-white/70 p-6 sm:flex-row sm:items-start">
               <Image
                 src={person.image}
-                alt={`Portret ${person.name === "Natalia" ? "Natalii" : "Julii"} z zespołu Noblu Beauty Room`}
+                alt={`Portret ${person.id === "natalia" ? "Natalii" : "Julii"} z zespołu ${business.name}`}
                 width={144}
                 height={144}
                 sizes="(min-width: 640px) 144px, 112px"

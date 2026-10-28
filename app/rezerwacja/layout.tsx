@@ -1,10 +1,12 @@
+
+import { business } from "../lib/business";
 import type { Metadata } from "next";
 import type { ReactNode } from "react";
 
-const reservationUrl = "https://noblu.pl/rezerwacja";
+const reservationUrl = `${business.url}/rezerwacja`;
 const title = "Rezerwacja Noblu Kraków | Manicure, pedicure i rzęsy";
 const description =
-  "Wyślij prośbę o termin na manicure, pedicure, paznokcie hybrydowe lub stylizację rzęs w Noblu Beauty Room Kraków. Formularz online 24/7.";
+  `Wyślij prośbę o termin na manicure, pedicure, paznokcie hybrydowe lub stylizację rzęs w ${business.name} Kraków. Formularz online 24/7.`;
 const socialImage = `${reservationUrl}/og-rezerwacja.jpg`;
 
 export const metadata: Metadata = {
@@ -17,13 +19,13 @@ export const metadata: Metadata = {
     title,
     description,
     url: reservationUrl,
-    siteName: "Noblu Beauty Room",
+    siteName: business.name,
     images: [
       {
         url: socialImage,
         width: 1200,
         height: 630,
-        alt: "Rezerwacja manicure pedicure i rzęs Noblu Beauty Room Kraków",
+        alt: `Rezerwacja manicure pedicure i rzęs ${business.name} Kraków`,
       },
     ],
     locale: "pl_PL",

@@ -11,6 +11,7 @@ const eslintConfig = defineConfig([
     ".next/**",
     "out/**",
     "build/**",
+    "output/**",
     "next-env.d.ts",
     "convert-images.js",
     "replace-webp.js",

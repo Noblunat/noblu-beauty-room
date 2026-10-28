@@ -1,13 +1,5 @@
 import ReservationClient from "./ReservationClient"
-
-const servicesFromLinks = new Map([
-  ["manicure", "Manicure"],
-  ["hybryda", "Stylizacja hybrydowa"],
-  ["pedicure", "Pedicure kosmetyczny"],
-  ["pedicure-paznokcie-hybryda", "Pedicure same paznokcie z hybrydą"],
-  ["pedicure-kosmetyczny-hybryda", "Pedicure kosmetyczny z hybrydą"],
-  ["rzesy", "Aplikacja rzęs 1:1"],
-])
+import { findBookingService } from "../lib/bookingServices"
 
 export default async function RezerwacjaPage({
   searchParams,
@@ -15,7 +7,7 @@ export default async function RezerwacjaPage({
   searchParams: Promise<{ usluga?: string }>
 }) {
   const { usluga } = await searchParams
-  const initialService = typeof usluga === "string" ? servicesFromLinks.get(usluga) ?? "" : ""
+  const initialService = typeof usluga === "string" ? findBookingService(usluga)?.id ?? "" : ""
 
   return <ReservationClient initialService={initialService} />
 }

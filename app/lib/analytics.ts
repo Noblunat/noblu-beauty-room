@@ -1,25 +1,11 @@
 import { readCookieConsent } from "./cookieConsent";
+import { findBookingService } from "./bookingServices";
+import { servicePages } from "./serviceCatalog";
 
 export const googleAnalyticsId = "G-BD9VRN0W6Q";
 
-const servicePages = new Map([
-  ["/manicure-krakow", "Manicure"],
-  ["/pedicure-krakow", "Pedicure"],
-  ["/stylizacja-rzes-krakow", "Stylizacja rzęs"],
-  ["/przedluzanie-rzes-krakow", "Przedłużanie rzęs"],
-]);
-
-const bookingServices = new Map([
-  ["manicure", "Manicure"],
-  ["pedicure", "Pedicure"],
-  ["pedicure-paznokcie-hybryda", "Pedicure same paznokcie z hybrydą"],
-  ["pedicure-kosmetyczny-hybryda", "Pedicure kosmetyczny z hybrydą"],
-  ["hybryda", "Stylizacja hybrydowa"],
-  ["rzesy", "Stylizacja rzęs"],
-]);
-
 export function serviceFromPath(pathname: string) {
-  return servicePages.get(pathname.replace(/\/$/, ""));
+  return servicePages[pathname.replace(/\/$/, "")]?.name;
 }
 
 export function bookingClickDetails(href: string, pageUrl: string) {
@@ -29,9 +15,12 @@ export function bookingClickDetails(href: string, pageUrl: string) {
   const isForm = target.origin === source.origin && target.pathname.replace(/\/$/, "") === "/rezerwacja";
 
   if (!isBooksy && !isForm) return null;
+  const service = findBookingService(target.searchParams.get("usluga") ?? "");
 
   return {
-    service_name: bookingServices.get(target.searchParams.get("usluga") ?? "") ?? serviceFromPath(source.pathname) ?? "unspecified",
+    service_name: service?.name ?? serviceFromPath(source.pathname) ?? "unspecified",
+    service_id: service?.id ?? "unspecified",
+    service_category: service?.category ?? servicePages[source.pathname]?.category ?? "unspecified",
     source_page: source.pathname,
     booking_channel: isBooksy ? "booksy" : "reservation_form",
   };
@@ -41,7 +30,7 @@ type AnalyticsEvent = "view_service" | "click_booking" | "booking_start" | "book
 
 export function trackAnalyticsEvent(
   event: AnalyticsEvent,
-  parameters: { service_name: string; source_page?: string; booking_channel?: string; lead_source?: string; currency?: string; value?: number },
+  parameters: { service_name: string; service_id?: string; service_category?: string; source_page?: string; booking_channel?: string; lead_source?: string; currency?: string; value?: number },
 ) {
   if (typeof window === "undefined") return false;
 
@@ -64,7 +53,7 @@ export function trackAnalyticsEvent(
 
 export function trackGoogleAdsConversion(
   conversionId: string,
-  parameters: { lead_source?: string; service_name?: string; transaction_id?: string } = {},
+  parameters: { lead_source?: string; service_name?: string; service_id?: string; transaction_id?: string } = {},
 ) {
   if (typeof window === "undefined") return false;
   try {

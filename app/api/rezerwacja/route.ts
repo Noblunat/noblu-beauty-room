@@ -1,7 +1,9 @@
+
+import { business } from "../../lib/business";
 import { createHash } from "node:crypto"
 import { checkBookingRateLimit } from "../../lib/bookingRateLimit"
 import { normalizePhoneNumber, phoneErrorMessage } from "../../lib/phone"
-import { findBookingService, timePreferences } from "../../lib/bookingServices"
+import { findBookingService, findBookingServiceById, timePreferences } from "../../lib/bookingServices"
 
 export const maxDuration = 20
 const maxBodyBytes = 8192
@@ -11,6 +13,7 @@ type BookingRequest = {
   name?: unknown
   telephone?: unknown
   service?: unknown
+  serviceId?: unknown
   price?: unknown
   duration?: unknown
   date?: unknown
@@ -20,7 +23,7 @@ type BookingRequest = {
 }
 
 const recipientEmail =
-  process.env.BOOKING_RECIPIENT_EMAIL || "salon@noblu.pl"
+  process.env.BOOKING_RECIPIENT_EMAIL || business.email
 
 function cleanText(value: unknown, maxLength: number) {
   return typeof value === "string" ? value.trim().slice(0, maxLength) : ""
@@ -125,7 +128,7 @@ export async function POST(request: Request) {
 
   const fields: [unknown, number][] = [
     [data.name, 100], [data.telephone, 40], [data.service, 160],
-    [data.date, 20], [data.timePreference, 40], [data.notes, 1000],
+    [data.date, 20], [data.timePreference, 40], [data.notes, 1000], [data.serviceId, 80],
   ]
   if (fields.some(([value, max]) => value !== undefined && (typeof value !== "string" || value.length > max)) ||
       (typeof data.name === "string" && /[\u0000-\u001f\u007f]/.test(data.name))) {
@@ -134,13 +137,16 @@ export async function POST(request: Request) {
 
   const name = cleanText(data.name, 100)
   const telephone = normalizePhoneNumber(data.telephone)
-  const service = cleanText(data.service, 160)
-  const selectedService = findBookingService(service)
+  const legacyService = cleanText(data.service, 160)
+  const serviceId = cleanText(data.serviceId, 80)
+  const selectedService = data.serviceId !== undefined
+    ? findBookingServiceById(serviceId)
+    : findBookingService(legacyService)
   const date = cleanText(data.date, 20)
   const timePreference = cleanText(data.timePreference, 40) || "Dowolnie"
   const notes = cleanText(data.notes, 1000)
 
-  if (!name || !cleanText(data.telephone, 40) || !service || !date) {
+  if (!name || !cleanText(data.telephone, 40) || (!serviceId && !legacyService) || !date) {
     return Response.json(
       { error: "Uzupełnij imię, telefon, usługę i preferowany dzień." },
       { status: 400 }
@@ -151,7 +157,9 @@ export async function POST(request: Request) {
     return Response.json({ error: phoneErrorMessage }, { status: 400 })
   }
 
-  if (!selectedService || !timePreferences.some(value => value === timePreference)) {
+  if (!selectedService ||
+      (legacyService && findBookingService(legacyService)?.id !== selectedService.id) ||
+      !timePreferences.some(value => value === timePreference)) {
     return Response.json({ error: "Wybierz usługę i porę dnia z listy w formularzu." }, { status: 400 })
   }
 
@@ -197,7 +205,7 @@ export async function POST(request: Request) {
 
   const apiKey = process.env.RESEND_API_KEY
   const fromEmail =
-    process.env.RESEND_FROM_EMAIL || "Noblu Beauty Room <salon@noblu.pl>"
+    process.env.RESEND_FROM_EMAIL || `${business.name} <${business.email}>`
 
   if (!apiKey) {
     console.error("Missing RESEND_API_KEY")
@@ -210,7 +218,8 @@ export async function POST(request: Request) {
   const rows = [
     ["Imię", name],
     ["Telefon", telephone],
-    ["Usługa", service],
+    ["Usługa", selectedService.label],
+    ["Identyfikator usługi", selectedService.id],
     ["Cena orientacyjna", selectedService.price],
     ["Czas trwania", selectedService.duration],
     ["Preferowany dzień", date],
@@ -252,7 +261,7 @@ export async function POST(request: Request) {
       body: JSON.stringify({
         from: fromEmail,
         to: [recipientEmail],
-        subject: `Nowa prośba o termin - ${service}`,
+        subject: `Nowa prośba o termin - ${selectedService.label} [${selectedService.id}]`,
         text,
         html,
       }),

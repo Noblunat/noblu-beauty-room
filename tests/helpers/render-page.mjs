@@ -11,7 +11,7 @@ export function renderPage(file) {
     module: m, exports: m.exports,
     require(name) {
       if (name === "react/jsx-runtime") return {jsx: (type, props) => ({type, props}), jsxs: (type, props) => ({type, props})};
-      if (/(bookingServices|booksyCatalog|priceCatalog|contentRevisions)$/.test(name)) return loadDataModule(name, file);
+      if (/\/lib\//.test(name)) return loadDataModule(name, file);
       return {default: () => null};
     },
   });

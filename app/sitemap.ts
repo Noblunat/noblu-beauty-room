@@ -1,8 +1,10 @@
+
+import { business } from "./lib/business";
 import type { MetadataRoute } from "next"
 import { contentRevisions } from "./lib/contentRevisions"
 
 export default function sitemap(): MetadataRoute.Sitemap {
-  const baseUrl = "https://noblu.pl"
+  const baseUrl = business.url
 
   // Explicit content revisions remain stable across builds and requests.
   const pages: MetadataRoute.Sitemap = [

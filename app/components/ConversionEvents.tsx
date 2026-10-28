@@ -4,6 +4,7 @@ import { useEffect, useRef } from "react";
 import { usePathname } from "next/navigation";
 import { subscribeToCookieConsent } from "../lib/cookieConsent";
 import { bookingClickDetails, serviceFromPath, trackAnalyticsEvent, trackGoogleAdsConversion } from "../lib/analytics";
+import { servicePages } from "../lib/serviceCatalog";
 
 const booksyConversionId = "AW-10795260361/w2THCKCZ0LYcEMmzypso";
 const phoneConversionId = "AW-10795260361/IB8aCJvquLYcEMmzypso";
@@ -20,7 +21,7 @@ export default function ConversionEvents() {
     const trackView = () => {
       const serviceName = serviceFromPath(pathname);
       if (!serviceName || serviceView.current.sent) return;
-      serviceView.current.sent = trackAnalyticsEvent("view_service", { service_name: serviceName });
+      serviceView.current.sent = trackAnalyticsEvent("view_service", { service_name: serviceName, service_category: servicePages[pathname]?.category });
     };
 
     trackView();

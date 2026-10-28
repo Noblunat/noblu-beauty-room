@@ -4,7 +4,8 @@ test("homepage CTA opens inquiry, success replaces form and prevents a second su
   let submissions = 0;
   await page.route("**/api/rezerwacja", async route => {
     submissions++;
-    expect(route.request().postDataJSON()).toMatchObject({ name: "TEST E2E - NIE WYSYLAC", telephone: "+48662989534", date: "2099-01-15" });
+    expect(route.request().postDataJSON()).toMatchObject({ name: "TEST E2E - NIE WYSYLAC", telephone: "+48662989534", date: "2099-01-15", serviceId: "manicure-natalia" });
+    expect(route.request().postDataJSON().service).toBeUndefined();
     await route.fulfill({ json: { ok: true } });
   });
   await page.goto("/");
@@ -20,6 +21,24 @@ test("homepage CTA opens inquiry, success replaces form and prevents a second su
   await expect(page.getByRole("status")).toContainText("Dziękujemy");
   await expect(page.getByRole("button", { name: "Wyślij prośbę o termin", exact: true })).toHaveCount(0);
   expect(submissions).toBe(1);
+});
+
+test("legacy campaign links and canonical variant links select the same verified service", async ({ page }) => {
+  for (const [value, id, price] of [
+    ["manicure", "manicure-natalia", "100 zł"],
+    ["hybryda", "hybryda-natalia", "160 zł"],
+    ["pedicure", "pedicure-spa-bez-hybrydy-natalia", "180 zł"],
+    ["pedicure-paznokcie-hybryda", "pedicure-paznokcie-hybryda-natalia", "160 zł"],
+    ["pedicure-kosmetyczny-hybryda", "pedicure-spa-hybryda-natalia", "200 zł"],
+    ["rzesy", "rzesy-1-1-aplikacja", "190 zł"],
+    ["hybryda-julia", "hybryda-julia", "130 zł"],
+    ["Pedicure kosmetyczny", "pedicure-spa-bez-hybrydy-natalia", "180 zł"],
+  ]) {
+    await page.goto(`/rezerwacja?usluga=${encodeURIComponent(value)}`);
+    if (value === "manicure") await rejectOptional(page);
+    await expect(page.getByRole("combobox", { name: /^Usługa/ })).toHaveValue(id);
+    await expect(page.getByRole("heading", { name: "Wybrana usługa", exact: true }).locator("..")).toContainText(price);
+  }
 });
 
 test("delivery failure preserves the inquiry, offers contact and retries with the same identity", async ({ page }) => {

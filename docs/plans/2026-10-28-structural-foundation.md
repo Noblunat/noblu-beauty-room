@@ -20,4 +20,13 @@ Delivery: isolated `codex/structural-foundation-20261028` branch. Keep unrelated
 - Stage 1 implemented locally: 48 deterministic browser checks passed across desktop, 375 px and 414 px; the three opt-in real-Google integration checks passed separately. Collection was intercepted, no appointments or emails sent.
 - `npm run check`: exit 0; lint, 128 Node tests, zero known dependency vulnerabilities, production build and local smoke passed.
 - Preview workflow and exact-release assertion are prepared. No actual Vercel preview was deployed or tested in this stage, and no GitHub workflow run is claimed.
-- Stages 2-4 are pending. Application source and production are unchanged at this checkpoint.
+- Stages 2-4 were pending at the baseline checkpoint. Application source and production were unchanged by stage 1.
+
+## Checkpoint: Shared Business And Service Data
+
+- Stage 2 implemented locally on the same isolated branch: shared public business/team data, 32 stable service-variant IDs, backwards-compatible query aliases and API names, and derived price/form/metadata/schema/FAQ/revision data. Ownership and migration contracts are described in `docs/data-sources.md`.
+- Existing Booksy snapshot, every service price and duration, and the 20 PLN French/ombre/babyboomer supplement are unchanged. No employee assignment was invented for lashes.
+- `npm run check`: exit 0; lint, 139 Node tests, zero known dependency vulnerabilities, production build and local smoke passed.
+- Browser regression: 51 passed, three opt-in checks skipped in the default run. The three real-Google integration checks passed separately. No collection requests or appointments were transmitted.
+- A deliberately failing browser assertion exposed missing JSX whitespace before two generated addresses; both were fixed and the full browser suite rerun. ESLint now ignores generated output reports so a failed Playwright trace cannot cause a later source lint failure.
+- No production/preview deployment, push or remote CI run was performed at the local checkpoint. Publication of stage 2 was subsequently approved by the user. Unrelated `D CLAUDE.md` is untouched. Stages 3 and 4 remain separate work.

@@ -1,3 +1,5 @@
+
+import { business, businessHours } from "../lib/business";
 import Image from "next/image";
 import CookiePreferencesButton from "./CookiePreferencesButton";
 
@@ -14,7 +16,7 @@ export default function SiteFooter() {
       <div>
         <Image
           src="/logo-footer.webp"
-          alt="Noblu Beauty Room Kraków"
+          alt={`${business.name} Kraków`}
           width={96}
           height={96}
           unoptimized
@@ -23,7 +25,7 @@ export default function SiteFooter() {
 
         <p className="text-[#1D1D1B] leading-relaxed max-w-sm">
           Manicure, pedicure i stylizacja rzęs w Krakowie. Darmowy parking,
-          rezerwacja online, ponad 240 opinii klientek w Booksy.
+          rezerwacja online, {"ponad " + business.reviews.minimum} opinii klientek w Booksy.
         </p>
       </div>
 
@@ -75,26 +77,26 @@ export default function SiteFooter() {
         </div>
 
         <div className="space-y-4 text-[#1D1D1B]">
-          <div>Orzechowa 4/lok.1</div>
-          <div>30-422 Kraków</div>
+          <div>{business.address.street}</div>
+          <div>{business.address.postalCode} {business.address.city}</div>
           <div>Darmowy parking pod salonem</div>
-          <div>Poniedziałek - piątek: 10:00-19:00</div>
-          <div>Sobota i niedziela: zamknięte</div>
+          <div>{businessHours}</div>
+          <div>{business.hours.closedLabel}</div>
           <div>Zapytanie o termin online: 24/7</div>
           <div>Dogodny dojazd: Podgórze, Łagiewniki, Borek Fałęcki, Ruczaj, Kurdwanów</div>
 
           <a
-            href="tel:+48662989534"
+            href={`tel:${business.phone.e164}`}
             className="block hover:text-[#7C6238] transition-colors"
           >
-            +48 662 989 534
+            {business.phone.international}
           </a>
 
           <a
-            href="mailto:salon@noblu.pl"
+            href={`mailto:${business.email}`}
             className="block hover:text-[#7C6238] transition-colors"
           >
-            salon@noblu.pl
+            {business.email}
           </a>
         </div>
       </div>
@@ -107,7 +109,7 @@ export default function SiteFooter() {
         <div className="space-y-4">
 
           <a
-            href="https://www.instagram.com/noblu_beauty_room/"
+            href={business.links.instagram}
             target="_blank"
             rel="noopener noreferrer"
             className="block text-[#1D1D1B] hover:text-[#7C6238] transition-colors"
@@ -123,7 +125,7 @@ export default function SiteFooter() {
     <div className="mt-20 pt-8 border-t border-[#E8DED2] flex flex-col lg:flex-row items-center justify-between gap-6">
 
       <div className="text-[#9B9187] text-sm">
-        © {new Date().getFullYear()} Noblu Beauty Room. Wszystkie prawa zastrzeżone.
+        © {new Date().getFullYear()} {business.name}. Wszystkie prawa zastrzeżone.
       </div>
 
       <div className="flex flex-col items-center gap-3 text-[#1D1D1B] text-sm lg:flex-row">

@@ -1,3 +1,5 @@
+
+import { business } from "../lib/business";
 import type { Metadata } from "next";
 import Link from "next/link";
 import BreadcrumbJsonLd from "../components/BreadcrumbJsonLd";
@@ -13,17 +15,17 @@ export const metadata: Metadata = {
   description:
     "Pedicure kosmetyczny i hybrydowy w Krakowie na Borku Fałęckim. Dobry dojazd z Podgórza, darmowy parking, cennik i zapytanie o termin online.",
   alternates: {
-    canonical: "https://noblu.pl/pedicure-krakow",
+    canonical: `${business.url}/pedicure-krakow`,
   },
   openGraph: {
     title: "Pedicure Kraków Borek Fałęcki | Hybrydowy i SPA | Noblu",
     description:
-      "Pedicure kosmetyczny, hybrydowy i SPA w Noblu Beauty Room w Krakowie, Borek Fałęcki. Zobacz cennik i zapytaj o termin online.",
-    url: "https://noblu.pl/pedicure-krakow",
-    siteName: "Noblu Beauty Room",
+      `Pedicure kosmetyczny, hybrydowy i SPA w ${business.name} w Krakowie, Borek Fałęcki. Zobacz cennik i zapytaj o termin online.`,
+    url: `${business.url}/pedicure-krakow`,
+    siteName: business.name,
     images: [{
-      url: "https://noblu.pl/gallery/paznokcie/pedicure-hybrydowy-krakow-noblu.webp",
-      alt: "Pedicure hybrydowy w Noblu Beauty Room Kraków Borek Fałęcki",
+      url: `${business.url}/gallery/paznokcie/pedicure-hybrydowy-krakow-noblu.webp`,
+      alt: `Pedicure hybrydowy w ${business.name} Kraków Borek Fałęcki`,
     }],
     locale: "pl_PL",
     type: "website",
@@ -32,15 +34,15 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Pedicure Kraków Borek Fałęcki | Hybrydowy i SPA | Noblu",
     description:
-      "Pedicure kosmetyczny, hybrydowy i SPA w Noblu Beauty Room w Krakowie, Borek Fałęcki. Zobacz cennik i zapytaj o termin online.",
-    images: ["https://noblu.pl/gallery/paznokcie/pedicure-hybrydowy-krakow-noblu.webp"],
+      `Pedicure kosmetyczny, hybrydowy i SPA w ${business.name} w Krakowie, Borek Fałęcki. Zobacz cennik i zapytaj o termin online.`,
+    images: [`${business.url}/gallery/paznokcie/pedicure-hybrydowy-krakow-noblu.webp`],
   },
 };
 
 const faq = [
   {
     q: "Gdzie wykonać pedicure w Krakowie, Borek Fałęcki?",
-    a: "Pedicure w Noblu Beauty Room wykonasz przy ul. Orzechowej 4/lok.1 w Krakowie, na Borku Fałęckim. To wygodna lokalizacja także dla osób z Łagiewnik, Ruczaju, Kurdwanowa, Swoszowic i Podgórza.",
+    a: `Pedicure w ${business.name} wykonasz przy ul. ${business.address.streetLocative} w Krakowie, na Borku Fałęckim. To wygodna lokalizacja także dla osób z Łagiewnik, Ruczaju, Kurdwanowa, Swoszowic i Podgórza.`,
   },
   {
     q: "Czy salon wykonuje pedicure hybrydowy?",
@@ -52,7 +54,7 @@ const faq = [
   },
   {
     q: "Ile kosztuje pedicure w Krakowie?",
-    a: `Pedicure samych paznokci bez hybrydy kosztuje ${servicePrice("Pedicure same paznokcie")}. Hybryda samych paznokci u Julii (stylistki junior) kosztuje ${servicePrice("Pedicure same paznokcie z hybrydą — Julia (stylistka junior)")}, a u Natalii ${servicePrice("Pedicure same paznokcie z hybrydą")}. Pełny pedicure SPA bez hybrydy kosztuje ${servicePrice("Pedicure kosmetyczny")}, a z hybrydą ${servicePrice("Pedicure kosmetyczny z hybrydą")}.`,
+    a: `Pedicure samych paznokci bez hybrydy kosztuje ${servicePrice("pedicure-paznokcie-bez-hybrydy-natalia")}. Hybryda samych paznokci u Julii (stylistki junior) kosztuje ${servicePrice("pedicure-paznokcie-hybryda-julia")}, a u Natalii ${servicePrice("pedicure-paznokcie-hybryda-natalia")}. Pełny pedicure SPA bez hybrydy kosztuje ${servicePrice("pedicure-spa-bez-hybrydy-natalia")}, a z hybrydą ${servicePrice("pedicure-spa-hybryda-natalia")}.`,
   },
   {
     q: "Czy Noblu przyjmuje nowe klientki na pedicure?",
@@ -67,15 +69,15 @@ export default function PedicureKrakowPage() {
         items={[
           {
             name: "Pedicure Kraków",
-            url: "https://noblu.pl/pedicure-krakow",
+            url: `${business.url}/pedicure-krakow`,
           },
         ]}
       />
       <ServiceJsonLd
         name="Pedicure Kraków Borek Fałęcki"
-        description="Pedicure kosmetyczny, pedicure hybrydowy i estetyczna pielęgnacja stóp w Noblu Beauty Room w Krakowie, na Borku Fałęckim."
+        description={`Pedicure kosmetyczny, pedicure hybrydowy i estetyczna pielęgnacja stóp w ${business.name} w Krakowie, na Borku Fałęckim.`}
         serviceType="Pedicure"
-        url="https://noblu.pl/pedicure-krakow"
+        url={`${business.url}/pedicure-krakow`}
         offers={serviceOffers(pedicurePrices)}
       />
 
@@ -109,31 +111,31 @@ export default function PedicureKrakowPage() {
           </h1>
 
           <p className="mt-10 text-lg text-[#6D6B68] leading-relaxed max-w-3xl">
-            Noblu Beauty Room oferuje pedicure kosmetyczny i hybrydowy w
+            {business.name} oferuje pedicure kosmetyczny i hybrydowy w
             Krakowie, na Borku Fałęckim, dla kobiet, które cenią estetykę,
-            komfort i dokładne wykończenie. Salon znajduje się przy ul.
-            Orzechowej 4, a pod budynkiem dostępny jest darmowy parking.
+            komfort i dokładne wykończenie. Salon znajduje się przy ul.{" "}
+            {business.address.shortStreetLocative}, a pod budynkiem dostępny jest darmowy parking.
             Przyjmujemy nowe klientki na pedicure.
           </p>
 
           <div className="mt-12 flex flex-wrap gap-4">
             <Link
-              href="/rezerwacja?usluga=pedicure"
+              href="/rezerwacja?usluga=pedicure-spa-bez-hybrydy-natalia"
               className="inline-flex items-center justify-center px-10 py-5 rounded-full bg-[#D4B483] text-black font-medium hover:scale-105 transition-transform shadow-[0_20px_60px_rgba(212,180,131,0.35)]"
             >
-              SPA bez hybrydy — {servicePrice("Pedicure kosmetyczny")}
+              SPA bez hybrydy — {servicePrice("pedicure-spa-bez-hybrydy-natalia")}
             </Link>
             <Link
-              href="/rezerwacja?usluga=pedicure-kosmetyczny-hybryda"
+              href="/rezerwacja?usluga=pedicure-spa-hybryda-natalia"
               className="inline-flex items-center justify-center rounded-full border border-[#D4B483] px-10 py-5 font-medium text-[#876536] transition-colors hover:bg-[#D4B483] hover:text-black"
             >
-              SPA z hybrydą — {servicePrice("Pedicure kosmetyczny z hybrydą")}
+              SPA z hybrydą — {servicePrice("pedicure-spa-hybryda-natalia")}
             </Link>
             <Link
-              href="/rezerwacja?usluga=pedicure-paznokcie-hybryda"
+              href="/rezerwacja?usluga=pedicure-paznokcie-hybryda-natalia"
               className="inline-flex items-center justify-center rounded-full border border-[#D4B483] px-10 py-5 font-medium text-[#876536] transition-colors hover:bg-[#D4B483] hover:text-black"
             >
-              Same paznokcie z hybrydą u Natalii — {servicePrice("Pedicure same paznokcie z hybrydą")}
+              Same paznokcie z hybrydą u Natalii — {servicePrice("pedicure-paznokcie-hybryda-natalia")}
             </Link>
             <Link
               href="/cennik"
@@ -151,13 +153,13 @@ export default function PedicureKrakowPage() {
         images={[
           {
             src: "/gallery/paznokcie/pedicure-hybrydowy-krakow-noblu.webp",
-            alt: "Pedicure z bordowym lakierem na paznokciach stóp w Noblu Beauty Room",
-            caption: "Pedicure z bordowym lakierem — realizacja Noblu Beauty Room.",
+            alt: `Pedicure z bordowym lakierem na paznokciach stóp w ${business.name}`,
+            caption: `Pedicure z bordowym lakierem — realizacja ${business.name}.`,
           },
           {
             src: "/gallery/paznokcie/pedicure-kobaltowy-noblu.jpg",
             alt: "Paznokcie stóp z połyskującą kobaltową hybrydą",
-            caption: "Pedicure hybrydowy w kolorze kobaltowym — realizacja Noblu Beauty Room.",
+            caption: `Pedicure hybrydowy w kolorze kobaltowym — realizacja ${business.name}.`,
           },
         ]}
       />
@@ -179,9 +181,9 @@ export default function PedicureKrakowPage() {
               higienę, dokładność i komfort wizyty.
             </p>
             <p className="mt-4">
-              Pedicure samych paznokci bez hybrydy kosztuje {servicePrice("Pedicure same paznokcie")}.
-              Wariant z hybrydą u Julii (stylistki junior) kosztuje {servicePrice("Pedicure same paznokcie z hybrydą — Julia (stylistka junior)")},
-              a u Natalii {servicePrice("Pedicure same paznokcie z hybrydą")}. Wszystkie opcje są opisane w <Link href="/cennik" className="font-medium text-[#876536] underline underline-offset-4">cenniku pedicure</Link>.
+              Pedicure samych paznokci bez hybrydy kosztuje {servicePrice("pedicure-paznokcie-bez-hybrydy-natalia")}.
+              Wariant z hybrydą u Julii (stylistki junior) kosztuje {servicePrice("pedicure-paznokcie-hybryda-julia")},
+              a u Natalii {servicePrice("pedicure-paznokcie-hybryda-natalia")}. Wszystkie opcje są opisane w <Link href="/cennik" className="font-medium text-[#876536] underline underline-offset-4">cenniku pedicure</Link>.
             </p>
             <p className="mt-4">
               Jeśli szukasz pedicure w Krakowie, możesz wybrać wariant
@@ -196,7 +198,7 @@ export default function PedicureKrakowPage() {
               Pedicure na Borku Fałęckim - dobry dojazd z południa Krakowa
             </h2>
             <p>
-              Salon znajduje się przy ul. Orzechowej 4/lok.1 w Krakowie, na
+              Salon znajduje się przy ul. {business.address.streetLocative} w Krakowie, na
               Borku Fałęckim. To dogodna lokalizacja dla klientek z Łagiewnik,
               Ruczaju, Kurdwanowa, Swoszowic, Woli Duchackiej oraz osób
               dojeżdżających z Podgórza.
@@ -244,26 +246,26 @@ export default function PedicureKrakowPage() {
             </h2>
             <p className="max-w-3xl">
               Wyślij prośbę o dogodny termin i zadbaj o estetyczną
-              pielęgnację stóp w Noblu Beauty Room przy ul. Orzechowej.
+              pielęgnację stóp w {business.name} przy ul. {business.address.streetNameLocative}.
             </p>
             <div className="mt-8 flex flex-wrap gap-4">
               <Link
-                href="/rezerwacja?usluga=pedicure"
+                href="/rezerwacja?usluga=pedicure-spa-bez-hybrydy-natalia"
                 className="inline-flex items-center justify-center px-8 py-4 rounded-full bg-[#D4B483] text-black font-medium hover:scale-105 transition-transform shadow-[0_20px_60px_rgba(212,180,131,0.35)]"
               >
                 Kosmetyczny — 180 zł
               </Link>
               <Link
-                href="/rezerwacja?usluga=pedicure-kosmetyczny-hybryda"
+                href="/rezerwacja?usluga=pedicure-spa-hybryda-natalia"
                 className="inline-flex items-center justify-center px-8 py-4 rounded-full border border-[#E8DED2] text-[#1D1D1B] hover:border-[#D4B483] transition-colors"
               >
                 Pełny z hybrydą — 200 zł
               </Link>
               <Link
-                href="/rezerwacja?usluga=pedicure-paznokcie-hybryda"
+                href="/rezerwacja?usluga=pedicure-paznokcie-hybryda-natalia"
                 className="inline-flex items-center justify-center px-8 py-4 rounded-full border border-[#E8DED2] text-[#1D1D1B] hover:border-[#D4B483] transition-colors"
               >
-                Same paznokcie z hybrydą — 160 zł
+                Same paznokcie z hybrydą — {servicePrice("pedicure-paznokcie-hybryda-natalia")}
               </Link>
               <Link
                 href="/cennik"

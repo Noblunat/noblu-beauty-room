@@ -1,25 +1,8 @@
 import assert from "node:assert/strict";
 import { readFileSync } from "node:fs";
 import test from "node:test";
-import ts from "typescript";
 import { loadDataModule } from "./helpers/load-data.mjs";
 import { renderPage, nodes, nodeText } from "./helpers/render-page.mjs";
-
-function literalRows(filename, variable) {
-  const source = ts.createSourceFile(filename, readFileSync(new URL(`../${filename}`, import.meta.url), "utf8"), ts.ScriptTarget.Latest, true, ts.ScriptKind.TSX);
-  let rows;
-  function visit(node) {
-    if (ts.isVariableDeclaration(node) && node.name.getText(source) === variable && ts.isArrayLiteralExpression(node.initializer)) {
-      rows = node.initializer.elements.map(item => Object.fromEntries(item.properties
-        .filter(property => ts.isPropertyAssignment(property) && ["name", "price", "href"].includes(property.name.getText(source)) && ts.isStringLiteral(property.initializer))
-        .map(property => [property.name.getText(source), property.initializer.text])));
-    }
-    ts.forEachChild(node, visit);
-  }
-  visit(source);
-  assert.ok(rows, `${filename}: ${variable}`);
-  return rows;
-}
 
 test("each Booksy variant has the same price and employee on the visible price list and in structured offers", () => {
   const allNodes = nodes(renderPage(new URL("../app/cennik/page.tsx", import.meta.url)));
@@ -42,13 +25,13 @@ test("each Booksy variant has the same price and employee on the visible price l
 });
 
 test("homepage uses the verified starting pedicure price", () => {
-  const highlight = literalRows("app/page.tsx", "priceHighlights").find(item => item.href === "/pedicure-krakow");
+  const highlight = loadDataModule("../app/lib/homePricing", import.meta.url).priceHighlights.find(item => item.href === "/pedicure-krakow");
   assert.equal(highlight.price, "od 100 zł");
 });
 
 test("the model appointment is separate from regular hybrid manicure in the public price list", () => {
   const rows = nodes(renderPage(new URL("../app/cennik/page.tsx", import.meta.url)));
-  const model = rows.find(n => n.props?.["data-booking-service"] === "MODELKA hybryda na naturalnej płytce");
+  const model = rows.find(n => n.props?.["data-booking-service"] === "modelka-hybryda-julia");
   assert.ok(nodeText(model).includes("80 zł"));
   assert.ok(nodeText(model).includes("2h 30min"));
   assert.ok(nodeText(model).includes("Osobna usługa modelkowa"));

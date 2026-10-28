@@ -1,25 +1,28 @@
+
+import { business } from "../lib/business";
 import type { Metadata } from "next";
 import Link from "next/link";
 import BreadcrumbJsonLd from "../components/BreadcrumbJsonLd";
 import ServiceJsonLd from "../components/ServiceJsonLd";
 import ServiceGallery from "../components/ServiceGallery";
+import { lashApplicationPrices, serviceOffers } from "../lib/priceCatalog";
 
 export const metadata: Metadata = {
   title: "Stylizacja rzęs Kraków | Rzęsy 1:1, 2D i 3D | Noblu",
   description:
-    "Stylizacja rzęs 1:1, 2D i 3D w Krakowie, Borek Fałęcki. Noblu Beauty Room przy ul. Orzechowej 4. Darmowy parking i zapytanie o termin online.",
+    `Stylizacja rzęs 1:1, 2D i 3D w Krakowie, Borek Fałęcki. ${business.name} przy ul. ${business.address.shortStreetLocative}. Darmowy parking i zapytanie o termin online.`,
   alternates: {
-    canonical: "https://noblu.pl/stylizacja-rzes-krakow",
+    canonical: `${business.url}/stylizacja-rzes-krakow`,
   },
   openGraph: {
     title: "Stylizacja rzęs Kraków | Rzęsy 1:1, 2D i 3D | Noblu",
     description:
       "Stylizacja rzęs 1:1, 2D i 3D w Krakowie, Borek Fałęcki. Zapytaj o termin online.",
-    url: "https://noblu.pl/stylizacja-rzes-krakow",
-    siteName: "Noblu Beauty Room",
+    url: `${business.url}/stylizacja-rzes-krakow`,
+    siteName: business.name,
     images: [{
-      url: "https://noblu.pl/gallery/rzesy/stylizacja-rzes-krakow-noblu.webp",
-      alt: "Stylizacja rzęs Noblu Beauty Room Kraków",
+      url: `${business.url}/gallery/rzesy/stylizacja-rzes-krakow-noblu.webp`,
+      alt: `Stylizacja rzęs ${business.name} Kraków`,
     }],
     locale: "pl_PL",
     type: "website",
@@ -29,7 +32,7 @@ export const metadata: Metadata = {
     title: "Stylizacja rzęs Kraków | Rzęsy 1:1, 2D i 3D | Noblu",
     description:
       "Stylizacja rzęs 1:1, 2D i 3D w Krakowie, Borek Fałęcki. Zapytaj o termin online.",
-    images: ["https://noblu.pl/gallery/rzesy/stylizacja-rzes-krakow-noblu.webp"],
+    images: [`${business.url}/gallery/rzesy/stylizacja-rzes-krakow-noblu.webp`],
   },
 };
 
@@ -40,7 +43,7 @@ const faq = [
   },
   {
     q: "Gdzie znajduje się salon stylizacji rzęs?",
-    a: "Noblu Beauty Room znajduje się przy ul. Orzechowej 4/lok.1 w Krakowie, na Borku Fałęckim. To dogodna lokalizacja także dla klientek z Łagiewnik, Ruczaju, Kurdwanowa, Swoszowic i Podgórza.",
+    a: `${business.name} znajduje się przy ul. ${business.address.streetLocative} w Krakowie, na Borku Fałęckim. To dogodna lokalizacja także dla klientek z Łagiewnik, Ruczaju, Kurdwanowa, Swoszowic i Podgórza.`,
   },
   {
     q: "Czy wizytę na rzęsy można zarezerwować online?",
@@ -59,20 +62,16 @@ export default function StylizacjaRzesKrakowPage() {
         items={[
           {
             name: "Stylizacja rzęs Kraków",
-            url: "https://noblu.pl/stylizacja-rzes-krakow",
+            url: `${business.url}/stylizacja-rzes-krakow`,
           },
         ]}
       />
       <ServiceJsonLd
         name="Stylizacja rzęs Kraków"
-        description="Stylizacja rzęs 1:1, 2D i 3D z efektem dopasowanym do urody klientki w Noblu Beauty Room w Krakowie."
+        description={`Stylizacja rzęs 1:1, 2D i 3D z efektem dopasowanym do urody klientki w ${business.name} w Krakowie.`}
         serviceType="Stylizacja rzęs"
-        url="https://noblu.pl/stylizacja-rzes-krakow"
-        offers={[
-          { name: "Aplikacja rzęs 1:1", price: "190" },
-          { name: "Aplikacja rzęs 2D", price: "210" },
-          { name: "Aplikacja rzęs 3D", price: "220" },
-        ]}
+        url={`${business.url}/stylizacja-rzes-krakow`}
+        offers={serviceOffers(lashApplicationPrices)}
       />
 
       <script
@@ -105,16 +104,16 @@ export default function StylizacjaRzesKrakowPage() {
           </h1>
 
           <p className="mt-10 text-lg text-[#6D6B68] leading-relaxed max-w-3xl">
-            Noblu Beauty Room oferuje stylizację rzęs w Krakowie, na Borku
+            {business.name} oferuje stylizację rzęs w Krakowie, na Borku
             Fałęckim, dla kobiet, które cenią elegancki, dopracowany i naturalny
             efekt. Stylizację dobieramy do urody, kształtu oka i oczekiwanego
-            rezultatu. Salon znajduje się przy ul. Orzechowej 4, z darmowym
+            rezultatu. Salon znajduje się przy ul. {business.address.shortStreetLocative}, z darmowym
             parkingiem.
           </p>
 
           <div className="mt-12 flex flex-wrap gap-4">
             <a
-              href="/rezerwacja?usluga=rzesy"
+              href="/rezerwacja?usluga=rzesy-1-1-aplikacja"
               className="inline-flex items-center justify-center px-10 py-5 rounded-full bg-[#D4B483] text-black font-medium hover:scale-105 transition-transform shadow-[0_20px_60px_rgba(212,180,131,0.35)]"
             >
               Zapytaj o termin
@@ -143,7 +142,7 @@ export default function StylizacjaRzesKrakowPage() {
           },
           {
             src: "/gallery/rzesy/rzesy-objetosciowe-krakow-noblu.webp",
-            alt: "Efekt przedłużonych rzęs na otwartych oczach klientki Noblu Beauty Room",
+            alt: `Efekt przedłużonych rzęs na otwartych oczach klientki ${business.name}`,
           },
         ]}
       />
@@ -156,7 +155,7 @@ export default function StylizacjaRzesKrakowPage() {
             </h2>
             <p>
               Jeśli szukasz miejsca na rzęsy w Krakowie, stylizację rzęs 1:1
-              lub subtelne objętości, Noblu Beauty Room stawia na komfort i
+              lub subtelne objętości, {business.name} stawia na komfort i
               estetykę. Efekt może być bardzo delikatny, bardziej wyrazisty albo
               maksymalnie naturalny, zależnie od oczekiwań i typu urody.
             </p>
@@ -171,7 +170,7 @@ export default function StylizacjaRzesKrakowPage() {
               Salon rzęs w południowej części Krakowa
             </h2>
             <p>
-              Salon znajduje się przy ul. Orzechowej 4/lok.1, na Borku
+              Salon znajduje się przy ul. {business.address.streetLocative}, na Borku
               Fałęckim. To wygodny wybór dla klientek z Łagiewnik, Ruczaju,
               Kurdwanowa, Swoszowic, Woli Duchackiej oraz osób dojeżdżających z
               Podgórza.
@@ -212,7 +211,7 @@ export default function StylizacjaRzesKrakowPage() {
             </p>
             <div className="mt-8 flex flex-wrap gap-4">
               <Link
-                href="/rezerwacja?usluga=rzesy"
+                href="/rezerwacja?usluga=rzesy-1-1-aplikacja"
                 className="inline-flex items-center justify-center px-8 py-4 rounded-full bg-[#D4B483] text-black font-medium hover:scale-105 transition-transform shadow-[0_20px_60px_rgba(212,180,131,0.35)]"
               >
                 Zapytaj o termin

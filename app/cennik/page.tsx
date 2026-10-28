@@ -1,3 +1,5 @@
+
+import { business } from "../lib/business";
 import type { Metadata } from "next";
 import Link from "next/link";
 import BreadcrumbJsonLd from "../components/BreadcrumbJsonLd";
@@ -7,22 +9,22 @@ import { contentRevisions, revisionLabel } from "../lib/contentRevisions";
 export const metadata: Metadata = {
   title: "Cennik Noblu Kraków | Manicure, pedicure i rzęsy",
   description:
-    "Sprawdź cennik manicure, pedicure, paznokci hybrydowych i stylizacji rzęs w Noblu Beauty Room Kraków. Zobacz ceny i zapytaj o termin online.",
+    `Sprawdź cennik manicure, pedicure, paznokci hybrydowych i stylizacji rzęs w ${business.name} Kraków. Zobacz ceny i zapytaj o termin online.`,
   alternates: {
-    canonical: "https://noblu.pl/cennik",
+    canonical: `${business.url}/cennik`,
   },
   openGraph: {
     title: "Cennik Noblu Kraków | Manicure, pedicure i rzęsy",
     description:
-      "Sprawdź ceny manicure, pedicure, paznokci hybrydowych i stylizacji rzęs w Noblu Beauty Room w Krakowie.",
-    url: "https://noblu.pl/cennik",
-    siteName: "Noblu Beauty Room",
+      `Sprawdź ceny manicure, pedicure, paznokci hybrydowych i stylizacji rzęs w ${business.name} w Krakowie.`,
+    url: `${business.url}/cennik`,
+    siteName: business.name,
     images: [
       {
-        url: "https://noblu.pl/og-noblu.jpg",
+        url: `${business.url}/og-noblu.jpg`,
         width: 1200,
         height: 630,
-        alt: "Noblu Beauty Room w Krakowie - cennik manicure, pedicure i rzęs",
+        alt: `${business.name} w Krakowie - cennik manicure, pedicure i rzęs`,
       },
     ],
     locale: "pl_PL",
@@ -32,18 +34,16 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Cennik Noblu Kraków | Manicure, pedicure i rzęsy",
     description:
-      "Sprawdź ceny manicure, pedicure, paznokci hybrydowych i stylizacji rzęs w Noblu Beauty Room w Krakowie.",
-    images: ["https://noblu.pl/og-noblu.jpg"],
+      `Sprawdź ceny manicure, pedicure, paznokci hybrydowych i stylizacji rzęs w ${business.name} w Krakowie.`,
+    images: [`${business.url}/og-noblu.jpg`],
   },
 };
-
-const priceToNumber = (price: string) => price.replace(/[^0-9]/g, "");
 
 const offerCatalogJsonLd = {
   "@context": "https://schema.org",
   "@type": "OfferCatalog",
-  name: "Cennik Noblu Beauty Room",
-  url: "https://noblu.pl/cennik",
+  name: `Cennik ${business.name}`,
+  url: `${business.url}/cennik`,
   itemListElement: [
     ["Stylizacja rzęs", lashPrices],
     ["Stylizacja paznokci", nailPrices],
@@ -56,10 +56,10 @@ const offerCatalogJsonLd = {
       "@type": "Offer",
       name: item.name + (item.staff ? " — " + item.staff : ""),
       ...(item.price.startsWith("od ")
-        ? {priceSpecification: {"@type": "UnitPriceSpecification", minPrice: priceToNumber(item.price), priceCurrency: "PLN"}}
-        : {price: priceToNumber(item.price), priceCurrency: "PLN"}),
+        ? {priceSpecification: {"@type": "UnitPriceSpecification", minPrice: String(item.pricePLN), priceCurrency: "PLN"}}
+        : {price: String(item.pricePLN), priceCurrency: "PLN"}),
       ...(item.note ? {description: item.note} : {}),
-      itemOffered: {"@type": "Service", name: item.name, provider: {"@id": "https://noblu.pl/#salon"}},
+      itemOffered: {"@type": "Service", name: item.name, provider: {"@id": `${business.url}/#salon`}},
     })),
   })),
 };
@@ -133,7 +133,7 @@ export default function CennikPage() {
         items={[
           {
             name: "Cennik",
-            url: "https://noblu.pl/cennik",
+            url: `${business.url}/cennik`,
           },
         ]}
       />
@@ -160,8 +160,8 @@ export default function CennikPage() {
             </h1>
             <p className="mt-8 text-lg leading-relaxed text-[#5F5B56]">
               Sprawdź ceny manicure, paznokci hybrydowych, pedicure oraz
-              stylizacji rzęs w kameralnym salonie beauty w Krakowie przy ul.
-              Orzechowej 4/lok.1. Jeśli pasuje Ci usługa, możesz od razu
+              stylizacji rzęs w kameralnym salonie beauty w Krakowie przy ul.{" "}
+              {business.address.streetLocative}. Jeśli pasuje Ci usługa, możesz od razu
               wysłać prośbę o termin online. Ceny i czasy mogą różnić się w zależności od stylistki.
             </p>
             <p className="mt-4 text-sm text-[#5F5B56]">
@@ -181,7 +181,7 @@ export default function CennikPage() {
             links={[
               { href: "/stylizacja-rzes-krakow", label: "Stylizacja rzęs Kraków" },
               { href: "/przedluzanie-rzes-krakow", label: "Przedłużanie rzęs Kraków" },
-              { href: "/rezerwacja?usluga=rzesy", label: "Zapytaj o termin" },
+              { href: "/rezerwacja?usluga=rzesy-1-1-aplikacja", label: "Zapytaj o termin" },
             ]}
           />
 
@@ -191,7 +191,7 @@ export default function CennikPage() {
             items={nailPrices}
             links={[
               { href: "/manicure-krakow", label: "Manicure Kraków" },
-              { href: "/rezerwacja?usluga=manicure", label: "Zapytaj o termin" },
+              { href: "/rezerwacja?usluga=manicure-natalia", label: "Zapytaj o termin" },
             ]}
           />
 
@@ -209,7 +209,7 @@ export default function CennikPage() {
               items={pedicurePrices}
               links={[
                 { href: "/pedicure-krakow", label: "Pedicure Kraków Borek Fałęcki" },
-                { href: "/rezerwacja?usluga=pedicure", label: "Zapytaj o termin" },
+                { href: "/rezerwacja?usluga=pedicure-spa-bez-hybrydy-natalia", label: "Zapytaj o termin" },
               ]}
             />
           </div>
@@ -221,9 +221,9 @@ export default function CennikPage() {
               Ile kosztuje manicure w Krakowie?
             </h2>
             <p className="mt-4 leading-relaxed text-[#5F5B56]">
-              Manicure w Noblu Beauty Room kosztuje {servicePrice("Manicure")}. Stylizacja
-              hybrydowa u Julii (stylistki junior) kosztuje {servicePrice("Stylizacja hybrydowa — Julia (stylistka junior)")},
-              a u Natalii {servicePrice("Stylizacja hybrydowa")}. Jeśli chcesz dobrać odpowiednią usługę,
+              Manicure w {business.name} kosztuje {servicePrice("manicure-natalia")}. Stylizacja
+              hybrydowa u Julii (stylistki junior) kosztuje {servicePrice("hybryda-julia")},
+              a u Natalii {servicePrice("hybryda-natalia")}. Jeśli chcesz dobrać odpowiednią usługę,
               sprawdź warianty stylizacji paznokci albo wyślij zapytanie o termin.
             </p>
           </div>
@@ -233,10 +233,10 @@ export default function CennikPage() {
               Ile kosztuje pedicure?
             </h2>
             <p className="mt-4 leading-relaxed text-[#5F5B56]">
-              Pedicure samych paznokci bez hybrydy kosztuje {servicePrice("Pedicure same paznokcie")},
-              a z hybrydą u Julii (stylistki junior) {servicePrice("Pedicure same paznokcie z hybrydą — Julia (stylistka junior)")}.
-              Wariant z hybrydą u Natalii kosztuje {servicePrice("Pedicure same paznokcie z hybrydą")},
-              a pełny pedicure SPA bez hybrydy {servicePrice("Pedicure kosmetyczny")}. Salon znajduje
+              Pedicure samych paznokci bez hybrydy kosztuje {servicePrice("pedicure-paznokcie-bez-hybrydy-natalia")},
+              a z hybrydą u Julii (stylistki junior) {servicePrice("pedicure-paznokcie-hybryda-julia")}.
+              Wariant z hybrydą u Natalii kosztuje {servicePrice("pedicure-paznokcie-hybryda-natalia")},
+              a pełny pedicure SPA bez hybrydy {servicePrice("pedicure-spa-bez-hybrydy-natalia")}. Salon znajduje
               się na Borku Fałęckim, z wygodnym dojazdem z południa Krakowa.
             </p>
           </div>

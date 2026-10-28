@@ -1,3 +1,5 @@
+
+import { business } from "../lib/business";
 import type { Metadata } from "next";
 import Image from "next/image";
 import Link from "next/link";
@@ -11,19 +13,19 @@ import { nailPrices, serviceOffers, servicePrice } from "../lib/priceCatalog";
 export const metadata: Metadata = {
   title: "Manicure Kraków | Paznokcie hybrydowe Borek Fałęcki | Noblu",
   description:
-    "Manicure hybrydowy i żelowy w Krakowie na Borku Fałęckim. Zobacz realizacje, ceny i czasy wizyt. Darmowy parking przy Orzechowej 4/lok.1.",
+    `Manicure hybrydowy i żelowy w Krakowie na Borku Fałęckim. Zobacz realizacje, ceny i czasy wizyt. Darmowy parking przy ${business.address.streetLocative}.`,
   alternates: {
-    canonical: "https://noblu.pl/manicure-krakow",
+    canonical: `${business.url}/manicure-krakow`,
   },
   openGraph: {
     title: "Manicure Kraków | Paznokcie hybrydowe Borek Fałęcki | Noblu",
     description:
       "Manicure, paznokcie hybrydowe i stylizacja paznokci w Krakowie, Borek Fałęcki. Sprawdź ceny i zapytaj o termin online.",
-    url: "https://noblu.pl/manicure-krakow",
-    siteName: "Noblu Beauty Room",
+    url: `${business.url}/manicure-krakow`,
+    siteName: business.name,
     images: [{
-      url: "https://noblu.pl/gallery/paznokcie/manicure-hybrydowy-nude-krakow-noblu.webp",
-      alt: "Naturalny manicure hybrydowy nude Noblu Beauty Room Kraków",
+      url: `${business.url}/gallery/paznokcie/manicure-hybrydowy-nude-krakow-noblu.webp`,
+      alt: `Naturalny manicure hybrydowy nude ${business.name} Kraków`,
     }],
     locale: "pl_PL",
     type: "website",
@@ -33,49 +35,49 @@ export const metadata: Metadata = {
     title: "Manicure Kraków | Paznokcie hybrydowe Borek Fałęcki | Noblu",
     description:
       "Manicure, paznokcie hybrydowe i stylizacja paznokci w Krakowie, Borek Fałęcki. Sprawdź ceny i zapytaj o termin online.",
-    images: ["https://noblu.pl/gallery/paznokcie/manicure-hybrydowy-nude-krakow-noblu.webp"],
+    images: [`${business.url}/gallery/paznokcie/manicure-hybrydowy-nude-krakow-noblu.webp`],
   },
 };
 
 const manicureGallery = [
   {
     src: "/gallery/manicure-realizacje/manicure-krotkie-nude-krakow-noblu.webp",
-    alt: "Krótki manicure hybrydowy nude wykonany w Noblu Beauty Room Kraków",
+    alt: `Krótki manicure hybrydowy nude wykonany w ${business.name} Kraków`,
   },
   {
     src: "/gallery/manicure-realizacje/french-brokatowy-krakow-noblu.webp",
-    alt: "Manicure french z delikatnym brokatem wykonany w Noblu Beauty Room Kraków",
+    alt: `Manicure french z delikatnym brokatem wykonany w ${business.name} Kraków`,
   },
   {
     src: "/gallery/manicure-realizacje/paznokcie-zelowe-perlowa-biel-krakow-noblu.webp",
-    alt: "Długie paznokcie żelowe w perłowej bieli wykonane w Noblu Beauty Room Kraków",
+    alt: `Długie paznokcie żelowe w perłowej bieli wykonane w ${business.name} Kraków`,
   },
   {
     src: "/gallery/manicure-realizacje/manicure-burgund-kropki-krakow-noblu.webp",
-    alt: "Burgundowy manicure w kropki wykonany w Noblu Beauty Room Kraków",
+    alt: `Burgundowy manicure w kropki wykonany w ${business.name} Kraków`,
   },
   {
     src: "/gallery/manicure-realizacje/manicure-krotkie-czarno-biale-krakow-noblu.webp",
-    alt: "Krótki czarno-biały manicure ze zdobieniem wykonany w Noblu Beauty Room Kraków",
+    alt: `Krótki czarno-biały manicure ze zdobieniem wykonany w ${business.name} Kraków`,
   },
   {
     src: "/gallery/manicure-realizacje/manicure-ombre-zolty-krakow-noblu.webp",
-    alt: "Żółty manicure ombre wykonany w Noblu Beauty Room Kraków",
+    alt: `Żółty manicure ombre wykonany w ${business.name} Kraków`,
   },
   {
     src: "/gallery/manicure-realizacje/paznokcie-zelowe-niebieskie-wzory-krakow-noblu.webp",
-    alt: "Długie paznokcie żelowe z niebieskim zdobieniem wykonane w Noblu Beauty Room Kraków",
+    alt: `Długie paznokcie żelowe z niebieskim zdobieniem wykonane w ${business.name} Kraków`,
   },
   {
     src: "/gallery/manicure-realizacje/babyboomer-brzoskwiniowy-krakow-noblu.webp",
-    alt: "Brzoskwiniowy manicure babyboomer wykonany w Noblu Beauty Room Kraków",
+    alt: `Brzoskwiniowy manicure babyboomer wykonany w ${business.name} Kraków`,
   },
 ];
 
 const faq = [
   {
-    q: "Gdzie znajduje się salon Noblu Beauty Room?",
-    a: "Przy ul. Orzechowej 4/lok.1 w Krakowie, na Borku Fałęckim. Przy salonie jest darmowy parking.",
+    q: `Gdzie znajduje się salon ${business.name}?`,
+    a: `Przy ul. ${business.address.streetLocative} w Krakowie, na Borku Fałęckim. Przy salonie jest darmowy parking.`,
   },
   {
     q: "Czy można zarezerwować manicure online?",
@@ -83,11 +85,11 @@ const faq = [
   },
   {
     q: "Jakie stylizacje paznokci wykonuje salon?",
-    a: "W Noblu Beauty Room wykonujemy manicure klasyczny i hybrydowy, stylizację żelową oraz naturalne i bardziej zdobione stylizacje paznokci.",
+    a: `W ${business.name} wykonujemy manicure klasyczny i hybrydowy, stylizację żelową oraz naturalne i bardziej zdobione stylizacje paznokci.`,
   },
   {
     q: "Ile kosztuje manicure w Krakowie?",
-    a: `Manicure kosztuje ${servicePrice("Manicure")}. Stylizacja hybrydowa u Julii (stylistki junior) kosztuje ${servicePrice("Stylizacja hybrydowa — Julia (stylistka junior)")}, a u Natalii ${servicePrice("Stylizacja hybrydowa")}. Każda stylistka ma osobny wariant i czas wizyty w cenniku.`,
+    a: `Manicure kosztuje ${servicePrice("manicure-natalia")}. Stylizacja hybrydowa u Julii (stylistki junior) kosztuje ${servicePrice("hybryda-julia")}, a u Natalii ${servicePrice("hybryda-natalia")}. Każda stylistka ma osobny wariant i czas wizyty w cenniku.`,
   },
   {
     q: "Jak przygotować się do wizyty?",
@@ -102,15 +104,15 @@ export default function ManicureKrakowPage() {
         items={[
           {
             name: "Manicure Kraków",
-            url: "https://noblu.pl/manicure-krakow",
+            url: `${business.url}/manicure-krakow`,
           },
         ]}
       />
       <ServiceJsonLd
         name="Manicure Kraków"
-        description="Manicure i stylizacja paznokci w Noblu Beauty Room w Krakowie, w tym manicure hybrydowy i stylizacje żelowe."
+        description={`Manicure i stylizacja paznokci w ${business.name} w Krakowie, w tym manicure hybrydowy i stylizacje żelowe.`}
         serviceType="Manicure"
-        url="https://noblu.pl/manicure-krakow"
+        url={`${business.url}/manicure-krakow`}
         offers={serviceOffers(nailPrices)}
       />
 
@@ -144,21 +146,21 @@ export default function ManicureKrakowPage() {
           </h1>
 
           <p className="mt-10 text-lg text-[#6D6B68] leading-relaxed max-w-3xl">
-            Manicure klasyczny, hybryda i stylizacja żelowa przy ul. Orzechowej
-            4/lok.1. Wspólnie dobieramy długość, kształt i kolor do Twoich dłoni
+            Manicure klasyczny, hybryda i stylizacja żelowa przy ul. {business.address.streetLocative}.
+            Wspólnie dobieramy długość, kształt i kolor do Twoich dłoni
             oraz codziennych zajęć. Przy salonie jest darmowy parking.
             Przyjmujemy nowe klientki.
           </p>
 
           <div className="mt-12 flex flex-wrap gap-4">
             <a
-              href="/rezerwacja?usluga=hybryda"
+              href="/rezerwacja?usluga=hybryda-natalia"
               className="inline-flex items-center justify-center px-10 py-5 rounded-full bg-[#D4B483] text-black font-medium hover:scale-105 transition-transform shadow-[0_20px_60px_rgba(212,180,131,0.35)]"
             >
-              Hybryda u Natalii — {servicePrice("Stylizacja hybrydowa")}
+              Hybryda u Natalii — {servicePrice("hybryda-natalia")}
             </a>
             <Link
-              href="/rezerwacja?usluga=manicure"
+              href="/rezerwacja?usluga=manicure-natalia"
               className="inline-flex items-center justify-center rounded-full border border-[#D4B483] px-10 py-5 font-medium text-[#876536] transition-colors hover:bg-[#D4B483] hover:text-black"
             >
               Manicure klasyczny — 100 zł
@@ -197,7 +199,7 @@ export default function ManicureKrakowPage() {
                   className="object-cover"
                 />
                 </div>
-                <figcaption className="mt-3 text-sm leading-relaxed text-[#5F5B56]">{image.alt.replace(" wykonany w Noblu Beauty Room Kraków", "").replace(" wykonane w Noblu Beauty Room Kraków", "")}</figcaption>
+                <figcaption className="mt-3 text-sm leading-relaxed text-[#5F5B56]">{image.alt.replace(` wykonany w ${business.name} Kraków`, "").replace(` wykonane w ${business.name} Kraków`, "")}</figcaption>
               </figure>
             ))}
           </div>
@@ -222,8 +224,8 @@ export default function ManicureKrakowPage() {
               inspirację, pokaż ją przed rozpoczęciem pracy.
             </p>
             <p className="mt-4">
-              Manicure kosztuje {servicePrice("Manicure")}, a hybryda u Julii (stylistki junior) {servicePrice("Stylizacja hybrydowa — Julia (stylistka junior)")}.
-              Wariant u Natalii kosztuje {servicePrice("Stylizacja hybrydowa")}.
+              Manicure kosztuje {servicePrice("manicure-natalia")}, a hybryda u Julii (stylistki junior) {servicePrice("hybryda-julia")}.
+              Wariant u Natalii kosztuje {servicePrice("hybryda-natalia")}.
               Szczegółowe ceny znajdziesz w <Link href="/cennik" className="font-medium text-[#876536] underline underline-offset-4">cenniku manicure i paznokci</Link>.
             </p>
           </div>
@@ -279,7 +281,7 @@ export default function ManicureKrakowPage() {
 
           <div className="rounded-[2rem] border border-[#E8DED2] bg-white/80 p-8 lg:p-10">
             <h2 className="text-3xl lg:text-4xl font-light text-[#1D1D1B] mb-5">
-              Umów manicure w Noblu Beauty Room
+              Umów manicure w {business.name}
             </h2>
             <p className="max-w-3xl">
               Wybierz usługę i zgłoś preferowany dzień wizyty. Sprawdzimy grafik
@@ -287,13 +289,13 @@ export default function ManicureKrakowPage() {
             </p>
             <div className="mt-8 flex flex-wrap gap-4">
               <Link
-                href="/rezerwacja?usluga=hybryda"
+                href="/rezerwacja?usluga=hybryda-natalia"
                 className="inline-flex items-center justify-center px-8 py-4 rounded-full bg-[#D4B483] text-black font-medium hover:scale-105 transition-transform shadow-[0_20px_60px_rgba(212,180,131,0.35)]"
               >
-                Hybryda u Natalii — {servicePrice("Stylizacja hybrydowa")}
+                Hybryda u Natalii — {servicePrice("hybryda-natalia")}
               </Link>
               <Link
-                href="/rezerwacja?usluga=manicure"
+                href="/rezerwacja?usluga=manicure-natalia"
                 className="inline-flex items-center justify-center px-8 py-4 rounded-full border border-[#E8DED2] text-[#1D1D1B] hover:border-[#D4B483] transition-colors"
               >
                 Manicure klasyczny — 100 zł
