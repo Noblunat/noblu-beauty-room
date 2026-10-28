@@ -1,3 +1,5 @@
+
+import { business } from "../lib/business";
 type BreadcrumbItem = {
   name: string
   url: string
@@ -8,8 +10,8 @@ type BreadcrumbJsonLdProps = {
 }
 
 const homeItem = {
-  name: "Noblu Beauty Room",
-  url: "https://noblu.pl/",
+  name: business.name,
+  url: `${business.url}/`,
 }
 
 export default function BreadcrumbJsonLd({ items }: BreadcrumbJsonLdProps) {

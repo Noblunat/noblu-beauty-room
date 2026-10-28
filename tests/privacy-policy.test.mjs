@@ -3,6 +3,7 @@ import { readFileSync } from "node:fs";
 import test from "node:test";
 import vm from "node:vm";
 import ts from "typescript";
+import { loadDataModule } from "./helpers/load-data.mjs";
 
 function renderPolicy() {
   const m = { exports: {} };
@@ -15,6 +16,7 @@ function renderPolicy() {
       if (name === "react/jsx-runtime") return { jsx, jsxs: jsx };
       if (name === "next/link") return { default: "a" };
       if (name === "../components/BreadcrumbJsonLd") return { default: "breadcrumb" };
+      if (/\/lib\//.test(name)) return loadDataModule(name, new URL("../app/polityka-prywatnosci/page.tsx", import.meta.url));
       throw new Error(`Unexpected dependency: ${name}`);
     },
   });
@@ -62,7 +64,10 @@ test("table distinguishes consent gates, external navigation and retention limit
   assert.match(text(row("Zapis zgód")), /bez automatycznego/i);
   assert.match(text(row("Zapis zgód")), /wersja komunikatu i data decyzji/);
   assert.match(text(policy), /Stary lub niepełny zapis nie włącza opcjonalnych technologii/);
-  assert.match(text(policy), /18 października 2026/);
+  const { contentRevisions, revisionLabel } = loadDataModule("../app/lib/contentRevisions", import.meta.url);
+  const updated = nodes(policy).find(node => node.type === "time");
+  assert.equal(updated.props.dateTime, contentRevisions["/polityka-prywatnosci"].date);
+  assert.equal(text(updated).trim(), revisionLabel("/polityka-prywatnosci"));
   assert.match(text(row("Google Analytics 4")), /odrębna/);
   assert.equal(rows.some(node => /Meta Pixel|Google Tag Manager/.test(text(node))), false, "inactive integrations are not listed as active tools");
   const links = nodes(table).filter(node => node.type === "a");

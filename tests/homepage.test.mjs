@@ -3,6 +3,7 @@ import { readFileSync } from "node:fs";
 import test from "node:test";
 import vm from "node:vm";
 import ts from "typescript";
+import { loadDataModule } from "./helpers/load-data.mjs";
 
 function harness() {
   const states = [];
@@ -10,6 +11,7 @@ function harness() {
   let index = 0;
   let observe;
   let disconnected = false;
+  let gallery;
   const hero = {};
   const jsx = (type, props) => ({ type, props });
   const compiled = ts.transpileModule(readFileSync(new URL("../app/page.tsx", import.meta.url), "utf8"), {
@@ -29,7 +31,7 @@ function harness() {
       if (name === "react") return {
         Fragment: "fragment",
         useRef: () => ({ current: hero }),
-        useMemo: (fn) => fn(),
+        useMemo: (fn) => { gallery = fn(); return gallery; },
         useEffect: (fn) => effects.push(fn),
         useState(initial) {
           const key = index++;
@@ -38,12 +40,14 @@ function harness() {
         },
       };
       if (name === "next/image") return { default: "image" };
+      if (/\/lib\//.test(name)) return loadDataModule(name, new URL("../app/page.tsx", import.meta.url));
       return { default: name, Pause: "pause", Play: "play" };
     },
   });
   return {
     render() { index = 0; return testModule.exports.default(); },
     effects,
+    get gallery() { return gallery; },
     scroll(bottom, isIntersecting) { observe([{ boundingClientRect: { bottom }, isIntersecting }]); },
     get disconnected() { return disconnected; },
   };
@@ -126,19 +130,11 @@ test("homepage header exposes the salon telephone alongside the booking link", (
 });
 
 test("every rotating gallery item has a unique descriptive alt", () => {
-  const source = readFileSync(new URL("../app/page.tsx", import.meta.url), "utf8");
-  const ast = ts.createSourceFile("page.tsx", source, ts.ScriptTarget.Latest, true, ts.ScriptKind.TSX);
-  let items;
-  function visit(node) {
-    if (ts.isVariableDeclaration(node) && node.name.getText(ast) === "galleryItems") {
-      const initializer = node.initializer.arguments[0].body;
-      items = (ts.isParenthesizedExpression(initializer) ? initializer.expression : initializer).elements;
-    }
-    ts.forEachChild(node, visit);
-  }
-  visit(ast);
+  const h = harness();
+  h.render();
+  const items = h.gallery;
   assert.equal(items.length, 30);
-  const alts = items.map(item => item.properties.find(p => p.name?.getText(ast) === "alt")?.initializer?.text);
+  const alts = items.map(item => item.alt);
   assert.ok(alts.every(alt => typeof alt === "string" && alt.length > 20));
   assert.equal(new Set(alts).size, items.length);
 });

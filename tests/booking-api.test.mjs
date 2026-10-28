@@ -61,6 +61,23 @@ test("booking derives price and duration from the server catalog", async () => {
   assert.ok(h.sent[0].options.signal, "provider call has a timeout");
 });
 
+test("new requests use stable service IDs, including in the delivered subject", async () => {
+  const h = harness();
+  const res = await h.api.POST(request({ ...valid, service: undefined, serviceId: "manicure-natalia" }));
+  assert.equal(res.status, 200);
+  const email = JSON.parse(h.sent[0].options.body);
+  assert.ok(email.subject.includes("manicure-natalia"));
+  assert.ok(email.text.includes("100 zł"));
+});
+
+test("an invalid or conflicting service ID cannot fall back to a valid legacy name", async () => {
+  for (const serviceId of ["unknown", "hybryda-julia", 123, "x".repeat(100)]) {
+    const h = harness();
+    assert.equal((await h.api.POST(request({ ...valid, serviceId }))).status, 400);
+    assert.equal(h.sent.length, 0);
+  }
+});
+
 // Public Booksy service list checked on 2026-10-17; lash services are not listed.
 const booksyDurations = [
   ["Manicure", "50min"],

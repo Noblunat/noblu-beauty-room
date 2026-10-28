@@ -1,3 +1,5 @@
+
+import { business } from "../lib/business";
 type ServiceOffer = {
   name: string
   price: string
@@ -10,18 +12,6 @@ type ServiceJsonLdProps = {
   url: string
   offers: ServiceOffer[]
 }
-
-const areaServed = [
-  "Kraków",
-  "Podgórze",
-  "Podgórze Duchackie",
-  "Borek Fałęcki",
-  "Łagiewniki",
-  "Ruczaj",
-  "Kurdwanów",
-  "Wola Duchacka",
-  "Swoszowice",
-]
 
 export default function ServiceJsonLd({
   name,
@@ -39,22 +29,22 @@ export default function ServiceJsonLd({
     serviceType,
     url,
     provider: {
-      "@id": "https://noblu.pl/#salon",
+      "@id": `${business.url}/#salon`,
     },
-    areaServed,
+    areaServed: business.areas,
     offers: offers.map((offer) => ({
       "@type": "Offer",
       name: offer.name,
       price: offer.price,
       priceCurrency: "PLN",
-      url: "https://noblu.pl/cennik",
+      url: `${business.url}/cennik`,
       availability: "https://schema.org/InStock",
     })),
     potentialAction: {
       "@type": "ReserveAction",
       target: {
         "@type": "EntryPoint",
-        urlTemplate: "https://noblu.pl/rezerwacja",
+        urlTemplate: `${business.url}/rezerwacja`,
         inLanguage: "pl-PL",
       },
       name: "Zapytaj o termin",

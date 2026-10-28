@@ -7,6 +7,7 @@ import ts from "typescript";
 
 const root = new URL("../", import.meta.url);
 function load(relative) {
+  if (relative.startsWith("app/lib/")) return loadDataModule("../" + relative.slice(0, -3), import.meta.url);
   const testModule = { exports: {} };
   vm.runInNewContext(ts.transpileModule(readFileSync(new URL(relative, root), "utf8"), {
     compilerOptions: { module: ts.ModuleKind.CommonJS, jsx: ts.JsxEmit.ReactJSX },
@@ -14,7 +15,7 @@ function load(relative) {
     module: testModule, exports: testModule.exports,
     require(name) {
       if (name === "react/jsx-runtime") return { jsx: (type, props) => ({ type, props }), jsxs: (type, props) => ({ type, props }) };
-      if (/(bookingServices|booksyCatalog|priceCatalog|contentRevisions)$/.test(name)) return loadDataModule(name, new URL(relative, root));
+      if (/\/lib\//.test(name)) return loadDataModule(name, new URL(relative, root));
       return { default: () => null };
     },
   });
@@ -40,7 +41,7 @@ test("price-list duration follows the reservation catalog for every bookable ser
   const rows = nodes(load("app/cennik/page.tsx").default()).filter(n => n.props?.className?.includes("grid-cols-[1fr_auto]"));
   for (const service of load("app/lib/bookingServices.ts").serviceGroups.flatMap(g => g.services)) {
     const name = service.name === "Stylizacja hybrydowa więcej niż 1 kolor" ? "Stylizacja hybrydowa - więcej niż 1 kolor" : service.name;
-    const row = rows.find(r => r.props["data-booking-service"] === service.name);
+    const row = rows.find(r => r.props["data-booking-service"] === service.id);
     assert.ok(row, name);
     assert.ok(text(row).includes(service.duration), `${name}: ${service.duration}`);
   }
@@ -54,12 +55,16 @@ test("verified additional Booksy services have their actual durations", () => {
     ["Usunięcie stylizacji żelowej z manicure", "1h 10min"],
     ["Usunięcie hybrydy z pedicure same paznokcie", "50min"],
     ["Usunięcie hybrydy z pełnym pedicure", "1h 15min"],
-  ]) assert.ok(text(rows.find(r => r.props["data-booking-service"] === ({"Usunięcie hybrydy z manicure": "Usunięcie stylizacji hybrydowej z manicure", "Żel na naturalnej płytce - paznokcie krótkie, max do opuszka": "Żel na naturalnej płytce - paznokcie przed opuszek", "Usunięcie hybrydy z pełnym pedicure": "Usunięcie hybrydy z pedicure SPA"}[name] ?? name))).includes(duration), name);
+  ]) {
+    const aliases = {"Usunięcie hybrydy z manicure": "Usunięcie stylizacji hybrydowej z manicure", "Żel na naturalnej płytce - paznokcie krótkie, max do opuszka": "Żel na naturalnej płytce - paznokcie przed opuszek", "Usunięcie hybrydy z pełnym pedicure": "Usunięcie hybrydy z pedicure SPA"};
+    const service = load("app/lib/bookingServices.ts").findBookingService(aliases[name] ?? name);
+    assert.ok(text(rows.find(r => r.props["data-booking-service"] === service.id)).includes(duration), name);
+  }
 });
 
 test("lash section links to the correctly selected reservation service", () => {
   const source = readFileSync(new URL("app/cennik/page.tsx", root), "utf8");
-  assert.match(source, /href: "\/rezerwacja\?usluga=rzesy", label: "Zapytaj o termin"/);
+  assert.match(source, /href: "\/rezerwacja\?usluga=rzesy-1-1-aplikacja", label: "Zapytaj o termin"/);
 });
 
 test("manicure copy answers practical questions without repeated acquisition and district lists", () => {
@@ -74,5 +79,5 @@ test("homepage uses a factual service heading and a separate Google review invit
   assert.ok(source.includes("Nasze usługi"));
   assert.ok(!source.includes("Najbardziej pożądane zabiegi"));
   assert.ok(source.includes("Dodaj opinię w Google"));
-  assert.ok(source.includes("★★★★★ 5,0 w Booksy"));
+  assert.ok(source.includes("businessRating"));
 });

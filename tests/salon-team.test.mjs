@@ -3,6 +3,7 @@ import { readFileSync } from "node:fs";
 import test from "node:test";
 import vm from "node:vm";
 import ts from "typescript";
+import { loadDataModule } from "./helpers/load-data.mjs";
 
 function elements(tree) {
   if (!tree || typeof tree !== "object") return [];
@@ -21,6 +22,7 @@ test("team cards preserve portraits and names and show each approved personal de
       if (name === "react/jsx-runtime") return { jsx, jsxs: jsx };
       if (name === "next/image") return { default: "image" };
       if (name === "next/link") return { default: "link" };
+      if (/\/lib\//.test(name)) return loadDataModule(name, new URL("../app/components/SalonTeam.tsx", import.meta.url));
       throw new Error(`Unexpected import: ${name}`);
     },
   });

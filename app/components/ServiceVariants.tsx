@@ -1,6 +1,6 @@
 import Link from "next/link";
 import { booksyServices, serviceDuration } from "../lib/booksyCatalog";
-import { bookingServiceName } from "../lib/bookingServices";
+import { staff } from "../lib/team";
 
 export default function ServiceVariants({ pedicure = false }: { pedicure?: boolean }) {
   const services = booksyServices.filter(service => pedicure
@@ -24,9 +24,9 @@ export default function ServiceVariants({ pedicure = false }: { pedicure?: boole
               <h3 className="text-xl font-medium">{service.name}</h3>
               <p className="mt-3 leading-relaxed text-[#5F5B56]">{service.description}</p>
               <dl className="mt-5 space-y-3">
-                {service.variants.map((variant, index) => (
-                  <div key={bookingServiceName(service.name, index)}>
-                    <dt className="font-medium">{variant.staff.join(", ")}{variant.name.includes("Junior") ? " — stylistka junior" : ""}</dt>
+                {service.variants.map((variant) => (
+                  <div key={`${service.serviceId}-${variant.staff.join("-")}`}>
+                    <dt className="font-medium">{variant.staff.map(name => Object.values(staff).find(person => person.name === name)?.label ?? name).join(", ")}</dt>
                     <dd className="mt-1 text-[#5F5B56]">{variant.pricePLN} zł · {serviceDuration(variant.durationMinutes)}</dd>
                   </div>
                 ))}

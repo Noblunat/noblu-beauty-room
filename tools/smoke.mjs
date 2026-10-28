@@ -107,7 +107,7 @@ try {
   assert.ok(reservation.some(n => n.tagName === "input" && attr(n, "type") === "date" && /^\d{4}-\d{2}-\d{2}$/.test(attr(n, "min") || "")), "Minimum booking date");
   assert.ok(reservation.some(n => n.tagName === "input" && attr(n, "type") === "tel" && attr(n, "autocomplete") === "tel"), "Telephone input");
   const prices = documents.get("/cennik");
-  for (const service of ["manicure", "pedicure", "rzesy"]) {
+  for (const service of ["manicure-natalia", "pedicure-spa-bez-hybrydy-natalia", "rzesy-1-1-aplikacja"]) {
     assert.ok(prices.some(n => n.tagName === "a" && attr(n, "href") === `/rezerwacja?usluga=${service}`), `Price-list booking link: ${service}`);
   }
   assert.equal(prices.filter(n => n.tagName === "span" && text(n).trim().startsWith("Czas:")).length, 39, "Duration or unconfirmed-time disclosure on all price rows");
@@ -140,6 +140,10 @@ try {
   }
   // An empty request cannot pass validation or send an appointment/email.
   const invalid = await get("/api/rezerwacja", { method: "POST", headers: { "content-type": "application/json", origin: base.origin }, body: "{}" });
+  const llms = await get("/llms.txt");
+  assert.equal(llms.status, 200, "Generated llms.txt stays at its public URL");
+  assert.match(llms.headers.get("content-type"), /text\/plain/);
+  assert.match(await llms.text(), /salon@noblu\.pl/);
   assert.equal(invalid.status, 400, "Safe API validation probe");
   assert.ok((await invalid.json()).error);
   console.log("PASS Booksy, telephone, images, form attributes, redirect, 404, 410, robots, sitemap and API validation");

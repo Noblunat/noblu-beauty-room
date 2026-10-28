@@ -17,7 +17,7 @@ jobs:
   quality:
     name: lint-test-audit-build
     runs-on: ubuntu-latest
-    timeout-minutes: 15
+    timeout-minutes: 20
     steps:
       - uses: actions/checkout@11d5960a326750d5838078e36cf38b85af677262 # v4
         with:
@@ -29,3 +29,11 @@ jobs:
       - run: npm ci
       # Pull requests never receive Vercel, Resend or other production secrets.
       - run: npm run check
+      - run: npx playwright install --with-deps chromium
+      - run: npm run test:e2e
+      - uses: actions/upload-artifact@ea165f8d65b6e75b540449e92b4886f43607fa02 # v4
+        if: failure()
+        with:
+          name: browser-regressions
+          path: output/playwright/
+          retention-days: 7

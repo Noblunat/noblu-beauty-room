@@ -1,3 +1,5 @@
+
+import { business, businessPostalAddress } from "./lib/business";
 import type { Metadata } from "next";
 import ConversionEvents from "./components/ConversionEvents";
 import CookieBanner from "./components/CookieBanner";
@@ -5,25 +7,25 @@ import SiteFooter from "./components/SiteFooter";
 import GoogleTag from "./components/GoogleTag";
 import "./globals.css";
 
-const siteUrl = "https://noblu.pl";
-const homeTitle = "Noblu Beauty Room Kraków | Manicure, pedicure i rzęsy";
+const siteUrl = business.url;
+const homeTitle = `${business.name} Kraków | Manicure, pedicure i rzęsy`;
 const reservationUrl = `${siteUrl}/rezerwacja`;
 
 const salonJsonLd = {
   "@context": "https://schema.org",
   "@type": ["BeautySalon", "LocalBusiness"],
   "@id": `${siteUrl}/#salon`,
-  name: "Noblu Beauty Room",
-  legalName: "Noblu Beauty Room Natalia Mądry",
-  taxID: "6793222358",
+  name: business.name,
+  legalName: business.legalName,
+  taxID: business.taxId,
   identifier: {
     "@type": "PropertyValue",
     propertyID: "REGON",
-    value: "389813411",
+    value: business.regon,
   },
-  alternateName: "Noblu Beauty Room Kraków",
+  alternateName: `${business.name} Kraków`,
   description:
-    "Kameralny salon beauty w Krakowie przy ul. Orzechowej 4/lok.1. Stylizacja rzęs, manicure, stylizacja paznokci i pedicure.",
+    `Kameralny salon beauty w Krakowie przy ul. ${business.address.streetLocative}. Stylizacja rzęs, manicure, stylizacja paznokci i pedicure.`,
   url: siteUrl,
   logo: `${siteUrl}/logo.png`,
   image: [
@@ -31,52 +33,28 @@ const salonJsonLd = {
     `${siteUrl}/gallery/salon/salon1.webp`,
     `${siteUrl}/gallery/paznokcie/pedicure-hybrydowy-krakow-noblu.webp`,
   ],
-  telephone: "+48662989534",
-  email: "salon@noblu.pl",
+  telephone: business.phone.e164,
+  email: business.email,
   priceRange: "$$",
   paymentAccepted: "Gotówka, karta płatnicza",
   currenciesAccepted: "PLN",
-  address: {
-    "@type": "PostalAddress",
-    streetAddress: "Orzechowa 4/lok.1",
-    addressLocality: "Kraków",
-    addressRegion: "małopolskie",
-    postalCode: "30-422",
-    addressCountry: "PL",
-  },
+  address: businessPostalAddress,
   geo: {
     "@type": "GeoCoordinates",
-    latitude: 50.0118355,
-    longitude: 19.9252253,
+    ...business.geo,
   },
   hasMap:
-    "https://www.google.com/maps?cid=6617500446211091555",
+    business.links.map,
   publicAccess: true,
   openingHoursSpecification: [
     {
       "@type": "OpeningHoursSpecification",
-      dayOfWeek: [
-        "Monday",
-        "Tuesday",
-        "Wednesday",
-        "Thursday",
-        "Friday",
-      ],
-      opens: "10:00",
-      closes: "19:00",
+      dayOfWeek: business.hours.days,
+      opens: business.hours.opens,
+      closes: business.hours.closes,
     },
   ],
-  areaServed: [
-    "Kraków",
-    "Borek Fałęcki",
-    "Łagiewniki",
-    "Ruczaj",
-    "Kurdwanów",
-    "Podgórze",
-    "Podgórze Duchackie",
-    "Wola Duchacka",
-    "Swoszowice",
-  ],
+  areaServed: business.areas,
   amenityFeature: [
     {
       "@type": "LocationFeatureSpecification",
@@ -93,9 +71,9 @@ const salonJsonLd = {
     "salon beauty Kraków",
   ],
   sameAs: [
-    "https://www.instagram.com/noblu_beauty_room/",
-    "https://www.facebook.com/noblu.beautyroom/",
-    "https://booksy.com/pl-pl/105150_noblu-beauty-room_paznokcie_8820_krakow",
+    business.links.instagram,
+    business.links.facebook,
+    business.links.booksyProfile,
   ],
   potentialAction: {
     "@type": "ReserveAction",
@@ -155,7 +133,7 @@ export const metadata: Metadata = {
   metadataBase: new URL(siteUrl),
   title: homeTitle,
   description:
-    "Manicure, pedicure i stylizacja rzęs w Krakowie na Borku Fałęckim. Rezerwacja online 24/7, darmowy parking, ponad 240 opinii klientek w Booksy.",
+    `Manicure, pedicure i stylizacja rzęs w Krakowie na Borku Fałęckim. Rezerwacja online 24/7, darmowy parking, ponad ${business.reviews.minimum} opinii klientek w Booksy.`,
   alternates: {
   canonical: siteUrl,
 },
@@ -169,15 +147,15 @@ export const metadata: Metadata = {
   openGraph: {
     title: homeTitle,
     description:
-      "Manicure, pedicure i stylizacja rzęs w Krakowie na Borku Fałęckim. Rezerwacja online 24/7, darmowy parking i ponad 240 opinii w Booksy.",
+      `Manicure, pedicure i stylizacja rzęs w Krakowie na Borku Fałęckim. Rezerwacja online 24/7, darmowy parking i ponad ${business.reviews.minimum} opinii w Booksy.`,
     url: siteUrl,
-    siteName: "Noblu Beauty Room",
+    siteName: business.name,
      images: [
     {
-      url: "https://noblu.pl/og-noblu.jpg",
+      url: `${business.url}/og-noblu.jpg`,
       width: 1200,
       height: 630,
-      alt: "Salon beauty Noblu Beauty Room Kraków",
+      alt: `Salon beauty ${business.name} Kraków`,
     },
   ],
     locale: "pl_PL",
@@ -187,8 +165,8 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: homeTitle,
     description:
-      "Manicure, pedicure i stylizacja rzęs w Krakowie na Borku Fałęckim. Rezerwacja online 24/7, darmowy parking i ponad 240 opinii w Booksy.",
-    images: ["https://noblu.pl/og-noblu.jpg"],
+      `Manicure, pedicure i stylizacja rzęs w Krakowie na Borku Fałęckim. Rezerwacja online 24/7, darmowy parking i ponad ${business.reviews.minimum} opinii w Booksy.`,
+    images: [`${business.url}/og-noblu.jpg`],
   },
 };
 

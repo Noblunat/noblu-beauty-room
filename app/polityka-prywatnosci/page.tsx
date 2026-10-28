@@ -1,35 +1,38 @@
+
+import { business } from "../lib/business";
 import type { Metadata } from "next";
 import Link from "next/link";
 import BreadcrumbJsonLd from "../components/BreadcrumbJsonLd";
+import { contentRevisions, revisionLabel } from "../lib/contentRevisions";
 
 export const metadata: Metadata = {
-  title: "Polityka prywatności | Noblu Beauty Room",
+  title: `Polityka prywatności | ${business.name}`,
   description:
-    "Polityka prywatności i informacje o plikach cookies na stronie Noblu Beauty Room.",
+    `Polityka prywatności i informacje o plikach cookies na stronie ${business.name}.`,
   alternates: {
-    canonical: "https://noblu.pl/polityka-prywatnosci",
+    canonical: `${business.url}/polityka-prywatnosci`,
   },
   openGraph: {
-    title: "Polityka prywatności | Noblu Beauty Room",
-    description: "Polityka prywatności i informacje o plikach cookies na stronie Noblu Beauty Room.",
-    url: "https://noblu.pl/polityka-prywatnosci",
-    siteName: "Noblu Beauty Room",
+    title: `Polityka prywatności | ${business.name}`,
+    description: `Polityka prywatności i informacje o plikach cookies na stronie ${business.name}.`,
+    url: `${business.url}/polityka-prywatnosci`,
+    siteName: business.name,
     locale: "pl_PL",
     type: "website",
-    images: [{ url: "https://noblu.pl/og-noblu.jpg", width: 1200, height: 630, alt: "Noblu Beauty Room w Krakowie" }],
+    images: [{ url: `${business.url}/og-noblu.jpg`, width: 1200, height: 630, alt: `${business.name} w Krakowie` }],
   },
   twitter: {
     card: "summary_large_image",
-    title: "Polityka prywatności | Noblu Beauty Room",
-    description: "Polityka prywatności i informacje o plikach cookies na stronie Noblu Beauty Room.",
-    images: ["https://noblu.pl/og-noblu.jpg"],
+    title: `Polityka prywatności | ${business.name}`,
+    description: `Polityka prywatności i informacje o plikach cookies na stronie ${business.name}.`,
+    images: [`${business.url}/og-noblu.jpg`],
   },
 };
 
 const privacyTools = [
   {
     name: "Zapis zgód",
-    provider: "Noblu Beauty Room",
+    provider: business.name,
     purpose: "Zapamiętanie wybranych kategorii cookies i ich zmiany.",
     data: "Ustawienia: niezbędne, analityka, marketing i treści zewnętrzne oraz wersja komunikatu i data decyzji; bez danych formularza.",
     activation: "Po zapisaniu wyboru w banerze. Zapis niezbędny do obsługi preferencji, niezależny od zgód opcjonalnych.",
@@ -63,7 +66,7 @@ const privacyTools = [
   {
     name: "OVHcloud / Zimbra",
     provider: "OVH sp. z o.o. (OVHcloud)",
-    purpose: "Odbiór zgłoszeń z formularza na salon@noblu.pl oraz bieżąca korespondencja z klientkami i dostawcami.",
+    purpose: `Odbiór zgłoszeń z formularza na ${business.email} oraz bieżąca korespondencja z klientkami i dostawcami.`,
     data: "Treść wiadomości, dane kontaktowe, historia korespondencji i dane techniczne dostarczenia poczty.",
     activation: "Po wysłaniu formularza lub wiadomości do salonu. Poczta jest obsługiwana także w Thunderbirdzie przez IMAP; nie ładuje na noblu.pl dodatkowego skryptu.",
     basis: "Art. 6 ust. 1 lit. b lub f RODO, zależnie od celu kontaktu.",
@@ -135,7 +138,7 @@ export default function PolitykaPrywatnosciPage() {
         items={[
           {
             name: "Polityka prywatności",
-            url: "https://noblu.pl/polityka-prywatnosci",
+            url: `${business.url}/polityka-prywatnosci`,
           },
         ]}
       />
@@ -152,10 +155,10 @@ export default function PolitykaPrywatnosciPage() {
         <p className="mt-8 text-lg leading-relaxed text-[#5F5B56]">
           Niniejsza polityka opisuje zasady przetwarzania danych osobowych oraz
           korzystania z plików cookies na stronie internetowej Noblu Beauty
-          Room dostępnej pod adresem https://noblu.pl.
+          Room dostępnej pod adresem {business.url}.
         </p>
         <p className="mt-3 text-sm text-[#7A746D]">
-          Ostatnia aktualizacja: 18 października 2026 r.
+          Ostatnia aktualizacja: <time dateTime={contentRevisions["/polityka-prywatnosci"].date}>{revisionLabel("/polityka-prywatnosci")}</time>.
         </p>
 
         <div className="mt-14 space-y-12 text-[#5F5B56]">
@@ -165,23 +168,23 @@ export default function PolitykaPrywatnosciPage() {
             </h2>
             <div className="mt-5 space-y-2 leading-relaxed">
               <p>
-                Administratorem danych jest Noblu Beauty Room Natalia Mądry.
+                Administratorem danych jest {business.legalName}.
               </p>
-              <p>NIP: 6793222358, REGON: 389813411.</p>
+              <p>NIP: {business.taxId}, REGON: {business.regon}.</p>
               <p>
-                Adres: Orzechowa 4 lok. 1, 30-422 Kraków, woj. małopolskie.
+                Adres: {business.address.street}, {business.address.postalCode} {business.address.city}, woj. {business.address.region}.
               </p>
               <p>
                 Kontakt:{" "}
                 <a
-                  href="mailto:salon@noblu.pl"
+                  href={`mailto:${business.email}`}
                   className="text-[#7C6238]"
                 >
-                  salon@noblu.pl
+                  {business.email}
                 </a>
                 ,{" "}
-                <a href="tel:+48662989534" className="text-[#7C6238]">
-                  +48 662 989 534
+                <a href={`tel:${business.phone.e164}`} className="text-[#7C6238]">
+                  {business.phone.international}
                 </a>
                 .
               </p>
@@ -223,7 +226,7 @@ export default function PolitykaPrywatnosciPage() {
               </p>
               <p>
                 Wiadomość jest wysyłana przez Resend do skrzynki
-                salon@noblu.pl w OVHcloud (Zimbra), obsługiwanej przez
+                {business.email} w OVHcloud (Zimbra), obsługiwanej przez
                 upoważnione osoby w salonie, także za pomocą Thunderbirda.
                 Nie wysyłamy automatycznej kopii zgłoszenia do Gmaila.
               </p>
@@ -282,7 +285,7 @@ export default function PolitykaPrywatnosciPage() {
               </p>
               <p>
                 Od 17 października 2026 r. nowe zgłoszenia trafiają do
-                skrzynki salon@noblu.pl w OVHcloud. Wcześniejsza
+                skrzynki {business.email} w OVHcloud. Wcześniejsza
                 korespondencja może pozostawać w Gmailu do upływu właściwego
                 okresu przechowywania. Zmiana skrzynki nie oznacza jej
                 automatycznej migracji ani usunięcia. Te same zasady dotyczą
@@ -328,7 +331,7 @@ export default function PolitykaPrywatnosciPage() {
                 <a className="underline" href="https://policies.google.com/privacy/frameworks?hl=pl">zasadach transferów Google</a>.
                 O informacje dotyczące transferu Twoich danych oraz kopię
                 stosowanych zabezpieczeń możesz wystąpić do administratora
-                pod adresem salon@noblu.pl.
+                pod adresem {business.email}.
               </p>
             </div>
           </section>

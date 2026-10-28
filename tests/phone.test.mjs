@@ -15,7 +15,7 @@ function load(file, dependencies = {}) {
   ).outputText, {
     module: testModule, exports: testModule.exports, Response, URL, TextDecoder, AbortSignal, process: { env: {} },
     require: name => {
-      if (/(bookingServices|booksyCatalog|priceCatalog|contentRevisions)$/.test(name)) return loadDataModule(name, new URL(file, import.meta.url));
+      if (/(business|bookingServices|booksyCatalog|priceCatalog|contentRevisions)$/.test(name)) return loadDataModule(name, new URL(file, import.meta.url));
       if (name === "libphonenumber-js/min") {
         const library = require(name);
         return { parsePhoneNumberFromString: (value, options) =>

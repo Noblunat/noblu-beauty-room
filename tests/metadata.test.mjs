@@ -1,6 +1,6 @@
 import { loadDataModule } from "./helpers/load-data.mjs";
 import assert from "node:assert/strict";
-import { readFileSync, readdirSync } from "node:fs";
+import { readFileSync, readdirSync, statSync } from "node:fs";
 import test from "node:test";
 import vm from "node:vm";
 import ts from "typescript";
@@ -23,7 +23,7 @@ function metadata(file) {
     compilerOptions: { module: ts.ModuleKind.CommonJS, jsx: ts.JsxEmit.ReactJSX },
   }).outputText, {
     module: testModule, exports: testModule.exports, URL, process: { env: {} },
-    require: name => /(?:bookingServices|booksyCatalog|priceCatalog|contentRevisions)$/.test(name) ? loadDataModule(name, new URL(file, root)) : ({ default: () => null }),
+    require: name => /\/lib\//.test(name) ? loadDataModule(name, new URL(file, root)) : ({ default: () => null }),
   });
   return testModule.exports.metadata;
 }
@@ -49,7 +49,9 @@ test("public copy and structured data do not contain premium claims", () => {
   for (const folder of ["app/", "public/"]) {
     for (const file of readdirSync(new URL(folder, root), { recursive: true })) {
       if (!/\.(tsx?|json|txt|html)$/i.test(file)) continue;
-      assert.doesNotMatch(readFileSync(new URL(folder + file.replaceAll("\\", "/"), root), "utf8"), /premium/i, file);
+      const target = new URL(folder + file.replaceAll("\\", "/"), root);
+      if (!statSync(target).isFile()) continue;
+      assert.doesNotMatch(readFileSync(target, "utf8"), /premium/i, file);
     }
   }
 });

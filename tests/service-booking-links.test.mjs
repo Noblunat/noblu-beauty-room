@@ -7,6 +7,7 @@ import ts from "typescript";
 
 const root = new URL("../", import.meta.url);
 function load(relative) {
+  if (relative.startsWith("app/lib/")) return loadDataModule("../" + relative.slice(0, -3), import.meta.url);
   const testModule = { exports: {} };
   vm.runInNewContext(ts.transpileModule(readFileSync(new URL(relative, root), "utf8"), {
     compilerOptions: { module: ts.ModuleKind.CommonJS, jsx: ts.JsxEmit.ReactJSX },
@@ -15,7 +16,7 @@ function load(relative) {
     require(name) {
       if (name === "react/jsx-runtime") return { jsx: (type, props) => ({ type, props }), jsxs: (type, props) => ({ type, props }) };
       if (name === "next/link") return { default: "a" };
-      if (/(bookingServices|booksyCatalog|priceCatalog|contentRevisions)$/.test(name)) return loadDataModule(name, new URL(relative, root));
+      if (/\/lib\//.test(name)) return loadDataModule(name, new URL(relative, root));
       return { default: () => null };
     },
   });
@@ -41,14 +42,15 @@ const variants = [
 
 test("service landing calls to action preserve the advertised variant and price through the reservation selection", async () => {
   const reservation = load("app/rezerwacja/page.tsx").default;
-  const catalog = load("app/lib/bookingServices.ts").serviceGroups.flatMap(group => group.services);
+  const { findBookingService } = load("app/lib/bookingServices.ts");
   for (const [page, slug, name, price, variantId] of variants) {
-    const links = nodes(load(page).default()).filter(node => node.type === "a" && node.props?.href === `/rezerwacja?usluga=${slug}`);
+    const expected = findBookingService(name);
+    const links = nodes(load(page).default()).filter(node => node.type === "a" && node.props?.href === `/rezerwacja?usluga=${expected.id}`);
     assert.ok(links.length >= 2, `${slug}: offer an explicit variant in both booking sections`);
     for (const link of links) assert.ok(text(link).includes(price), `${slug}: show the matching price`);
     const form = await reservation({ searchParams: Promise.resolve({ usluga: slug }) });
-    assert.equal(form.props.initialService, name, slug);
-    const service = catalog.find(item => item.name === form.props.initialService);
+    assert.equal(form.props.initialService, expected.id, slug);
+    const service = findBookingService(form.props.initialService);
     assert.equal(service?.price, price, slug);
     assert.equal(service?.booksyVariantId, variantId, slug);
   }
@@ -58,6 +60,6 @@ test("existing service links and unknown reservation variants keep their previou
   const reservation = load("app/rezerwacja/page.tsx").default;
   for (const [slug, expected] of [["manicure", "Manicure"], ["pedicure", "Pedicure kosmetyczny"], ["rzesy", "Aplikacja rzęs 1:1"], ["nieznana-usluga", ""], [undefined, ""]]) {
     const form = await reservation({ searchParams: Promise.resolve({ usluga: slug }) });
-    assert.equal(form.props.initialService, expected);
+    assert.equal(form.props.initialService, expected ? load("app/lib/bookingServices.ts").findBookingService(expected).id : "");
   }
 });

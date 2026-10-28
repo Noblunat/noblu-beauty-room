@@ -1,10 +1,12 @@
+
+import { business } from "./lib/business";
 import type { Metadata } from "next"
 import Link from "next/link"
 
 export const metadata: Metadata = {
-  title: "Strona nie istnieje | Noblu Beauty Room",
+  title: `Strona nie istnieje | ${business.name}`,
   description:
-    "Nie znaleziono wskazanej strony w serwisie Noblu Beauty Room.",
+    `Nie znaleziono wskazanej strony w serwisie ${business.name}.`,
   alternates: {
     canonical: null,
   },

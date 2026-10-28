@@ -1,4 +1,6 @@
 "use client"
+import { business, businessRating, businessAddress } from "../lib/business";
+
 
 import Image from "next/image"
 import Link from "next/link"
@@ -6,14 +8,13 @@ import { FormEvent, useEffect, useMemo, useRef, useState } from "react"
 import BreadcrumbJsonLd from "../components/BreadcrumbJsonLd"
 import { trackAnalyticsEvent, trackGoogleAdsConversion } from "../lib/analytics"
 import { normalizePhoneNumber, phoneErrorMessage } from "../lib/phone"
-import { serviceGroups, type Service } from "../lib/bookingServices"
+import { findBookingService, serviceGroups, type Service } from "../lib/bookingServices"
 
-const booksyProfileUrl = "https://noblubeautyroom.booksy.com/h"
+const booksyProfileUrl = business.links.booksyBooking
 const reservationConversionId = "AW-10795260361/ZeoSCKvShaEdEMmzypso"
-const contactEmail = "salon@noblu.pl"
-const phone = "+48 662 989 534"
-const mapsDirectionsUrl =
-  "https://www.google.com/maps/dir/?api=1&destination=Noblu%20Beauty%20Room%20Orzechowa%204%2Flok.1%2030-422%20Krak%C3%B3w"
+const contactEmail = business.email
+const phone = business.phone.international
+const mapsDirectionsUrl = business.links.directions
 
 function getTodayInWarsaw() {
   const parts = new Intl.DateTimeFormat("en-GB", {
@@ -29,29 +30,30 @@ function getTodayInWarsaw() {
 
 
 const highlights = [
-  { value: "★★★★★ 5,0 w Booksy", label: "Ponad 240 opinii" },
+  { value: businessRating, label: `Ponad ${business.reviews.minimum} opinii` },
   { value: "24/7", label: "Formularz online" },
   { value: "Darmowy", label: "parking pod salonem" },
 ] as const
 
-const allServices = serviceGroups.flatMap((group) => group.services)
 
 function trackReservationLead(service: Service, submissionId: string) {
   trackAnalyticsEvent("generate_lead", {
       lead_source: "reservation_form",
       service_name: service.name,
+      service_id: service.id,
   })
 
   trackGoogleAdsConversion(reservationConversionId, {
       lead_source: "reservation_form",
       service_name: service.name,
+      service_id: service.id,
       transaction_id: submissionId,
   })
 }
 
 export default function ReservationClient({ initialService }: { initialService: string }) {
   const minBookingDate = getTodayInWarsaw()
-  const [selectedService, setSelectedService] = useState(initialService)
+  const [selectedService, setSelectedService] = useState(findBookingService(initialService)?.id ?? "")
   const [name, setName] = useState("")
   const [telephone, setTelephone] = useState("")
   const [date, setDate] = useState("")
@@ -95,13 +97,14 @@ export default function ReservationClient({ initialService }: { initialService: 
   function trackBookingStart(serviceName = selectedService) {
     if (bookingStarted.current) return
     bookingStarted.current = trackAnalyticsEvent("booking_start", {
-      service_name: serviceName || "unspecified",
+      service_name: findBookingService(serviceName)?.name ?? "unspecified",
+      service_id: findBookingService(serviceName)?.id ?? "unspecified",
       booking_channel: "reservation_form",
     })
   }
 
   const selected = useMemo(
-    () => allServices.find((service) => service.name === selectedService),
+    () => findBookingService(selectedService),
     [selectedService]
   )
   async function handleSubmit(event: FormEvent<HTMLFormElement>) {
@@ -117,7 +120,7 @@ export default function ReservationClient({ initialService }: { initialService: 
     const payload = {
       name,
       telephone: normalizedTelephone,
-      service: selectedService,
+      serviceId: selectedService,
       date,
       timePreference,
       notes,
@@ -183,6 +186,7 @@ export default function ReservationClient({ initialService }: { initialService: 
     if (selected) {
       trackAnalyticsEvent("booking_complete", {
         service_name: selected.name,
+        service_id: selected.id,
         booking_channel: "reservation_form",
       })
       trackReservationLead(selected, requestId.current)
@@ -195,7 +199,7 @@ export default function ReservationClient({ initialService }: { initialService: 
         items={[
           {
             name: "Zapytaj o termin",
-            url: "https://noblu.pl/rezerwacja",
+            url: `${business.url}/rezerwacja`,
           },
         ]}
       />
@@ -209,7 +213,7 @@ export default function ReservationClient({ initialService }: { initialService: 
               href="/"
               className="mb-6 inline-flex text-sm uppercase tracking-[0.24em] text-[#7C6238] transition-colors hover:text-[#1D1D1B] sm:mb-12"
             >
-              Noblu Beauty Room
+              {business.name}
             </Link>
 
             <h1 className="max-w-2xl text-4xl font-light leading-tight sm:text-7xl sm:leading-[0.92] lg:text-8xl">
@@ -250,7 +254,7 @@ export default function ReservationClient({ initialService }: { initialService: 
           <div className="relative min-h-[360px] overflow-hidden rounded-[2rem] sm:min-h-[440px] lg:min-h-[560px]">
             <Image
               src="/rezerwacja/rezerwacja-hero.jpg"
-              alt="Stylizacja paznokci Noblu Beauty Room Kraków"
+              alt={`Stylizacja paznokci ${business.name} Kraków`}
               fill
               priority
               sizes="(max-width: 1024px) 100vw, 46vw"
@@ -361,8 +365,8 @@ export default function ReservationClient({ initialService }: { initialService: 
                   {serviceGroups.map((group) => (
                     <optgroup key={group.title} label={group.title}>
                       {group.services.map((service) => (
-                        <option key={service.name} value={service.name}>
-                          {service.name}{service.staff && !service.name.includes(service.staff) ? ` — ${service.staff}` : ""}
+                        <option key={service.id} value={service.id}>
+                          {service.label}
                         </option>
                       ))}
                     </optgroup>
@@ -457,7 +461,7 @@ export default function ReservationClient({ initialService }: { initialService: 
                       Możesz też zadzwonić lub wybrać termin w Booksy.
                     </p>
                     <div className="mt-3 flex flex-wrap justify-center gap-x-5 gap-y-3">
-                      <a href="tel:+48662989534" className="text-[#7C6238] underline underline-offset-4 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#7C6238]">
+                      <a href={`tel:${business.phone.e164}`} className="text-[#7C6238] underline underline-offset-4 focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#7C6238]">
                         Zadzwoń: {phone}
                       </a>
                       <a
@@ -492,7 +496,7 @@ export default function ReservationClient({ initialService }: { initialService: 
             {submitStatus !== "success" && <div className="rounded-[2rem] border border-[#E8DED2] bg-white/70 p-6 shadow-[0_24px_70px_rgba(80,55,25,0.08)] sm:p-8">
               <h2 className="text-3xl font-light">Wybrana usługa</h2>
               <div className="mt-6 rounded-3xl bg-[#F8F5F2] p-6">
-                <div className="text-2xl font-medium">{selected?.name ?? "Wybierz usługę w formularzu"}</div>
+                <div className="text-2xl font-medium">{selected?.label ?? "Wybierz usługę w formularzu"}</div>
                 {selected && <div className="mt-4 flex flex-wrap gap-3 text-sm text-[#6D6B68]">
                   <span className="rounded-full border border-[#E8DED2] bg-white px-4 py-2">
                     {selected?.price}
@@ -510,7 +514,7 @@ export default function ReservationClient({ initialService }: { initialService: 
                   href="/cennik"
                   className="font-medium text-[#7C6238] underline underline-offset-4"
                 >
-                  cenniku Noblu Beauty Room
+                  cenniku {business.name}
                 </Link>
                 .
               </p>
@@ -532,7 +536,7 @@ export default function ReservationClient({ initialService }: { initialService: 
               <h2 className="text-3xl font-light">Kontakt</h2>
               <div className="mt-6 grid gap-3 text-[#625b53]">
                 <a
-                  href="tel:+48662989534"
+                  href={`tel:${business.phone.e164}`}
                   className="transition-colors hover:text-[#1D1D1B]"
                 >
                   {phone}
@@ -543,7 +547,7 @@ export default function ReservationClient({ initialService }: { initialService: 
                 >
                   {contactEmail}
                 </a>
-                <div>Orzechowa 4/lok.1, 30-422 Kraków</div>
+                <div>{businessAddress}</div>
                 <a
                   href={mapsDirectionsUrl}
                   target="_blank"
@@ -558,9 +562,9 @@ export default function ReservationClient({ initialService }: { initialService: 
             <div className="rounded-[2rem] border border-[#E8DED2] bg-white/70 p-6 shadow-[0_24px_70px_rgba(80,55,25,0.08)] sm:p-8">
               <h2 className="text-3xl font-light">Godziny salonu</h2>
               <p className="mt-5 text-[#625b53]">
-                Poniedziałek - piątek: 10:00 - 19:00
+                {business.hours.daysLabel}: {business.hours.opens} - {business.hours.closes}
               </p>
-              <p className="mt-2 text-[#625b53]">Sobota i niedziela: zamknięte</p>
+              <p className="mt-2 text-[#625b53]">{business.hours.closedLabel}</p>
               <p className="mt-2 text-[#625b53]">
                 Prośbę o termin możesz wysłać online 24/7.
               </p>

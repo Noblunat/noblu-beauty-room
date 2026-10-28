@@ -153,7 +153,7 @@ for (const scenario of [
     assert.equal(findWhere(tree, node => node.props?.autoComplete === "name").props.value, "Testowa klientka");
     assert.equal(findWhere(tree, node => node.props?.type === "tel").props.value, "+48 662 989 534");
     assert.equal(findWhere(tree, node => node.props?.type === "date").props.value, "2099-01-01");
-    assert.equal(findElement(tree, "select").props.value, "Manicure");
+    assert.equal(findElement(tree, "select").props.value, "manicure-natalia");
     assert.equal(findElement(tree, "textarea").props.value, "Proszę o kontakt");
     assert.equal(findWhere(tree, node => node.props?.type === "submit").props.disabled, false);
     assert.ok(h.requests[0].options.signal, "client request has a timeout");
@@ -352,7 +352,7 @@ test("a successful inquiry clears input state and requires an explicit fresh inq
     assert.equal(findWhere(tree, predicate).props.value, "");
   }
   findWhere(tree, n => n.props?.type === "tel").props.onChange({ target: { value: "+48 662 989 534", setCustomValidity() {} } });
-  findElement(tree, "select").props.onChange({ target: { value: "Manicure" } });
+  findElement(tree, "select").props.onChange({ target: { value: "manicure-natalia" } });
   tree = h.render(component, props);
   await findElement(tree, "form").props.onSubmit({ preventDefault() {} });
   assert.notEqual(JSON.parse(h.requests[0].options.body).requestId, JSON.parse(h.requests[1].options.body).requestId);
