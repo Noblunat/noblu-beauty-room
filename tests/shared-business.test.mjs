@@ -20,7 +20,7 @@ test("AI-readable public information is generated from the same business configu
 });
 
 test("live application modules no longer own duplicate contact values", () => {
-  for (const file of ["app/layout.tsx", "app/page.tsx", "app/components/SiteFooter.tsx", "app/rezerwacja/ReservationClient.tsx", "app/api/rezerwacja/route.ts"]) {
+  for (const file of ["app/layout.tsx", "app/components/home/HomeContact.tsx", "app/components/home/HomeHeader.tsx", "app/components/home/HomeHero.tsx", "app/components/SiteFooter.tsx", "app/rezerwacja/ReservationClient.tsx", "app/api/rezerwacja/route.ts"]) {
     const source = readFileSync(new URL(`../${file}`, import.meta.url), "utf8");
     assert.ok(source.includes("business"), file);
     assert.ok(!source.includes("salon@noblu.pl"), `${file}: duplicate mailbox`);

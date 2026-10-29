@@ -75,7 +75,8 @@ test("manicure copy answers practical questions without repeated acquisition and
 });
 
 test("homepage uses a factual service heading and a separate Google review invitation", () => {
-  const source = readFileSync(new URL("app/page.tsx", root), "utf8");
+  const source = ["HomeHero", "HomeServices", "HomeReviews"].map(name =>
+    readFileSync(new URL(`app/components/home/${name}.tsx`, root), "utf8")).join("\n");
   assert.ok(source.includes("Nasze usługi"));
   assert.ok(!source.includes("Najbardziej pożądane zabiegi"));
   assert.ok(source.includes("Dodaj opinię w Google"));

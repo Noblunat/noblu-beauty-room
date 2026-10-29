@@ -1,4 +1,5 @@
 import { test as base, expect, type Page } from "@playwright/test";
+import { isGoogleLibrary } from "./google-script-policy";
 
 export const isGoogle = (url: URL) => /(^|\.)(google-analytics\.com|googletagmanager\.com|googleadservices\.com|doubleclick\.net|googlesyndication\.com|google\.com|google\.pl)$/.test(url.hostname);
 export const isMeta = (url: URL) => /(^|\.)(facebook\.com|facebook\.net|fbcdn\.net)$/.test(url.hostname);
@@ -32,7 +33,7 @@ export const test = base.extend<Fixtures>({
         return;
       }
       externalRequests.push(request.url());
-      if (process.env.E2E_LIVE_TAGS === "1" && isGoogle(url) && request.resourceType() === "script") {
+      if (process.env.E2E_LIVE_TAGS === "1" && isGoogleLibrary(url) && request.resourceType() === "script") {
         // Fetch real vendor code, but never forward its collection requests.
         const response = await route.fetch({ maxRedirects: 0 });
         await route.fulfill({ response });
