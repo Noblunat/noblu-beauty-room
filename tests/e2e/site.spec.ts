@@ -43,8 +43,8 @@ for (const path of pages) {
     await expect(footer.locator('a[href="mailto:salon@noblu.pl"]')).toBeVisible();
     await expect(page.locator("body")).not.toContainText("19:30");
     await footer.getByRole("button", { name: "Ustawienia cookies", exact: true }).click();
-    await expect(page.getByRole("region", { name: "Preferencje plików cookie" })).toBeVisible();
-    await expect(page.getByRole("region", { name: "Preferencje plików cookie" })).toContainText("marketingu");
+    await expect(page.getByRole("dialog", { name: "Preferencje plików cookie" })).toBeVisible();
+    await expect(page.getByRole("dialog", { name: "Preferencje plików cookie" })).toContainText("marketingu");
     if (path === "/rezerwacja") {
       await expect(page.locator("main")).not.toContainText("gmail.com");
       await expect(page.locator("main")).toContainText("Ponad 240 opinii");

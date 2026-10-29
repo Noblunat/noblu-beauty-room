@@ -5,7 +5,7 @@ test("rejecting optional consent sends no Google or Meta requests, including aft
   await rejectOptional(page);
   await page.goto("/rezerwacja");
   await page.locator("footer").getByRole("button", { name: "Ustawienia cookies" }).click();
-  const preferences = page.getByRole("region", { name: "Preferencje plików cookie" });
+  const preferences = page.getByRole("dialog", { name: "Preferencje plików cookie" });
   const choices = preferences.getByRole("checkbox");
   await expect(choices).toHaveCount(4);
   for (const index of [1, 2, 3]) await expect(choices.nth(index)).not.toBeChecked();
@@ -20,12 +20,12 @@ test("accepting consent loads Google, configures Ads and restores saved choices,
   const commands = await page.evaluate(() => window.dataLayer?.map(args => Array.from(args as ArrayLike<unknown>)) || []);
   expect(commands).toContainEqual(expect.arrayContaining(["config", "AW-10795260361"]));
   await page.locator("footer").getByRole("button", { name: "Ustawienia cookies" }).click();
-  const preferences = page.getByRole("region", { name: "Preferencje plików cookie" });
+  const preferences = page.getByRole("dialog", { name: "Preferencje plików cookie" });
   for (const checkbox of await preferences.getByRole("checkbox").all()) await expect(checkbox).toBeChecked();
   await page.reload();
-  await expect(page.getByRole("region", { name: "Preferencje plików cookie" })).toHaveCount(0);
+  await expect(page.getByRole("dialog", { name: "Preferencje plików cookie" })).toHaveCount(0);
   await page.locator("footer").getByRole("button", { name: "Ustawienia cookies" }).click();
-  for (const checkbox of await page.getByRole("region", { name: "Preferencje plików cookie" }).getByRole("checkbox").all()) await expect(checkbox).toBeChecked();
+  for (const checkbox of await page.getByRole("dialog", { name: "Preferencje plików cookie" }).getByRole("checkbox").all()) await expect(checkbox).toBeChecked();
   expect(externalRequests.filter(href => isMeta(new URL(href)))).toEqual([]);
 });
 
@@ -45,12 +45,12 @@ test("real Google vendor code attempts Ads collection only after marketing conse
 test("marketing-only preferences survive reload without enabling analytics or maps", async ({ page }) => {
   await page.goto("/");
   await page.getByRole("button", { name: "Ustawienia", exact: true }).click();
-  const preferences = page.getByRole("region", { name: "Preferencje plików cookie" });
+  const preferences = page.getByRole("dialog", { name: "Preferencje plików cookie" });
   await preferences.getByRole("checkbox").nth(2).check();
   await preferences.getByRole("button", { name: "Zapisz wybór" }).click();
   await page.reload();
   await page.locator("footer").getByRole("button", { name: "Ustawienia cookies" }).click();
-  const choices = page.getByRole("region", { name: "Preferencje plików cookie" }).getByRole("checkbox");
+  const choices = page.getByRole("dialog", { name: "Preferencje plików cookie" }).getByRole("checkbox");
   await expect(choices.nth(1)).not.toBeChecked();
   await expect(choices.nth(2)).toBeChecked();
   await expect(choices.nth(3)).not.toBeChecked();
@@ -73,7 +73,7 @@ test("revoking consent in one tab updates Google consent and preferences in anot
   await rejectOptional(page);
   await expect.poll(() => other.evaluate(() => window["ga-disable-G-BD9VRN0W6Q"])).toBe(true);
   await other.locator("footer").getByRole("button", { name: "Ustawienia cookies" }).click();
-  const choices = other.getByRole("region", { name: "Preferencje plików cookie" }).getByRole("checkbox");
+  const choices = other.getByRole("dialog", { name: "Preferencje plików cookie" }).getByRole("checkbox");
   for (const index of [1, 2, 3]) await expect(choices.nth(index)).not.toBeChecked();
   await other.close();
 });

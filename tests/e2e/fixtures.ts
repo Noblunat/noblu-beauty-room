@@ -50,7 +50,7 @@ export async function rejectOptional(page: Page) {
   const reject = page.getByRole("button", { name: "Odrzucam opcjonalne", exact: true });
   await expect(reject).toBeVisible();
   await reject.click();
-  await expect(page.getByRole("region", { name: "Preferencje plików cookie" })).toBeHidden();
+  await expect(page.locator("[data-cookie-banner]")).toBeHidden();
 }
 
 export async function fillInquiry(page: Page) {

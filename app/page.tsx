@@ -182,7 +182,7 @@ export default function NobluBeautyRoomWebsite() {
   const whyNobluItems = [
     {
       title: "Darmowy parking",
-      text: "Pod salonem dostępny jest bezpłatny parking, dlatego wizytę łatwo zaplanować także przy dojeździe z Borku Fałęckiego, Łagiewnik, Ruczaju lub Kurdwanowa.",
+      text: "Pod salonem dostępny jest bezpłatny parking. Możesz wygodnie przyjechać samochodem i zostawić go przy budynku na czas wizyty.",
     },
     {
       title: "Rezerwacja online 24/7",
@@ -673,15 +673,13 @@ useEffect(() => {
   </p>
 
   <p>
-    Salon znajduje się w wygodnej lokalizacji dla klientek z południa Krakowa:
-    na Borku Fałęckim, blisko Łagiewnik, Ruczaju, Kurdwanowa i z dobrym
-    dojazdem z Podgórza. Każdy zabieg wykonujemy z dbałością o higienę, komfort
-    oraz naturalny, elegancki efekt. Pod salonem dostępny jest darmowy parking
-    dla klientek.
+    Przed rozpoczęciem stylizacji ustalamy długość, kształt i kolor paznokci.
+    Dobieramy efekt do Twoich oczekiwań i codziennych zajęć. Podczas wizyty
+    dbamy o higienę stanowiska, dokładność opracowania i Twój komfort.
   </p>
 
   <p>
-    Jeśli szukasz miejsca na{" "}
+    Wybierz{" "}
     <a href="/manicure-krakow" className="font-medium text-[#876536] underline underline-offset-4">
       manicure w Krakowie
     </a>
@@ -689,9 +687,8 @@ useEffect(() => {
     <a href="/pedicure-krakow" className="font-medium text-[#876536] underline underline-offset-4">
       pedicure w Krakowie
     </a>
-    , {business.name} łączy staranne wykonanie z dbałością o estetykę i
-    wygodnym formularzem rezerwacji online. Przyjmujemy nowe klientki na
-    manicure i pedicure.
+    . W opisach usług znajdziesz realizacje, warianty stylizacji oraz
+    informacje, które pomogą Ci zaplanować wizytę.
   </p>
 </div>
   </div>
@@ -891,7 +888,7 @@ useEffect(() => {
         </p>
 
         <p>
-          Jeśli szukasz miejsca na{" "}
+          Przed wizytą możesz sprawdzić ofertę:{" "}
           <a href="/manicure-krakow" className="font-medium text-[#876536] underline underline-offset-4">
             manicure w Krakowie
           </a>
@@ -903,8 +900,7 @@ useEffect(() => {
           <a href="/przedluzanie-rzes-krakow" className="font-medium text-[#876536] underline underline-offset-4">
             przedłużanie rzęs w Krakowie
           </a>
-          , możesz umówić wizytę online i łatwo zaplanować dojazd z pobliskich
-          dzielnic.
+          . Poniżej znajdziesz mapę i wskazówki dojazdu pod wejście do salonu.
         </p>
 
         <a
@@ -974,13 +970,9 @@ useEffect(() => {
 
     <div className="grid grid-cols-2 gap-3 sm:grid-cols-4">
       {instagramGalleryItems.map((item) => (
-        <a
+        <figure
           key={item.src}
-          href={business.links.instagram}
-          target="_blank"
-          rel="noopener noreferrer"
-          aria-label={`Zobacz profil ${business.name} na Instagramie`}
-          className="group relative aspect-square overflow-hidden rounded-[1.2rem] bg-[#E8D6BE]/40"
+          className="relative aspect-square overflow-hidden rounded-[1.2rem] bg-[#E8D6BE]/40"
         >
           <Image
             src={item.src}
@@ -988,10 +980,9 @@ useEffect(() => {
             fill
             sizes="(min-width: 1280px) 287px, (min-width: 1024px) 22.5vw, (min-width: 640px) 23vw, calc(50vw - 1.875rem)"
             quality={76}
-            className="object-cover transition-transform duration-700 group-hover:scale-105"
+            className="object-cover"
           />
-          <div className="absolute inset-0 bg-black/0 transition-colors duration-500 group-hover:bg-black/10" />
-        </a>
+        </figure>
       ))}
     </div>
 

@@ -10,7 +10,7 @@ const sharedBusinessRevision = {
 };
 
 const pageRevisions: Record<string, {date: string; reason: string}> = {
-  "/": {date: "2026-10-26", reason: "Verified team portraits and service scope, owner-confirmed instrument preparation, shared footer and review attribution."},
+  "/": {date: "2026-10-29", reason: "One Instagram profile action and concise service/location copy without repeated district or acquisition paragraphs."},
   "/manicure-krakow": {date: "2026-10-26", reason: "Booksy-verified employee pricing and portraits, visible realization captions and owner-confirmed instrument preparation."},
   "/pedicure-krakow": {date: "2026-10-26", reason: "Booksy-verified SPA scope, employee variants and portraits, two distinct pedicure photos and confirmed instrument preparation."},
   "/stylizacja-rzes-krakow": sharedBusinessRevision,
@@ -20,7 +20,7 @@ const pageRevisions: Record<string, {date: string; reason: string}> = {
   "/polityka-prywatnosci": {date: "2026-10-28", reason: "Administrator contact and address generated from the shared business configuration."},
 };
 
-export const contentSources = { business: business.updatedAt, services: serviceCatalogUpdatedAt, team: teamUpdatedAt };
+export const contentSources = { business: business.updatedAt, services: serviceCatalogUpdatedAt, team: teamUpdatedAt, footer: "2026-10-29" };
 export const contentDependencies: Record<string, (keyof typeof contentSources)[]> = {
   "/": ["business", "services", "team"],
   "/manicure-krakow": ["business", "services", "team"],
@@ -33,7 +33,7 @@ export const contentDependencies: Record<string, (keyof typeof contentSources)[]
 };
 export const contentRevisions = Object.fromEntries(Object.entries(pageRevisions).map(([route, revision]) => [route, {
   ...revision,
-  date: contentDependencies[route].reduce((latest, source) => contentSources[source] > latest ? contentSources[source] : latest, revision.date),
+  date: [...contentDependencies[route], "footer" as const].reduce((latest, source) => contentSources[source] > latest ? contentSources[source] : latest, revision.date),
 }]));
 
 export function revisionLabel(route: string) {

@@ -83,7 +83,6 @@ export default function SiteFooter() {
           <div>{businessHours}</div>
           <div>{business.hours.closedLabel}</div>
           <div>Zapytanie o termin online: 24/7</div>
-          <div>Dogodny dojazd: Podgórze, Łagiewniki, Borek Fałęcki, Ruczaj, Kurdwanów</div>
 
           <a
             href={`tel:${business.phone.e164}`}
