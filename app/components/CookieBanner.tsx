@@ -1,6 +1,7 @@
 "use client";
 
-import { useEffect, useState, useSyncExternalStore } from "react";
+import { useEffect, useRef, useState, useSyncExternalStore } from "react";
+import { X } from "lucide-react";
 import {
   subscribeToCookieConsent,
   COOKIE_CONSENT_OPEN_EVENT,
@@ -26,6 +27,25 @@ export default function CookieBanner() {
   const [marketing, setMarketing] = useState(false);
   const [external, setExternal] = useState(false);
   const [editing, setEditing] = useState(false);
+  const dialogRef = useRef<HTMLDialogElement>(null);
+  const headingRef = useRef<HTMLHeadingElement>(null);
+  const settingsButtonRef = useRef<HTMLButtonElement>(null);
+  const returnFocusRef = useRef<HTMLElement | null>(null);
+
+  useEffect(() => {
+    if (settingsOpen) {
+      const dialog = dialogRef.current;
+      if (dialog && !dialog.open) dialog.showModal();
+      headingRef.current?.focus({ preventScroll: true });
+      return () => { if (dialog?.open) dialog.close(); };
+    }
+    const opener = returnFocusRef.current;
+    if (opener) {
+      // The first-layer settings button is recreated after leaving the dialog.
+      (opener.isConnected ? opener : settingsButtonRef.current)?.focus({ preventScroll: true });
+      returnFocusRef.current = null;
+    }
+  }, [settingsOpen]);
 
   useEffect(() => {
     const syncPreferences = () => {
@@ -35,6 +55,7 @@ export default function CookieBanner() {
       setExternal(consent?.external ?? false);
     };
     const openPreferences = () => {
+      returnFocusRef.current = document.activeElement instanceof HTMLElement ? document.activeElement : null;
       syncPreferences();
       setSettingsOpen(true);
       setEditing(true);
@@ -53,21 +74,27 @@ export default function CookieBanner() {
     setSettingsOpen(false);
   };
 
+  const closePreferences = () => {
+    setEditing(false);
+    setSettingsOpen(false);
+  };
+
   if (!visible && !editing) {
     return null;
   }
 
-  return (
-    <div
-      data-cookie-banner
-      role="region"
-      aria-label="Preferencje plików cookie"
-      className="fixed inset-x-0 bottom-0 z-[100000] px-4 pb-4 sm:px-6"
-    >
-      <div className="mx-auto max-h-[85dvh] max-w-5xl overflow-y-auto rounded-[1.5rem] border border-[#E8DED2] bg-white/95 p-4 text-[#1D1D1B] shadow-[0_20px_80px_rgba(0,0,0,0.18)] backdrop-blur-xl sm:p-6">
-        <div className="grid gap-5 lg:grid-cols-[1fr_auto] lg:items-start">
+  const content = (
+      <div className="relative mx-auto max-h-[85dvh] max-w-5xl overflow-y-auto rounded-[1.5rem] border border-[#E8DED2] bg-white/95 p-4 text-[#1D1D1B] shadow-[0_20px_80px_rgba(0,0,0,0.18)] backdrop-blur-xl sm:p-6">
+        {settingsOpen && <button
+          type="button"
+          aria-label="Zamknij ustawienia cookies"
+          title="Zamknij ustawienia cookies"
+          onClick={closePreferences}
+          className="absolute right-2 top-2 inline-flex h-11 w-11 items-center justify-center rounded-full text-[#1D1D1B] hover:bg-[#F8F5F2] focus-visible:outline-2 focus-visible:outline-offset-2 focus-visible:outline-[#7C6238] sm:right-3 sm:top-3"
+        ><X size={20} aria-hidden="true" /></button>}
+        <div className={`grid gap-5 lg:grid-cols-[1fr_auto] lg:items-start${settingsOpen ? " pt-12" : ""}`}>
           <div>
-            <h2 className="text-lg font-medium sm:text-xl">Pliki cookies</h2>
+            <h2 ref={headingRef} id="cookie-preferences-title" tabIndex={settingsOpen ? -1 : undefined} className="pr-10 text-lg font-medium outline-none sm:text-xl">{settingsOpen ? "Preferencje plików cookie" : "Pliki cookies"}</h2>
             <p className="mt-2 text-sm leading-relaxed text-[#5F5B56] sm:mt-3">
               Używamy cookies i podobnych technologii do działania strony,
               analityki, marketingu (pomiaru i personalizacji reklam Google Ads)
@@ -92,7 +119,7 @@ export default function CookieBanner() {
                       Wymagane do działania strony i zapamiętania wyboru.
                     </span>
                   </span>
-                  <input type="checkbox" checked readOnly className="mt-1" />
+                  <input type="checkbox" checked disabled className="mt-1" />
                 </label>
 
                 <label className="flex items-start justify-between gap-4">
@@ -196,7 +223,12 @@ export default function CookieBanner() {
             ) : (
               <button
                 type="button"
-                onClick={() => setSettingsOpen(true)}
+                ref={settingsButtonRef}
+                onClick={(event) => {
+                  returnFocusRef.current = event.currentTarget;
+                  setEditing(true);
+                  setSettingsOpen(true);
+                }}
                 className="rounded-full border border-[#E8DED2] px-4 py-2.5 text-sm font-medium transition-colors hover:border-[#D4B483] sm:px-5 sm:py-3"
               >
                 Ustawienia
@@ -205,6 +237,33 @@ export default function CookieBanner() {
           </div>
         </div>
       </div>
+  );
+
+  return settingsOpen ? (
+    <dialog
+      ref={dialogRef}
+      data-cookie-banner
+      aria-labelledby="cookie-preferences-title"
+      aria-modal="true"
+      onCancel={(event) => { event.preventDefault(); closePreferences(); }}
+      onKeyDown={(event) => {
+        if (event.key !== "Tab") return;
+        const controls = event.currentTarget.querySelectorAll<HTMLElement>("a[href], button:not([disabled]), input:not([disabled])");
+        const first = controls[0];
+        const last = controls[controls.length - 1];
+        if (event.shiftKey && (document.activeElement === first || document.activeElement === headingRef.current)) {
+          event.preventDefault();
+          last?.focus();
+        } else if (!event.shiftKey && document.activeElement === last) {
+          event.preventDefault();
+          first?.focus();
+        }
+      }}
+      className="fixed inset-0 m-auto max-h-[85dvh] w-[calc(100%_-_2rem)] max-w-5xl overflow-visible border-0 bg-transparent p-0 backdrop:bg-black/30"
+    >{content}</dialog>
+  ) : (
+    <div data-cookie-banner role="region" aria-label="Preferencje plików cookie" className="fixed inset-x-0 bottom-0 z-[100000] px-4 pb-4 sm:px-6">
+      {content}
     </div>
   );
 }

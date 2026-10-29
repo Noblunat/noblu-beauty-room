@@ -203,7 +203,8 @@ test("accept and reject are equally prominent single-click choices on the first 
     module: m, exports: m.exports,
     require: name => {
       if (name === "react/jsx-runtime") return { jsx, jsxs: jsx };
-      if (name === "react") return { useState: initial => [initial, () => {}], useEffect() {}, useSyncExternalStore: () => true };
+      if (name === "react") return { useState: initial => [initial, () => {}], useRef: initial => ({ current: initial }), useEffect() {}, useSyncExternalStore: () => true };
+      if (name === "lucide-react") return { X: () => null };
       if (name === "../lib/cookieConsent") return h;
       if (name === "next/link") return { default: "a" };
       throw new Error(`Unexpected dependency ${name}`);

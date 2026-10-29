@@ -95,9 +95,9 @@ function PriceList({
         ))}
       </div>
 
-      <div className="mt-10 space-y-4">
+      <ul role="list" aria-label={title} className="mt-10 space-y-4">
         {items.map((item) => (
-          <div
+          <li
             key={item.bookingService ?? item.name}
             data-booking-service={item.bookingService}
             className="grid grid-cols-[1fr_auto] gap-6 border-b border-[#E8DED2]/70 pb-3 text-[#4F463F]"
@@ -113,9 +113,9 @@ function PriceList({
             <span className="text-right font-medium text-[#3A2F26]">
               {item.price}
             </span>
-          </div>
+          </li>
         ))}
-      </div>
+      </ul>
 
       {note && (
         <p className="mt-8 text-center text-sm leading-relaxed text-[#7A6D62]">
