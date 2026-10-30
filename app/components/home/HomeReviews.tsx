@@ -48,7 +48,7 @@ export default function HomeReviews() {
               key={`${review.name}-${index}`}
               className="rounded-[2rem] border border-[#E8DED2] bg-white/70 backdrop-blur-2xl shadow-[0_20px_60px_rgba(0,0,0,0.06)] p-8"
             >
-              <div className="text-[#7C6238] text-4xl mb-6">“</div>
+              <div aria-hidden="true" className="text-[#7C6238] text-4xl mb-6">“</div>
 
               <p className="text-[#6D6B68] leading-relaxed mb-8">
                 {review.text}

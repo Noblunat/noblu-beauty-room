@@ -42,7 +42,7 @@ export const metadata: Metadata = {
 const faq = [
   {
     q: "Gdzie wykonać pedicure w Krakowie, Borek Fałęcki?",
-    a: `Pedicure w ${business.name} wykonasz przy ul. ${business.address.streetLocative} w Krakowie, na Borku Fałęckim. To wygodna lokalizacja także dla osób z Łagiewnik, Ruczaju, Kurdwanowa, Swoszowic i Podgórza.`,
+    a: `Pedicure w ${business.name} wykonasz przy ul. ${business.address.streetLocative} w Krakowie, na Borku Fałęckim. Przy salonie jest darmowy parking.`,
   },
   {
     q: "Czy salon wykonuje pedicure hybrydowy?",
@@ -50,15 +50,15 @@ const faq = [
   },
   {
     q: "Jak zarezerwować pedicure?",
-    a: "Wyślij prośbę o termin przez formularz rezerwacji Noblu. Salon potwierdzi dostępność SMS-em lub telefonicznie. Przyjmujemy również nowe klientki na pedicure.",
+    a: "Wybierz wariant pedicure i wyślij prośbę o termin przez formularz Noblu. Salon potwierdzi dostępność SMS-em lub telefonicznie; samo wysłanie formularza nie rezerwuje godziny.",
   },
   {
     q: "Ile kosztuje pedicure w Krakowie?",
     a: `Pedicure samych paznokci bez hybrydy kosztuje ${servicePrice("pedicure-paznokcie-bez-hybrydy-natalia")}. Hybryda samych paznokci u Julii (stylistki junior) kosztuje ${servicePrice("pedicure-paznokcie-hybryda-julia")}, a u Natalii ${servicePrice("pedicure-paznokcie-hybryda-natalia")}. Pełny pedicure SPA bez hybrydy kosztuje ${servicePrice("pedicure-spa-bez-hybrydy-natalia")}, a z hybrydą ${servicePrice("pedicure-spa-hybryda-natalia")}.`,
   },
   {
-    q: "Czy Noblu przyjmuje nowe klientki na pedicure?",
-    a: "Tak. Przyjmujemy nowe klientki na pedicure. W formularzu możesz wybrać wariant zabiegu i zapytać o termin.",
+    q: "Czym różni się pedicure SPA od opracowania samych paznokci?",
+    a: "Pedicure samych paznokci obejmuje paznokcie i skórki. Wariant SPA obejmuje także kąpiel oraz opracowanie stóp. Obie opcje mają wariant z hybrydą lub bez niej.",
   },
 ];
 
@@ -186,10 +186,10 @@ export default function PedicureKrakowPage() {
               a u Natalii {servicePrice("pedicure-paznokcie-hybryda-natalia")}. Wszystkie opcje są opisane w <Link href="/cennik" className="font-medium text-[#876536] underline underline-offset-4">cenniku pedicure</Link>.
             </p>
             <p className="mt-4">
-              Jeśli szukasz pedicure w Krakowie, możesz wybrać wariant
-              kosmetyczny, hybrydowy albo pielęgnację samych paznokci. Przed
-              wizytą warto wskazać w formularzu preferowany efekt i dogodny
-              dzień, aby łatwiej dopasować termin.
+              Przy wyborze usługi zaznacz, czy zależy Ci na samych paznokciach,
+              czy na pielęgnacji całych stóp. Jeśli masz już hybrydę, uwzględnij
+              jej usunięcie przy wyborze wariantu. Czas wizyty zależy od zakresu
+              usługi i stylistki; sprawdzisz go w zestawieniu powyżej.
             </p>
           </div>
 
@@ -207,13 +207,12 @@ export default function PedicureKrakowPage() {
 
           <div>
             <h2 className="text-3xl lg:text-4xl font-light text-[#1D1D1B] mb-6">
-              Nowe klientki na pedicure
+              Wizyta u Natalii lub Julii
             </h2>
             <p>
-              Jeśli szukasz pedicure w Krakowie i zależy Ci na spokojnej,
-              dokładnej wizycie, możesz wysłać zapytanie przez formularz Noblu.
               Natalia wykonuje warianty SPA i pielęgnację samych paznokci.
               U Julii możesz umówić hybrydę samych paznokci albo jej usunięcie z opracowaniem paznokci.
+              W formularzu wybierzesz konkretny wariant i stylistkę.
             </p>
           </div>
 
@@ -253,13 +252,13 @@ export default function PedicureKrakowPage() {
                 href="/rezerwacja?usluga=pedicure-spa-bez-hybrydy-natalia"
                 className="inline-flex items-center justify-center px-8 py-4 rounded-full bg-[#D4B483] text-black font-medium hover:scale-105 transition-transform shadow-[0_20px_60px_rgba(212,180,131,0.35)]"
               >
-                Kosmetyczny — 180 zł
+                SPA bez hybrydy — {servicePrice("pedicure-spa-bez-hybrydy-natalia")}
               </Link>
               <Link
                 href="/rezerwacja?usluga=pedicure-spa-hybryda-natalia"
                 className="inline-flex items-center justify-center px-8 py-4 rounded-full border border-[#E8DED2] text-[#1D1D1B] hover:border-[#D4B483] transition-colors"
               >
-                Pełny z hybrydą — 200 zł
+                SPA z hybrydą — {servicePrice("pedicure-spa-hybryda-natalia")}
               </Link>
               <Link
                 href="/rezerwacja?usluga=pedicure-paznokcie-hybryda-natalia"
