@@ -71,8 +71,8 @@ export default function LashMethods() {
           })}
         </div>
         <p className="mt-8 text-[#6D6B68] leading-relaxed">
-          Czas zależy od wybranej metody i oczekiwanego efektu. Ceny i czasy
-          uzupełnień oraz usług dodatkowych znajdziesz w{" "}
+          Podane czasy są orientacyjne i potwierdzamy je przy umawianiu wizyty.
+          Ceny i czasy uzupełnień oraz usług dodatkowych znajdziesz w{" "}
           <a
             href="/cennik"
             className="font-medium text-[#876536] underline underline-offset-4"

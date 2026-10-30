@@ -54,6 +54,7 @@ test("lash methods share the catalog prices, durations and canonical selection l
     (node) => node.type === "article",
   );
   assert.equal(cards.length, 3);
+  assert.match(nodeText(renderPage(file)), /czasy są orientacyjne/);
   const { findBookingServiceById } = loadDataModule(
     "../app/lib/bookingServices",
     import.meta.url,
