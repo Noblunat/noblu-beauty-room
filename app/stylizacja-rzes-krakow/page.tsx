@@ -5,6 +5,8 @@ import Link from "next/link";
 import BreadcrumbJsonLd from "../components/BreadcrumbJsonLd";
 import ServiceJsonLd from "../components/ServiceJsonLd";
 import ServiceGallery from "../components/ServiceGallery";
+import LashMethods from "../components/LashMethods";
+import SalonHygiene from "../components/SalonHygiene";
 import { lashApplicationPrices, serviceOffers } from "../lib/priceCatalog";
 
 export const metadata: Metadata = {
@@ -43,7 +45,7 @@ const faq = [
   },
   {
     q: "Gdzie znajduje się salon stylizacji rzęs?",
-    a: `${business.name} znajduje się przy ul. ${business.address.streetLocative} w Krakowie, na Borku Fałęckim. To dogodna lokalizacja także dla klientek z Łagiewnik, Ruczaju, Kurdwanowa, Swoszowic i Podgórza.`,
+    a: `${business.name} znajduje się przy ul. ${business.address.streetLocative} w Krakowie, na Borku Fałęckim. Przy salonie jest darmowy parking.`,
   },
   {
     q: "Czy wizytę na rzęsy można zarezerwować online?",
@@ -147,6 +149,9 @@ export default function StylizacjaRzesKrakowPage() {
         ]}
       />
 
+      <LashMethods />
+      <SalonHygiene />
+
       <section className="pb-24 px-6 lg:px-12">
         <div className="max-w-5xl mx-auto grid gap-10 text-lg leading-relaxed text-[#5F5B56]">
           <div>
@@ -179,13 +184,13 @@ export default function StylizacjaRzesKrakowPage() {
 
           <div>
             <h2 className="text-3xl lg:text-4xl font-light text-[#1D1D1B] mb-6">
-              Komfort, higiena i precyzja
+              Przed wizytą na stylizację rzęs
             </h2>
             <p>
-              Podczas wizyty ważne są nie tylko efekt końcowy, ale też wygoda i
-              poczucie bezpieczeństwa. Pracujemy spokojnie, z dbałością o
-              szczegóły, aby stylizacja była dopasowana do oka i przyjemna w
-              codziennym noszeniu.
+              W uwagach do zapytania napisz, czy masz już przedłużone rzęsy
+              i jaki efekt chcesz uzyskać. To pomoże ustalić zakres wizyty.
+              Metodę, długość i podkręcenie dobierzemy do naturalnych rzęs oraz
+              kształtu oka.
             </p>
           </div>
 

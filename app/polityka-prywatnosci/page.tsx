@@ -225,8 +225,9 @@ export default function PolitykaPrywatnosciPage() {
                 potwierdzenia terminu.
               </p>
               <p>
-                Wiadomość jest wysyłana przez Resend do skrzynki
-                {business.email} w OVHcloud (Zimbra), obsługiwanej przez
+                Wiadomość jest wysyłana przez Resend do skrzynki{" "}
+                <a href={`mailto:${business.email}`} className="text-[#7C6238] underline underline-offset-4">{business.email}</a>{" "}
+                w OVHcloud (Zimbra), obsługiwanej przez
                 upoważnione osoby w salonie, także za pomocą Thunderbirda.
                 Nie wysyłamy automatycznej kopii zgłoszenia do Gmaila.
               </p>

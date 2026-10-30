@@ -103,7 +103,15 @@ function PriceList({
             className="grid grid-cols-[1fr_auto] gap-6 border-b border-[#E8DED2]/70 pb-3 text-[#4F463F]"
           >
             <span className="min-w-0">
-              <span className="block">{item.name}</span>
+              {item.bookingService ? (
+                <Link
+                  href={`/rezerwacja?usluga=${item.bookingService}`}
+                  aria-label={`Zapytaj o termin: ${item.name}${item.staff ? " — " + item.staff : ""}`}
+                  className="block underline decoration-[#D4B483] underline-offset-4 transition-colors hover:text-[#7C6238] focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#7C6238]"
+                >
+                  {item.name}
+                </Link>
+              ) : <span className="block">{item.name}</span>}
               {item.staff && <span className="mt-1 block text-sm font-medium">{item.staff}</span>}
               {item.note && <span className="mt-1 block text-sm leading-relaxed">{item.note}</span>}
               <span className="mt-1 block text-sm leading-relaxed text-[#5F5B56]">

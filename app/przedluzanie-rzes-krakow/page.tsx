@@ -3,6 +3,8 @@ import { business, businessPostalAddress } from "../lib/business";
 import type { Metadata } from "next";
 import Image from "next/image";
 import BreadcrumbJsonLd from "../components/BreadcrumbJsonLd";
+import LashMethods from "../components/LashMethods";
+import SalonHygiene from "../components/SalonHygiene";
 import { lashApplicationPrices, servicePrice, serviceOffers } from "../lib/priceCatalog";
 import { findBookingService } from "../lib/bookingServices";
 
@@ -46,7 +48,7 @@ const faq = [
   },
   {
     q: "Gdzie w Krakowie znajduje się salon przedłużania rzęs?",
-    a: `Salon znajduje się przy ul. ${business.address.streetLocative} w Krakowie, wygodnie dla klientek z Borku Fałęckiego, Łagiewnik, Ruczaju, Kurdwanowa i Podgórza. Pod salonem dostępny jest darmowy parking.`,
+    a: `Salon znajduje się przy ul. ${business.address.streetLocative} w Krakowie, na Borku Fałęckim. Pod salonem dostępny jest darmowy parking.`,
   },
   {
     q: "Ile kosztuje przedłużanie rzęs w Krakowie?",
@@ -55,24 +57,6 @@ const faq = [
   {
     q: "Ile trwa aplikacja rzęs?",
     a: `Pierwsza aplikacja trwa zwykle ${findBookingService("rzesy-1-1-aplikacja")!.duration} - ${findBookingService("rzesy-3d-aplikacja")!.duration}, zależnie od wybranej metody i oczekiwanego efektu.`,
-  },
-];
-
-const methods = [
-  {
-    title: "Rzęsy 1:1",
-    price: servicePrice("rzesy-1-1-aplikacja"),
-    text: "Delikatne przedłużanie rzęs dla naturalnego efektu, który podkreśla spojrzenie bez mocnego przerysowania.",
-  },
-  {
-    title: "Rzęsy 2D",
-    price: servicePrice("rzesy-2d-aplikacja"),
-    text: "Lekka objętość dla klientek, które chcą bardziej widocznego efektu, ale nadal eleganckiego i wygodnego na co dzień.",
-  },
-  {
-    title: "Rzęsy 3D",
-    price: servicePrice("rzesy-3d-aplikacja"),
-    text: "Wyraźniejsza stylizacja z większą objętością, dobierana tak, aby zachować harmonię z okiem i naturalnymi rzęsami.",
   },
 ];
 
@@ -183,34 +167,8 @@ export default function PrzedluzanieRzesKrakowPage() {
         </div>
       </section>
 
-      <section className="py-24 px-6 lg:px-12 bg-white">
-        <div className="max-w-6xl mx-auto">
-          <div className="max-w-3xl mb-12">
-            <div className="text-sm uppercase tracking-[0.3em] text-[#7C6238] mb-4">
-              Metody stylizacji
-            </div>
-            <h2 className="text-4xl lg:text-5xl font-light leading-tight">
-              Przedłużanie rzęs 1:1, 2D i 3D
-            </h2>
-          </div>
-
-          <div className="grid md:grid-cols-3 gap-6">
-            {methods.map((method) => (
-              <div
-                key={method.title}
-                className="rounded-[2rem] border border-[#E8DED2] bg-[#F8F5F2] p-8"
-              >
-                <h3 className="text-2xl mb-4">{method.title}</h3>
-                <p className="text-[#6D6B68] leading-relaxed">{method.text}</p>
-                <p className="mt-5 font-medium text-[#876536]">Cena: {method.price}</p>
-              </div>
-            ))}
-          </div>
-          <p className="mt-8 text-[#6D6B68]">
-            Ceny uzupełnień i usług dodatkowych znajdziesz w <a href="/cennik" className="font-medium text-[#876536] underline underline-offset-4">pełnym cenniku</a>.
-          </p>
-        </div>
-      </section>
+      <LashMethods />
+      <SalonHygiene />
 
       <section className="py-24 px-6 lg:px-12 bg-[#F8F5F2]">
         <div className="max-w-6xl mx-auto grid lg:grid-cols-2 gap-12">
@@ -230,9 +188,9 @@ export default function PrzedluzanieRzesKrakowPage() {
                 parking dla klientek.
               </p>
               <p>
-                Prośbę o termin przedłużania rzęs możesz wysłać przez formularz
-                Noblu bez dzwonienia. Obsługujemy klientki z południa Krakowa,
-                w tym z Borku Fałęckiego, Łagiewnik, Ruczaju i Podgórza.
+                W formularzu wybierz metodę i preferowany dzień wizyty.
+                Jeśli masz już przedłużone rzęsy, dodaj tę informację w uwagach.
+                Dostępność potwierdzimy SMS-em lub telefonicznie.
               </p>
             </div>
           </div>
@@ -243,7 +201,7 @@ export default function PrzedluzanieRzesKrakowPage() {
               <li>Klientki, które chcą naturalnie podkreślić spojrzenie.</li>
               <li>Osoby szukające lekkich objętości 2D lub 3D.</li>
               <li>Kobiety, które wolą wygodną rezerwację online.</li>
-              <li>Klientki z południa Krakowa: Borek Fałęcki, Łagiewniki, Ruczaj, Kurdwanów i Podgórze.</li>
+              <li>Osoby, które chcą dobrać długość i podkręcenie rzęs podczas wizyty.</li>
             </ul>
           </div>
         </div>
@@ -268,7 +226,7 @@ export default function PrzedluzanieRzesKrakowPage() {
               Umów przedłużanie rzęs
             </h2>
             <p className="max-w-3xl text-[#6D6B68] leading-relaxed">
-              Wybierz rzęsy 1:1, 2D lub 3D i zarezerwuj wizytę online. Podczas
+              Wybierz rzęsy 1:1, 2D lub 3D i zapytaj o termin online. Podczas
               wizyty dopasujemy efekt do kształtu oka i oczekiwanego wyglądu.
             </p>
             <div className="mt-8 flex flex-wrap gap-4">
