@@ -81,7 +81,7 @@ const faq = [
   },
   {
     q: "Czy można zarezerwować manicure online?",
-    a: "Tak. Wyślij prośbę o termin przez formularz Noblu. Dostępność potwierdzimy SMS-em lub telefonicznie; samo wysłanie formularza nie rezerwuje godziny.",
+    a: "Tak. Wybierz usługę, stylistkę i dostępny termin w Booksy. Możesz też wysłać prośbę przez formularz Noblu; wtedy dostępność potwierdzimy SMS-em lub telefonicznie. Samo wysłanie formularza nie rezerwuje godziny.",
   },
   {
     q: "Jakie stylizacje paznokci wykonuje salon?",
@@ -153,6 +153,9 @@ export default function ManicureKrakowPage() {
           </p>
 
           <div className="mt-12 flex flex-wrap gap-4">
+              <a href={business.links.booksyBooking} target="_blank" rel="noopener noreferrer" data-service-name="Manicure" className="inline-flex min-h-11 items-center justify-center rounded-full bg-[#D4B483] px-8 py-4 font-medium text-black transition-colors hover:bg-[#C9A571] focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#7C6238]">
+                Zarezerwuj przez Booksy
+              </a>
             <a
               href="/rezerwacja?usluga=hybryda-natalia"
               className="inline-flex items-center justify-center px-10 py-5 rounded-full bg-[#D4B483] text-black font-medium hover:scale-105 transition-transform shadow-[0_20px_60px_rgba(212,180,131,0.35)]"
@@ -163,7 +166,7 @@ export default function ManicureKrakowPage() {
               href="/rezerwacja?usluga=manicure-natalia"
               className="inline-flex items-center justify-center rounded-full border border-[#D4B483] px-10 py-5 font-medium text-[#876536] transition-colors hover:bg-[#D4B483] hover:text-black"
             >
-              Manicure klasyczny — 100 zł
+              Manicure klasyczny — {servicePrice("manicure-natalia")}
             </Link>
             <Link
               href="/cennik"
@@ -284,10 +287,13 @@ export default function ManicureKrakowPage() {
               Umów manicure w {business.name}
             </h2>
             <p className="max-w-3xl">
-              Wybierz usługę i zgłoś preferowany dzień wizyty. Sprawdzimy grafik
-              i potwierdzimy dostępność SMS-em lub telefonicznie.
+              Wybierz dostępny termin w Booksy albo wyślij prośbę przez formularz.
+              Zapytanie z formularza potwierdzimy SMS-em lub telefonicznie.
             </p>
             <div className="mt-8 flex flex-wrap gap-4">
+              <a href={business.links.booksyBooking} target="_blank" rel="noopener noreferrer" data-service-name="Manicure" className="inline-flex min-h-11 items-center justify-center rounded-full bg-[#D4B483] px-8 py-4 font-medium text-black transition-colors hover:bg-[#C9A571] focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#7C6238]">
+                Zarezerwuj przez Booksy
+              </a>
               <Link
                 href="/rezerwacja?usluga=hybryda-natalia"
                 className="inline-flex items-center justify-center px-8 py-4 rounded-full bg-[#D4B483] text-black font-medium hover:scale-105 transition-transform shadow-[0_20px_60px_rgba(212,180,131,0.35)]"
@@ -298,7 +304,7 @@ export default function ManicureKrakowPage() {
                 href="/rezerwacja?usluga=manicure-natalia"
                 className="inline-flex items-center justify-center px-8 py-4 rounded-full border border-[#E8DED2] text-[#1D1D1B] hover:border-[#D4B483] transition-colors"
               >
-                Manicure klasyczny — 100 zł
+                Manicure klasyczny — {servicePrice("manicure-natalia")}
               </Link>
               <Link
                 href="/cennik"

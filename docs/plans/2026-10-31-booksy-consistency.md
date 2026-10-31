@@ -1,0 +1,12 @@
+# Booksy consistency and booking path — implementation plan
+
+User approved audit items 1, 2, 5 and 6 on 2026-10-31. Booksy is the price, duration and employee source. Scope: manicure/pedicure, Google service descriptions, two existing Search ads, and a direct Booksy action on service pages. Preserve budgets, bidding, targeting, exclusions, lashes, existing form semantics and consent choices.
+
+1. Read current public Booksy and Biz when available. Archive source observations; preserve service IDs and staff identity. Update the shared catalog with missing Julia variants and explicit minimum-price metadata. Resolve non-public services using Biz availability; do not advertise an unverified public booking option.
+2. Update `app/lib/booksyCatalog.ts`, `serviceCatalog.ts`, `bookingServices.ts`, `priceCatalog.ts`, `ServiceVariants.tsx`, booking/schema projections and content revisions as needed. Verify staff-specific prices and durations through catalog tests, existing form tests and rendered HTML.
+3. Add direct Booksy links to both service-page opening and final action sections using `business.links.booksyBooking`, existing analytics and accessible button styles. Preserve inquiry links and their exact variants. Compact the first cookie layer only if necessary while keeping equally prominent accept/reject, preference controls and consent defaults.
+4. Edit Google service entries with current scope, employee, time, price and add-on qualifiers. Remove stale 110 PLN claim. Verify saved service list; distinguish submitted edits from Google's public approval.
+5. Edit the two existing responsive Search ads: confirmed autoclave hygiene and over 240 Booksy reviews, retaining Natalia-specific price claims, location, final URLs and existing image assets. Verify saved values and platform review status.
+6. Run `npm run check` and appropriate browser regression checks. Inspect diff. Commit/push reviewed changes via the existing Git/Vercel release workflow, check the exact deployment SHA and verify production catalog, form prefill and Booksy action without sending an inquiry or creating a booking. Record actual changes and remaining blockers in the marketing output report with screenshots.
+
+Repository baseline: origin/main d39f15c, isolated worktree `work/geo-site`, branch `codex/booksy-consistency-20261031`. Existing conventions: central typed catalog feeding pricing/form/JSON-LD, server-rendered service pages, global delegated conversion handler and consent-gated tracking.
