@@ -7,8 +7,8 @@ export const priceHighlights = [
     href: "/manicure-krakow", cta: "Cennik manicure",
   },
   {
-    service: "Pedicure", price: `od ${servicePrice("pedicure-paznokcie-bez-hybrydy-natalia")}`,
-    description: "Pedicure samych paznokci, pedicure hybrydowy oraz pełny pedicure kosmetyczny.",
+    service: "Pedicure", price: `od ${servicePrice("pedicure-paznokcie-bez-hybrydy-julia")}`,
+    description: `Same paznokcie bez hybrydy u Julii (stylistki junior) ${servicePrice("pedicure-paznokcie-bez-hybrydy-julia")}. Hybryda i pełny pedicure SPA mają osobne warianty i ceny.`,
     href: "/pedicure-krakow", cta: "Cennik pedicure",
   },
   {

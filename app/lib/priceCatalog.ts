@@ -1,4 +1,4 @@
-import { booksyAddons } from "./booksyCatalog";
+import { booksyAddons, booksyServices } from "./booksyCatalog";
 import { findBookingService } from "./bookingServices";
 import { catalogVariants, formatPrice, formatDuration, staff, type ServiceCategory } from "./serviceCatalog";
 
@@ -8,7 +8,7 @@ function pricesFor(category: ServiceCategory): PriceItem[] {
     name: variant.name, price: formatPrice(variant.pricePLN), pricePLN: variant.pricePLN,
     duration: formatDuration(variant.durationMinutes), bookingService: variant.id,
     staff: variant.staffId ? staff[variant.staffId].label : undefined,
-    note: variant.serviceId === "modelka-hybryda" ? "Osobna usługa modelkowa na naturalnej płytce u Julii; dłuższy czas wizyty." : undefined,
+    note: [variant.serviceId === "modelka-hybryda" ? "Osobna usługa modelkowa na naturalnej płytce u Julii; dłuższy czas wizyty." : undefined, booksyServices.find(service => service.name === variant.name)?.publicBookingListed === false ? "Dostępność tej usługi potwierdzamy w salonie. Wyślij prośbę o termin lub zadzwoń." : undefined].filter(Boolean).join(" ") || undefined,
   }));
 }
 export const lashPrices = pricesFor("rzesy");

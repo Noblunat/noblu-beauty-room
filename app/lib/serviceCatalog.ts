@@ -2,7 +2,7 @@ import { booksyServices, serviceDuration } from "./booksyCatalog";
 import { staff, type StaffId } from "./team";
 export { staff, type StaffId } from "./team";
 
-export const serviceCatalogUpdatedAt = "2026-10-28";
+export const serviceCatalogUpdatedAt = "2026-10-31";
 export type ServiceCategory = "manicure" | "pedicure" | "rzesy";
 export type CatalogVariant = {
   id: string; serviceId: string; name: string; label: string; category: ServiceCategory;

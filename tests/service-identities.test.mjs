@@ -54,8 +54,8 @@ test("historical names keep resolving when the current Booksy display name chang
 test("every selectable variant has one unique identity, numeric price/time and explicit staff", () => {
   const { serviceGroups } = catalog();
   const variants = serviceGroups.flatMap(group => group.services);
-  assert.equal(variants.length, 32);
-  assert.equal(new Set(variants.map(variant => variant.id)).size, 32);
+  assert.equal(variants.length, 35);
+  assert.equal(new Set(variants.map(variant => variant.id)).size, 35);
   for (const variant of variants) {
     assert.match(variant.id, /^[a-z0-9]+(?:-[a-z0-9]+)*$/);
     assert.equal(typeof variant.pricePLN, "number");

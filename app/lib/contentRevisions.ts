@@ -6,12 +6,12 @@ import { teamUpdatedAt } from "./team";
 // Shared footer changes affect every listed page; a new build alone does not.
 const pageRevisions: Record<string, {date: string; reason: string}> = {
   "/": {date: "2026-10-29", reason: "One Instagram profile action and concise service/location copy without repeated district or acquisition paragraphs."},
-  "/manicure-krakow": {date: "2026-10-26", reason: "Booksy-verified employee pricing and portraits, visible realization captions and owner-confirmed instrument preparation."},
-  "/pedicure-krakow": {date: "2026-10-30", reason: "Concise scope, preparation and employee copy; one district list and catalog-derived booking prices."},
+  "/manicure-krakow": {date: "2026-10-31", reason: "Current Booksy employee variants and direct Booksy actions alongside the existing inquiry choices."},
+  "/pedicure-krakow": {date: "2026-10-31", reason: "Julia's additional nail-only variant, current Booksy catalog and direct calendar access."},
   "/stylizacja-rzes-krakow": {date: "2026-10-30", reason: "Shared catalog-derived method prices, durations and selection links; confirmed salon hygiene and concise location copy."},
   "/przedluzanie-rzes-krakow": {date: "2026-10-30", reason: "Shared lash-method details and hygiene; practical booking preparation without repeated district lists."},
-  "/cennik": {date: "2026-10-30", reason: "Direct inquiry links preserve the exact catalog service and employee variant; prices and durations remain unchanged."},
-  "/rezerwacja": {date: "2026-10-28", reason: "Canonical service labels and stable variant identities with backwards-compatible campaign aliases."},
+  "/cennik": {date: "2026-10-31", reason: "Booksy Biz refresh: three additional Julia variants, current price/time and availability notes for non-public services."},
+  "/rezerwacja": {date: "2026-10-31", reason: "Three added Julia variants and their verified Booksy variant identities."},
   "/polityka-prywatnosci": {date: "2026-10-30", reason: "Explicit spacing and a callable mailbox link in the inquiry-delivery description."},
 };
 

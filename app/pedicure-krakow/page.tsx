@@ -50,11 +50,11 @@ const faq = [
   },
   {
     q: "Jak zarezerwować pedicure?",
-    a: "Wybierz wariant pedicure i wyślij prośbę o termin przez formularz Noblu. Salon potwierdzi dostępność SMS-em lub telefonicznie; samo wysłanie formularza nie rezerwuje godziny.",
+    a: "Wybierz wariant pedicure, stylistkę i dostępny termin w Booksy. Możesz też wysłać prośbę przez formularz Noblu; wtedy salon potwierdzi dostępność SMS-em lub telefonicznie. Samo wysłanie formularza nie rezerwuje godziny.",
   },
   {
     q: "Ile kosztuje pedicure w Krakowie?",
-    a: `Pedicure samych paznokci bez hybrydy kosztuje ${servicePrice("pedicure-paznokcie-bez-hybrydy-natalia")}. Hybryda samych paznokci u Julii (stylistki junior) kosztuje ${servicePrice("pedicure-paznokcie-hybryda-julia")}, a u Natalii ${servicePrice("pedicure-paznokcie-hybryda-natalia")}. Pełny pedicure SPA bez hybrydy kosztuje ${servicePrice("pedicure-spa-bez-hybrydy-natalia")}, a z hybrydą ${servicePrice("pedicure-spa-hybryda-natalia")}.`,
+    a: `Pedicure samych paznokci bez hybrydy u Julii (stylistki junior) kosztuje ${servicePrice("pedicure-paznokcie-bez-hybrydy-julia")}, a u Natalii ${servicePrice("pedicure-paznokcie-bez-hybrydy-natalia")}. Hybryda samych paznokci u Julii (stylistki junior) kosztuje ${servicePrice("pedicure-paznokcie-hybryda-julia")}, a u Natalii ${servicePrice("pedicure-paznokcie-hybryda-natalia")}. Pełny pedicure SPA bez hybrydy kosztuje ${servicePrice("pedicure-spa-bez-hybrydy-natalia")}, a z hybrydą ${servicePrice("pedicure-spa-hybryda-natalia")}.`,
   },
   {
     q: "Czym różni się pedicure SPA od opracowania samych paznokci?",
@@ -119,6 +119,9 @@ export default function PedicureKrakowPage() {
           </p>
 
           <div className="mt-12 flex flex-wrap gap-4">
+              <a href={business.links.booksyBooking} target="_blank" rel="noopener noreferrer" data-service-name="Pedicure" className="inline-flex min-h-11 items-center justify-center rounded-full bg-[#D4B483] px-8 py-4 font-medium text-black transition-colors hover:bg-[#C9A571] focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#7C6238]">
+                Zarezerwuj przez Booksy
+              </a>
             <Link
               href="/rezerwacja?usluga=pedicure-spa-bez-hybrydy-natalia"
               className="inline-flex items-center justify-center px-10 py-5 rounded-full bg-[#D4B483] text-black font-medium hover:scale-105 transition-transform shadow-[0_20px_60px_rgba(212,180,131,0.35)]"
@@ -181,7 +184,7 @@ export default function PedicureKrakowPage() {
               higienę, dokładność i komfort wizyty.
             </p>
             <p className="mt-4">
-              Pedicure samych paznokci bez hybrydy kosztuje {servicePrice("pedicure-paznokcie-bez-hybrydy-natalia")}.
+              Pedicure samych paznokci bez hybrydy u Julii (stylistki junior) kosztuje {servicePrice("pedicure-paznokcie-bez-hybrydy-julia")}, a u Natalii {servicePrice("pedicure-paznokcie-bez-hybrydy-natalia")}.
               Wariant z hybrydą u Julii (stylistki junior) kosztuje {servicePrice("pedicure-paznokcie-hybryda-julia")},
               a u Natalii {servicePrice("pedicure-paznokcie-hybryda-natalia")}. Wszystkie opcje są opisane w <Link href="/cennik" className="font-medium text-[#876536] underline underline-offset-4">cenniku pedicure</Link>.
             </p>
@@ -244,10 +247,13 @@ export default function PedicureKrakowPage() {
               Umów pedicure w Krakowie
             </h2>
             <p className="max-w-3xl">
-              Wyślij prośbę o dogodny termin i zadbaj o estetyczną
-              pielęgnację stóp w {business.name} przy ul. {business.address.streetNameLocative}.
+              Wybierz dostępny termin w Booksy albo wyślij prośbę przez formularz.
+              Zapytanie z formularza potwierdzimy SMS-em lub telefonicznie.
             </p>
             <div className="mt-8 flex flex-wrap gap-4">
+              <a href={business.links.booksyBooking} target="_blank" rel="noopener noreferrer" data-service-name="Pedicure" className="inline-flex min-h-11 items-center justify-center rounded-full bg-[#D4B483] px-8 py-4 font-medium text-black transition-colors hover:bg-[#C9A571] focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#7C6238]">
+                Zarezerwuj przez Booksy
+              </a>
               <Link
                 href="/rezerwacja?usluga=pedicure-spa-bez-hybrydy-natalia"
                 className="inline-flex items-center justify-center px-8 py-4 rounded-full bg-[#D4B483] text-black font-medium hover:scale-105 transition-transform shadow-[0_20px_60px_rgba(212,180,131,0.35)]"
