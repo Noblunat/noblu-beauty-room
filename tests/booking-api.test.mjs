@@ -46,6 +46,14 @@ function harness({ failure, allowed = true, env = {}, provider } = {}) {
   return { api, sent, logs };
 }
 
+test("local preview cannot send a real inquiry even if a delivery key is present", async () => {
+  const h = harness({ env: { NOBLU_LOCAL_PREVIEW: "1" } });
+  const res = await h.api.POST(request(valid));
+  assert.equal(res.status, 503);
+  assert.match((await res.json()).error, /podgląd lokalny/);
+  assert.equal(h.sent.length, 0);
+});
+
 test("booking derives price and duration from the server catalog", async () => {
   const h = harness();
   const res = await h.api.POST(request({ ...valid, price: "1 zl", duration: "1 minute" }));
@@ -57,6 +65,7 @@ test("booking derives price and duration from the server catalog", async () => {
   assert.equal(email.bcc, undefined);
   assert.match(email.text, /100 zł/);
   assert.match(email.text, /50min/);
+  assert.ok(email.text.includes(`Identyfikator zgłoszenia: ${valid.requestId}`));
   assert.doesNotMatch(email.text, /1 zl|1 minute/);
   assert.ok(h.sent[0].options.signal, "provider call has a timeout");
 });

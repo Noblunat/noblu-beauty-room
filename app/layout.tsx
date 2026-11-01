@@ -187,8 +187,8 @@ export default function RootLayout({
         />
         {children}
         <SiteFooter />
-        <GoogleTag />
-        <ConversionEvents />
+        {process.env.NOBLU_LOCAL_PREVIEW !== "1" && <GoogleTag />}
+        {process.env.NOBLU_LOCAL_PREVIEW !== "1" && <ConversionEvents />}
         <CookieBanner />
       </body>
     </html>

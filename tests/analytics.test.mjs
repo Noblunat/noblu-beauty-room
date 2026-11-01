@@ -174,6 +174,16 @@ test("booking links map services and ignore unrelated or spoofed destinations", 
   assert.equal(bookingClickDetails("https://example.org/rezerwacja", source), null);
 });
 
+test("Booksy offer tracking identifies the advertised variant without pretending a booking was completed", () => {
+  const { bookingClickDetails } = harness().load("app/lib/analytics.ts");
+  const details = bookingClickDetails("https://noblubeautyroom.booksy.com/h", "https://noblu.pl/", "hybryda-julia");
+  assert.equal(details.service_id, "hybryda-julia");
+  assert.equal(details.booking_channel, "booksy");
+  assert.equal(bookingClickDetails("/rezerwacja?usluga=hybryda-natalia", "https://noblu.pl/", "hybryda-julia").service_id, "hybryda-natalia");
+  assert.equal(bookingClickDetails("https://noblubeautyroom.booksy.com/h", "https://noblu.pl/", "private@example.com").service_id, "unspecified");
+  assert.equal(bookingClickDetails("https://example.com/", "https://noblu.pl/", "hybryda-julia"), null);
+});
+
 test("no GA4 events without analytics consent, including marketing-only consent", () => {
   for (const consent of [null, { analytics: false, marketing: false }, { analytics: false, marketing: true }]) {
     const h = harness({ consent });

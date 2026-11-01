@@ -9,6 +9,7 @@ import BreadcrumbJsonLd from "../components/BreadcrumbJsonLd"
 import { trackAnalyticsEvent, trackGoogleAdsConversion } from "../lib/analytics"
 import { normalizePhoneNumber, phoneErrorMessage } from "../lib/phone"
 import { findBookingService, serviceGroups, type Service } from "../lib/bookingServices"
+import { inquiryCopy, hybridAddons } from "../lib/firstVisit"
 
 const booksyProfileUrl = business.links.booksyBooking
 const reservationConversionId = "AW-10795260361/ZeoSCKvShaEdEMmzypso"
@@ -204,28 +205,21 @@ export default function ReservationClient({ initialService }: { initialService: 
         ]}
       />
 
-      <section className="relative overflow-hidden px-6 py-6 sm:px-10 sm:py-10 lg:px-16 lg:py-16">
+      <section className="relative overflow-hidden px-6 py-6 sm:px-10 sm:py-8 lg:px-16 lg:py-10">
         <div className="pointer-events-none absolute inset-0 bg-[radial-gradient(circle_at_15%_20%,rgba(212,180,131,0.24),transparent_30%),radial-gradient(circle_at_85%_15%,rgba(255,255,255,0.95),transparent_36%)]" />
 
         <div className="relative mx-auto grid max-w-7xl gap-10 lg:grid-cols-[1.05fr_0.95fr] lg:items-center">
           <div>
             <Link
               href="/"
-              className="mb-6 inline-flex text-sm uppercase tracking-[0.24em] text-[#7C6238] transition-colors hover:text-[#1D1D1B] sm:mb-12"
+              className="mb-4 inline-flex text-sm uppercase text-[#7C6238] transition-colors hover:text-[#1D1D1B]"
             >
               {business.name}
             </Link>
 
-            <h1 className="max-w-2xl text-4xl font-light leading-tight sm:text-7xl sm:leading-[0.92] lg:text-8xl">
-              Rezerwacja manicure, pedicure i rzęs{" "}
-              <span className="block text-[#7C6238]">w Noblu</span>
-            </h1>
+            <h1 className="max-w-2xl text-3xl font-light leading-tight sm:text-4xl lg:text-5xl">Poproś o termin bez konta</h1>
 
-            <p className="mt-5 max-w-xl text-base leading-relaxed text-[#625b53] sm:mt-8 sm:text-lg">
-              Wybierz manicure, pedicure, paznokcie hybrydowe albo stylizację
-              rzęs i podaj preferowany termin wizyty. Formularz nie blokuje
-              terminu automatycznie, a ostateczne potwierdzenie otrzymasz od salonu.
-            </p>
+            <p className="mt-4 max-w-xl text-base leading-relaxed text-[#625b53]">{inquiryCopy.notice}</p>
 
             <a
               href="#formularz"
@@ -234,7 +228,7 @@ export default function ReservationClient({ initialService }: { initialService: 
               Przejdź do formularza
             </a>
 
-            <div className="mt-10 grid max-w-lg grid-cols-[1fr_0.8fr_1.2fr] gap-3 sm:max-w-xl sm:grid-cols-3 sm:gap-6">
+            <div className="mt-6 hidden max-w-lg grid-cols-[1fr_0.8fr_1.2fr] gap-3 lg:grid">
               {highlights.map((item) => (
                 <div
                   key={item.value}
@@ -251,13 +245,13 @@ export default function ReservationClient({ initialService }: { initialService: 
             </div>
           </div>
 
-          <div className="relative min-h-[360px] overflow-hidden rounded-[2rem] sm:min-h-[440px] lg:min-h-[560px]">
+          <div className="relative hidden min-h-[320px] overflow-hidden rounded-lg lg:block">
             <Image
               src="/rezerwacja/rezerwacja-hero.jpg"
               alt={`Stylizacja paznokci ${business.name} Kraków`}
               fill
-              priority
-              sizes="(max-width: 1024px) 100vw, 46vw"
+              loading="lazy"
+              sizes="(min-width: 1024px) 46vw, 1px"
               className="object-cover"
             />
             <div className="absolute inset-0 bg-[linear-gradient(90deg,rgba(248,245,242,0.9)_0%,rgba(248,245,242,0.36)_38%,rgba(248,245,242,0.02)_100%)]" />
@@ -307,6 +301,21 @@ export default function ReservationClient({ initialService }: { initialService: 
             }}
           >
             <h2 id="reservation-panel-title" className="text-3xl font-light">Dane wizyty</h2>
+
+            <div role="status" aria-label="Podsumowanie wyboru" aria-live="polite" aria-atomic="true" className="mt-4 border-y border-[#E8DED2] py-4">
+              <p className="font-medium">{selected?.label ?? "Wybierz usługę, aby zobaczyć cenę i czas"}</p>
+              {selected && <p className="mt-1 text-lg text-[#7C6238]">{selected.price} · {selected.durationMinutes} minut</p>}
+            </div>
+            <p className="mt-4 text-sm leading-relaxed text-[#625b53]">{inquiryCopy.notice}</p>
+            <p className="mt-2 text-sm leading-relaxed text-[#625b53]">{inquiryCopy.unavailable}</p>
+            {selected?.serviceId === "hybryda" && <details className="mt-4 border-b border-[#E8DED2] pb-4 text-sm leading-relaxed text-[#625b53]">
+              <summary className="cursor-pointer py-2 font-medium text-[#7C6238]">Pierwsza hybryda: zakres i dodatki</summary>
+              <p className="mt-2">{inquiryCopy.firstVisit}</p>
+              <ul className="mt-3 space-y-2">
+                {hybridAddons.map(addon => <li key={addon.name}>{addon.name}: {addon.price} · dodatkowo {addon.duration}. {addon.description}</li>)}
+              </ul>
+              <p className="mt-3">Usunięcie poprzedniej stylizacji i zdobienia opisz w polu „Uwagi”. Pełny zakres napraw, przedłużeń i zdjęcia żelu znajdziesz w <Link href="/cennik" className="underline underline-offset-4">cenniku</Link>.</p>
+            </details>}
 
             <fieldset disabled={submitStatus === "sending"} className="min-w-0">
             <label aria-hidden="true" className="absolute left-[-9999px] top-auto h-px w-px overflow-hidden">
@@ -432,7 +441,7 @@ export default function ReservationClient({ initialService }: { initialService: 
                   rel="noopener noreferrer"
                   className="flex min-h-12 items-center justify-center rounded-full bg-[#D4B483] px-4 py-3 text-center text-sm font-medium text-black transition-colors hover:bg-[#C9A571] focus-visible:outline-2 focus-visible:outline-offset-4 focus-visible:outline-[#7C6238]"
                 >
-                  Zarezerwuj przez Booksy
+                  Wybierz termin w Booksy
                 </a>
 
               <Link
@@ -507,8 +516,8 @@ export default function ReservationClient({ initialService }: { initialService: 
                 </div>}
               </div>
               <p className="mt-5 leading-relaxed text-[#625b53]">
-                Ceny i czas trwania są orientacyjne. Jeśli termin będzie
-                niedostępny, salon zaproponuje najbliższą możliwą godzinę.
+                Podana cena i czas dotyczą wybranego podstawowego wariantu.
+                Dodatki i ewentualną zmianę zakresu ustalimy z Tobą przed rozpoczęciem.
                 Pełną listę usług znajdziesz w{" "}
                 <Link
                   href="/cennik"

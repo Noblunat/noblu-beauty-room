@@ -39,7 +39,7 @@ export default function ConversionEvents() {
       if (!link) return;
 
       const url = link.href;
-      const booking = bookingClickDetails(url, window.location.href);
+      const booking = bookingClickDetails(url, window.location.href, link.dataset.serviceId);
       if (booking) {
         trackAnalyticsEvent("click_booking", {
           ...booking,

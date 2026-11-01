@@ -41,6 +41,7 @@ test("team cards preserve portraits and names and show each approved personal de
     ] : [
       "Stylistka paznokci z zamiłowaniem do szalonych stylizacji oraz zdobień 3D. Kreatywność to moje drugie imię.",
       "Zmalujmy razem coś wyjątkowego!",
+      "Stylistka junior. Zaplanuj dłuższy czas wizyty zgodnie z wybranym wariantem w cenniku.",
     ]);
   }
 });

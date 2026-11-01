@@ -14,7 +14,10 @@ test("homepage CTA opens inquiry, success replaces form and prevents a second su
   await expect(page).toHaveURL(/\/rezerwacja$/);
   // The URL arrives before hydration on this full-document navigation. A real
   // interactive preference cycle establishes readiness without arbitrary sleep.
+  // First let the stored refusal replace the server's first-visit banner.
+  await expect(page.locator("[data-cookie-banner]")).toBeHidden();
   await page.locator("footer").getByRole("button", { name: "Ustawienia cookies" }).click();
+  await expect(page.getByRole("dialog", { name: "Preferencje plików cookie", exact: true })).toBeVisible();
   await rejectOptional(page);
   await fillInquiry(page);
   await page.getByRole("button", { name: "Wyślij prośbę o termin", exact: true }).click();

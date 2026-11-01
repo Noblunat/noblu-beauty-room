@@ -1,4 +1,4 @@
-export const teamUpdatedAt = "2026-10-27";
+export const teamUpdatedAt = "2026-11-01";
 export const staff = {
   natalia: {
     id: "natalia", name: "Natalia", label: "Natalia", image: "/team/natalia-noblu.jpg", role: "Właścicielka salonu",

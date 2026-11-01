@@ -30,7 +30,7 @@ export default function HomeGallery() {
 
   return (
     <>
-      <section className="py-28 bg-transparent">
+      <section id="realizacje-salonu" className="scroll-mt-28 py-28 bg-transparent">
         <div className="max-w-7xl mx-auto px-6 lg:px-12">
           <div className="mb-16 flex flex-wrap items-center justify-between gap-4">
             <h2 className="text-4xl lg:text-6xl font-light leading-tight text-[#111111]">
