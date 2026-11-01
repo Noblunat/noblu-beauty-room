@@ -4,6 +4,14 @@ import test from "node:test";
 import { loadDataModule } from "./helpers/load-data.mjs";
 import { renderPage, nodes, nodeText } from "./helpers/render-page.mjs";
 
+test("pedicure and lash sections exchange places without changing the other price groups", () => {
+  const page = nodes(renderPage(new URL("../app/cennik/page.tsx", import.meta.url)));
+  const lists = page.filter(node => node.type === "ul" && node.props.role === "list");
+  assert.deepEqual(lists.map(node => node.props["aria-label"]), [
+    "Pedicure", "Stylizacja paznokci", "Dodatki do usług", "Stylizacja rzęs",
+  ]);
+});
+
 test("each Booksy variant has the same price and employee on the visible price list and in structured offers", () => {
   const allNodes = nodes(renderPage(new URL("../app/cennik/page.tsx", import.meta.url)));
   const schema = JSON.parse(allNodes.find(n => n.type === "script").props.dangerouslySetInnerHTML.__html);

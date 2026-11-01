@@ -10,7 +10,7 @@ const pageRevisions: Record<string, {date: string; reason: string}> = {
   "/pedicure-krakow": {date: "2026-10-30", reason: "Concise scope, preparation and employee copy; one district list and catalog-derived booking prices."},
   "/stylizacja-rzes-krakow": {date: "2026-10-30", reason: "Shared catalog-derived method prices, durations and selection links; confirmed salon hygiene and concise location copy."},
   "/przedluzanie-rzes-krakow": {date: "2026-10-30", reason: "Shared lash-method details and hygiene; practical booking preparation without repeated district lists."},
-  "/cennik": {date: "2026-10-30", reason: "Direct inquiry links preserve the exact catalog service and employee variant; prices and durations remain unchanged."},
+  "/cennik": {date: "2026-11-01", reason: "Pedicure and lash price sections exchange positions; all service details, inquiry links and section widths remain unchanged."},
   "/rezerwacja": {date: "2026-10-28", reason: "Canonical service labels and stable variant identities with backwards-compatible campaign aliases."},
   "/polityka-prywatnosci": {date: "2026-10-30", reason: "Explicit spacing and a callable mailbox link in the inquiry-delivery description."},
 };
