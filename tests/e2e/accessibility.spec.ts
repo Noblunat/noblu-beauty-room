@@ -64,6 +64,27 @@ test("price groups expose named lists with service, duration and price in each r
   }
 });
 
+test("manicure and pedicure share the first desktop row and stack on mobile", async ({ page }) => {
+  await page.goto("/cennik");
+  await rejectOptional(page);
+  const bounds = async (name: string) => page.getByRole("list", { name, exact: true }).evaluate(element => {
+    const rect = element.closest("section")!.getBoundingClientRect();
+    return { x: rect.x, y: rect.y, width: rect.width, bottom: rect.bottom };
+  });
+  const pedicure = await bounds("Pedicure");
+  const manicure = await bounds("Stylizacja paznokci");
+  const lashes = await bounds("Stylizacja rzęs");
+  if (page.viewportSize()!.width >= 1024) {
+    expect(Math.abs(manicure.y - pedicure.y)).toBeLessThan(1);
+    expect(manicure.x).toBeGreaterThan(pedicure.x + pedicure.width);
+    expect(Math.abs(manicure.width - pedicure.width)).toBeLessThan(1);
+    expect(lashes.width).toBeGreaterThan(pedicure.width * 1.8);
+  } else {
+    expect(Math.abs(manicure.x - pedicure.x)).toBeLessThan(1);
+    expect(manicure.y).toBeGreaterThanOrEqual(pedicure.bottom);
+  }
+});
+
 test("Instagram has one profile action and homepage does not repeat district and acquisition copy", async ({ page }) => {
   await page.goto("/");
   await rejectOptional(page);
