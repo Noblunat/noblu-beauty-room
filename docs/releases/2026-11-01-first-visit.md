@@ -17,6 +17,8 @@ Owner approved the local preview for publication on 2026-11-01.
 
 Release gates, exact preview/production SHA and deployment evidence are recorded with the pull request. Local evidence is stored in ignored `output/2026-11-01-first-visit-release-*` logs. Automated submissions are intercepted or deliberately invalid; no customer inquiry or real appointment is sent.
 
+The first protected-preview run passed 91 checks and failed one mobile booking test. Its second consent click raced the server-rendered first-visit banner before the saved refusal was read; the footer action had not opened a preferences dialog. The test now first requires the stored-choice banner to be hidden and then verifies that the real preferences dialog opened. It retains the same consent, submission, success and deduplication assertions, with no retries, sleeps or application-code changes.
+
 ## Remaining editorial inputs
 
 Staff-specific portfolio images and authentic Julia reviews require owner-provided attribution/source. Precise gel-removal/correction rules should be confirmed before a stronger or broader pricing promise. The approved release retains salon-wide portfolio links and cautious scope wording.
