@@ -10,7 +10,7 @@ type Fixtures = { externalRequests: string[]; isolateRequests: void };
 
 export const test = base.extend<Fixtures>({
   externalRequests: async ({}, provide) => { await provide([]); },
-  isolateRequests: [async ({ context, baseURL, externalRequests }, provide) => {
+  isolateRequests: [async ({ context, page, baseURL, externalRequests }, provide) => {
     const origin = new URL(baseURL!).origin;
     await context.route("**/*", async route => {
       const request = route.request();
@@ -45,7 +45,8 @@ export const test = base.extend<Fixtures>({
     try {
       await provide();
     } finally {
-      await context.unrouteAll({ behavior: "wait" });
+      // Depending on page keeps this cleanup ahead of Playwright's page.close().
+      if (!page.isClosed()) await context.unrouteAll({ behavior: "wait" });
     }
   }, { auto: true }],
 });
