@@ -183,17 +183,15 @@ export default function CennikPage() {
 
       <section className="px-6 pb-24 lg:px-12">
         <div className="mx-auto grid max-w-6xl gap-8 lg:grid-cols-2">
-          <div className="lg:col-span-2">
-            <PriceList
-              title="Pedicure"
-              description="Cennik pedicure obejmuje pielęgnację samych paznokci, pedicure hybrydowy, pełny pedicure kosmetyczny oraz wariant kosmetyczny z hybrydą."
-              items={pedicurePrices}
-              links={[
-                { href: "/pedicure-krakow", label: "Pedicure Kraków Borek Fałęcki" },
-                { href: "/rezerwacja?usluga=pedicure-spa-bez-hybrydy-natalia", label: "Zapytaj o termin" },
-              ]}
-            />
-          </div>
+          <PriceList
+            title="Pedicure"
+            description="Cennik pedicure obejmuje pielęgnację samych paznokci, pedicure hybrydowy, pełny pedicure kosmetyczny oraz wariant kosmetyczny z hybrydą."
+            items={pedicurePrices}
+            links={[
+              { href: "/pedicure-krakow", label: "Pedicure Kraków Borek Fałęcki" },
+              { href: "/rezerwacja?usluga=pedicure-spa-bez-hybrydy-natalia", label: "Zapytaj o termin" },
+            ]}
+          />
 
           <PriceList
             title="Stylizacja paznokci"
@@ -212,17 +210,19 @@ export default function CennikPage() {
             links={[{ href: "/rezerwacja", label: "Zapytaj o usługę i dodatki" }]}
           />
 
-          <PriceList
-            title="Stylizacja rzęs"
-            description="Cennik stylizacji rzęs obejmuje pierwsze aplikacje, uzupełnienia oraz zdjęcie stylizacji. Dobieramy objętość do naturalnych rzęs, kształtu oka i oczekiwanego efektu."
-            items={lashPrices}
-            note="Czasy stylizacji rzęs są orientacyjne i potwierdzamy je przy umawianiu wizyty. Do wybranej objętości można dopasować metodę wispy lub wet look. Uzupełnienie liczone jest do maksymalnie 4 tygodni od założenia stylizacji."
-            links={[
-              { href: "/stylizacja-rzes-krakow", label: "Stylizacja rzęs Kraków" },
-              { href: "/przedluzanie-rzes-krakow", label: "Przedłużanie rzęs Kraków" },
-              { href: "/rezerwacja?usluga=rzesy-1-1-aplikacja", label: "Zapytaj o termin" },
-            ]}
-          />
+          <div className="lg:col-span-2">
+            <PriceList
+              title="Stylizacja rzęs"
+              description="Cennik stylizacji rzęs obejmuje pierwsze aplikacje, uzupełnienia oraz zdjęcie stylizacji. Dobieramy objętość do naturalnych rzęs, kształtu oka i oczekiwanego efektu."
+              items={lashPrices}
+              note="Czasy stylizacji rzęs są orientacyjne i potwierdzamy je przy umawianiu wizyty. Do wybranej objętości można dopasować metodę wispy lub wet look. Uzupełnienie liczone jest do maksymalnie 4 tygodni od założenia stylizacji."
+              links={[
+                { href: "/stylizacja-rzes-krakow", label: "Stylizacja rzęs Kraków" },
+                { href: "/przedluzanie-rzes-krakow", label: "Przedłużanie rzęs Kraków" },
+                { href: "/rezerwacja?usluga=rzesy-1-1-aplikacja", label: "Zapytaj o termin" },
+              ]}
+            />
+          </div>
         </div>
 
         <div className="mx-auto mt-10 grid max-w-6xl gap-6 lg:grid-cols-3">

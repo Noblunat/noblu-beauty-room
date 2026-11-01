@@ -10,7 +10,7 @@ const pageRevisions: Record<string, {date: string; reason: string}> = {
   "/pedicure-krakow": {date: "2026-10-31", reason: "Julia's additional nail-only variant, current Booksy catalog and direct calendar access."},
   "/stylizacja-rzes-krakow": {date: "2026-10-30", reason: "Shared catalog-derived method prices, durations and selection links; confirmed salon hygiene and concise location copy."},
   "/przedluzanie-rzes-krakow": {date: "2026-10-30", reason: "Shared lash-method details and hygiene; practical booking preparation without repeated district lists."},
-  "/cennik": {date: "2026-11-01", reason: "Pedicure and lash price sections exchange positions; all service details, inquiry links and section widths remain unchanged."},
+  "/cennik": {date: "2026-11-01", reason: "Pedicure and manicure share the first desktop row; lashes use the lower full-width position. Prices, durations, copy and links remain unchanged."},
   "/rezerwacja": {date: "2026-10-31", reason: "Three added Julia variants and their verified Booksy variant identities."},
   "/polityka-prywatnosci": {date: "2026-10-30", reason: "Explicit spacing and a callable mailbox link in the inquiry-delivery description."},
 };
