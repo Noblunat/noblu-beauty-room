@@ -35,7 +35,11 @@ Remove-Item Env:E2E_BASE_URL
 Remove-Item Env:EXPECTED_RELEASE
 ```
 
-The configuration rejects production/custom/arbitrary hosts. Protected previews require the owner's existing Vercel Automation Bypass credential in the repository secret `VERCEL_AUTOMATION_BYPASS_SECRET`; never disable Deployment Protection. The fixture scopes the credential to same-origin requests, does not follow redirects with it, and disables traces when it is present. Do not paste the credential into the URL or command arguments. The workflow never reads production mail credentials.
+The configuration rejects production/custom/arbitrary hosts. Protected previews require the owner's existing Vercel Automation Bypass credential in the repository secret `VERCEL_AUTOMATION_BYPASS_SECRET`; never disable Deployment Protection. Before navigation, one scoped API request with `x-vercel-set-bypass-cookie: true` establishes Vercel's secure HttpOnly, host-only `_vercel_jwt` session. Playwright's context request shares its cookie jar with the browser. Redirects are not followed with the credential. Ordinary browser requests then use this session, not a per-resource fetch/fulfill proxy. Traces remain disabled when the credential is present. Never save the authenticated storage state or put the credential in a URL or command argument. The workflow never reads production mail credentials.
+
+The fixture explicitly depends on the test page so its teardown runs before Playwright closes that page. It waits for in-flight routed requests, including Next link prefetches. Protected-fetch errors are rethrown with the bypass value redacted and no original cause, since Playwright's network errors can include request headers. Regression tests use a synthetic credential only.
+
+Sources: https://vercel.com/docs/deployment-protection/methods-to-bypass-deployment-protection/protection-bypass-automation and https://playwright.dev/docs/api-testing#context-request-vs-global-request
 
 The Quality workflow also runs the deterministic browser suite after lint/unit/audit/build/smoke on every PR. A local pass is not a preview pass; record the actual preview URL and commit separately before publishing. An HTTP 401/auth page is a failed check, not a reason to weaken protection.
 

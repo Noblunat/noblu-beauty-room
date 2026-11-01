@@ -1,5 +1,6 @@
 import { test as base, expect, type Page } from "@playwright/test";
 import { isGoogleLibrary } from "./google-script-policy";
+import { authorizePreview } from "./preview-request";
 
 export const isGoogle = (url: URL) => /(^|\.)(google-analytics\.com|googletagmanager\.com|googleadservices\.com|doubleclick\.net|googlesyndication\.com|google\.com|google\.pl)$/.test(url.hostname);
 export const isMeta = (url: URL) => /(^|\.)(facebook\.com|facebook\.net|fbcdn\.net)$/.test(url.hostname);
@@ -9,8 +10,11 @@ type Fixtures = { externalRequests: string[]; isolateRequests: void };
 
 export const test = base.extend<Fixtures>({
   externalRequests: async ({}, provide) => { await provide([]); },
-  isolateRequests: [async ({ context, baseURL, externalRequests }, provide) => {
-    const origin = new URL(baseURL!).origin;
+  isolateRequests: [async ({ context, page, baseURL, externalRequests }, provide) => {
+    const target = new URL(baseURL!);
+    const origin = target.origin;
+    const bypass = process.env.VERCEL_AUTOMATION_BYPASS_SECRET;
+    if (bypass) await authorizePreview(context, target, bypass);
     await context.route("**/*", async route => {
       const request = route.request();
       const url = new URL(request.url());
@@ -21,15 +25,7 @@ export const test = base.extend<Fixtures>({
           await route.fulfill({ status: 503, json: { error: "Unmocked E2E submission blocked." } });
           return;
         }
-        const bypass = process.env.VERCEL_AUTOMATION_BYPASS_SECRET;
-        if (bypass) {
-          // Do not forward the preview credential through a redirect or to a
-          // third-party script. Disable traces when this credential is present.
-          const response = await route.fetch({ headers: { ...request.headers(), "x-vercel-protection-bypass": bypass }, maxRedirects: 0 });
-          await route.fulfill({ response });
-        } else {
-          await route.continue();
-        }
+        await route.continue();
         return;
       }
       externalRequests.push(request.url());
@@ -41,7 +37,12 @@ export const test = base.extend<Fixtures>({
         await route.fulfill({ status: 200, body: "", contentType: request.resourceType() === "script" ? "application/javascript" : "text/plain" });
       }
     });
-    await provide();
+    try {
+      await provide();
+    } finally {
+      // Depending on page keeps this cleanup ahead of Playwright's page.close().
+      if (!page.isClosed()) await context.unrouteAll({ behavior: "wait" });
+    }
   }, { auto: true }],
 });
 
