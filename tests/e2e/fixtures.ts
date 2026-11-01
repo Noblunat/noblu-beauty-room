@@ -1,5 +1,6 @@
 import { test as base, expect, type Page } from "@playwright/test";
 import { isGoogleLibrary } from "./google-script-policy";
+import { previewRequest } from "./preview-request";
 
 export const isGoogle = (url: URL) => /(^|\.)(google-analytics\.com|googletagmanager\.com|googleadservices\.com|doubleclick\.net|googlesyndication\.com|google\.com|google\.pl)$/.test(url.hostname);
 export const isMeta = (url: URL) => /(^|\.)(facebook\.com|facebook\.net|fbcdn\.net)$/.test(url.hostname);
@@ -25,7 +26,7 @@ export const test = base.extend<Fixtures>({
         if (bypass) {
           // Do not forward the preview credential through a redirect or to a
           // third-party script. Disable traces when this credential is present.
-          const response = await route.fetch({ headers: { ...request.headers(), "x-vercel-protection-bypass": bypass }, maxRedirects: 0 });
+          const response = await previewRequest(() => route.fetch({ headers: { ...request.headers(), "x-vercel-protection-bypass": bypass }, maxRedirects: 0 }), bypass);
           await route.fulfill({ response });
         } else {
           await route.continue();
@@ -41,7 +42,11 @@ export const test = base.extend<Fixtures>({
         await route.fulfill({ status: 200, body: "", contentType: request.resourceType() === "script" ? "application/javascript" : "text/plain" });
       }
     });
-    await provide();
+    try {
+      await provide();
+    } finally {
+      await context.unrouteAll({ behavior: "wait" });
+    }
   }, { auto: true }],
 });
 

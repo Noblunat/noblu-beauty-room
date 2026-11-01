@@ -37,6 +37,8 @@ Remove-Item Env:EXPECTED_RELEASE
 
 The configuration rejects production/custom/arbitrary hosts. Protected previews require the owner's existing Vercel Automation Bypass credential in the repository secret `VERCEL_AUTOMATION_BYPASS_SECRET`; never disable Deployment Protection. The fixture scopes the credential to same-origin requests, does not follow redirects with it, and disables traces when it is present. Do not paste the credential into the URL or command arguments. The workflow never reads production mail credentials.
 
+The fixture waits for in-flight routed requests before closing each context, including Next link prefetches. Protected-fetch errors are rethrown with the bypass value redacted and no original cause, since Playwright's network errors can include request headers. Regression tests use a synthetic credential only.
+
 The Quality workflow also runs the deterministic browser suite after lint/unit/audit/build/smoke on every PR. A local pass is not a preview pass; record the actual preview URL and commit separately before publishing. An HTTP 401/auth page is a failed check, not a reason to weaken protection.
 
 HTML reports, screenshots and failed-test traces are in ignored `output/playwright/`. CI retains failure artifacts seven days. `npm run test:e2e:report` opens the report.
