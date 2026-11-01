@@ -1,10 +1,11 @@
-// Source: Booksy Biz, business 105150, read-only UI verification on 2026-10-26.
-// Evidence is archived in the marketing workspace: work/booksy-catalog-2026-10-26.
+// Source: Booksy Biz, business 105150, read-only UI verification on 2026-10-31.
+// Current services: work/booksy-sync-2026-10-31; add-on baseline: work/booksy-catalog-2026-10-26.
 export type BooksyService = {
   serviceId: number;
   name: string;
   category: string;
   description: string;
+  publicBookingListed?: boolean;
   variants: {name: string; pricePLN: number; durationMinutes: number; staff: string[]; booksyVariantId?: number}[];
 };
 
@@ -33,13 +34,14 @@ export const booksyServices: BooksyService[] = [
         ],
         "booksyVariantId": 23177096
       }
-    ]
+    ],
+    "publicBookingListed": true
   },
   {
     "serviceId": 8288958,
     "name": "MODELKA hybryda na naturalnej płytce",
     "category": "Stylizacja hybrydowa",
-    "description": "Zapraszamy na manicure hybrydowy w roli modelki do doskonalenia techniki i czasu pracy dla naszej nowej stylistki!\n \nJeśli masz naturalną płytkę oraz chęć spędzenia na paznokciach odrobinę więcej czasu, ta opcja jest dla Ciebie!\n \nJeśli masz ochotę zadbać o swoje paznokcie oraz pomóc naszej stylistce rozwinąć skrzydła - zapraszamy! \n \nUwaga: ta opcja dotyczy wyłącznie hybrydy na naturalnej płytce, bez żelu oraz przedłużania. Możesz mieć poprzednią stylizację jeśli też jest ona hybrydą.",
+    "description": "Zapraszamy na manicure hybrydowy w roli modelki do doskonalenia techniki i czasu pracy dla naszej nowej stylistki!\n\n \n\nJeśli masz naturalną płytkę oraz chęć spędzenia na paznokciach odrobinę więcej czasu, ta opcja jest dla Ciebie!\n\n \n\nJeśli masz ochotę zadbać o swoje paznokcie oraz pomóc naszej stylistce rozwinąć skrzydła - zapraszamy! \n\n \n\nUwaga: ta opcja dotyczy wyłącznie hybrydy na naturalnej płytce, bez żelu oraz przedłużania. Możesz mieć poprzednią stylizację jeśli też jest ona hybrydą.",
     "variants": [
       {
         "name": "MODELKA hybryda na naturalnej płytce",
@@ -49,7 +51,8 @@ export const booksyServices: BooksyService[] = [
           "Julia"
         ]
       }
-    ]
+    ],
+    "publicBookingListed": false
   },
   {
     "serviceId": 1770927,
@@ -75,7 +78,8 @@ export const booksyServices: BooksyService[] = [
         ],
         "booksyVariantId": 23177111
       }
-    ]
+    ],
+    "publicBookingListed": true
   },
   {
     "serviceId": 1670867,
@@ -84,14 +88,25 @@ export const booksyServices: BooksyService[] = [
     "description": "Usunięcie stylizacji hybrydowej, manicure z opracowaniem skórek, wykończenie odżywką na życzenie klientki.",
     "variants": [
       {
-        "name": "Usunięcie stylizacji hybrydowej z manicure",
+        "name": "Natalia",
         "pricePLN": 120,
         "durationMinutes": 60,
         "staff": [
           "Natalia"
-        ]
+        ],
+        "booksyVariantId": 5209050
+      },
+      {
+        "name": "Julia - Stylistka Junior",
+        "pricePLN": 100,
+        "durationMinutes": 70,
+        "staff": [
+          "Julia"
+        ],
+        "booksyVariantId": 23230160
       }
-    ]
+    ],
+    "publicBookingListed": true
   },
   {
     "serviceId": 1670885,
@@ -100,20 +115,31 @@ export const booksyServices: BooksyService[] = [
     "description": "Usunięcie pozostałości stylizacji z paznokcia, korekta manicure, stylizacja hybrydowa.",
     "variants": [
       {
-        "name": "Naprawa jednego paznokcia",
+        "name": "Natalia",
         "pricePLN": 30,
         "durationMinutes": 20,
         "staff": [
           "Natalia"
-        ]
+        ],
+        "booksyVariantId": 5208812
+      },
+      {
+        "name": "Julia - Stylistka Junior",
+        "pricePLN": 20,
+        "durationMinutes": 30,
+        "staff": [
+          "Julia"
+        ],
+        "booksyVariantId": 23230171
       }
-    ]
+    ],
+    "publicBookingListed": true
   },
   {
     "serviceId": 1670869,
     "name": "Żel na naturalnej płytce - paznokcie przed opuszek",
     "category": "Stylizacja żelowa",
-    "description": "Usunięcie poprzedniej stylizacji wykonanej przeze mnie, manicure z opracowaniem skórek, wzmocnienie żelem naturalnej płytki paznokci, stylizacja hybrydowa w jednym kolorze.\nDotyczy stylizacji bez korekty paznokci rosnących w dół, oraz w przypadku wykonywania jej przy wszystkich paznokciach naturalnych o długości maksymalnej do opuszka. Gdy część paznokci jest przedłużonych, lub długość paznokci jest za opuszek - wykonywana jest usługa uzupełniania żelowego.",
+    "description": "Usunięcie poprzedniej stylizacji wykonanej przeze mnie, manicure z opracowaniem skórek, wzmocnienie żelem naturalnej płytki paznokci, stylizacja hybrydowa w jednym kolorze.\n\nDotyczy stylizacji bez korekty paznokci rosnących w dół, oraz w przypadku wykonywania jej przy wszystkich paznokciach naturalnych o długości maksymalnej do opuszka. Gdy część paznokci jest przedłużonych, lub długość paznokci jest za opuszek - wykonywana jest usługa uzupełniania żelowego.",
     "variants": [
       {
         "name": "Żel na naturalnej płytce - paznokcie przed opuszek",
@@ -123,7 +149,8 @@ export const booksyServices: BooksyService[] = [
           "Natalia"
         ]
       }
-    ]
+    ],
+    "publicBookingListed": true
   },
   {
     "serviceId": 8300280,
@@ -139,13 +166,14 @@ export const booksyServices: BooksyService[] = [
           "Julia"
         ]
       }
-    ]
+    ],
+    "publicBookingListed": false
   },
   {
     "serviceId": 5368098,
     "name": "Żel na naturalnej płytce - paznokcie za opuszek",
     "category": "Stylizacja żelowa",
-    "description": "Usunięcie poprzedniej stylizacji wykonanej przeze mnie, manicure z opracowaniem skórek, wzmocnienie żelem naturalnej płytki paznokci, stylizacja hybrydowa w jednym kolorze.\nDotyczy stylizacji bez korekty paznokci rosnących w dół, oraz w przypadku wykonywania jej przy wszystkich paznokciach naturalnych dłuższych niż do opuszka. Gdy część paznokci jest przedłużonych - wykonywana jest usługa uzupełniania żelowego.",
+    "description": "Usunięcie poprzedniej stylizacji wykonanej przeze mnie, manicure z opracowaniem skórek, wzmocnienie żelem naturalnej płytki paznokci, stylizacja hybrydowa w jednym kolorze.\n\nDotyczy stylizacji bez korekty paznokci rosnących w dół, oraz w przypadku wykonywania jej przy wszystkich paznokciach naturalnych dłuższych niż do opuszka. Gdy część paznokci jest przedłużonych - wykonywana jest usługa uzupełniania żelowego.",
     "variants": [
       {
         "name": "Żel na naturalnej płytce - paznokcie za opuszek",
@@ -155,7 +183,8 @@ export const booksyServices: BooksyService[] = [
           "Natalia"
         ]
       }
-    ]
+    ],
+    "publicBookingListed": true
   },
   {
     "serviceId": 1670872,
@@ -171,7 +200,8 @@ export const booksyServices: BooksyService[] = [
           "Natalia"
         ]
       }
-    ]
+    ],
+    "publicBookingListed": true
   },
   {
     "serviceId": 1670879,
@@ -187,7 +217,8 @@ export const booksyServices: BooksyService[] = [
           "Natalia"
         ]
       }
-    ]
+    ],
+    "publicBookingListed": true
   },
   {
     "serviceId": 1670883,
@@ -203,7 +234,8 @@ export const booksyServices: BooksyService[] = [
           "Natalia"
         ]
       }
-    ]
+    ],
+    "publicBookingListed": true
   },
   {
     "serviceId": 4764877,
@@ -219,7 +251,8 @@ export const booksyServices: BooksyService[] = [
           "Natalia"
         ]
       }
-    ]
+    ],
+    "publicBookingListed": true
   },
   {
     "serviceId": 4733643,
@@ -245,7 +278,8 @@ export const booksyServices: BooksyService[] = [
         ],
         "booksyVariantId": 23177076
       }
-    ]
+    ],
+    "publicBookingListed": true
   },
   {
     "serviceId": 4733644,
@@ -261,7 +295,8 @@ export const booksyServices: BooksyService[] = [
           "Natalia"
         ]
       }
-    ]
+    ],
+    "publicBookingListed": true
   },
   {
     "serviceId": 4733645,
@@ -277,7 +312,8 @@ export const booksyServices: BooksyService[] = [
           "Natalia"
         ]
       }
-    ]
+    ],
+    "publicBookingListed": true
   },
   {
     "serviceId": 4733648,
@@ -286,14 +322,25 @@ export const booksyServices: BooksyService[] = [
     "description": "Usługa zawiera: opracowanie paznokci oraz skórek u stóp, wykończenie odżywką tradycyjną.",
     "variants": [
       {
-        "name": "Pedicure same paznokcie bez hybrydy",
+        "name": "Natalia",
         "pricePLN": 100,
         "durationMinutes": 40,
         "staff": [
           "Natalia"
-        ]
+        ],
+        "booksyVariantId": 14208964
+      },
+      {
+        "name": "Julia - Stylistka Junior",
+        "pricePLN": 80,
+        "durationMinutes": 60,
+        "staff": [
+          "Julia"
+        ],
+        "booksyVariantId": 23230201
       }
-    ]
+    ],
+    "publicBookingListed": true
   },
   {
     "serviceId": 4764873,
@@ -319,7 +366,8 @@ export const booksyServices: BooksyService[] = [
         ],
         "booksyVariantId": 23177122
       }
-    ]
+    ],
+    "publicBookingListed": true
   },
   {
     "serviceId": 1571874,
@@ -335,7 +383,8 @@ export const booksyServices: BooksyService[] = [
           "Natalia"
         ]
       }
-    ]
+    ],
+    "publicBookingListed": true
   },
   {
     "serviceId": 1770810,
@@ -351,13 +400,14 @@ export const booksyServices: BooksyService[] = [
           "Natalia"
         ]
       }
-    ]
+    ],
+    "publicBookingListed": true
   },
   {
     "serviceId": 7597933,
     "name": "Manicure z laminacją paznokci - NOWOŚĆ",
     "category": "Laminacja paznokci",
-    "description": "Manicure z opracowaniem paznokci i skórek oraz laminacją Bye Bye Repair System Yokaba.",
+    "description": "Laminacja paznokci Bye Bye Repair System Yokaba \nRatunek dla cienkich, łamliwych i osłabionych paznokci!\n\nJeśli Twoje paznokcie są kruche, rozdwajają się lub potrzebują regeneracji po stylizacjach — ten zabieg został stworzony właśnie dla Ciebie. Laminacja paznokci Yokaba to profesjonalny, wegański system odbudowy, który intensywnie wzmacnia naturalną płytkę i przywraca jej zdrowy wygląd.\n\nJuż po pierwszym zabiegu paznokcie stają się gładsze, bardziej elastyczne i pełne naturalnego blasku. Regularna seria zabiegów pomaga realnie odbudować strukturę paznokcia, zwiększyć jego odporność i ograniczyć łamliwość.\n\nDlaczego warto?\n✨ odbudowa i wzmocnienie naturalnej płytki\n✨ wygładzenie i poprawa elastyczności\n✨ zdrowy połysk bez stylizacji\n✨ idealny po hybrydzie, żelu i przedłużaniu\n✨ wegańska, świadoma pielęgnacja\n\nDla pełnego efektu należy wykonać serię 4 zabiegów wykonywanych co 7 dni.\n\nWybierając ten wariant usługa zawiera również pełen manicure z opracowaniem skórek oraz paznokci.",
     "variants": [
       {
         "name": "Manicure z laminacją paznokci - NOWOŚĆ",
@@ -367,13 +417,14 @@ export const booksyServices: BooksyService[] = [
           "Natalia"
         ]
       }
-    ]
+    ],
+    "publicBookingListed": true
   },
   {
     "serviceId": 7597949,
     "name": "Laminacja paznokci - NOWOŚĆ",
     "category": "Laminacja paznokci",
-    "description": "Laminacja paznokci Bye Bye Repair System Yokaba, bez opracowania paznokci i skórek.",
+    "description": "Laminacja paznokci Bye Bye Repair System Yokaba ✨\nRatunek dla cienkich, łamliwych i osłabionych paznokci!\n\nJeśli Twoje paznokcie są kruche, rozdwajają się lub potrzebują regeneracji po stylizacjach — ten zabieg został stworzony właśnie dla Ciebie. Laminacja paznokci Yokaba to profesjonalny, wegański system odbudowy, który intensywnie wzmacnia naturalną płytkę i przywraca jej zdrowy wygląd.\n\nJuż po pierwszym zabiegu paznokcie stają się gładsze, bardziej elastyczne i pełne naturalnego blasku. Regularna seria zabiegów pomaga realnie odbudować strukturę paznokcia, zwiększyć jego odporność i ograniczyć łamliwość.\n\nDlaczego warto?\n✨ odbudowa i wzmocnienie naturalnej płytki\n✨ wygładzenie i poprawa elastyczności\n✨ zdrowy połysk bez stylizacji\n✨ idealny po hybrydzie, żelu i przedłużaniu\n✨ wegańska, świadoma pielęgnacja\n\nDla pełnego efektu należy wykonać serię 4 zabiegów wykonywanych co 7 dni.\n\nUsługa zawiera samą laminację, jeżeli chcesz dodatkowo opracować paznokcie oraz skórki - wybierz wersję z manicure.",
     "variants": [
       {
         "name": "Laminacja paznokci - NOWOŚĆ",
@@ -383,7 +434,8 @@ export const booksyServices: BooksyService[] = [
           "Natalia"
         ]
       }
-    ]
+    ],
+    "publicBookingListed": true
   }
 ];
 

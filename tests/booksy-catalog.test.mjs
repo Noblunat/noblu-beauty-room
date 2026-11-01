@@ -20,7 +20,7 @@ function load(file) {
 test("Booksy catalog keeps distinct employee prices and durations instead of advertising a single shared price", () => {
   const { booksyServices } = load("app/lib/booksyCatalog.ts");
   assert.equal(booksyServices.length, 21);
-  assert.equal(booksyServices.reduce((count, s) => count + s.variants.length, 0), 25);
+  assert.equal(booksyServices.reduce((count, s) => count + s.variants.length, 0), 28);
   const hybrid = booksyServices.find(s => s.name === "Stylizacja hybrydowa");
   assert.deepEqual(JSON.parse(JSON.stringify(hybrid.variants.map(v => [v.staff[0], v.pricePLN, v.durationMinutes]))), [
     ["Natalia", 160, 90], ["Julia", 130, 120],
@@ -46,7 +46,7 @@ test("existing campaign selections keep Natalia's service while Julia gets an ex
 
 test("price list includes each Booksy variant and keeps minimum add-on prices explicit", () => {
   const { nailPrices, pedicurePrices, addonPrices } = load("app/lib/priceCatalog.ts");
-  assert.equal(nailPrices.length + pedicurePrices.length, 25);
+  assert.equal(nailPrices.length + pedicurePrices.length, 28);
   assert.equal(addonPrices.length, 7);
   assert.equal(addonPrices.find(x => x.name === "Zdobienie").price, "od 10 zł");
   assert.equal(addonPrices.find(x => x.name === "Zdobienie 3D").duration, "20min");

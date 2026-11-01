@@ -171,6 +171,8 @@ export default function CennikPage() {
               stylizacji rzęs w kameralnym salonie beauty w Krakowie przy ul.{" "}
               {business.address.streetLocative}. Jeśli pasuje Ci usługa, możesz od razu
               wysłać prośbę o termin online. Ceny i czasy mogą różnić się w zależności od stylistki.
+              Ceny manicure i pedicure dotyczą podstawowego zakresu. Dodatki i zdobienia wybierasz osobno;
+              całkowitą cenę i czas potwierdzamy przy wyborze usługi.
             </p>
             <p className="mt-4 text-sm text-[#5F5B56]">
               Aktualizacja informacji: <time dateTime={contentRevisions["/cennik"].date}>{revisionLabel("/cennik")}</time>.
@@ -241,8 +243,9 @@ export default function CennikPage() {
               Ile kosztuje pedicure?
             </h2>
             <p className="mt-4 leading-relaxed text-[#5F5B56]">
-              Pedicure samych paznokci bez hybrydy kosztuje {servicePrice("pedicure-paznokcie-bez-hybrydy-natalia")},
-              a z hybrydą u Julii (stylistki junior) {servicePrice("pedicure-paznokcie-hybryda-julia")}.
+              Pedicure samych paznokci bez hybrydy u Julii (stylistki junior) kosztuje {servicePrice("pedicure-paznokcie-bez-hybrydy-julia")},
+              a u Natalii {servicePrice("pedicure-paznokcie-bez-hybrydy-natalia")}.
+              Same paznokcie z hybrydą u Julii kosztują {servicePrice("pedicure-paznokcie-hybryda-julia")}.
               Wariant z hybrydą u Natalii kosztuje {servicePrice("pedicure-paznokcie-hybryda-natalia")},
               a pełny pedicure SPA bez hybrydy {servicePrice("pedicure-spa-bez-hybrydy-natalia")}. Salon znajduje
               się na Borku Fałęckim, z wygodnym dojazdem z południa Krakowa.

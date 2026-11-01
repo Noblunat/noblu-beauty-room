@@ -176,7 +176,7 @@ export default function CookieBanner() {
             )}
           </div>
 
-          <div className="grid gap-2 sm:flex sm:flex-row sm:gap-3 lg:w-56 lg:flex-col">
+          <div className={`grid gap-2 sm:flex sm:flex-row sm:gap-3 lg:w-56 lg:flex-col${settingsOpen ? "" : " grid-cols-2"}`}>
             <button
               type="button"
               onClick={() =>
@@ -216,7 +216,7 @@ export default function CookieBanner() {
                     external,
                   })
                 }
-                className="rounded-full border border-[#E8DED2] px-4 py-2.5 text-sm font-medium transition-colors hover:border-[#D4B483] sm:px-5 sm:py-3"
+                className="col-span-2 rounded-full border border-[#E8DED2] px-4 py-2.5 text-sm font-medium transition-colors hover:border-[#D4B483] sm:px-5 sm:py-3"
               >
                 Zapisz wybór
               </button>
@@ -229,7 +229,7 @@ export default function CookieBanner() {
                   setEditing(true);
                   setSettingsOpen(true);
                 }}
-                className="rounded-full border border-[#E8DED2] px-4 py-2.5 text-sm font-medium transition-colors hover:border-[#D4B483] sm:px-5 sm:py-3"
+                className="col-span-2 rounded-full border border-[#E8DED2] px-4 py-2.5 text-sm font-medium transition-colors hover:border-[#D4B483] sm:px-5 sm:py-3"
               >
                 Ustawienia
               </button>

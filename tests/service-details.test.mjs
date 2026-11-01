@@ -33,7 +33,7 @@ function text(node) {
 
 test("every price-list row exposes a duration or an explicit unconfirmed add-on time", () => {
   const rows = nodes(load("app/cennik/page.tsx").default()).filter(n => n.props?.className?.includes("grid-cols-[1fr_auto]"));
-  assert.equal(rows.length, 39);
+  assert.equal(rows.length, 42);
   for (const row of rows) assert.match(text(row), /Czas:/, text(row));
 });
 

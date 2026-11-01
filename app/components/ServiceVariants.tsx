@@ -17,6 +17,7 @@ export default function ServiceVariants({ pedicure = false }: { pedicure?: boole
           Natalia i Julia wykonują wybrane usługi zgodnie z poniższą ofertą.
           Julia jest stylistką junior; jej warianty mają osobne ceny i dłuższy czas wizyty.
           Podane czasy nie obejmują dodatkowych zdobień.
+          Ceny dotyczą podstawowego zakresu; dodatki wybierasz osobno zgodnie z Booksy.
         </p>
         <div className="mt-8 grid gap-5 sm:grid-cols-2">
           {services.map(service => (

@@ -34,7 +34,7 @@ test("each Booksy variant has the same price and employee on the visible price l
 
 test("homepage uses the verified starting pedicure price", () => {
   const highlight = loadDataModule("../app/lib/homePricing", import.meta.url).priceHighlights.find(item => item.href === "/pedicure-krakow");
-  assert.equal(highlight.price, "od 100 zł");
+  assert.equal(highlight.price, "od 80 zł");
 });
 
 test("the model appointment is separate from regular hybrid manicure in the public price list", () => {
