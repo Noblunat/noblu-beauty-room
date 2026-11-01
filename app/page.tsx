@@ -1,6 +1,7 @@
 import Image from "next/image";
 import SalonTeam from "./components/SalonTeam";
 import SalonHygiene from "./components/SalonHygiene";
+import FirstVisitDetails from "./components/FirstVisitDetails";
 import HomeHero from "./components/home/HomeHero";
 import HomeServices from "./components/home/HomeServices";
 import HomePricePreview from "./components/home/HomePricePreview";
@@ -46,6 +47,7 @@ export default function NobluBeautyRoomWebsite() {
       {/* HERO */}
       <main id="tresc-glowna" tabIndex={-1}>
         <HomeHero />
+        <FirstVisitDetails />
         {/* SERVICES */}
         <HomeServices />
 

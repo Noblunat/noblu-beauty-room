@@ -28,6 +28,9 @@ const publicAssetCacheHeaders = [
 ];
 
 const nextConfig: NextConfig = {
+  images: {
+    qualities: [70, 72, 75, 76],
+  },
   turbopack: {
     root: process.cwd(),
   },

@@ -7,7 +7,7 @@ const faqItems = [
   },
   {
     q: "Czy można zarezerwować wizytę online?",
-    a: "Tak, prośbę o termin możesz wysłać online przez formularz Noblu 24/7. Salon potwierdza dostępność SMS-em lub telefonicznie.",
+    a: "W Booksy wybierzesz usługę, stylistkę i dostępny termin. Bez konta możesz wysłać prośbę przez formularz Noblu 24/7. To zapytanie, nie gotowa rezerwacja: dostępność potwierdzamy SMS-em lub telefonicznie w godzinach pracy salonu. Jeśli termin będzie zajęty, zaproponujemy inny.",
   },
   {
     q: "Jakie usługi oferuje salon?",

@@ -76,6 +76,12 @@ function getClientId(request: Request) {
 }
 
 export async function POST(request: Request) {
+  if (process.env.NOBLU_LOCAL_PREVIEW === "1") {
+    return Response.json(
+      { error: "To podgląd lokalny. Wiadomość nie została wysłana; wybór nie jest rezerwacją." },
+      { status: 503, headers: { "Cache-Control": "no-store" } }
+    )
+  }
   const origin = request.headers.get("origin")
   // Next may reconstruct request.url with its bind hostname (localhost).
   // Host is the actual HTTP destination; browsers cannot override this header.
@@ -216,6 +222,7 @@ export async function POST(request: Request) {
   }
 
   const rows = [
+    ["Identyfikator zgłoszenia", data.requestId],
     ["Imię", name],
     ["Telefon", telephone],
     ["Usługa", selectedService.label],

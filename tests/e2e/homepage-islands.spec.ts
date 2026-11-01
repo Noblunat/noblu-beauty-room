@@ -85,7 +85,7 @@ test.describe("server-rendered homepage", () => {
   }) => {
     await page.goto("/");
     await expect(page.getByRole("heading", { level: 1 })).toHaveText(
-      "Manicure, Pedicure i rzęsy w Krakowie",
+      "Manicure dopasowany do Ciebie",
     );
     await expect(
       page

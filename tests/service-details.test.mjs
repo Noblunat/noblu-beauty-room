@@ -80,5 +80,6 @@ test("homepage uses a factual service heading and a separate Google review invit
   assert.ok(source.includes("Nasze usługi"));
   assert.ok(!source.includes("Najbardziej pożądane zabiegi"));
   assert.ok(source.includes("Dodaj opinię w Google"));
-  assert.ok(source.includes("businessRating"));
+  assert.ok(source.includes("business.reviews.rating"));
+  assert.ok(source.includes("business.reviews.minimum"));
 });

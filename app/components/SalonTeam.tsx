@@ -11,7 +11,7 @@ export default function SalonTeam() {
         <h2 id="salon-team-title" className="text-3xl font-light sm:text-4xl">Poznaj nasz zespół</h2>
         <div className="mt-8 grid gap-6 md:grid-cols-2">
           {team.map(person => (
-            <article key={person.name} className="flex min-w-0 flex-col gap-5 rounded-[1.5rem] border border-[#E8DED2] bg-white/70 p-6 sm:flex-row sm:items-start">
+            <article id={`stylistka-${person.id}`} key={person.name} className="flex min-w-0 scroll-mt-28 flex-col gap-5 rounded-[1.5rem] border border-[#E8DED2] bg-white/70 p-6 sm:flex-row sm:items-start">
               <Image
                 src={person.image}
                 alt={`Portret ${person.id === "natalia" ? "Natalii" : "Julii"} z zespołu ${business.name}`}
@@ -26,6 +26,9 @@ export default function SalonTeam() {
                 {person.description.map(paragraph => (
                   <p key={paragraph} className="mt-3 leading-relaxed text-[#5F5B56]">{paragraph}</p>
                 ))}
+                {person.id === "julia" && <p className="mt-3 leading-relaxed text-[#5F5B56]">Stylistka junior. Zaplanuj dłuższy czas wizyty zgodnie z wybranym wariantem w cenniku.</p>}
+                <Link href="/#realizacje-salonu" className="mt-3 inline-flex min-h-11 items-center font-medium text-[#7C6238] underline underline-offset-4">Zobacz realizacje salonu</Link>
+                {person.id === "natalia" && <Link href="/#opinie-klientek" className="mt-2 block py-2 font-medium text-[#7C6238] underline underline-offset-4">Przeczytaj opinie o pracy Natalii</Link>}
               </div>
             </article>
           ))}

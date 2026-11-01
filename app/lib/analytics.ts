@@ -8,14 +8,14 @@ export function serviceFromPath(pathname: string) {
   return servicePages[pathname.replace(/\/$/, "")]?.name;
 }
 
-export function bookingClickDetails(href: string, pageUrl: string) {
+export function bookingClickDetails(href: string, pageUrl: string, advertisedServiceId?: string) {
   const source = new URL(pageUrl);
   const target = new URL(href, source);
   const isBooksy = target.hostname === "booksy.com" || target.hostname.endsWith(".booksy.com");
   const isForm = target.origin === source.origin && target.pathname.replace(/\/$/, "") === "/rezerwacja";
 
   if (!isBooksy && !isForm) return null;
-  const service = findBookingService(target.searchParams.get("usluga") ?? "");
+  const service = findBookingService((isForm ? target.searchParams.get("usluga") : advertisedServiceId) ?? "");
 
   return {
     service_name: service?.name ?? serviceFromPath(source.pathname) ?? "unspecified",

@@ -27,7 +27,7 @@ const reviews = [
 
 export default function HomeReviews() {
   return (
-    <section className="relative py-28 overflow-hidden bg-transparent text-[#1D1D1B]">
+    <section id="opinie-klientek" className="relative scroll-mt-28 py-28 overflow-hidden bg-transparent text-[#1D1D1B]">
       <div className="max-w-7xl mx-auto px-6 lg:px-12">
         <div className="mb-16">
           <div className="text-sm uppercase tracking-[0.3em] text-[#7C6238] mb-4">
